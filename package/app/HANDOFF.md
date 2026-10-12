@@ -31,7 +31,7 @@
 | 接口 | 输入 | 返回 | 用途 | 状态 |
 |---|---|---|---|---|
 | （示例）ucHubs.xxx | {symbol} | {...} | 某面板 | 待做 |
-| ucHubs.dividends | {symbols: string[]} | 每个标的近 10 年现金股息记录 [{exDate, payDate, amount, currency}] + 最新股息率 | DDIS 股息分布 / 股息增长（目前两个标签为空状态） | 待做 |
+| ucHubs.dividends | {symbols: string[]} | 每个标的近 10 年现金股息记录 [{exDate, payDate, amount, currency}] + 最新股息率 | DDIS 股息分布 / 股息增长（目前两个标签为空状态） | 已上线（2026-10-12，返回逐笔记录与近 12 个月股息率；payDate 为 null）|
 | ucHubs.etfFlows | {symbols: string[]} | 每日份额 / 规模 / 净申赎（份额变化 × 净值） | ETF 资金流标签（目前为空状态） | 待做 |
 | **修正** ucMarket.ticks（server/uc/market.ts 第 335 行附近，A 股腾讯行情） | — | `amount` 目前为“万元”（f[37] 未 ×10000），`volume` 为“手”；应统一为元、股（hubs2.ts 第 428 行已 ×10000，可参照） | 所有显示 A 股成交额的面板（ETF、TFLO、MOST 等），如 510300 今日成交额显示 30.47 万，实为 30.47 亿 | 待做（前端不做单位补偿，以免修正后翻倍） |
 | 巴西 DI1 期货、台湾拆款定盘 | — | 见 §7 4a | CDIE / TWDI | 待做 |
