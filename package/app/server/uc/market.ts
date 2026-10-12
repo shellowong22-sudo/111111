@@ -321,6 +321,10 @@ async function qqTicks(items: Array<{ symbol: string; parsed: Parsed }>): Promis
     const price = num(f[3]);
     if (price === null || price === 0) continue;
     const ts = qqTime(f[30], m[1]);
+    // A 股：腾讯成交量为“手”、成交额为“万元”，统一换算为股、元（与新浪 A 股口径一致）
+    const isCnA = /^(sh|sz|bj)\d/.test(m[1]);
+    const volume = num(f[6]);
+    const amount = num(f[37]);
     out.set(symbol, {
       symbol,
       name: displayName(symbol) ?? f[1] ?? null,
@@ -331,8 +335,8 @@ async function qqTicks(items: Array<{ symbol: string; parsed: Parsed }>): Promis
       high: num(f[33]),
       low: num(f[34]),
       prevClose: num(f[4]),
-      volume: num(f[6]),
-      amount: num(f[37]),
+      volume: isCnA && volume != null ? volume * 100 : volume,
+      amount: isCnA && amount != null ? amount * 10000 : amount,
       time: Number.isFinite(ts) ? ts : Date.now(),
     });
   }

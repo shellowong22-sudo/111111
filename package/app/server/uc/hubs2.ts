@@ -583,6 +583,26 @@ export async function analystView(symbolRaw: string) {
   });
 }
 
+/* ------------------------------------------------------------------ 股息记录与最新股息率 */
+// 逐只标的返回近 10 年现金股息（除息日、金额、币种）及近 12 个月股息率。
+// 数据源无派息日字段，payDate 固定为 null；取不到数据时返回空 records，不生成替代值。
+export async function dividends(symbolsRaw: string[]) {
+  const syms = [...new Set(symbolsRaw.map((s) => s.toUpperCase().replace(/[^A-Z0-9.\-^]/g, "")).filter(Boolean))].slice(0, 20);
+  return Promise.all(syms.map((sym) => cached(`div:${sym}`, 3600_000, async () => {
+    const json = await getJson<any>(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1mo&range=10y&events=div`).catch(() => null);
+    const r = json?.chart?.result?.[0];
+    const price = num(r?.meta?.regularMarketPrice);
+    const currency: string | null = r?.meta?.currency ?? null;
+    const records = Object.values<any>(r?.events?.dividends ?? {})
+      .map((e) => ({ exDate: new Date((Number(e?.date) || 0) * 1000).toISOString().slice(0, 10), payDate: null as string | null, amount: num(e?.amount), currency }))
+      .filter((e) => e.amount != null)
+      .sort((a, b) => a.exDate.localeCompare(b.exDate));
+    const yearAgo = new Date(Date.now() - 365 * 86400_000).toISOString().slice(0, 10);
+    const ttm = records.filter((e) => e.exDate > yearAgo).reduce((s, e) => s + (e.amount ?? 0), 0);
+    return { symbol: sym, price, currency, records, latestYield: price && ttm ? (ttm / price) * 100 : null };
+  })));
+}
+
 /* ------------------------------------------------------------------ 最活跃证券（美股 / A 股 / 港股） */
 export async function mostActive(market: "us" | "cn" | "hk") {
   return cached(`most:${market}`, 60_000, async () => {

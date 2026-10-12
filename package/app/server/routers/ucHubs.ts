@@ -7,7 +7,7 @@ import { sql } from "drizzle-orm";
 import { cotReport, curves, fxReference, optionChain } from "../uc/hubs";
 import { exec, parseJson, query } from "../uc/store";
 import { symbolSearch, balanceSheets, ambsOperations, courtCounts, courtSearch, edgarSearch, fedRegister, fedRegisterStats, platformStats, regulatorPress, somaHoldings, spendingAgencies, spendingAgencyTrend, spendingAwards, spendingByState } from "../uc/hubs3";
-import { analystView, realYieldCurve, cbRates, closesPack, effectiveRates, fomcStatements, mostActive, imfData, predictionMarkets, convertibles, cotCommodities, futuresCurve, futuresCurves, housing, ivScan, loadSeries, moneyMarket, sovereignSpreads, treasuryAuctions } from "../uc/hubs2";
+import { analystView, dividends, realYieldCurve, cbRates, closesPack, effectiveRates, fomcStatements, mostActive, imfData, predictionMarkets, convertibles, cotCommodities, futuresCurve, futuresCurves, housing, ivScan, loadSeries, moneyMarket, sovereignSpreads, treasuryAuctions } from "../uc/hubs2";
 
 export const ucHubsRouter = router({
   options: publicProcedure.input(z.object({ symbol: z.string().min(1).max(16), expiry: z.string().max(10).optional() })).query(({ input }) => optionChain(input.symbol, input.expiry)),
@@ -26,6 +26,7 @@ export const ucHubsRouter = router({
   fomc: publicProcedure.query(() => fomcStatements()),
   realCurve: publicProcedure.query(() => realYieldCurve()),
   analyst: publicProcedure.input(z.object({ symbol: z.string().min(1).max(12) })).query(({ input }) => analystView(input.symbol)),
+  dividends: publicProcedure.input(z.object({ symbols: z.array(z.string().min(1).max(12)).max(20) })).query(({ input }) => dividends(input.symbols)),
   most: publicProcedure.input(z.object({ market: z.enum(["us", "cn", "hk"]) })).query(({ input }) => mostActive(input.market)),
   imf: publicProcedure.input(z.object({ codes: z.array(z.string().max(16)).min(1).max(10) })).query(({ input }) => imfData(input.codes)),
   ivScan: publicProcedure.input(z.object({ symbols: z.array(z.string().max(16)).max(60) })).query(({ input }) => ivScan(input.symbols)),
