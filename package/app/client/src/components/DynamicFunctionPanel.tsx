@@ -1,0 +1,14 @@
+import { RefreshCw } from 'lucide-react';
+import { trpc } from '@/lib/trpc';
+
+interface DynamicFunctionPanelProps { title: string; code?: string; functionType?: string; category?: string; description?: string; }
+
+/** Shared backend-backed fallback for legacy menu entries; never synthesizes market data. */
+export default function DynamicFunctionPanel({ title, code = 'N/A', category = '', description }: DynamicFunctionPanelProps) {
+  const markets = trpc.market.getAll.useQuery(undefined, { staleTime: 30_000, refetchOnWindowFocus: false, retry: 1 });
+  const rows = (markets.data ?? []).filter((row) => !category || row.market?.toLowerCase().includes(category.toLowerCase()));
+  return <section className="flex h-full min-h-[280px] flex-col bg-background text-foreground" data-function-id={code}>
+    <header className="flex items-start justify-between border-b border-border px-3 py-2"><div><h2 className="font-mono text-sm font-semibold text-accent">{title}</h2><p className="mt-0.5 text-[10px] text-muted-foreground">{description ?? '后端数据工作区'} · 功能 ID {code}</p></div><button type="button" onClick={() => markets.refetch()} disabled={markets.isFetching} className="inline-flex items-center gap-1 border border-border px-2 py-1 text-[10px] text-muted-foreground hover:text-foreground disabled:opacity-50"><RefreshCw className={markets.isFetching ? 'h-3 w-3 animate-spin' : 'h-3 w-3'} />核验来源</button></header>
+    {markets.isLoading ? <p className="p-4 text-xs text-muted-foreground">正在读取后端数据…</p> : rows.length > 0 ? <div className="flex-1 overflow-auto"><table className="w-full text-xs"><thead className="sticky top-0 border-b border-border bg-background text-left text-[10px] text-muted-foreground"><tr><th className="px-2 py-2">标的</th><th className="px-2 py-2 text-right">最新值</th><th className="px-2 py-2 text-right">变动</th><th className="px-2 py-2">市场</th><th className="px-2 py-2">观察时间</th></tr></thead><tbody>{rows.map((row) => <tr key={row.symbol} className="border-b border-border/60"><td className="px-2 py-2 font-mono">{row.symbol}<span className="ml-2 text-muted-foreground">{row.name}</span></td><td className="px-2 py-2 text-right font-mono">{row.price ?? '—'}</td><td className="px-2 py-2 text-right font-mono">{row.changePct == null ? '—' : `${row.changePct}%`}</td><td className="px-2 py-2 text-muted-foreground">{row.market}</td><td className="px-2 py-2 font-mono text-muted-foreground">{row.updatedAt ? new Date(row.updatedAt).toISOString() : '未提供'}</td></tr>)}</tbody></table></div> : <div className="flex flex-1 flex-col items-center justify-center border-t border-border p-6 text-center"><div className="font-mono text-sm text-amber-300">数据源未配置</div><p className="mt-2 max-w-xl text-xs leading-5 text-muted-foreground">此功能没有可验证的后端数据集，暂不显示静态或随机数。请在管理后台绑定来源、字段口径、更新时间和权限后再启用。</p><p className="mt-3 font-mono text-[10px] text-slate-500">状态：{markets.error ? '接口不可用' : '未发布'} · 来源：未配置 · 不产生推送</p></div>}
+  </section>;
+}

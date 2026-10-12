@@ -1,0 +1,1398 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* Money-market terminal: its own dense workstation grammar.  The sovereign
+ * card shell is intentionally not reused here. */
+.mm-workbench {
+  --mm-accent: #22d3ee;
+  --mm-accent-rgb: 34, 211, 238;
+  --mm-grid: rgba(51, 65, 85, 0.16);
+  min-height: 0;
+  height: 100%;
+  overflow: auto;
+  color: #dbe5f1;
+  background:
+    linear-gradient(var(--mm-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--mm-grid) 1px, transparent 1px),
+    radial-gradient(
+      circle at 78% 0%,
+      rgba(var(--mm-accent-rgb), 0.08),
+      transparent 32%
+    ),
+    #05080d;
+  background-size:
+    28px 28px,
+    28px 28px,
+    auto,
+    auto;
+}
+
+.mm-workbench__masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 7px 12px;
+  border-bottom: 1px solid rgba(var(--mm-accent-rgb), 0.28);
+  background: rgba(5, 8, 13, 0.93);
+  backdrop-filter: blur(12px);
+}
+
+.mm-workbench__identity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+.mm-workbench__sequence {
+  color: #64748b;
+  font:
+    600 10px/1 ui-monospace,
+    monospace;
+}
+.mm-workbench__ticker {
+  color: var(--mm-accent);
+  font:
+    800 14px/1 ui-monospace,
+    monospace;
+  letter-spacing: 0.08em;
+}
+.mm-workbench__identity h2 {
+  margin: 0;
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 650;
+}
+.mm-workbench__identity p {
+  margin: 2px 0 0;
+  overflow: hidden;
+  color: #718096;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mm-workbench__status {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font:
+    500 9px/1 ui-monospace,
+    monospace;
+}
+.mm-workbench__status > span,
+.mm-workbench__status > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+.mm-workbench__status .is-live {
+  color: #34d399;
+}
+.mm-workbench__status .is-recovering {
+  color: #fbbf24;
+}
+.mm-workbench__status button {
+  padding: 4px 6px;
+  border: 1px solid rgba(var(--mm-accent-rgb), 0.28);
+  color: var(--mm-accent);
+}
+
+.mm-workbench__event-ribbon {
+  display: grid;
+  grid-auto-columns: minmax(260px, 1fr);
+  grid-auto-flow: column;
+  gap: 1px;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(var(--mm-accent-rgb), 0.18);
+  background: rgba(var(--mm-accent-rgb), 0.12);
+}
+.mm-workbench__event-ribbon article {
+  max-height: 76px;
+  overflow: hidden;
+  padding: 8px 10px;
+  background: #070b12;
+}
+.mm-workbench__event-ribbon b {
+  display: block;
+  overflow: hidden;
+  color: #dbeafe;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mm-workbench__event-ribbon p {
+  display: -webkit-box;
+  margin: 3px 0 0;
+  overflow: hidden;
+  color: #8290a5;
+  font-size: 9px;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.mm-workbench__content {
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+}
+.mm-desk-section {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #1c2634;
+  border-radius: 2px;
+  background: rgba(7, 11, 18, 0.84);
+  box-shadow: inset 2px 0 0 rgba(var(--mm-accent-rgb), 0.55);
+}
+.mm-desk-section__header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 7px;
+  min-height: 30px;
+  padding: 5px 8px;
+  border-bottom: 1px solid #17202c;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--mm-accent-rgb), 0.1),
+    transparent 52%
+  );
+}
+.mm-desk-section__header > span {
+  color: rgba(var(--mm-accent-rgb), 0.55);
+  font:
+    700 8px/1 ui-monospace,
+    monospace;
+  letter-spacing: 0.12em;
+}
+.mm-desk-section__header h3 {
+  margin: 0;
+  color: #aebccd;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.mm-desk-section__body {
+  min-width: 0;
+  padding: 8px;
+}
+.mm-datum {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+  border: 0;
+  border-left: 1px solid #2b3748;
+  border-radius: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.7),
+    rgba(8, 12, 19, 0.25)
+  );
+  padding: 7px 8px;
+  text-align: left;
+}
+.mm-datum.is-inspectable:hover {
+  border-left-color: var(--mm-accent);
+  background: rgba(var(--mm-accent-rgb), 0.08);
+}
+.mm-datum__label {
+  overflow: hidden;
+  color: #708097;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mm-datum strong {
+  color: #e2e8f0;
+  font:
+    700 14px/1.2 ui-monospace,
+    monospace;
+}
+.mm-datum strong small {
+  margin-left: 2px;
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 500;
+}
+.mm-datum svg {
+  width: 100%;
+  height: 28px;
+  overflow: visible;
+}
+.mm-datum polyline {
+  fill: none;
+  stroke: var(--mm-accent);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.mm-datum__sub {
+  color: #64748b;
+  font-size: 9px;
+}
+.mm-datum__drilldown {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding-top: 4px;
+  border-top: 1px solid #1e293b;
+  color: #8290a5;
+  font:
+    500 8px/1.4 ui-monospace,
+    monospace;
+}
+.mm-datum__drilldown i {
+  font-style: normal;
+}
+.mm-datum.is-positive strong {
+  color: #4ade80;
+}
+.mm-datum.is-negative strong,
+.mm-datum.is-critical strong {
+  color: #fb7185;
+}
+.mm-datum.is-warning strong {
+  color: #fbbf24;
+}
+.mm-datum.is-information strong {
+  color: var(--mm-accent);
+}
+.mm-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #334155;
+  padding: 2px 5px;
+  color: #cbd5e1;
+  font-size: 9px;
+}
+.mm-badge.is-positive {
+  border-color: #166534;
+  color: #86efac;
+}
+.mm-badge.is-negative,
+.mm-badge.is-critical {
+  border-color: #9f1239;
+  color: #fda4af;
+}
+.mm-badge.is-warning {
+  border-color: #92400e;
+  color: #fcd34d;
+}
+.mm-badge.is-information {
+  border-color: rgba(var(--mm-accent-rgb), 0.42);
+  color: var(--mm-accent);
+}
+.mm-workbench .input-terminal {
+  border-radius: 1px;
+  border-color: #2a3647;
+  background: #070c13;
+}
+
+/* Each original function owns a different visual topology. */
+.mm-workbench[data-mm-module="des-mm"] {
+  --mm-accent: #67e8f9;
+  --mm-accent-rgb: 103, 232, 249;
+  --mm-grid: rgba(103, 232, 249, 0.055);
+}
+.mm-workbench[data-mm-module="des-mm"] .mm-desk-section {
+  box-shadow: inset 34px 0 0 rgba(8, 47, 73, 0.24);
+}
+.mm-workbench[data-mm-module="des-mm"] .mm-desk-section__body {
+  padding-left: 40px;
+}
+.mm-workbench[data-mm-module="pgm"] {
+  --mm-accent: #a7f3d0;
+  --mm-accent-rgb: 167, 243, 208;
+  --mm-grid: rgba(167, 243, 208, 0.04);
+}
+.mm-workbench[data-mm-module="pgm"] .mm-desk-section__body {
+  background: linear-gradient(90deg, rgba(6, 78, 59, 0.12), transparent 35%);
+}
+.mm-workbench[data-mm-module="mktbeat"] {
+  --mm-accent: #22d3ee;
+  --mm-accent-rgb: 34, 211, 238;
+}
+.mm-workbench[data-mm-module="mktbeat"] .mm-desk-section {
+  border-top: 2px solid #0e7490;
+  box-shadow: none;
+}
+.mm-workbench[data-mm-module="btmm"] {
+  --mm-accent: #fbbf24;
+  --mm-accent-rgb: 251, 191, 36;
+  --mm-grid: rgba(251, 191, 36, 0.045);
+}
+.mm-workbench[data-mm-module="btmm"] .mm-desk-section {
+  border-left: 4px double #92400e;
+  box-shadow: none;
+}
+.mm-workbench[data-mm-module="boom"] {
+  --mm-accent: #fb923c;
+  --mm-accent-rgb: 251, 146, 60;
+  --mm-grid: rgba(251, 146, 60, 0.04);
+}
+.mm-workbench[data-mm-module="boom"] .mm-workbench__content {
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  align-items: start;
+}
+.mm-workbench[data-mm-module="boom"] .mm-workbench__content > :first-child {
+  grid-row: span 2;
+}
+.mm-workbench[data-mm-module="tcon"] {
+  --mm-accent: #4ade80;
+  --mm-accent-rgb: 74, 222, 128;
+  --mm-grid: rgba(74, 222, 128, 0.04);
+}
+.mm-workbench[data-mm-module="tcon"] .mm-desk-section {
+  border-block: 1px solid #14532d;
+  border-inline: 0;
+  box-shadow: none;
+}
+.mm-workbench[data-mm-module="rv"] {
+  --mm-accent: #c084fc;
+  --mm-accent-rgb: 192, 132, 252;
+  --mm-grid: rgba(192, 132, 252, 0.04);
+}
+.mm-workbench[data-mm-module="rv"] .mm-desk-section {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+.mm-workbench[data-mm-module="ycqsim"] {
+  --mm-accent: #818cf8;
+  --mm-accent-rgb: 129, 140, 248;
+  --mm-grid: rgba(129, 140, 248, 0.055);
+}
+.mm-workbench[data-mm-module="ycqsim"] .mm-desk-section {
+  box-shadow: inset 0 0 28px rgba(49, 46, 129, 0.13);
+}
+.mm-workbench[data-mm-module="gc"] {
+  --mm-accent: #38bdf8;
+  --mm-accent-rgb: 56, 189, 248;
+  --mm-grid: rgba(56, 189, 248, 0.05);
+}
+.mm-workbench[data-mm-module="gc"] .mm-desk-section__header {
+  position: absolute;
+  z-index: 2;
+  margin: 6px;
+  border: 1px solid #1e3a5f;
+  background: rgba(3, 7, 18, 0.88);
+}
+.mm-workbench[data-mm-module="gc"] .mm-desk-section__body {
+  padding-top: 44px;
+}
+.mm-workbench[data-mm-module="crvf-mmkt"] {
+  --mm-accent: #2dd4bf;
+  --mm-accent-rgb: 45, 212, 191;
+  --mm-grid: rgba(45, 212, 191, 0.04);
+}
+.mm-workbench[data-mm-module="crvf-mmkt"] .mm-desk-section {
+  border-radius: 0 16px 0 0;
+}
+.mm-workbench[data-mm-module="crvf"] {
+  --mm-accent: #60a5fa;
+  --mm-accent-rgb: 96, 165, 250;
+  --mm-grid: rgba(96, 165, 250, 0.04);
+}
+.mm-workbench[data-mm-module="crvf"] .mm-desk-section {
+  border-style: double;
+}
+.mm-workbench[data-mm-module="fibc"] {
+  --mm-accent: #facc15;
+  --mm-accent-rgb: 250, 204, 21;
+  --mm-grid: rgba(250, 204, 21, 0.04);
+}
+.mm-workbench[data-mm-module="fibc"] .mm-desk-section__body {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 31px,
+    rgba(250, 204, 21, 0.035) 31px 32px
+  );
+}
+.mm-workbench[data-mm-module="cdie"] {
+  --mm-accent: #34d399;
+  --mm-accent-rgb: 52, 211, 153;
+  --mm-grid: rgba(52, 211, 153, 0.04);
+}
+.mm-workbench[data-mm-module="cdie"] .mm-desk-section {
+  border-radius: 18px 2px 18px 2px;
+}
+.mm-workbench[data-mm-module="efsf"] {
+  --mm-accent: #93c5fd;
+  --mm-accent-rgb: 147, 197, 253;
+  --mm-grid: rgba(147, 197, 253, 0.04);
+}
+.mm-workbench[data-mm-module="efsf"] .mm-desk-section {
+  border-left: 6px solid #1e3a8a;
+  box-shadow: none;
+}
+.mm-workbench[data-mm-module="mmidx"] {
+  --mm-accent: #f472b6;
+  --mm-accent-rgb: 244, 114, 182;
+  --mm-grid: rgba(244, 114, 182, 0.04);
+}
+.mm-workbench[data-mm-module="mmidx"] .mm-desk-section {
+  box-shadow: inset 0 -2px 0 rgba(190, 24, 93, 0.3);
+}
+.mm-workbench[data-mm-module="etrade"] {
+  --mm-accent: #fb7185;
+  --mm-accent-rgb: 251, 113, 133;
+  --mm-grid: rgba(251, 113, 133, 0.035);
+}
+.mm-workbench[data-mm-module="etrade"] .mm-desk-section {
+  border: 0;
+  border-inline: 1px dashed #881337;
+  box-shadow: none;
+}
+.mm-workbench[data-mm-module="edsf"] {
+  --mm-accent: #a78bfa;
+  --mm-accent-rgb: 167, 139, 250;
+  --mm-grid: rgba(167, 139, 250, 0.04);
+}
+.mm-workbench[data-mm-module="edsf"] .mm-desk-section__header {
+  border-bottom-style: dashed;
+}
+.mm-workbench[data-mm-module="wbf"] {
+  --mm-accent: #fdba74;
+  --mm-accent-rgb: 253, 186, 116;
+  --mm-grid: rgba(253, 186, 116, 0.04);
+}
+.mm-workbench[data-mm-module="wbf"] .mm-desk-section {
+  transform: skewX(-0.15deg);
+}
+.mm-workbench[data-mm-module="pboc"] {
+  --mm-accent: #f87171;
+  --mm-accent-rgb: 248, 113, 113;
+  --mm-grid: rgba(248, 113, 113, 0.04);
+}
+.mm-workbench[data-mm-module="pboc"] .mm-workbench__content {
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  align-items: start;
+}
+.mm-workbench[data-mm-module="twdi"] {
+  --mm-accent: #5eead4;
+  --mm-accent-rgb: 94, 234, 212;
+  --mm-grid: rgba(94, 234, 212, 0.04);
+}
+.mm-workbench[data-mm-module="twdi"] .mm-desk-section {
+  border-bottom: 3px double #115e59;
+  box-shadow: none;
+}
+.mm-workbench[data-mm-module="cenb"] {
+  --mm-accent: #c4b5fd;
+  --mm-accent-rgb: 196, 181, 253;
+  --mm-grid: rgba(196, 181, 253, 0.04);
+}
+.mm-workbench[data-mm-module="cenb"] .mm-workbench__content {
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  align-items: start;
+}
+.mm-workbench[data-mm-module="cenb"] .mm-workbench__content > :first-child {
+  grid-row: span 2;
+}
+.mm-workbench[data-mm-module="news-mm"] {
+  --mm-accent: #e2e8f0;
+  --mm-accent-rgb: 226, 232, 240;
+  --mm-grid: rgba(226, 232, 240, 0.028);
+}
+.mm-workbench[data-mm-module="news-mm"] .mm-desk-section {
+  border-inline: 0;
+  box-shadow: none;
+  background: rgba(9, 12, 17, 0.94);
+}
+.mm-workbench[data-mm-module="source-mm"] {
+  --mm-accent: #2dd4bf;
+  --mm-accent-rgb: 45, 212, 191;
+}
+.mm-workbench[data-mm-module="mmflow"] {
+  --mm-accent: #f59e0b;
+  --mm-accent-rgb: 245, 158, 11;
+}
+
+@media (max-width: 900px) {
+  .mm-workbench[data-mm-module="boom"] .mm-workbench__content,
+  .mm-workbench[data-mm-module="pboc"] .mm-workbench__content,
+  .mm-workbench[data-mm-module="cenb"] .mm-workbench__content {
+    grid-template-columns: 1fr;
+  }
+  .mm-workbench[data-mm-module="boom"] .mm-workbench__content > :first-child,
+  .mm-workbench[data-mm-module="cenb"] .mm-workbench__content > :first-child {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .mm-workbench__masthead {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .mm-workbench__status {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .mm-workbench__status > span:nth-child(2) {
+    display: none;
+  }
+  .mm-workbench[data-mm-module="des-mm"] .mm-desk-section {
+    box-shadow: inset 5px 0 0 rgba(8, 47, 73, 0.5);
+  }
+  .mm-workbench[data-mm-module="des-mm"] .mm-desk-section__body {
+    padding-left: 12px;
+  }
+}
+
+:root {
+  /* Bloomberg Light Terminal — crisp white with deep navy text */
+  --radius: 0.65rem;
+  --primary: oklch(0.38 0.12 250);
+  --primary-foreground: oklch(0.98 0 0);
+  --background: oklch(0.97 0.003 240);
+  --foreground: oklch(0.15 0.02 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 250);
+  --secondary: oklch(0.93 0.005 240);
+  --secondary-foreground: oklch(0.25 0.02 250);
+  --muted: oklch(0.93 0.005 240);
+  --muted-foreground: oklch(0.48 0.015 250);
+  --accent: oklch(0.38 0.12 250);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.86 0.008 240);
+  --input: oklch(0.86 0.008 240);
+  --ring: oklch(0.38 0.12 250);
+  /* Sidebar — Bloomberg light panel */
+  --sidebar: oklch(0.18 0.025 250);
+  --sidebar-foreground: oklch(0.88 0.005 240);
+  --sidebar-primary: oklch(0.55 0.15 210);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.28 0.03 250);
+  --sidebar-accent-foreground: oklch(0.92 0.005 240);
+  --sidebar-border: oklch(0.28 0.025 250);
+  --sidebar-ring: oklch(0.55 0.15 210);
+  /* Chart colors — Bloomberg light: blue/teal/orange/red/green */
+  --chart-1: oklch(0.5 0.18 250);
+  --chart-2: oklch(0.55 0.15 185);
+  --chart-3: oklch(0.62 0.18 40);
+  --chart-4: oklch(0.55 0.2 25);
+  --chart-5: oklch(0.52 0.16 145);
+  /* Terminal chart palette (CSS vars for Recharts) */
+  --chart-grid: oklch(0.86 0.008 240);
+  --chart-axis: oklch(0.6 0.01 250);
+  --chart-tooltip-bg: oklch(0.15 0.02 250);
+  --chart-tooltip-border: oklch(0.86 0.008 240);
+  --chart-positive: oklch(0.48 0.16 145);
+  --chart-negative: oklch(0.55 0.2 25);
+  --chart-line-1: oklch(0.5 0.18 250);
+  --chart-line-2: oklch(0.55 0.15 185);
+  --chart-line-3: oklch(0.62 0.18 40);
+}
+
+.dark {
+  /* Bloomberg Dark Terminal — true black with amber/cyan accents */
+  --primary: oklch(0.55 0.15 210);
+  --primary-foreground: oklch(0.98 0 0);
+  --background: oklch(0.09 0.008 250);
+  --foreground: oklch(0.88 0.005 240);
+  --card: oklch(0.13 0.01 250);
+  --card-foreground: oklch(0.88 0.005 240);
+  --popover: oklch(0.13 0.01 250);
+  --popover-foreground: oklch(0.88 0.005 240);
+  --secondary: oklch(0.18 0.012 250);
+  --secondary-foreground: oklch(0.75 0.005 240);
+  --muted: oklch(0.18 0.012 250);
+  --muted-foreground: oklch(0.55 0.01 250);
+  --accent: oklch(0.55 0.15 210);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.55 0.15 210);
+  /* Sidebar — Bloomberg dark panel */
+  --sidebar: oklch(0.11 0.01 250);
+  --sidebar-foreground: oklch(0.82 0.005 240);
+  --sidebar-primary: oklch(0.55 0.15 210);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.18 0.012 250);
+  --sidebar-accent-foreground: oklch(0.88 0.005 240);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.55 0.15 210);
+  /* Chart colors — Bloomberg dark: amber/cyan/green/orange/purple */
+  --chart-1: oklch(0.75 0.18 55);
+  --chart-2: oklch(0.72 0.15 195);
+  --chart-3: oklch(0.68 0.18 145);
+  --chart-4: oklch(0.7 0.2 30);
+  --chart-5: oklch(0.68 0.16 290);
+  /* Terminal chart palette (CSS vars for Recharts) */
+  --chart-grid: oklch(0.22 0.01 250);
+  --chart-axis: oklch(0.42 0.01 250);
+  --chart-tooltip-bg: oklch(0.11 0.01 250);
+  --chart-tooltip-border: oklch(0.25 0.012 250);
+  --chart-positive: oklch(0.65 0.18 145);
+  --chart-negative: oklch(0.65 0.22 25);
+  --chart-line-1: oklch(0.75 0.18 55);
+  --chart-line-2: oklch(0.72 0.15 195);
+  --chart-line-3: oklch(0.68 0.18 145);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    /* Smooth theme transition for all color properties */
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.15s ease;
+  }
+  /* Disable transitions on elements that should be instant */
+  *,
+  *::before,
+  *::after {
+    @media (prefers-reduced-motion: reduce) {
+      transition: none !important;
+    }
+  }
+  body {
+    @apply bg-background text-foreground;
+    color-scheme: dark;
+  }
+  :root:not(.dark) body {
+    color-scheme: light;
+  }
+}
+
+/* Bloomberg Terminal Dark Theme */
+@layer base {
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: "IBM Plex Mono", monospace;
+  }
+}
+
+/* Terminal-style scrollbar */
+@layer utilities {
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-card;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted hover:bg-muted-foreground rounded;
+  }
+}
+
+/* Bloomberg Terminal Grid Layout */
+@layer utilities {
+  .terminal-grid {
+    @apply grid gap-1 bg-background;
+  }
+
+  .terminal-panel {
+    @apply bg-card border border-border rounded-sm overflow-hidden;
+  }
+
+  .terminal-header {
+    @apply bg-muted/20 border-b border-border px-3 py-2 flex items-center justify-between;
+  }
+
+  .terminal-title {
+    @apply text-xs font-mono font-semibold text-accent uppercase tracking-wider;
+  }
+
+  .terminal-data {
+    @apply font-mono text-sm;
+  }
+
+  .terminal-positive {
+    @apply text-green-400;
+  }
+
+  .terminal-negative {
+    @apply text-red-400;
+  }
+
+  .terminal-neutral {
+    @apply text-foreground;
+  }
+}
+
+@layer utilities {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .input-terminal {
+    @apply rounded border border-slate-700 bg-[#0d1219] px-2 py-1.5 text-[11px] text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-500;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+}
+
+@layer base {
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(8px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in-from-bottom-2 {
+    animation: slide-in-from-bottom 0.3s ease-out;
+  }
+}
+
+@layer components {
+  /* 3D 网络可视化响应式优化 */
+  @media (max-width: 640px) {
+    svg[viewBox] {
+      max-height: 200px;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    svg[viewBox] {
+      max-height: 300px;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    svg[viewBox] {
+      max-height: 400px;
+    }
+  }
+
+  /* Tab 切换过渡优化 */
+  .tab-content-transition {
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-out;
+  }
+
+  .tab-content-enter {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .tab-content-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 实时价格跳动动画 ===== */
+@keyframes price-flash-up {
+  0% {
+    background-color: rgba(34, 197, 94, 0.45);
+    color: #86efac;
+  }
+  40% {
+    background-color: rgba(34, 197, 94, 0.25);
+  }
+  100% {
+    background-color: transparent;
+    color: inherit;
+  }
+}
+@keyframes price-flash-down {
+  0% {
+    background-color: rgba(239, 68, 68, 0.45);
+    color: #fca5a5;
+  }
+  40% {
+    background-color: rgba(239, 68, 68, 0.25);
+  }
+  100% {
+    background-color: transparent;
+    color: inherit;
+  }
+}
+@keyframes tick-pulse-up {
+  0% {
+    transform: scale(1.08);
+    color: #4ade80;
+  }
+  60% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+    color: inherit;
+  }
+}
+@keyframes tick-pulse-down {
+  0% {
+    transform: scale(1.08);
+    color: #f87171;
+  }
+  60% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+    color: inherit;
+  }
+}
+@keyframes live-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
+}
+@keyframes connection-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes counter-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes counter-down {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.price-flash-up {
+  animation: price-flash-up 0.7s ease-out forwards;
+  border-radius: 2px;
+}
+.price-flash-down {
+  animation: price-flash-down 0.7s ease-out forwards;
+  border-radius: 2px;
+}
+.tick-pulse-up {
+  animation: tick-pulse-up 0.5s ease-out forwards;
+  display: inline-block;
+}
+.tick-pulse-down {
+  animation: tick-pulse-down 0.5s ease-out forwards;
+  display: inline-block;
+}
+.live-dot {
+  animation: live-dot-pulse 1.2s ease-in-out infinite;
+}
+.connection-blink {
+  animation: connection-blink 2s ease-in-out infinite;
+}
+.ticker-scroll {
+  animation: marquee-scroll 40s linear infinite;
+  white-space: nowrap;
+}
+.ticker-scroll:hover {
+  animation-play-state: paused;
+}
+.price-counter-up {
+  animation: counter-up 0.25s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  display: inline-block;
+}
+.price-counter-down {
+  animation: counter-down 0.25s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  display: inline-block;
+}
+
+/* ===== 行情行整行闪烁动画（WebSocket 推送触发）===== */
+@keyframes row-flash-up {
+  0% {
+    background-color: rgba(34, 197, 94, 0.18);
+  }
+  30% {
+    background-color: rgba(34, 197, 94, 0.1);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+@keyframes row-flash-down {
+  0% {
+    background-color: rgba(239, 68, 68, 0.18);
+  }
+  30% {
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+@keyframes cell-flash-up {
+  0% {
+    background-color: rgba(34, 197, 94, 0.3);
+    color: #86efac;
+  }
+  50% {
+    background-color: rgba(34, 197, 94, 0.12);
+  }
+  100% {
+    background-color: transparent;
+    color: inherit;
+  }
+}
+@keyframes cell-flash-down {
+  0% {
+    background-color: rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+  }
+  50% {
+    background-color: rgba(239, 68, 68, 0.12);
+  }
+  100% {
+    background-color: transparent;
+    color: inherit;
+  }
+}
+.row-flash-up {
+  animation: row-flash-up 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+.row-flash-down {
+  animation: row-flash-down 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+.cell-flash-up {
+  animation: cell-flash-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  border-radius: 3px;
+}
+.cell-flash-down {
+  animation: cell-flash-down 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  border-radius: 3px;
+}
+
+/* ===== 全局 Ticker Tape 动画 ===== */
+@keyframes ticker-tape-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker-scroll {
+  animation: ticker-tape-scroll 60s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* 适配暗色主题 */
+.dark .ticker-tape-global {
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.97) 0%,
+    rgba(15, 23, 42, 0.92) 50%,
+    rgba(15, 23, 42, 0.97) 100%
+  );
+}
+/* 适配亮色主题 */
+:root:not(.dark) .ticker-tape-global {
+  background: linear-gradient(
+    90deg,
+    rgba(241, 245, 249, 0.98) 0%,
+    rgba(241, 245, 249, 0.95) 50%,
+    rgba(241, 245, 249, 0.98) 100%
+  );
+}
+
+/* ===== Theme Toggle Button Animation ===== */
+@keyframes theme-icon-in {
+  from {
+    transform: rotate(-90deg) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+.theme-icon-enter {
+  animation: theme-icon-in 0.25s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* ===== Light mode overrides for terminal-specific colors ===== */
+/* In light mode, terminal-positive/negative use slightly darker shades for contrast */
+:root:not(.dark) .terminal-positive {
+  color: oklch(0.42 0.18 145);
+}
+:root:not(.dark) .terminal-negative {
+  color: oklch(0.5 0.22 25);
+}
+
+/* Scrollbar light mode */
+:root:not(.dark) ::-webkit-scrollbar-track {
+  background: oklch(0.93 0.005 240);
+}
+:root:not(.dark) ::-webkit-scrollbar-thumb {
+  background: oklch(0.78 0.01 250);
+}
+:root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.62 0.015 250);
+}
+
+/* ─── 图表骨架屏动画 ──────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 金融终端工作台：带边界的内容区保持连续分栏，不使用卡片容器。按钮与标签仍保留各自交互样式。 */
+:where(div, article, section).rounded.border,
+:where(div, article, section).rounded-lg.border,
+:where(div, article, section).rounded-xl.border,
+:where(div, article, section).rounded-2xl.border {
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Continuous terminal panes; large rounded dashboard containers are flattened. */
+:where(.rounded-lg, .rounded-xl, .rounded-2xl) { border-radius: 0 !important; }
+:where(div.rounded.border, div.rounded-lg.border, div.rounded-xl.border, [data-slot="card"]) {
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 股市原功能都运行在同一个终端工作区。保留原字段、文案和交互，
+ * 仅把旧组件里的圆角矩形外壳压平，避免页面退化成卡片网格。 */
+.stock-terminal-workspace :where(div, section, article).rounded,
+.stock-terminal-workspace :where(div, section, article).rounded-sm,
+.stock-terminal-workspace :where(div, section, article).rounded-md,
+.stock-terminal-workspace :where(div, section, article).rounded-lg,
+.stock-terminal-workspace :where(div, section, article).rounded-xl,
+.stock-terminal-workspace :where(div, section, article).rounded-2xl {
+  border-radius: 0 !important;
+}
+
+/* Drill-down dialogs must not inherit transparent workspace-pane styling. */
+[data-slot="dialog-content"].ecst-statistic-dialog {
+  background: #030712 !important;
+  border-color: #374151 !important;
+}
+
+/* 专属爬虫管理后台表单控件；作用域仅限后台工作台，不影响业务前台。 */
+[data-spider-admin] .field {
+  min-height: 2.75rem;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.75rem;
+  background: white;
+  padding: 0.65rem 0.9rem;
+  color: rgb(30 41 59);
+  outline: none;
+}
+[data-spider-admin] .field:focus {
+  border-color: rgb(14 165 233);
+  box-shadow: 0 0 0 3px rgb(14 165 233 / 0.12);
+}
+[data-spider-admin] .primary,
+[data-spider-admin] .secondary {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: 150ms ease;
+}
+[data-spider-admin] .primary {
+  background: rgb(14 165 233);
+  color: white;
+}
+[data-spider-admin] .primary:hover {
+  background: rgb(2 132 199);
+}
+[data-spider-admin] .secondary {
+  border: 1px solid rgb(226 232 240);
+  background: white;
+  color: rgb(51 65 85);
+}
+[data-spider-admin] .primary:disabled,
+[data-spider-admin] .secondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.animate-slide-in {
+  animation: slideInFromTop 0.3s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.chart-shimmer {
+  background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* 骨架屏脉冲增强 */
+.skeleton-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 图表内容淡入 */
+.chart-content-enter {
+  animation: fadeIn 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* 独立恢复扩展：空输入控件必须保持可辨识，避免暗色终端中只剩标签。 */
+[data-portfolio-risk-extension]
+  input:not([type="checkbox"]):not([type="range"]),
+[data-portfolio-risk-extension] select,
+[data-portfolio-risk-extension] textarea {
+  min-height: 2rem;
+  border: 1px solid rgb(51 65 85);
+  border-radius: 0.25rem;
+  background: rgb(2 6 23 / 0.78);
+  color: rgb(226 232 240);
+  padding: 0.35rem 0.5rem;
+}
+
+[data-portfolio-risk-extension] input::placeholder,
+[data-portfolio-risk-extension] textarea::placeholder {
+  color: rgb(148 163 184);
+  opacity: 1;
+}
+
+[data-portfolio-risk-extension] input:focus,
+[data-portfolio-risk-extension] select:focus,
+[data-portfolio-risk-extension] textarea:focus {
+  border-color: rgb(34 211 238);
+  box-shadow: 0 0 0 1px rgb(34 211 238 / 0.35);
+  outline: none;
+}
+
+/* Tooltip 动画 */
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ===================== 佑诚专业终端外观（全站）=====================
+ * 不用圆角卡片 / 阴影框：面板用 1px 分隔线拼接，紧凑排版，数字等宽对齐。 */
+:root { --radius: 0.125rem; }
+body { font-variant-numeric: tabular-nums; }
+[data-slot="card"] {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border-left-width: 0 !important;
+  border-right-width: 0 !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  gap: 0.375rem !important;
+  background-color: transparent !important;
+}
+[data-slot="card-header"] { padding-left: 0.5rem !important; padding-right: 0.5rem !important; gap: 0.25rem !important; }
+[data-slot="card-header"].border-b, [data-slot="card-header"][class*="border-b"] { padding-bottom: 0.375rem !important; }
+[data-slot="card-content"], [data-slot="card-footer"] { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+[data-slot="card-title"] { font-size: 12px !important; letter-spacing: 0.02em; }
+[data-slot="card-description"] { font-size: 10.5px !important; }
+.rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl { border-radius: 2px !important; }
+.shadow, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl, .shadow-inner { box-shadow: none !important; }
+[role="dialog"], [data-radix-popper-content-wrapper] > * { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55) !important; }
+.backdrop-blur, .backdrop-blur-sm, .backdrop-blur-md, .backdrop-blur-lg { backdrop-filter: none !important; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #1d3047; border-radius: 0; }
+::-webkit-scrollbar-track { background: transparent; }

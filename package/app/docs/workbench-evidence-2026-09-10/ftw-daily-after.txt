@@ -1,0 +1,141 @@
+- region "Notifications alt+T"
+- generic: B
+- heading "Finance Hub Terminal" [level=1]
+- paragraph: Professional Financial Terminal
+- textbox "输入代码或名称搜索行情（如 AAPL、US10Y）— 回车跳转"
+- button "6":
+  - generic: "6"
+- button "切换到日间模式":
+  - generic: NGT
+- button "Show keyboard shortcuts (Ctrl+/)":
+- button:
+- button:
+- generic: U
+- generic: 用户
+- button "市场":
+  - generic: 市场
+- button "主权债"
+- button "信用债"
+- button "抵押债"
+- button "货币市场"
+- button "地方债"
+- button "优先股"
+- button "权益与衍生品":
+  - generic: 权益与衍生品
+- button "股市"
+- button "大宗商品"
+- button "指数"
+- button "外汇"
+- button "衍生品"
+- button "通讯与社区":
+  - generic: 通讯与社区
+- button "新闻与研究":
+  - generic: 新闻与研究
+- button "经济分析":
+  - generic: 经济分析
+- button "专业应用":
+  - generic: 专业应用
+- button "投资组合管理与风险"
+- button "定价与风险分析"
+- button "交易委托管理"
+- button "电子交易界面"
+- button "STP"
+- button "交易账簿管理"
+- button "行业分组分析"
+- button "平台工具":
+  - generic: 平台工具
+- button "个性化工作台":
+  - generic: 个性化工作台
+- button "帮助与关于":
+  - generic: 帮助与关于
+- generic: 市场时段
+- generic: 按交易所与品种分别核验
+- generic: 数据时效见对应来源与观察时间
+- heading "FTW 关注因子" [level=3]
+- button "Maximize":
+- button "Close":
+- region "FTW 研究工作区":
+  - generic: FTW
+  - generic: 关注证券日频观察
+  - generic: 数据研究与分析工具统一入口 · 行情权限以来源状态为准
+  - tablist "FTW 工作区":
+    - tab "数据研究" [selected]
+    - tab "分析工具"
+    - tab "字段与来源说明"
+  - tabpanel "数据研究":
+    - generic: FTW关注证券日频观察
+    - generic: 终端内公开资料
+    - paragraph: 按用户明确代码读取公共日频收盘观察与当期市场字段。
+    - generic "FTW · 关注证券日频观察":
+      - generic: FTW · 关注证券日频观察
+      - textbox "证券观察代码": AAPL
+      - button "读取" [disabled]
+      - combobox "证券历史范围":
+        - option "1M"
+        - option "3M"
+        - option "6M" [selected]
+        - option "1Y"
+        - option "2Y"
+        - option "5Y"
+      - status: 读取中
+      - generic: Apple Inc. · NasdaqGS · USD
+      - table:
+        - rowgroup:
+          - row "报价字段 值":
+            - columnheader "报价字段"
+            - columnheader "值"
+        - rowgroup:
+          - row "最新日频收盘 2026-09-09 315.34":
+            - cell "最新日频收盘 2026-09-09":
+              - text: 最新日频收盘
+              - generic: 2026-09-09
+            - cell "315.34"
+          - row "前一已读日收盘 2026-09-08 316.22":
+            - cell "前一已读日收盘 2026-09-08":
+              - text: 前一已读日收盘
+              - generic: 2026-09-08
+            - cell "316.22"
+          - row "当期高价 2026-09-09 319.15":
+            - cell "当期高价 2026-09-09":
+              - text: 当期高价
+              - generic: 2026-09-09
+            - cell "319.15"
+          - row "当期低价 2026-09-09 309.9":
+            - cell "当期低价 2026-09-09":
+              - text: 当期低价
+              - generic: 2026-09-09
+            - cell "309.9"
+          - row "当期成交量 2026-09-09 65,371,600":
+            - cell "当期成交量 2026-09-09":
+              - text: 当期成交量
+              - generic: 2026-09-09
+            - cell "65,371,600"
+          - row "买价 / 卖价 / 深度盘口 未接入":
+            - cell "买价 / 卖价 / 深度盘口"
+            - cell "未接入"
+      - paragraph: 收盘、高低价与成交量来自同一日频快照，不将抓取时刻当作市场成交时刻。缺失字段不估算。
+      - separator "报价列表与图层分栏调节":
+      - generic "Apple Inc.联动数据视图":
+        - strong: Apple Inc. USD
+        - combobox "观察时间范围":
+          - option "全部已读" [selected]
+          - option "1M"
+          - option "3M"
+          - option "6M"
+        - button "导出当前观察数据":
+        - tablist "图表类型":
+          - tab "时间序列" [selected]
+          - tab "历史分布"
+          - tab "数值热力图"
+          - tab "原始数据"
+        - generic: 2026-09-09
+        - generic: 观察 315.34 USD
+        - generic: 较前观测 -0.88
+        - generic: 变化 -0.278%
+        - generic: 成交量 65,371,600
+        - list:
+          - text: Apple Inc.（USD）
+        - generic: 来源 Yahoo Finance public chart · 观察时间 2026-09-09 · 查询 2026-09-10T06:34:08.929Z · 日频公开观察，非交易所实时行情。
+- button "自选":
+  - text: 自选
+- generic: "240"

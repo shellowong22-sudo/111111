@@ -1,0 +1,159 @@
+- region "Notifications alt+T"
+- generic: B
+- heading "Finance Hub Terminal" [level=1]
+- paragraph: Professional Financial Terminal
+- textbox "输入代码或名称搜索行情（如 AAPL、US10Y）— 回车跳转"
+- button "6":
+  - generic: "6"
+- button "切换到日间模式":
+  - generic: NGT
+- button "Show keyboard shortcuts (Ctrl+/)":
+- button:
+- button:
+- generic: U
+- generic: 用户
+- button "市场":
+  - generic: 市场
+- button "主权债"
+- button "信用债"
+- button "抵押债"
+- button "货币市场"
+- button "地方债"
+- button "优先股"
+- button "权益与衍生品":
+  - generic: 权益与衍生品
+- button "股市"
+- button "大宗商品"
+- button "指数"
+- button "外汇"
+- button "衍生品"
+- button "通讯与社区":
+  - generic: 通讯与社区
+- button "新闻与研究":
+  - generic: 新闻与研究
+- button "经济分析":
+  - generic: 经济分析
+- button "专业应用":
+  - generic: 专业应用
+- button "投资组合管理与风险"
+- button "定价与风险分析"
+- button "交易委托管理"
+- button "电子交易界面"
+- button "STP"
+- button "交易账簿管理"
+- button "行业分组分析"
+- button "平台工具":
+  - generic: 平台工具
+- button "个性化工作台":
+  - generic: 个性化工作台
+- button "帮助与关于":
+  - generic: 帮助与关于
+- generic: 市场时段
+- generic: 按交易所与品种分别核验
+- generic: 数据时效见对应来源与观察时间
+- heading "FTW 关注因子" [level=3]
+- button "Maximize":
+- button "Close":
+- region "FTW 研究工作区":
+  - generic: FTW
+  - generic: 关注证券日频观察
+  - generic: 数据研究与分析工具统一入口 · 行情权限以来源状态为准
+  - tablist "FTW 工作区":
+    - tab "数据研究"
+    - tab "分析工具" [active] [selected]
+    - tab "字段与来源说明"
+  - tabpanel "分析工具":
+    - note: 原因子、评分和关注提示不代表预测或交易信号。 未注明真实来源的保留工具结果不得作为实时行情或交易依据。
+    - generic: FTW
+    - generic: 关注因子 · 全球因子实时监控
+    - generic: ● LIVE
+    - generic: 83 因子
+    - button "×"
+    - generic: 强势因子
+    - generic: "7"
+    - generic: 买入信号
+    - generic: 弱势因子
+    - generic: "1"
+    - generic: 卖出信号
+    - generic: 当前主导
+    - generic: 质量因子
+    - generic: "SR: 1.92"
+    - generic: 市场周期
+    - generic: 扩张后期
+    - generic: 防御配置
+    - tablist:
+      - tab "实时信号" [selected]:
+        - text: 实时信号
+      - tab "自选因子":
+        - text: 自选因子
+      - tab "IC监控":
+        - text: IC监控
+      - tab "因子轮动":
+        - text: 因子轮动
+      - tab "收益归因":
+        - text: 收益归因
+    - tabpanel "实时信号":
+      - generic: CQUAL
+      - generic: 综合质量
+      - generic: 质量主导期
+      - generic: 强买入
+      - generic: "92"
+      - generic: "+3.2"
+      - generic: FCFY
+      - generic: 自由现金流收益率
+      - generic: 价值修复期
+      - generic: 买入
+      - generic: "85"
+      - generic: "+1.8"
+      - generic: GPA
+      - generic: 毛利润/总资产
+      - generic: 质量主导期
+      - generic: 买入
+      - generic: "82"
+      - generic: "+2.1"
+      - generic: FSCR
+      - generic: F-Score
+      - generic: 质量主导期
+      - generic: 买入
+      - generic: "80"
+      - generic: "+1.5"
+      - generic: BAB
+      - generic: 押注反Beta
+      - generic: 防御期
+      - generic: 买入
+      - generic: "78"
+      - generic: "+0.8"
+      - generic: MOM
+      - generic: 12-1月动量
+      - generic: 动量衰减期
+      - generic: 中性
+      - generic: "55"
+      - generic: "-2.5"
+      - generic: SMB
+      - generic: 小市值溢价
+      - generic: 大盘主导期
+      - generic: 中性
+      - generic: "48"
+      - generic: "-1.2"
+      - generic: SHORT
+      - generic: 空头兴趣
+      - generic: 风险规避期
+      - generic: 卖出
+      - generic: "28"
+      - generic: "-3.8"
+      - generic: CREV
+      - generic: A股反转
+      - generic: A股特色期
+      - generic: 买入
+      - generic: "88"
+      - generic: "+4.5"
+      - generic: NBF
+      - generic: 北向资金流入
+      - generic: A股特色期
+      - generic: 买入
+      - generic: "76"
+      - generic: "+2.8"
+      - generic: 因子信号强度分布
+- button "自选":
+  - text: 自选
+- generic: MOM

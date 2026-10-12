@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["client/src/**/*", "shared/**/*", "server/**/*"],
+  "exclude": ["node_modules", "build", "dist", "server/**/*.test.ts", "server/**/*.test.tsx", "server/**/*.spec.ts", "server/**/*.spec.tsx"],
+  "compilerOptions": {
+    "incremental": false,
+    "noEmit": true
+  }
+}

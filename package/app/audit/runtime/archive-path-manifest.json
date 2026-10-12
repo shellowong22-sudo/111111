@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-09-12T06:07:53.288Z",
+  "platform": "win32",
+  "appRoot": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\app",
+  "archiveReadOnly": true,
+  "mappings": [
+    {
+      "legacy": "/home/ubuntu/finance-hub-recovery",
+      "current": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\app",
+      "currentRelative": ".",
+      "role": "current application source",
+      "exists": true
+    },
+    {
+      "legacy": "/home/ubuntu/finance-hub-recovery-evidence/outer-archive-2026-08-26",
+      "current": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\app\\recovery-evidence\\outer-archive-2026-08-26",
+      "currentRelative": "recovery-evidence/outer-archive-2026-08-26",
+      "role": "read-only historical archive",
+      "exists": true
+    },
+    {
+      "legacy": "/home/ubuntu/finance-hub-baseline/source/unpacked/database/finance_hub.sql",
+      "current": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\database\\finance-hub.sql",
+      "currentRelative": "../database/finance-hub.sql",
+      "role": "read-only database export",
+      "exists": true
+    }
+  ],
+  "checks": [
+    {
+      "legacyPath": "/home/ubuntu/finance-hub-recovery/client/src",
+      "resolvedPath": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\app\\client\\src",
+      "exists": true
+    },
+    {
+      "legacyPath": "/home/ubuntu/finance-hub-recovery-evidence/outer-archive-2026-08-26",
+      "resolvedPath": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\app\\recovery-evidence\\outer-archive-2026-08-26",
+      "exists": true
+    },
+    {
+      "legacyPath": "/home/ubuntu/finance-hub-baseline/source/unpacked/database/finance_hub.sql",
+      "resolvedPath": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\database\\finance-hub.sql",
+      "exists": true
+    }
+  ],
+  "notes": [
+    "历史 Linux 绝对路径只作为可审计别名保留，不作为运行时写入目标。",
+    "current application source 可写；历史归档和数据库导出仅用于只读核验。",
+    "真实数据库连接由 DATABASE_URL 控制；该清单不会导入、覆盖或删除数据库。"
+  ]
+}

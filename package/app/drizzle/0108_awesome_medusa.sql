@@ -1,0 +1,2 @@
+ALTER TABLE `admin_data_module_automation_runs` MODIFY COLUMN `scope` enum('single','group','site','batch') NOT NULL;--> statement-breakpoint
+ALTER TABLE `admin_data_module_automation_runs` ADD `module_ids_json` text;

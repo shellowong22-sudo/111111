@@ -1,0 +1,583 @@
+{
+  "generatedAt": "2026-10-03T04:27:13.748Z",
+  "policy": {
+    "noSyntheticFallback": true,
+    "credentialsRecorded": false,
+    "realtimeClaimRequiresLicensedResponse": true
+  },
+  "catalog": {
+    "publicWithoutKey": [
+      {
+        "id": "stooq",
+        "provider": "Stooq public CSV",
+        "assetClasses": [
+          "equity",
+          "etf",
+          "index",
+          "fx",
+          "commodity"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://stooq.com/q/d/l/",
+        "updateBoundary": "end_of_day",
+        "limitation": "免费日线 OHLCV；不提供实时 bid/ask、逐笔、盘口或可执行报价。"
+      },
+      {
+        "id": "fred",
+        "provider": "FRED public CSV",
+        "assetClasses": [
+          "macro",
+          "rates",
+          "credit_spread"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://fred.stlouisfed.org/graph/fredgraph.csv",
+        "updateBoundary": "latest_public_release",
+        "limitation": "公开发布序列；频率和修订规则由具体 series 定义，不等于实时行情。"
+      },
+      {
+        "id": "ecb-exr",
+        "provider": "ECB Data Portal EXR",
+        "assetClasses": [
+          "fx"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://data-api.ecb.europa.eu/service/data/EXR",
+        "updateBoundary": "official_reference",
+        "limitation": "官方参考汇率；不是实时交易 bid/ask、点差或可执行报价。"
+      },
+      {
+        "id": "ny-fed",
+        "provider": "NY Fed Markets API",
+        "assetClasses": [
+          "money_market",
+          "repo",
+          "rates"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://markets.newyorkfed.org/api/rates/all/latest.json",
+        "updateBoundary": "latest_public_release",
+        "limitation": "公开资金市场参考记录；不代表全市场实时成交或账户融资成本。"
+      },
+      {
+        "id": "sec-edgar",
+        "provider": "SEC EDGAR Company Facts",
+        "assetClasses": [
+          "equity",
+          "fundamental",
+          "filings"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://data.sec.gov/api/xbrl/companyfacts",
+        "updateBoundary": "latest_public_release",
+        "limitation": "监管申报事实字段；有申报滞后、重述和口径差异，不是实时价格、盈利预测或投资建议。"
+      },
+      {
+        "id": "world-bank",
+        "provider": "World Bank Indicators API",
+        "assetClasses": [
+          "macro",
+          "country",
+          "development",
+          "demographic"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://api.worldbank.org/v2/country",
+        "updateBoundary": "latest_public_release",
+        "limitation": "世界银行公开国家指标；通常按年或季度发布且可能修订，不是实时市场行情。"
+      },
+      {
+        "id": "bls",
+        "provider": "U.S. BLS Public Data API",
+        "assetClasses": [
+          "macro",
+          "labor",
+          "inflation",
+          "wages",
+          "productivity"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://api.bls.gov/publicAPI/v2/timeseries/data",
+        "updateBoundary": "latest_public_release",
+        "limitation": "美国劳工统计局公开发布序列；频率与修订以序列元数据为准，不是实时市场报价。"
+      },
+      {
+        "id": "eia",
+        "provider": "U.S. EIA Open Data",
+        "assetClasses": [
+          "energy",
+          "commodity",
+          "inventory",
+          "production",
+          "electricity"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://api.eia.gov/v2",
+        "updateBoundary": "latest_public_release",
+        "limitation": "EIA 公开能源数据（DEMO_KEY）；频率与修订以具体序列为准，不是实时可执行商品报价。"
+      },
+      {
+        "id": "treasury-fiscal-data",
+        "provider": "U.S. Treasury Fiscal Data API",
+        "assetClasses": [
+          "sovereign",
+          "fiscal",
+          "public_debt"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2",
+        "updateBoundary": "latest_public_release",
+        "limitation": "美国财政部官方财政发布；按记录日期更新，不是国债逐笔、持有人分布、价格或可执行报价。"
+      },
+      {
+        "id": "imf-datamapper",
+        "provider": "IMF DataMapper API",
+        "assetClasses": [
+          "macro",
+          "country",
+          "forecast",
+          "inflation"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://www.imf.org/external/datamapper/api/v1",
+        "updateBoundary": "latest_public_release",
+        "limitation": "IMF 公开宏观序列；历史、估计与预测边界取决于当前 WEO 版本，不是实时数据或市场一致预期。"
+      },
+      {
+        "id": "eurostat",
+        "provider": "Eurostat Dissemination API",
+        "assetClasses": [
+          "macro",
+          "labor",
+          "inflation",
+          "trade",
+          "country"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data",
+        "updateBoundary": "latest_public_release",
+        "limitation": "欧盟统计局公开统计发布；数据可能修订，频率和季调口径由具体数据集决定，不是实时市场行情。"
+      },
+      {
+        "id": "hkma-exchange",
+        "provider": "Hong Kong Monetary Authority public exchange-rate API",
+        "assetClasses": [
+          "fx",
+          "reference"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://api.hkma.gov.hk/public/market-data-and-statistics/monthly-statistical-bulletin/er-ir/er-eeri-daily",
+        "updateBoundary": "official_reference",
+        "limitation": "香港金管局公开每日参考汇率；不是实时交易 bid/ask、点差或可执行报价。"
+      },
+      {
+        "id": "bank-of-canada-valet",
+        "provider": "Bank of Canada Valet API",
+        "assetClasses": [
+          "fx",
+          "rates",
+          "macro"
+        ],
+        "access": "public_no_key",
+        "realtime": false,
+        "endpoint": "https://www.bankofcanada.ca/valet/observations",
+        "updateBoundary": "official_reference",
+        "limitation": "加拿大央行公开参考序列；频率和单位由 series 定义，不是实时交易报价。"
+      }
+    ],
+    "optionalFreeKey": [
+      {
+        "id": "twelve-data",
+        "provider": "Twelve Data",
+        "assetClasses": [
+          "us_equity",
+          "us_etf",
+          "forex",
+          "crypto",
+          "reference",
+          "technical_indicator"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://api.twelvedata.com/time_series",
+        "apiKeyEnvName": "TWELVE_DATA_API_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "implemented",
+        "mosoCompatible": false,
+        "limitation": "官方 Basic 免费层为 8 API credits、每日 800 次；覆盖美股/ETF、外汇、加密及参考/技术指标，其他市场、固定收益和再分发权限受套餐约束。未配置密钥时保持不可用。"
+      },
+      {
+        "id": "alpha-vantage",
+        "provider": "Alpha Vantage",
+        "assetClasses": [
+          "equity",
+          "fx",
+          "crypto",
+          "commodity",
+          "macro",
+          "technical_indicator"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://www.alphavantage.co/query",
+        "apiKeyEnvName": "ALPHA_VANTAGE_API_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "implemented",
+        "mosoCompatible": false,
+        "limitation": "官方免费密钥覆盖多数数据集、每日 25 次请求；美股实时及 15 分钟延迟数据为付费许可。本目录不把免费日线标记为实时行情。"
+      },
+      {
+        "id": "massive-options",
+        "provider": "Massive (Polygon) Market Data",
+        "assetClasses": [
+          "us_equity",
+          "options",
+          "options_chain",
+          "options_trades",
+          "reference"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://api.massive.com/v3/reference/options/contracts",
+        "apiKeyEnvName": "MASSIVE_API_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": true,
+        "limitation": "MOSO 候选源。期权合约、成交、报价及历史权限取决于订阅和交易所许可；当前只登记合同，未配置密钥或字段适配时不产生行情。"
+      },
+      {
+        "id": "tradier",
+        "provider": "Tradier Brokerage Market Data",
+        "assetClasses": [
+          "us_equity",
+          "options",
+          "options_chain",
+          "options_quotes",
+          "greeks"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://api.tradier.com/v1/markets/options/chains",
+        "apiKeyEnvName": "TRADIER_ACCESS_TOKEN",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": true,
+        "limitation": "MOSO 候选源。市场数据时效、Greeks 和可再分发范围受账户、协议及套餐限制；仅在真实响应验证后启用。"
+      },
+      {
+        "id": "intrinio-options",
+        "provider": "Intrinio Financial Data",
+        "assetClasses": [
+          "equity",
+          "options",
+          "options_chain",
+          "options_prices",
+          "greeks",
+          "fundamentals"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://api-v2.intrinio.com/options/chain",
+        "apiKeyEnvName": "INTRINIO_API_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": true,
+        "limitation": "MOSO 候选源。期权实时、历史、Greeks 与交易所费用按许可提供；当前目录不表示已购买或可再分发。"
+      },
+      {
+        "id": "marketdata-app-options",
+        "provider": "Market Data API",
+        "assetClasses": [
+          "us_equity",
+          "options",
+          "options_chain",
+          "options_quotes",
+          "indices"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://api.marketdata.app/v1/options/chain",
+        "apiKeyEnvName": "MARKETDATA_APP_TOKEN",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": true,
+        "limitation": "MOSO 候选源。免费额度和延迟边界按提供方计划执行；缺少令牌时仅保留接口合同。"
+      },
+      {
+        "id": "finnhub",
+        "provider": "Finnhub",
+        "assetClasses": [
+          "equity",
+          "forex",
+          "crypto",
+          "company_news",
+          "fundamentals",
+          "economic_calendar"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://finnhub.io/api/v1",
+        "apiKeyEnvName": "FINNHUB_API_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": false,
+        "limitation": "免费和付费计划的频率、市场覆盖及再分发权不同；保存合同不等于行情已授权。"
+      },
+      {
+        "id": "financial-modeling-prep",
+        "provider": "Financial Modeling Prep",
+        "assetClasses": [
+          "equity",
+          "etf",
+          "index",
+          "forex",
+          "crypto",
+          "fundamentals",
+          "news"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://financialmodelingprep.com/stable",
+        "apiKeyEnvName": "FMP_API_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": false,
+        "limitation": "端点、频率和历史深度受套餐约束；当前为待适配合同，不会替代已验证来源。"
+      },
+      {
+        "id": "nasdaq-data-link",
+        "provider": "Nasdaq Data Link",
+        "assetClasses": [
+          "economic",
+          "fundamentals",
+          "futures",
+          "commodities",
+          "alternative_data"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://data.nasdaq.com/api/v3",
+        "apiKeyEnvName": "NASDAQ_DATA_LINK_API_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": false,
+        "limitation": "各数据集许可证、费用和更新频率独立；目录仅登记 API 合同，不宣称任一付费数据集已授权。"
+      },
+      {
+        "id": "tiingo",
+        "provider": "Tiingo",
+        "assetClasses": [
+          "equity",
+          "fundamentals",
+          "news",
+          "forex",
+          "crypto",
+          "iex_prices"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://api.tiingo.com",
+        "apiKeyEnvName": "TIINGO_API_TOKEN",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": false,
+        "limitation": "覆盖与时效取决于计划和数据协议；未通过专用适配器验证前保持不可用。"
+      },
+      {
+        "id": "eodhd",
+        "provider": "EOD Historical Data",
+        "assetClasses": [
+          "global_equity",
+          "etf",
+          "fund",
+          "forex",
+          "bond",
+          "fundamentals",
+          "news"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://eodhd.com/api",
+        "apiKeyEnvName": "EODHD_API_TOKEN",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": false,
+        "limitation": "全球交易所覆盖、实时延迟与再分发权按套餐区分；当前仅登记配置入口。"
+      },
+      {
+        "id": "marketstack",
+        "provider": "Marketstack",
+        "assetClasses": [
+          "global_equity",
+          "intraday",
+          "eod",
+          "exchanges",
+          "tickers"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://api.marketstack.com/v2",
+        "apiKeyEnvName": "MARKETSTACK_ACCESS_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": false,
+        "limitation": "免费层、日内时效和市场覆盖受计划限制；合同未适配时不会产生终端数据。"
+      },
+      {
+        "id": "alpaca-market-data",
+        "provider": "Alpaca Market Data",
+        "assetClasses": [
+          "us_equity",
+          "options",
+          "options_contracts",
+          "crypto",
+          "news"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://data.alpaca.markets/v2",
+        "apiKeyEnvName": "ALPACA_API_KEY_ID",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": true,
+        "limitation": "MOSO 候选源。SIP/IEX、期权与历史访问受账户和订阅约束；还需配套密钥 Secret，单一变量检测不等于连接可用。"
+      },
+      {
+        "id": "eia-open-data",
+        "provider": "U.S. EIA Open Data",
+        "assetClasses": [
+          "energy",
+          "commodity",
+          "inventory",
+          "production",
+          "electricity"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://api.eia.gov/v2",
+        "apiKeyEnvName": "EIA_API_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": false,
+        "limitation": "官方发布数据而非实时可执行商品报价；序列频率与修订以 EIA 元数据为准。"
+      },
+      {
+        "id": "bls-public-data",
+        "provider": "U.S. BLS Public Data API",
+        "assetClasses": [
+          "macro",
+          "labor",
+          "inflation",
+          "wages",
+          "productivity"
+        ],
+        "access": "free_tier_api_key",
+        "realtime": "plan_dependent",
+        "endpoint": "https://api.bls.gov/publicAPI/v2/timeseries/data",
+        "apiKeyEnvName": "BLS_API_KEY",
+        "updateBoundary": "plan_dependent",
+        "adapterStatus": "catalog_only",
+        "mosoCompatible": false,
+        "limitation": "官方宏观发布数据；注册密钥用于更高请求限额，不代表实时市场数据。"
+      }
+    ]
+  },
+  "probes": {
+    "stooq": {
+      "available": false,
+      "source": "Stooq public CSV",
+      "symbol": "aapl.us",
+      "observedAt": null,
+      "retrievedAt": "2026-10-03T04:27:12.422Z",
+      "realtime": false,
+      "delayStatus": "unavailable",
+      "recordCount": 0,
+      "limitation": "Stooq 请求失败（fetch failed）；系统保持真实空状态。"
+    },
+    "fred": {
+      "available": true,
+      "source": "FRED public CSV",
+      "symbol": "SOFR",
+      "observedAt": "2026-10-01",
+      "retrievedAt": "2026-10-03T04:27:02.934Z",
+      "realtime": false,
+      "delayStatus": "latest_public_release",
+      "recordCount": 3,
+      "limitation": "FRED 为公开发布序列，频率与发布时间由具体 series 定义；不是实时市场报价。"
+    },
+    "ecb": {
+      "available": false,
+      "source": "ECB Data Portal EXR",
+      "pair": "USD/EUR",
+      "observedAt": null,
+      "retrievedAt": "2026-10-03T04:27:13.748Z",
+      "realtime": false,
+      "delayStatus": "unavailable",
+      "limitation": "ECB 请求失败（The operation was aborted due to timeout）；系统保持真实空状态。"
+    },
+    "sec": {
+      "available": true,
+      "source": "SEC EDGAR Company Facts",
+      "cik": "0000320193",
+      "observedAt": "2026-07-31",
+      "retrievedAt": "2026-10-03T04:27:04.979Z",
+      "realtime": false,
+      "delayStatus": "latest_public_release",
+      "recordCount": 3,
+      "limitation": "SEC EDGAR 公司事实来自公开监管申报；存在申报滞后、重述与会计口径差异，不是实时价格、盈利预测或投资建议。"
+    },
+    "nyFed": {
+      "available": true,
+      "source": "NY Fed Markets API",
+      "observedAt": "2026-10-02",
+      "retrievedAt": "2026-10-03T04:27:02.646Z",
+      "recordCount": 6,
+      "limitation": "纽约联储公开接口返回参考利率记录；字段和频率依具体产品定义，不等于全市场实时成交。"
+    },
+    "worldBank": {
+      "available": true,
+      "source": "World Bank Indicators API",
+      "symbol": "USA:NY.GDP.MKTP.CD",
+      "observedAt": "2025",
+      "retrievedAt": "2026-10-03T04:27:02.392Z",
+      "realtime": false,
+      "delayStatus": "latest_public_release",
+      "recordCount": 5,
+      "limitation": "世界银行公开国家指标，频率、发布日期和修订政策由具体指标定义；不是实时市场报价。"
+    },
+    "twelveData": {
+      "available": false,
+      "source": "Twelve Data",
+      "symbol": "AAPL",
+      "observedAt": null,
+      "retrievedAt": "2026-10-03T04:27:01.735Z",
+      "realtime": false,
+      "delayStatus": "unavailable",
+      "recordCount": 0,
+      "limitation": "Twelve Data 免费额度连接器尚未配置 TWELVE_DATA_API_KEY；系统未发送未授权请求，也未用公开快照替代。 "
+    },
+    "alphaVantage": {
+      "available": false,
+      "source": "Alpha Vantage",
+      "symbol": "AAPL",
+      "observedAt": null,
+      "retrievedAt": "2026-10-03T04:27:01.735Z",
+      "realtime": false,
+      "delayStatus": "unavailable",
+      "recordCount": 0,
+      "limitation": "Alpha Vantage 免费额度连接器尚未配置 ALPHA_VANTAGE_API_KEY；系统未发送未授权请求，也未生成替代值。"
+    }
+  }
+}

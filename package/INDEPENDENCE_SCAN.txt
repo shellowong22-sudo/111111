@@ -1,0 +1,17 @@
+Strict independent application scan
+===================================
+Source/runtime blocking dependency matches: 0
+Build artifact blocking dependency matches: 0
+Whole application tree platform brand matches: 0
+Platform-named source/build paths: 0
+
+Scanned surfaces:
+- server runtime source
+- client source and visible UI strings
+- shared source
+- package.json and pnpm-lock.yaml
+- Vite build configuration
+- environment template
+- production dist artifacts
+
+The database export contains legitimate company names such as Bharat Forge and Coforge. These business records are not runtime platform dependencies and were preserved unchanged.

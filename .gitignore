@@ -35,3 +35,10 @@ venv/
 .vscode/
 .DS_Store
 Thumbs.db
+
+baseline-zip/
+claude-backup-*/
+dist-backup-*/
+package/database/
+*.bundle
+*.zip

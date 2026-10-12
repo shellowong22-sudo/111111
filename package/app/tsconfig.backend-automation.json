@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "drizzle/schema.ts",
+    "shared/adminDataModules.ts",
+    "server/db.ts",
+    "server/adminDataModuleProfiles.ts",
+    "server/adminDataModuleRefresh.ts",
+    "server/adminMarketIngestion.ts",
+    "server/adminNewsIngestion.ts",
+    "server/adminDataModuleQueue.ts",
+    "server/adminDataModuleManagement.ts",
+    "server/adminDataModuleDelivery.ts",
+    "server/adminDataModuleAutomation.ts",
+    "server/routers/adminDataModules.ts",
+    "server/routers/adminDataModuleAutomation.ts",
+    "server/routers/adminDataModuleDelivery.ts"
+  ],
+  "exclude": ["node_modules", "client", "dist", "build", "**/*.test.ts"],
+  "compilerOptions": {
+    "incremental": false,
+    "noEmit": true
+  }
+}

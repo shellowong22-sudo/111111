@@ -1,0 +1,19 @@
+{
+  "auditKind": "read-only-orphan-curve-directory-recheck",
+  "sourcePath": "/home/ubuntu/finance-hub-baseline/source/unpacked/database/finance_hub.sql",
+  "sourceSha256": "829b54ca0a17b667317ece71dac4ad4ddedfe168ce618698af5c9e8ada5093d9",
+  "orphanPointCount": 14,
+  "orphanCurveIds": [2, 3, 5, 7, 9],
+  "curvesInsertTupleCount": 2,
+  "documentedCurves": [
+    { "id": 1, "curveId": "UST_PAR_YIELD_OFFICIAL_HIST_1990_2023" },
+    { "id": 30001, "curveId": "ZIP_TEST_CURVE_PRESERVED" }
+  ],
+  "nonPointCurveIdReferences": "仅表定义与两个已有 curves 目录；未发现 ID 2、3、5、7、9 的名称、国家、币种、期限说明或外部来源关联。",
+  "writeActions": {
+    "createdCurveDirectories": false,
+    "reassignedPoints": false,
+    "deletedPoints": false
+  },
+  "conclusion": "冻结资料不足以解释五组无目录点位；保持原始导入值且不猜测性修改是唯一受证据支持的处理。"
+}

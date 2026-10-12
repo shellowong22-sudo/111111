@@ -1,0 +1,2854 @@
+{
+  "generated_at_utc": "2026-08-26T17:40:08.650Z",
+  "file_count": 46,
+  "archive_column_contract": {
+    "symbol": 0,
+    "name": 1,
+    "header_row": 1
+  },
+  "merge_preflight": {
+    "incoming_new_count": 43668,
+    "exact_existing_count": 5088,
+    "conflict_count": 0,
+    "import_allowed": true
+  },
+  "files": [
+    {
+      "file_name": "阿联酋全部股票.xlsx",
+      "byte_size": 10055,
+      "sha256": "85321302152b15c085d93f6b4959d2dc236cf99ffbb76058547b72f09905acf6",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "阿联酋全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 176,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "阿拉伯联合酋长国",
+          "country_code": "AE",
+          "exchange": "阿联酋证券市场",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 175,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "af17e43ffedbd12e26aafe4ec50de282f0a1144551b01c0e90bba9f38a093d7c",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "爱尔兰.xlsx",
+      "byte_size": 72031,
+      "sha256": "51a1e1d28545f40f01259e5ae5b51362f817d50ea34cf497d7ff2dc96871c6a9",
+      "recognized_candidate_sheet_count": 12,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "荷兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 117,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "荷兰",
+          "country_code": "NL",
+          "exchange": "泛欧阿姆斯特丹",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 116,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "747a64e058fa88ce6988342e59a1e2bd97ebc030d481ebc9c91cc90ae5bd00e8",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "奥地利股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 82,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "奥地利",
+          "country_code": "AT",
+          "exchange": "维也纳证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 81,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "095c9d6482e06a54bb691ef8f64822049472125c6a9cea9884b814b1792bbfdb",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "爱尔兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 24,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "爱尔兰",
+          "country_code": "IE",
+          "exchange": "泛欧都柏林",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 23,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "03d1a0bc85d3db65f9f20017e27e6152480c0f7fecfca686885616702542f128",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "意大利股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 408,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "意大利",
+          "country_code": "IT",
+          "exchange": "意大利证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 407,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "b36211b4d0cc174bc395c2e0deab01ce2064e3b37e0c4e9a1f6d5c3442f98449",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "西班牙股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 186,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "西班牙",
+          "country_code": "ES",
+          "exchange": "西班牙证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 185,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "39a7673187f1f7caedf9c6824929279558988336a50349849e6d667fdee55b71",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "葡萄牙股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 49,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "葡萄牙",
+          "country_code": "PT",
+          "exchange": "泛欧里斯本",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 48,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "c3501fd22d0d2f5e151b5d28ad2b8fef30c2d4859fbddfa3f5ce475a73462c77",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "挪威股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 295,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "挪威",
+          "country_code": "NO",
+          "exchange": "奥斯陆证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 294,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "5bc03b2c31be9a9e1371b49084ea5715a3dba6db79ac2ecb8d30199c5af966f6",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "丹麦股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 146,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "丹麦",
+          "country_code": "DK",
+          "exchange": "哥本哈根证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 145,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e872d6e86022c7c682241ccb6b968d03f9d37da8c597aa664bc17c63ed295946",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "瑞典股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 747,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "瑞典",
+          "country_code": "SE",
+          "exchange": "纳斯达克斯德哥尔摩",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 746,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e3f8a2df3ec124e3986a090de68a7d35671ec8ad3e8f140db35cda00b973f6fc",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "芬兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 195,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "芬兰",
+          "country_code": "FI",
+          "exchange": "纳斯达克赫尔辛基",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 194,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "895d6bc40e7bbcecaf0338446734987e06be2d2b08d4f50f909ce8f0cd0fec1a",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "奥地利股票.xlsx",
+      "byte_size": 61072,
+      "sha256": "e23e66931a36904a3482a6f761673725b8f172e3425bea3a11ab25677f5ef7af",
+      "recognized_candidate_sheet_count": 10,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "荷兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 117,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "荷兰",
+          "country_code": "NL",
+          "exchange": "泛欧阿姆斯特丹",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 116,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "747a64e058fa88ce6988342e59a1e2bd97ebc030d481ebc9c91cc90ae5bd00e8",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "奥地利股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 82,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "奥地利",
+          "country_code": "AT",
+          "exchange": "维也纳证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 81,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "095c9d6482e06a54bb691ef8f64822049472125c6a9cea9884b814b1792bbfdb",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "西班牙股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 186,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "西班牙",
+          "country_code": "ES",
+          "exchange": "西班牙证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 185,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "39a7673187f1f7caedf9c6824929279558988336a50349849e6d667fdee55b71",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "葡萄牙股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 49,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "葡萄牙",
+          "country_code": "PT",
+          "exchange": "泛欧里斯本",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 48,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "c3501fd22d0d2f5e151b5d28ad2b8fef30c2d4859fbddfa3f5ce475a73462c77",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "挪威股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 295,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "挪威",
+          "country_code": "NO",
+          "exchange": "奥斯陆证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 294,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "5bc03b2c31be9a9e1371b49084ea5715a3dba6db79ac2ecb8d30199c5af966f6",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "丹麦股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 146,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "丹麦",
+          "country_code": "DK",
+          "exchange": "哥本哈根证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 145,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e872d6e86022c7c682241ccb6b968d03f9d37da8c597aa664bc17c63ed295946",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "瑞典股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 747,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "瑞典",
+          "country_code": "SE",
+          "exchange": "纳斯达克斯德哥尔摩",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 746,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e3f8a2df3ec124e3986a090de68a7d35671ec8ad3e8f140db35cda00b973f6fc",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "芬兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 195,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "芬兰",
+          "country_code": "FI",
+          "exchange": "纳斯达克赫尔辛基",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 194,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "895d6bc40e7bbcecaf0338446734987e06be2d2b08d4f50f909ce8f0cd0fec1a",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "澳大利亚全部股票.xlsx",
+      "byte_size": 45131,
+      "sha256": "a73d33158c153ea510c39edf94fe9c92693ea0de611ef2ac52124b745c6c59bf",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "澳大利亚全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 1840,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "澳大利亚",
+          "country_code": "AU",
+          "exchange": "澳大利亚证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 1839,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "adc2dc09d38a1d72cd5c0193c0527a60b6d65fb71fd2bfea560865d61194034e",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "巴西股票.xlsx",
+      "byte_size": 15326,
+      "sha256": "7a043554ec1dffe77838c2d1c529a263c94d79d8d9be1541a40f2a64030cb4bc",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "巴西股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 477,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "巴西",
+          "country_code": "BR",
+          "exchange": "巴西证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 476,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "c3a3bff2ff19ebd10d89389b734bd58c337511b5f5342f8f95d91fcde58faea9",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "冰岛股票.xlsx",
+      "byte_size": 13433,
+      "sha256": "9037a66d27a7e908ad54d8a343716d662eef6cf7c246a32761a2bf164cfab231",
+      "recognized_candidate_sheet_count": 2,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "丹麦股票.xlsx",
+      "byte_size": 40385,
+      "sha256": "512f0e6516ed537862be61433968eed3b27e0713e13679c6220dc1b1dd7dc025",
+      "recognized_candidate_sheet_count": 5,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "丹麦股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 146,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "丹麦",
+          "country_code": "DK",
+          "exchange": "哥本哈根证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 145,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e872d6e86022c7c682241ccb6b968d03f9d37da8c597aa664bc17c63ed295946",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "瑞典股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 747,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "瑞典",
+          "country_code": "SE",
+          "exchange": "纳斯达克斯德哥尔摩",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 746,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e3f8a2df3ec124e3986a090de68a7d35671ec8ad3e8f140db35cda00b973f6fc",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "芬兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 195,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "芬兰",
+          "country_code": "FI",
+          "exchange": "纳斯达克赫尔辛基",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 194,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "895d6bc40e7bbcecaf0338446734987e06be2d2b08d4f50f909ce8f0cd0fec1a",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "德国全部股票.xlsx",
+      "byte_size": 23260,
+      "sha256": "17cd78ac79cbeb1b89dbd31cbe9327e85fa595eeb54ed0817dfa064103b0d37d",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "德国全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 866,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "德国",
+          "country_code": "DE",
+          "exchange": "德意志交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 865,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "987bab4a61819c8fc86b8324902535c4fb23b2222e0fdd535f44fcbbfd21a602",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "迪拜金融市场.xlsx",
+      "byte_size": 19327,
+      "sha256": "7706e7c0c1e950e9164065f236789ef5b17b441425212c5bb4c7bfa3071e4e5d",
+      "recognized_candidate_sheet_count": 2,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "迪拜金融市场",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 66,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "阿拉伯联合酋长国",
+          "country_code": "AE",
+          "exchange": "迪拜金融市场",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 65,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "1ba47463def4f656dde8d125faa9bc2fcff24d387e4d37f1028b5bc35d0adbc0",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "以色列股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 528,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "以色列",
+          "country_code": "IL",
+          "exchange": "特拉维夫证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 527,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "f17a0fd907da98d8593b5056af3540fc85480a199f745f469b21dfdf5ec52519",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "东证所全部股票.xlsx",
+      "byte_size": 88570,
+      "sha256": "befbed972c37d735c2129653e01328175469c1a69f1b878b64d490a2b860449b",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "东证所全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 3895,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "日本",
+          "country_code": "JP",
+          "exchange": "东京证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 3894,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "950cf81af68eb911c3514291ee05a4696978b5fe7a122699ba50e78a17067455",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "俄罗斯股票.xlsx",
+      "byte_size": 11986,
+      "sha256": "f6bb8f1dd1cf9a36e26c087e0efc3344dc3ffd3497c9e0d6a9f72c6b2570b550",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "法国全部股票.xlsx",
+      "byte_size": 22596,
+      "sha256": "03c45005b275ba77d6a5571e91a99b69d8edf2fa34a46c692d2042fcccd19881",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "法国全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 716,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "法国",
+          "country_code": "FR",
+          "exchange": "泛欧巴黎",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 715,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d1d5b133652aff517095645bcd0eee46df1ecd411f8c512f2546e3ca96fed3dd",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "菲律宾股票_3.xlsx",
+      "byte_size": 13798,
+      "sha256": "1ca39000e3a777aa7e7d25e1c62173530ba5322e483e35c235040ced58233271",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "菲律宾股票_3",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 387,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "菲律宾",
+          "country_code": "PH",
+          "exchange": "菲律宾证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 386,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "7a087f328c157447914eb1543bb8cc198d5030233a2b43b68677227c0d6643c0",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "菲律宾股票.xlsx",
+      "byte_size": 13792,
+      "sha256": "4e97d47f8f738bbf77c3a392859e8c40f1091291ecf3fb1593f2131eb0a07e3b",
+      "recognized_candidate_sheet_count": 0,
+      "source_sheet_count_selected_after_content_deduplication": 0,
+      "sheets": [
+        {
+          "sheet_name": "菲律宾股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 387,
+          "mapping_status": "unmapped_by_archive_contract",
+          "column_mapping": null,
+          "valid_row_count": 0,
+          "rejected_row_count": 387,
+          "rejection_reasons": {
+            "unmapped_sheet": 387
+          },
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "芬兰股票.xlsx",
+      "byte_size": 18622,
+      "sha256": "9ff384e00d3f0f0e811dfd454d20d03ecd314579ce909c778c8d38f90f24328b",
+      "recognized_candidate_sheet_count": 3,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "芬兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 195,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "芬兰",
+          "country_code": "FI",
+          "exchange": "纳斯达克赫尔辛基",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 194,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "895d6bc40e7bbcecaf0338446734987e06be2d2b08d4f50f909ce8f0cd0fec1a",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "韩国全部股票.xlsx",
+      "byte_size": 69473,
+      "sha256": "303d3c45e57d721f74755da3ee2566d4468fcae5099a3367b7ce646541c93c17",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "韩国全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 2968,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "韩国",
+          "country_code": "KR",
+          "exchange": "韩国证券市场",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 2967,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "2f3edcb537276b5a039e0b9038a470a1bddc0484d083c43d9c5765ef2caec59e",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "荷兰股票.xlsx",
+      "byte_size": 8397,
+      "sha256": "956e8b2dae905a0ad40c65b43c34c0db307eb18a82d1710dc78fc25a12d768be",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "荷兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 117,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "荷兰",
+          "country_code": "NL",
+          "exchange": "泛欧阿姆斯特丹",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 116,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "747a64e058fa88ce6988342e59a1e2bd97ebc030d481ebc9c91cc90ae5bd00e8",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "加拿大多伦多证券交易所.xlsx",
+      "byte_size": 21358,
+      "sha256": "5855b571e09866e01e7445e5ef9252219121391dd52786d84aef2301af23a859",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "加拿大多伦多证券交易所",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 673,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "加拿大",
+          "country_code": "CA",
+          "exchange": "多伦多证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 672,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "a55b2a3e50f336392a82a128c4d16d0c1799a4ee87d66d6ec590708873bffa37",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "柬埔寨股票.xlsx",
+      "byte_size": 5849,
+      "sha256": "fd6e3735d29f67626f18cf3212dd213a3f4149908610652ad1db7c7f577967f4",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "柬埔寨股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 13,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "柬埔寨",
+          "country_code": "KH",
+          "exchange": "柬埔寨证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 12,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "9508218cb43742f1a4c7c3a9eb8ef63d098f920d72ac6737b790cd6aa1bc13aa",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "老挝股票.xlsx",
+      "byte_size": 5912,
+      "sha256": "76373423814b28dcbdb49d4595f509c7a5713db6d0e4e5dcb1c5b0507665833c",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "老挝股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 13,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "老挝",
+          "country_code": "LA",
+          "exchange": "老挝证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 12,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "5250ed06469478865598716dad7e379b318f634e2d0880d6ef8353bdd3c15439",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "马来西亚全部股票.xlsx",
+      "byte_size": 26841,
+      "sha256": "dfc049f956fda351731710c094dafe02338ad43410bd54600447263b8b6d021b",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "马来西亚全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 1127,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "马来西亚",
+          "country_code": "MY",
+          "exchange": "马来西亚交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 1126,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "402fb410867180a4db9f7d4c2a8ffca4d910a2f56087660aff4d314434e71040",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "缅甸股票.xlsx",
+      "byte_size": 5767,
+      "sha256": "91854a3d9049b7153e3cf04806cad1dc4b6509f893659cfba9567d593ef81a4e",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "缅甸股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 11,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "缅甸",
+          "country_code": "MM",
+          "exchange": "仰光证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 10,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "20c8f8b02bf071444749f15cd1c2e204aa009bfde548fb1761baf2debef3f6f1",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "墨西哥股票.xlsx",
+      "byte_size": 9670,
+      "sha256": "5a700be622a1b0d8df4159a4965a9e13fd9f0f55b671c44b202d13ad0a8bb75c",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "墨西哥股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 150,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "墨西哥",
+          "country_code": "MX",
+          "exchange": "墨西哥证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 149,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "5ff9438a066b6c55406d598519b628aa0761519e2834b64ca8d5e085aa7bf1f4",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "挪威股票.xlsx",
+      "byte_size": 47776,
+      "sha256": "10509b609eb2b6ef9e99776db52303ac1abc020265a4b5119773f1acd5986c07",
+      "recognized_candidate_sheet_count": 6,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "挪威股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 295,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "挪威",
+          "country_code": "NO",
+          "exchange": "奥斯陆证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 294,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "5bc03b2c31be9a9e1371b49084ea5715a3dba6db79ac2ecb8d30199c5af966f6",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "丹麦股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 146,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "丹麦",
+          "country_code": "DK",
+          "exchange": "哥本哈根证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 145,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e872d6e86022c7c682241ccb6b968d03f9d37da8c597aa664bc17c63ed295946",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "瑞典股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 747,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "瑞典",
+          "country_code": "SE",
+          "exchange": "纳斯达克斯德哥尔摩",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 746,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e3f8a2df3ec124e3986a090de68a7d35671ec8ad3e8f140db35cda00b973f6fc",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "芬兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 195,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "芬兰",
+          "country_code": "FI",
+          "exchange": "纳斯达克赫尔辛基",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 194,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "895d6bc40e7bbcecaf0338446734987e06be2d2b08d4f50f909ce8f0cd0fec1a",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "葡萄牙股票.xlsx",
+      "byte_size": 49673,
+      "sha256": "462cfead383c385104246a1d520e0d4a59397322119eb44102db19df1a91a2fb",
+      "recognized_candidate_sheet_count": 7,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "葡萄牙股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 49,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "葡萄牙",
+          "country_code": "PT",
+          "exchange": "泛欧里斯本",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 48,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "c3501fd22d0d2f5e151b5d28ad2b8fef30c2d4859fbddfa3f5ce475a73462c77",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "挪威股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 295,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "挪威",
+          "country_code": "NO",
+          "exchange": "奥斯陆证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 294,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "5bc03b2c31be9a9e1371b49084ea5715a3dba6db79ac2ecb8d30199c5af966f6",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "丹麦股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 146,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "丹麦",
+          "country_code": "DK",
+          "exchange": "哥本哈根证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 145,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e872d6e86022c7c682241ccb6b968d03f9d37da8c597aa664bc17c63ed295946",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "瑞典股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 747,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "瑞典",
+          "country_code": "SE",
+          "exchange": "纳斯达克斯德哥尔摩",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 746,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e3f8a2df3ec124e3986a090de68a7d35671ec8ad3e8f140db35cda00b973f6fc",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "芬兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 195,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "芬兰",
+          "country_code": "FI",
+          "exchange": "纳斯达克赫尔辛基",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 194,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "895d6bc40e7bbcecaf0338446734987e06be2d2b08d4f50f909ce8f0cd0fec1a",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "全部港股.xlsx",
+      "byte_size": 67101,
+      "sha256": "ccb6c036141ab504e647ef1c2564b5a65c1827c9e6de89282a46fd4b85c10d81",
+      "recognized_candidate_sheet_count": 2,
+      "source_sheet_count_selected_after_content_deduplication": 2,
+      "sheets": [
+        {
+          "sheet_name": "全部A股",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 2,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "中国",
+          "country_code": "CN",
+          "exchange": "中国境内交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 1,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "3e7e51b28092da63f25d7e3b829edfc001a7d0176926a2c6d42ff5042c9f8ba7",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "全部港股",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 2764,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "中国香港",
+          "country_code": "HK",
+          "exchange": "香港交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 2763,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "4a18f686d2d0d28df0b77b632aa9b3e696fe8d93a70da835d1cbfb7007a01950",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "全部港股1.xlsx",
+      "byte_size": 65902,
+      "sha256": "ce2c11ef7d4ca1e5a71a622a54e159e312b97de2b7640c47079d5fc1901e6353",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 0,
+      "sheets": [
+        {
+          "sheet_name": "全部港股",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 2764,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "中国香港",
+          "country_code": "HK",
+          "exchange": "香港交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 2763,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "4a18f686d2d0d28df0b77b632aa9b3e696fe8d93a70da835d1cbfb7007a01950",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "全部美股.xlsx",
+      "byte_size": 148122,
+      "sha256": "fe0c4ae3573b2d7b0cf905f29842625bb24d65666014694e82753405edb0d891",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "全部美股",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 6258,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "美国",
+          "country_code": "US",
+          "exchange": "美国证券市场",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 6257,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "c0a66a2951a685bbf869e8e3ad2ca12de77eb7f5c7ba6ad18300d583013ec53e",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "全部英股.xlsx",
+      "byte_size": 35393,
+      "sha256": "a4d4e513c35a5d458835c98579545c798cfd29dc3fc9227cbc7ed38705f08695",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "全部英股",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 1284,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "英国",
+          "country_code": "GB",
+          "exchange": "伦敦证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 1283,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "5a5509c742f47805507f16fe6207418909f80da9b2cd3ce83e1615ae480ad851",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "全部A股.xlsx",
+      "byte_size": 121228,
+      "sha256": "a6b4912d8ccd8930c3d878728b351a6dc02bf05ce4f73cfa0e03f6d729369396",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "全部A股",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 5545,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "中国",
+          "country_code": "CN",
+          "exchange": "中国境内交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 5544,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "40eeedc4e82a874d8d9f8ba6f3462ed74b0c1335a67bd73b53d64e6f094af11c",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "瑞典股票.xlsx",
+      "byte_size": 36212,
+      "sha256": "ac28879f772f975dc962f4e64f853311475721a5ae21fa3f84f26318ce3605d4",
+      "recognized_candidate_sheet_count": 4,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "瑞典股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 747,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "瑞典",
+          "country_code": "SE",
+          "exchange": "纳斯达克斯德哥尔摩",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 746,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e3f8a2df3ec124e3986a090de68a7d35671ec8ad3e8f140db35cda00b973f6fc",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "芬兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 195,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "芬兰",
+          "country_code": "FI",
+          "exchange": "纳斯达克赫尔辛基",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 194,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "895d6bc40e7bbcecaf0338446734987e06be2d2b08d4f50f909ce8f0cd0fec1a",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "瑞士股票.xlsx",
+      "byte_size": 11195,
+      "sha256": "ff13a69ecfdcebfe9318fc9c450ab3058a22f6e84980c530fa6c6944151ee27e",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "瑞士股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 242,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "瑞士",
+          "country_code": "CH",
+          "exchange": "瑞士证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 241,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "32b060824a805a8a87d86306e894cb0ac6fd0c4c27f73e49077802b8fd63d4ce",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "沙特全部股票_1.xlsx",
+      "byte_size": 13353,
+      "sha256": "44b1444388f4d4a8bbe01113f832c16047a1a04139a6f4dbc36e091c1d711425",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "沙特全部股票_1",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 377,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "沙特阿拉伯",
+          "country_code": "SA",
+          "exchange": "沙特交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 376,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "f6a7622c900cf990c74c506693af902fae02ec9281b9fed28c3976d0b943e2e5",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "台湾全部股票.xlsx",
+      "byte_size": 53375,
+      "sha256": "ac7edc0abbfb4fc3388f71699c8ffe2cd5e72a3eca19838f17400d2a729f9926",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "台湾全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 2374,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "中国台湾",
+          "country_code": "TW",
+          "exchange": "台湾证券市场",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 2373,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "b33e9606d027b499ba7d48d836b5d01dcb3497b3516d41cfc6857119969bdf14",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "泰国股票_1.xlsx",
+      "byte_size": 52155,
+      "sha256": "4c32025209c4cd3f4663833b221264d2132217aedd52ab00cd89a2b13890011a",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "泰国股票_1",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 2216,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "泰国",
+          "country_code": "TH",
+          "exchange": "泰国证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 2215,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "de8b10d6ae321cf3897c7ef099dc974d0fc3603829a1f3c2d4c6eecb352a0a40",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "西班牙股票.xlsx",
+      "byte_size": 55073,
+      "sha256": "5cdb6882d1e5f5de17d61a6162a9cb26dbb3fcb87b8052e23494fa3246b4fa97",
+      "recognized_candidate_sheet_count": 8,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "西班牙股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 186,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "西班牙",
+          "country_code": "ES",
+          "exchange": "西班牙证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 185,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "39a7673187f1f7caedf9c6824929279558988336a50349849e6d667fdee55b71",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "葡萄牙股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 49,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "葡萄牙",
+          "country_code": "PT",
+          "exchange": "泛欧里斯本",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 48,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "c3501fd22d0d2f5e151b5d28ad2b8fef30c2d4859fbddfa3f5ce475a73462c77",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "挪威股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 295,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "挪威",
+          "country_code": "NO",
+          "exchange": "奥斯陆证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 294,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "5bc03b2c31be9a9e1371b49084ea5715a3dba6db79ac2ecb8d30199c5af966f6",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "丹麦股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 146,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "丹麦",
+          "country_code": "DK",
+          "exchange": "哥本哈根证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 145,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e872d6e86022c7c682241ccb6b968d03f9d37da8c597aa664bc17c63ed295946",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "瑞典股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 747,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "瑞典",
+          "country_code": "SE",
+          "exchange": "纳斯达克斯德哥尔摩",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 746,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e3f8a2df3ec124e3986a090de68a7d35671ec8ad3e8f140db35cda00b973f6fc",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "芬兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 195,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "芬兰",
+          "country_code": "FI",
+          "exchange": "纳斯达克赫尔辛基",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 194,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "895d6bc40e7bbcecaf0338446734987e06be2d2b08d4f50f909ce8f0cd0fec1a",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "新加坡全部股票.xlsx",
+      "byte_size": 19075,
+      "sha256": "a10b05ba26883091b9e08afd7b73b4f9abe7817eaa77ce2e293d25ed0d2c5924",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "新加坡全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 575,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "新加坡",
+          "country_code": "SG",
+          "exchange": "新加坡交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 574,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "c84b2b423e46d0b82866cccd81d81e0c888f48a5db1ef6526039e0ee97b788b5",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "新西兰股票_1.xlsx",
+      "byte_size": 8423,
+      "sha256": "8dfc72bdb2be03e6d23a908b754b8e8e5e9d301836ffda73df31ed6a91a94351",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "新西兰股票_1",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 114,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "新西兰",
+          "country_code": "NZ",
+          "exchange": "新西兰证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 113,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e85b85fc3ff57144dd57311fc87f46d08e21bfbc96512377a4f7650cd2cefa08",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "以色列股票_1.xlsx",
+      "byte_size": 16805,
+      "sha256": "69d469901ec543e80b5b83fce2da5876c5088ce52fd9b33ad046416a4e7b378f",
+      "recognized_candidate_sheet_count": 0,
+      "source_sheet_count_selected_after_content_deduplication": 0,
+      "sheets": [
+        {
+          "sheet_name": "以色列股票_1",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 528,
+          "mapping_status": "unmapped_by_archive_contract",
+          "column_mapping": null,
+          "valid_row_count": 0,
+          "rejected_row_count": 528,
+          "rejection_reasons": {
+            "unmapped_sheet": 528
+          },
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "以色列股票.xlsx",
+      "byte_size": 16800,
+      "sha256": "51b8c179e8818d4997374a500cc337466bc3db12c6a61a85c6c1915d3163e18b",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "以色列股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 528,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "以色列",
+          "country_code": "IL",
+          "exchange": "特拉维夫证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 527,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "f17a0fd907da98d8593b5056af3540fc85480a199f745f469b21dfdf5ec52519",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "意大利股票.xlsx",
+      "byte_size": 70806,
+      "sha256": "b60e3ec196514d679da4d6d20c51a17e7c9093b42f6518fdc6e3e4cf1969254e",
+      "recognized_candidate_sheet_count": 11,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "荷兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 117,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "荷兰",
+          "country_code": "NL",
+          "exchange": "泛欧阿姆斯特丹",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 116,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "747a64e058fa88ce6988342e59a1e2bd97ebc030d481ebc9c91cc90ae5bd00e8",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "奥地利股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 82,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "奥地利",
+          "country_code": "AT",
+          "exchange": "维也纳证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 81,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "095c9d6482e06a54bb691ef8f64822049472125c6a9cea9884b814b1792bbfdb",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "意大利股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 408,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "意大利",
+          "country_code": "IT",
+          "exchange": "意大利证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 407,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "b36211b4d0cc174bc395c2e0deab01ce2064e3b37e0c4e9a1f6d5c3442f98449",
+          "selected_after_content_deduplication": true
+        },
+        {
+          "sheet_name": "西班牙股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 186,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "西班牙",
+          "country_code": "ES",
+          "exchange": "西班牙证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 185,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "39a7673187f1f7caedf9c6824929279558988336a50349849e6d667fdee55b71",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "葡萄牙股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 49,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "葡萄牙",
+          "country_code": "PT",
+          "exchange": "泛欧里斯本",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 48,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "c3501fd22d0d2f5e151b5d28ad2b8fef30c2d4859fbddfa3f5ce475a73462c77",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "挪威股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 295,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "挪威",
+          "country_code": "NO",
+          "exchange": "奥斯陆证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 294,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "5bc03b2c31be9a9e1371b49084ea5715a3dba6db79ac2ecb8d30199c5af966f6",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "丹麦股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 146,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "丹麦",
+          "country_code": "DK",
+          "exchange": "哥本哈根证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 145,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e872d6e86022c7c682241ccb6b968d03f9d37da8c597aa664bc17c63ed295946",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "瑞典股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 747,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "瑞典",
+          "country_code": "SE",
+          "exchange": "纳斯达克斯德哥尔摩",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 746,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "e3f8a2df3ec124e3986a090de68a7d35671ec8ad3e8f140db35cda00b973f6fc",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "芬兰股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 195,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "芬兰",
+          "country_code": "FI",
+          "exchange": "纳斯达克赫尔辛基",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 194,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "895d6bc40e7bbcecaf0338446734987e06be2d2b08d4f50f909ce8f0cd0fec1a",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "冰岛股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 33,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "冰岛",
+          "country_code": "IS",
+          "exchange": "纳斯达克冰岛",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 32,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "96c5136e2fdcaad52d04ba5c5a54495c24eb4fc7bc405fb360a52637669fe9c9",
+          "selected_after_content_deduplication": false
+        },
+        {
+          "sheet_name": "俄罗斯股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 264,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "俄罗斯",
+          "country_code": "RU",
+          "exchange": "莫斯科交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 263,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d31733b6794adad0648597f4ca2e7b0744a67223383aaaf72177f1422fcf9606",
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "印度全部股票_1.xlsx",
+      "byte_size": 188170,
+      "sha256": "ae71fe9d4897dd90924496ab9734a11465991f721c462e5e70757c3e553a1fd3",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "印度全部股票_1",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 8171,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "印度",
+          "country_code": "IN",
+          "exchange": "印度证券市场",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 8170,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "ca7acdb2a65f257d9d889f89483bd5fc884dca1314342f0b217cf7564c6f3b5d",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "印尼股票.xlsx",
+      "byte_size": 29543,
+      "sha256": "c7d654390c9354ad2f30fd97cafa6426430af1fb36ee3506e0ca9cc33d3cebcf",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "印尼股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 963,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "印度尼西亚",
+          "country_code": "ID",
+          "exchange": "印度尼西亚证券交易所",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 962,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "d3633bb67e10d9594533e37f1de12292083c5c7f966a7bb9d7c7457116326dea",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "越南全部股票.xlsx",
+      "byte_size": 41493,
+      "sha256": "c02130af81c21edd93d741cfafcee772b1429e3e422000e48c616d7894013804",
+      "recognized_candidate_sheet_count": 1,
+      "source_sheet_count_selected_after_content_deduplication": 1,
+      "sheets": [
+        {
+          "sheet_name": "越南全部股票",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 1527,
+          "mapping_status": "mapped_by_archive_contract",
+          "country": "越南",
+          "country_code": "VN",
+          "exchange": "越南证券市场",
+          "column_mapping": {
+            "symbol": 0,
+            "name": 1
+          },
+          "valid_row_count": 1526,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "source_metadata": 1
+          },
+          "content_sha256": "2bcccf6004747fac3016b232e449e1dade01c28cf067a63b0a601de9ca9bc62a",
+          "selected_after_content_deduplication": true
+        }
+      ]
+    },
+    {
+      "file_name": "grid_x4ojopb2.xlsx",
+      "byte_size": 41619,
+      "sha256": "4340a5159dc071b3c2fd6fc848dab27104dc8ff624e09543c3cf35c9aca53392",
+      "recognized_candidate_sheet_count": 0,
+      "source_sheet_count_selected_after_content_deduplication": 0,
+      "sheets": [
+        {
+          "sheet_name": "FIW Data",
+          "header": [
+            "Security ID",
+            "首选本地语言代码",
+            "发行人",
+            "到期",
+            "Yield",
+            "价格",
+            "息票",
+            "G-Sprd",
+            "到期日期",
+            "中国本地评级",
+            "中国本地评级机构",
+            "来源",
+            "货币",
+            "CUSIP",
+            "证券"
+          ],
+          "physical_data_rows": 1010,
+          "mapping_status": "unmapped_by_archive_contract",
+          "column_mapping": null,
+          "valid_row_count": 0,
+          "rejected_row_count": 1010,
+          "rejection_reasons": {
+            "unmapped_sheet": 1010
+          },
+          "selected_after_content_deduplication": false
+        }
+      ]
+    },
+    {
+      "file_name": "sheet1.xlsx",
+      "byte_size": 5473,
+      "sha256": "2410505f1235b89cf2b4b1836e19e715c5efb1e8ff4be9a4ea4fa6746997f4b8",
+      "recognized_candidate_sheet_count": 0,
+      "source_sheet_count_selected_after_content_deduplication": 0,
+      "sheets": [
+        {
+          "sheet_name": "sheet1",
+          "header": [
+            "证券代码",
+            "证券名称"
+          ],
+          "physical_data_rows": 1,
+          "mapping_status": "unmapped_by_archive_contract",
+          "column_mapping": null,
+          "valid_row_count": 0,
+          "rejected_row_count": 1,
+          "rejection_reasons": {
+            "unmapped_sheet": 1
+          },
+          "selected_after_content_deduplication": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+{
+  "revision": 1,
+  "nextId": 1,
+  "sourceRules": [],
+  "sourceRuleShares": [],
+  "mmflowPackages": [],
+  "mmflowShares": [],
+  "mmflowReviews": [],
+  "mmflowVersions": [],
+  "sourceAvailability": [
+    {
+      "sourceId": "FRED-SOFR",
+      "sourceLabel": "FRED · SOFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 1031,
+      "sampledAt": "2026-09-08T09:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-EFFR",
+      "sourceLabel": "FRED · EFFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 1074,
+      "sampledAt": "2026-09-08T09:00:00.000Z"
+    },
+    {
+      "sourceId": "NYFED-FUNDING",
+      "sourceLabel": "纽约联储 · 隔夜融资基准与成交量",
+      "status": "available",
+      "recordCount": 370,
+      "latencyMs": 1620,
+      "sampledAt": "2026-09-08T09:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-COMMERCIAL-PAPER",
+      "sourceLabel": "美联储 · 商业票据利率",
+      "status": "available",
+      "recordCount": 360,
+      "latencyMs": null,
+      "sampledAt": "2026-09-08T09:00:00.000Z"
+    },
+    {
+      "sourceId": "ECB-POLICY-CORRIDOR",
+      "sourceLabel": "欧洲央行 · 政策利率走廊",
+      "status": "available",
+      "recordCount": 540,
+      "latencyMs": null,
+      "sampledAt": "2026-09-08T09:00:00.000Z"
+    },
+    {
+      "sourceId": "OECD-SHORT-RATES",
+      "sourceLabel": "OECD · 全球短期利率",
+      "status": "available",
+      "recordCount": 720,
+      "latencyMs": null,
+      "sampledAt": "2026-09-08T09:00:00.000Z"
+    },
+    {
+      "sourceId": "TREASURY-AUCTIONS",
+      "sourceLabel": "US Treasury Fiscal Data · Auctions",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 1639,
+      "sampledAt": "2026-09-08T09:00:00.000Z"
+    },
+    {
+      "sourceId": "BCB-CDI",
+      "sourceLabel": "Banco Central do Brasil SGS · CDI",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 1793,
+      "sampledAt": "2026-09-08T09:00:00.000Z"
+    },
+    {
+      "sourceId": "CBC-CALL",
+      "sourceLabel": "Central Bank of Taiwan · Overnight Call",
+      "status": "unavailable",
+      "recordCount": 0,
+      "latencyMs": 3013,
+      "sampledAt": "2026-09-08T09:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-SOFR",
+      "sourceLabel": "FRED · SOFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 873,
+      "sampledAt": "2026-09-09T05:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-EFFR",
+      "sourceLabel": "FRED · EFFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 1224,
+      "sampledAt": "2026-09-09T05:00:00.000Z"
+    },
+    {
+      "sourceId": "NYFED-FUNDING",
+      "sourceLabel": "纽约联储 · 隔夜融资基准与成交量",
+      "status": "available",
+      "recordCount": 370,
+      "latencyMs": 1544,
+      "sampledAt": "2026-09-09T05:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-COMMERCIAL-PAPER",
+      "sourceLabel": "美联储 · 商业票据利率",
+      "status": "available",
+      "recordCount": 360,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T05:00:00.000Z"
+    },
+    {
+      "sourceId": "ECB-POLICY-CORRIDOR",
+      "sourceLabel": "欧洲央行 · 政策利率走廊",
+      "status": "available",
+      "recordCount": 540,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T05:00:00.000Z"
+    },
+    {
+      "sourceId": "OECD-SHORT-RATES",
+      "sourceLabel": "OECD · 全球短期利率",
+      "status": "available",
+      "recordCount": 720,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T05:00:00.000Z"
+    },
+    {
+      "sourceId": "TREASURY-AUCTIONS",
+      "sourceLabel": "US Treasury Fiscal Data · Auctions",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 1606,
+      "sampledAt": "2026-09-09T05:00:00.000Z"
+    },
+    {
+      "sourceId": "BCB-CDI",
+      "sourceLabel": "Banco Central do Brasil SGS · CDI",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 1525,
+      "sampledAt": "2026-09-09T05:00:00.000Z"
+    },
+    {
+      "sourceId": "CBC-CALL",
+      "sourceLabel": "Central Bank of Taiwan · Overnight Call",
+      "status": "unavailable",
+      "recordCount": 0,
+      "latencyMs": 3005,
+      "sampledAt": "2026-09-09T05:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-SOFR",
+      "sourceLabel": "FRED · SOFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 1162,
+      "sampledAt": "2026-09-09T06:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-EFFR",
+      "sourceLabel": "FRED · EFFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 1328,
+      "sampledAt": "2026-09-09T06:00:00.000Z"
+    },
+    {
+      "sourceId": "NYFED-FUNDING",
+      "sourceLabel": "纽约联储 · 隔夜融资基准与成交量",
+      "status": "available",
+      "recordCount": 370,
+      "latencyMs": 1265,
+      "sampledAt": "2026-09-09T06:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-COMMERCIAL-PAPER",
+      "sourceLabel": "美联储 · 商业票据利率",
+      "status": "available",
+      "recordCount": 360,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T06:00:00.000Z"
+    },
+    {
+      "sourceId": "ECB-POLICY-CORRIDOR",
+      "sourceLabel": "欧洲央行 · 政策利率走廊",
+      "status": "available",
+      "recordCount": 540,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T06:00:00.000Z"
+    },
+    {
+      "sourceId": "OECD-SHORT-RATES",
+      "sourceLabel": "OECD · 全球短期利率",
+      "status": "available",
+      "recordCount": 720,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T06:00:00.000Z"
+    },
+    {
+      "sourceId": "TREASURY-AUCTIONS",
+      "sourceLabel": "US Treasury Fiscal Data · Auctions",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 1494,
+      "sampledAt": "2026-09-09T06:00:00.000Z"
+    },
+    {
+      "sourceId": "BCB-CDI",
+      "sourceLabel": "Banco Central do Brasil SGS · CDI",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 755,
+      "sampledAt": "2026-09-09T06:00:00.000Z"
+    },
+    {
+      "sourceId": "CBC-CALL",
+      "sourceLabel": "Central Bank of Taiwan · Overnight Call",
+      "status": "unavailable",
+      "recordCount": 0,
+      "latencyMs": 3007,
+      "sampledAt": "2026-09-09T06:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-SOFR",
+      "sourceLabel": "FRED · SOFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 925,
+      "sampledAt": "2026-09-09T07:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-EFFR",
+      "sourceLabel": "FRED · EFFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 1213,
+      "sampledAt": "2026-09-09T07:00:00.000Z"
+    },
+    {
+      "sourceId": "NYFED-FUNDING",
+      "sourceLabel": "纽约联储 · 隔夜融资基准与成交量",
+      "status": "available",
+      "recordCount": 370,
+      "latencyMs": 995,
+      "sampledAt": "2026-09-09T07:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-COMMERCIAL-PAPER",
+      "sourceLabel": "美联储 · 商业票据利率",
+      "status": "available",
+      "recordCount": 360,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T07:00:00.000Z"
+    },
+    {
+      "sourceId": "ECB-POLICY-CORRIDOR",
+      "sourceLabel": "欧洲央行 · 政策利率走廊",
+      "status": "available",
+      "recordCount": 540,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T07:00:00.000Z"
+    },
+    {
+      "sourceId": "OECD-SHORT-RATES",
+      "sourceLabel": "OECD · 全球短期利率",
+      "status": "available",
+      "recordCount": 720,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T07:00:00.000Z"
+    },
+    {
+      "sourceId": "TREASURY-AUCTIONS",
+      "sourceLabel": "US Treasury Fiscal Data · Auctions",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 1738,
+      "sampledAt": "2026-09-09T07:00:00.000Z"
+    },
+    {
+      "sourceId": "BCB-CDI",
+      "sourceLabel": "Banco Central do Brasil SGS · CDI",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 674,
+      "sampledAt": "2026-09-09T07:00:00.000Z"
+    },
+    {
+      "sourceId": "CBC-CALL",
+      "sourceLabel": "Central Bank of Taiwan · Overnight Call",
+      "status": "unavailable",
+      "recordCount": 0,
+      "latencyMs": 3005,
+      "sampledAt": "2026-09-09T07:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-SOFR",
+      "sourceLabel": "FRED · SOFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 887,
+      "sampledAt": "2026-09-09T08:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-EFFR",
+      "sourceLabel": "FRED · EFFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 1789,
+      "sampledAt": "2026-09-09T08:00:00.000Z"
+    },
+    {
+      "sourceId": "NYFED-FUNDING",
+      "sourceLabel": "纽约联储 · 隔夜融资基准与成交量",
+      "status": "available",
+      "recordCount": 370,
+      "latencyMs": 1135,
+      "sampledAt": "2026-09-09T08:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-COMMERCIAL-PAPER",
+      "sourceLabel": "美联储 · 商业票据利率",
+      "status": "available",
+      "recordCount": 360,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T08:00:00.000Z"
+    },
+    {
+      "sourceId": "ECB-POLICY-CORRIDOR",
+      "sourceLabel": "欧洲央行 · 政策利率走廊",
+      "status": "available",
+      "recordCount": 540,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T08:00:00.000Z"
+    },
+    {
+      "sourceId": "OECD-SHORT-RATES",
+      "sourceLabel": "OECD · 全球短期利率",
+      "status": "available",
+      "recordCount": 720,
+      "latencyMs": null,
+      "sampledAt": "2026-09-09T08:00:00.000Z"
+    },
+    {
+      "sourceId": "TREASURY-AUCTIONS",
+      "sourceLabel": "US Treasury Fiscal Data · Auctions",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 1629,
+      "sampledAt": "2026-09-09T08:00:00.000Z"
+    },
+    {
+      "sourceId": "BCB-CDI",
+      "sourceLabel": "Banco Central do Brasil SGS · CDI",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 1530,
+      "sampledAt": "2026-09-09T08:00:00.000Z"
+    },
+    {
+      "sourceId": "CBC-CALL",
+      "sourceLabel": "Central Bank of Taiwan · Overnight Call",
+      "status": "unavailable",
+      "recordCount": 0,
+      "latencyMs": 3006,
+      "sampledAt": "2026-09-09T08:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-SOFR",
+      "sourceLabel": "FRED · SOFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 365,
+      "sampledAt": "2026-09-19T23:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-EFFR",
+      "sourceLabel": "FRED · EFFR",
+      "status": "available",
+      "recordCount": 180,
+      "latencyMs": 871,
+      "sampledAt": "2026-09-19T23:00:00.000Z"
+    },
+    {
+      "sourceId": "NYFED-FUNDING",
+      "sourceLabel": "纽约联储 · 隔夜融资基准与成交量",
+      "status": "available",
+      "recordCount": 376,
+      "latencyMs": 2063,
+      "sampledAt": "2026-09-19T23:00:00.000Z"
+    },
+    {
+      "sourceId": "FRED-COMMERCIAL-PAPER",
+      "sourceLabel": "美联储 · 商业票据利率",
+      "status": "available",
+      "recordCount": 360,
+      "latencyMs": null,
+      "sampledAt": "2026-09-19T23:00:00.000Z"
+    },
+    {
+      "sourceId": "ECB-POLICY-CORRIDOR",
+      "sourceLabel": "欧洲央行 · 政策利率走廊",
+      "status": "available",
+      "recordCount": 540,
+      "latencyMs": null,
+      "sampledAt": "2026-09-19T23:00:00.000Z"
+    },
+    {
+      "sourceId": "OECD-SHORT-RATES",
+      "sourceLabel": "OECD · 全球短期利率",
+      "status": "available",
+      "recordCount": 720,
+      "latencyMs": null,
+      "sampledAt": "2026-09-19T23:00:00.000Z"
+    },
+    {
+      "sourceId": "TREASURY-AUCTIONS",
+      "sourceLabel": "US Treasury Fiscal Data · Auctions",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 1299,
+      "sampledAt": "2026-09-19T23:00:00.000Z"
+    },
+    {
+      "sourceId": "BCB-CDI",
+      "sourceLabel": "Banco Central do Brasil SGS · CDI",
+      "status": "available",
+      "recordCount": 20,
+      "latencyMs": 2043,
+      "sampledAt": "2026-09-19T23:00:00.000Z"
+    },
+    {
+      "sourceId": "CBC-CALL",
+      "sourceLabel": "Central Bank of Taiwan · Overnight Call",
+      "status": "unavailable",
+      "recordCount": 0,
+      "latencyMs": 3013,
+      "sampledAt": "2026-09-19T23:00:00.000Z"
+    }
+  ],
+  "moduleUsage": [
+    {
+      "userId": 0,
+      "moduleId": "des-mm",
+      "bucket": "2026-09-09T05:45:00.000Z",
+      "openedAt": "2026-09-09T05:47:53.407Z"
+    },
+    {
+      "userId": 0,
+      "moduleId": "pgm",
+      "bucket": "2026-09-09T06:00:00.000Z",
+      "openedAt": "2026-09-09T06:08:34.369Z"
+    },
+    {
+      "userId": 0,
+      "moduleId": "tcon",
+      "bucket": "2026-09-09T07:15:00.000Z",
+      "openedAt": "2026-09-09T07:28:08.503Z"
+    },
+    {
+      "userId": 0,
+      "moduleId": "tcon",
+      "bucket": "2026-09-09T08:00:00.000Z",
+      "openedAt": "2026-09-09T08:01:36.462Z"
+    },
+    {
+      "userId": 0,
+      "moduleId": "edsf",
+      "bucket": "2026-09-09T08:00:00.000Z",
+      "openedAt": "2026-09-09T08:01:48.968Z"
+    },
+    {
+      "userId": 0,
+      "moduleId": "mktbeat",
+      "bucket": "2026-09-19T23:15:00.000Z",
+      "openedAt": "2026-09-19T23:27:25.609Z"
+    }
+  ]
+}

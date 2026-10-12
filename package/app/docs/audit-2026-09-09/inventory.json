@@ -1,0 +1,31 @@
+{
+  "auditDate": "2026-09-09",
+  "scope": "source inventory only; UI statuses unverified",
+  "routes": {
+    "explicitRouteCount": 124,
+    "publicAndTerminal": ["/", "/terminal", "/home", "/market", "/curve-search", "/yield-curve", "/bond-market", "/interest-rates", "/index-hub", "/forex-hub", "/news-hub", "/econ-hub", "/comms-hub"],
+    "protectedGroups": ["/admin/*", "/secure-admin", "/risk-management", "/electronic-trading", "/trade-book", "/pricing-risk", "/order-management"],
+    "hiddenUnderscoreRoutes": ["/_showcase", "/_latest", "/_files", "/_pricing-and-risk", "/_derivatives-*", "/_index-*", "/_credit-derivatives", "/_fx-derivatives"]
+  },
+  "surfaces": {
+    "clientPages": 143,
+    "clientComponents": 785,
+    "serverRouters": 121,
+    "drizzleMysqlTables": 231,
+    "adminPages": ["AdminDashboard", "AdminUsers", "AdminMarketData", "AdminDataIngestion", "AdminDataModules", "AdminAutomationCenter", "AdminAiManagement", "AdminAiCrawler", "AdminMonitor", "AdminSettings", "AdminAnnouncements", "AdminExportRegistry", "SecureAdminConsole"]
+  },
+  "streaming": {
+    "sse": ["/api/notifications/stream (authenticated)", "/api/terminal/stream (public FRED rates)", "/api/terminal/content-stream (public module feeds)", "curve AI analysis/compare streams"],
+    "websocketSources": ["server/marketWebSocket.ts (legacy snapshot only; random ticks removed)", "server/aimWebSocket.ts", "server/aimTomsLinkWebSocket.ts", "server/etfWebSocket.ts", "server/tomsWebSocket.ts"]
+  },
+  "scheduledEndpoints": ["checklistDeadlineNotify", "creditOasThresholdNotify", "policyEvidenceMentionReminder", "sovereignFactSync", "newsSourceFreshnessNotify", "mortgageLedgerReviewNotify", "moneyMarketGovernanceScan", "adminNewsIngestion", "adminNewsIngestionSweep", "adminMarketIngestion", "adminDataModuleAutomation"],
+  "featureFlagsAndSecrets": ["AUTH_MODE", "OIDC_ISSUER_URL", "LOCAL_ADMIN_PASSWORD", "JWT_SECRET", "DATABASE_URL", "LLM_API_KEY", "STANDALONE_MODE", "SCHEDULER_SECRET", "DATA_API_ENDPOINTS_JSON", "S3_ENDPOINT"],
+  "acceptanceRisks": [
+    {"id": "P0-market-mutations", "status": "fixed", "detail": "market.create/update/delete now use adminProcedure"},
+    {"id": "P0-random-client-ticks", "status": "fixed", "detail": "useRealtimePrices mirrors input values and flashes only actual changes"},
+    {"id": "P0-random-legacy-ws", "status": "fixed", "detail": "marketWebSocket no longer generates MARKET_TICK values"},
+    {"id": "P1-static-surfaces", "status": "open", "detail": "many pages/panels retain hard-coded or Math.random demo data; UI verification pending"},
+    {"id": "P1-dashboard-nav-placeholders", "status": "open", "detail": "unused DashboardLayout contains Page 1/Page 2 and /some-path"},
+    {"id": "P1-feed-ack-forgery", "status": "open", "detail": "public acknowledgeFeeds accepts client generated keys and does not prove visible DOM receipt"}
+  ]
+}

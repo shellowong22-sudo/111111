@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["client/src/components/news/NHPanel.tsx", "client/src/components/news/TOPPanel.tsx", "client/src/components/news/NIPanel.tsx", "client/src/components/news/TRENPanel.tsx", "client/src/components/news/NLRTPanel.tsx", "client/src/components/news/NSUBPanel.tsx", "client/src/components/news/SOCIPanel.tsx", "client/src/components/news/SourceReturnDesk.tsx", "client/src/components/news/InternationalNewsEvidenceDesk.tsx", "client/src/components/news/ThirdPartySourceEvidenceDesk.tsx", "shared/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"],
+  "compilerOptions": { "incremental": false, "noEmit": true }
+}

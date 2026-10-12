@@ -1,0 +1,8 @@
+{
+  "auditKind": "transactional-non-destructive-baseline-equity-listing-import",
+  "sourcePath": "/home/ubuntu/finance-hub-baseline/source/unpacked/database/finance_hub.sql",
+  "insertSha256": "6c84ac2b18302ab7e8c2345b74e1fa7fa71f60eb0997ad447772aca8990c3dd0",
+  "importedRowCount": 5088,
+  "importedCountryCount": 6,
+  "initialRowCount": 0
+}

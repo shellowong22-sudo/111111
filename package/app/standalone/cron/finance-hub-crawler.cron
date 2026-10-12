@@ -1,0 +1,2 @@
+# Run every 15 minutes. Replace the secret and origin; do not put this file in a public repository.
+*/15 * * * * curl --fail --silent --show-error --max-time 120 -X POST "$FINANCE_HUB_ORIGIN/api/scheduled/adminNewsIngestionSweep" -H "x-scheduler-secret: $SCHEDULER_SECRET" >> /var/log/finance-hub-crawler.log 2>&1

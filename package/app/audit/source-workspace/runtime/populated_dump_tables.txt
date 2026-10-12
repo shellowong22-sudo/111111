@@ -1,0 +1,15 @@
+__drizzle_migrations
+admin_runtime_health_samples
+curve_data_points
+curves
+equity_listings
+equity_quote_snapshots
+forex_central_bank_decision_events
+index_constituent_archive_events
+market_data
+money_market_module_usage_events
+money_market_source_availability_snapshots
+terminal_security_events
+terminal_watermark_settings
+treasury_historical_curve_imports
+users

@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-08-26T10:01:45.458Z",
+  "source": {
+    "extensionPath": "/home/ubuntu/finance-hub-recovery/client/src/components/portfolio/PortfolioRiskDistinctExtension.tsx",
+    "wrapperPath": "/home/ubuntu/finance-hub-recovery/client/src/components/portfolio/PortfolioRiskPreservedModule.tsx",
+    "mappingPath": "/home/ubuntu/finance-hub-recovery/audit/runtime/portfolio-risk-24-tab-mapping.tsv"
+  },
+  "tabCount": 24,
+  "uniqueTaskCount": 24,
+  "missingTabs": [],
+  "emptyStateGuidanceCount": 24,
+  "missingEmptyState": [],
+  "duplicateComponentAssignments": [],
+  "missingBoundary": [],
+  "oldUnifiedResearchLayerMounted": false,
+  "originalWorkspacePreserved": true,
+  "explicitHonestyBoundaries": [
+    "不创建订单",
+    "不抓取或生成新闻",
+    "不构成合规意见"
+  ],
+  "pass": true
+}

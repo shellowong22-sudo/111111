@@ -1,0 +1,38 @@
+FULL_VITEST_EXIT=1
+⎯⎯⎯⎯⎯⎯ Failed Tests 17 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  server/commsPreservation.test.ts > 通讯与社区原内容保护 > 固定原始菜单、原通讯中心、主终端消息面板与全部专属面板的内容指纹
+AssertionError: expected '72cdf779742a5bff5a191fc5a38c2e57c357f…' to be '3e50251642e1d2cba188343111c27d54dab55…' // Object.is equality
+ FAIL  server/credit-workbench.test.ts > 信用债研究工作台 > 为既有 26 项信用债模块保留原入口并追加差异化工作流
+AssertionError: expected 'import React, { useState, useEffect }…' to contain 'independentlyVerifiedPanelIds'
+ FAIL  server/derivatives.test.ts > derivatives.bico > getSectorOverview returns all 11 sectors
+AssertionError: expected +0 to be 11 // Object.is equality
+ FAIL  server/derivatives.test.ts > derivatives.bico > getSectorOverview filters by sector name
+AssertionError: expected 0 to be greater than 0
+ FAIL  server/derivatives.test.ts > derivatives.ai > getAltDataSignals returns signals for BICO module
+AssertionError: expected 0 to be greater than 0
+ FAIL  server/derivatives.test.ts > derivatives.ai > getCausalChain returns causal chain for event
+AssertionError: expected 0 to be greater than 0
+ FAIL  server/derivativesProtection.test.ts > derivatives original-content protection > keeps the original menu and every existing derivatives panel byte-identical
+AssertionError: client/src/pages/CreditMonitorAdvanced.tsx: expected '89b9d237980396d13c1c0d3c548969cdd1d3a…' to be '0c1aabbb0c057865c97f2f9ecddf960e46f2a…' // Object.is equality
+ FAIL  server/electronicTradingOriginalContentFingerprint.test.ts > 电子交易原内容 byte-for-byte 保护 > keeps the page and all 32 original panels unchanged
+AssertionError: client/src/pages/ElectronicTrading.tsx: expected 'f048d41b351a74ff02b546dce2556d5f7f995…' to be 'adf2bf8486db042ccfc133a3b316b3b1faa1b…' // Object.is equality
+ FAIL  server/forexProtection.test.ts > forex original-content protection > keeps the original forex menu, detail panels, and extension panels at their protected baselines
+AssertionError: expected '49a785c8af5ee4cbf0ebe50db586627c2adfa…' to be '15dfa014617ad323d242909906ceb49d46a99…' // Object.is equality
+ FAIL  server/indexResearch.test.ts > index terminal research layer > keeps the research container outside original content and terminal-only
+AssertionError: expected -1 to be less than -1
+ FAIL  server/legacyFieldAccess.test.ts > 经济字段来源目录与遗留字段授权遮蔽 > 经济目录逐字段声明公开来源与未接入边界，不把原工作区静态字段标为已核验
+AssertionError: expected 'import { useLayoutEffect, useRef, typ…' to contain '<EconomicCalendarOfficialObservations…'
+ FAIL  server/newsPreservation.test.ts > 新闻与研究原内容保护 > 固定原始菜单、原新闻中心、主终端新闻面板及全部专属面板的内容指纹
+AssertionError: expected 'e5ee87b77df13e880338bb45a7f2020447b78…' to be 'b0e8fa10de9863ee6d18885f692d7c01e23ef…' // Object.is equality
+ FAIL  server/orderManagementOriginalContentFingerprint.test.ts > 交易委托管理原内容 byte-for-byte 保护 > keeps menu, page and all 23 original panels unchanged
+AssertionError: client/src/components/order-management/AIMPanel.tsx: expected 'd192af4eeb44ab6474c14423a8c699617e69a…' to be '5e114e7ab2e0a756b412a383b382215cabcd7…' // Object.is equality
+ FAIL  server/portfolioManagementPreservation.test.ts > portfolio management original content protection > keeps the 24 original menu, workspace and sub-panels byte-for-byte unchanged
+AssertionError: client/src/components/portfolio/PortfolioManagementPanel.tsx: expected '92f3d3afb8992534ea94aa05bbdfd82511668…' to be 'a3e32c78b9b9897e776a3653828af3e0c4480…' // Object.is equality
+ FAIL  server/portfolioManagementPreservation.test.ts > portfolio management original content protection > keeps all 24 original entries and appends the research layer outside the original workspace
+AssertionError: expected 'export default function PortfolioRisk…' to contain 'data-portfolio-risk-research-layer="t…'
+ FAIL  server/pricingRiskOriginalContentFingerprint.test.ts > 定价与风险原工作区字节级保护 > keeps the original PricingRisk page unchanged
+AssertionError: expected '46f4bcfbd103d38fbe82f8452c432427ed796…' to be '9b284b369f9b2776193ab2ee2e4a9d122bc20…' // Object.is equality
+ FAIL  server/stpOriginalContentFingerprint.test.ts > STP 原内容字节级保护 > keeps the original page and all 24 existing STP panels byte-for-byte unchanged
+AssertionError: client/src/components/stp/FstnPanel.tsx: expected '0917455fa6e03bb8e8dfea169876c544e89bb…' to be 'e5fc0a9e3db9b5e0ffe3df3a48576f5e9df47…' // Object.is equality
+ Test Files  13 failed | 219 passed (232)
+      Tests  17 failed | 753 passed (770)

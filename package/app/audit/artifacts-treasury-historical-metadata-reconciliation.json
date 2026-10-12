@@ -1,0 +1,8 @@
+{
+  "auditKind": "treasury-historical-import-metadata-reconciliation",
+  "status": "inserted-after-read-only-verification",
+  "importKey": "treasury-par-yield-curve-month-end-v1-1990-2023",
+  "curveId": 1,
+  "sourceSha256": "004461bcf87ec7b34daf035f05fc191d7cf2cd84986533df3e39d5dcdb0d62a4",
+  "importedPointCount": 4257
+}

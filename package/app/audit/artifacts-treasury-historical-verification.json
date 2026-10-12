@@ -1,0 +1,14 @@
+{
+  "auditKind": "official-treasury-historical-curve-read-only-verification",
+  "verified": true,
+  "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rate-archives/par-yield-curve-rates-1990-2023.csv",
+  "sourceSha256": "004461bcf87ec7b34daf035f05fc191d7cf2cd84986533df3e39d5dcdb0d62a4",
+  "sourceFirstDate": "1990-01-31",
+  "sourceLastDate": "2023-12-29",
+  "selectedObservationCount": 408,
+  "expectedPointCount": 4257,
+  "actualPointCount": 4257,
+  "expectedPointSetSha256": "09c00df2fa875abf487bb32c8a43d428b932aa89af7a74bd46498611a949116f",
+  "actualPointSetSha256": "09c00df2fa875abf487bb32c8a43d428b932aa89af7a74bd46498611a949116f",
+  "curveId": 1
+}

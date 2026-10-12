@@ -1,0 +1,28 @@
+import { useMemo, useState } from 'react';
+import { trpc } from '@/lib/trpc';
+import { useAuth } from '@/_core/hooks/useAuth';
+import { LoadingState } from '@/components/sovereign/PanelKit';
+
+const numeric = (value: number | null | undefined, digits = 2) => value == null ? '—' : value.toLocaleString(undefined, { maximumFractionDigits: digits });
+const signed = (value: number | null | undefined, digits = 2) => value == null ? '—' : `${value >= 0 ? '+' : ''}${value.toFixed(digits)}`;
+
+function RangeSummary({ label, summary }: { label: string; summary: any }) {
+  return <div className="rounded border border-slate-800 bg-slate-950/60 p-3"><p className="text-xs text-slate-200">{label}</p><p className="mt-1 text-[10px] text-slate-500">{summary.requestedStart} 至 {summary.requestedEnd} · 实际点 {summary.count}</p>{summary.count ? <div className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1 text-xs"><span className="text-slate-500">首末变化</span><span className={summary.change >= 0 ? 'text-emerald-300' : 'text-rose-300'}>{signed(summary.change, 4)}</span><span className="text-slate-500">区间最小</span><span>{numeric(summary.min, 4)}</span><span className="text-slate-500">区间最大</span><span>{numeric(summary.max, 4)}</span></div> : <p className="mt-2 text-xs text-amber-200">区间内没有实际观察，不插值。</p>}</div>;
+}
+
+export function OasVixComparisonWorkspace() {
+  const { isAuthenticated } = useAuth();
+  const utils = trpc.useUtils();
+  const [rangeAStart, setRangeAStart] = useState('2026-01-01'); const [rangeAEnd, setRangeAEnd] = useState('2026-03-31');
+  const [rangeBStart, setRangeBStart] = useState('2026-04-01'); const [rangeBEnd, setRangeBEnd] = useState('2026-06-30');
+  const [name, setName] = useState(''); const [editingId, setEditingId] = useState<number | undefined>();
+  const input = useMemo(() => ({ startA: rangeAStart, endA: rangeAEnd, startB: rangeBStart, endB: rangeBEnd }), [rangeAStart, rangeAEnd, rangeBStart, rangeBEnd]);
+  const compare = trpc.derivativesResearch.compareOasVix.useQuery(input, { staleTime: 60_000, refetchOnWindowFocus: false, retry: 1 });
+  const presets = trpc.derivativesResearch.listOasVixDatePresets.useQuery(undefined, { enabled: isAuthenticated });
+  const save = trpc.derivativesResearch.saveOasVixDatePreset.useMutation({ onSuccess: () => { void utils.derivativesResearch.listOasVixDatePresets.invalidate(); setName(''); setEditingId(undefined); } });
+  const remove = trpc.derivativesResearch.deleteOasVixDatePreset.useMutation({ onSuccess: () => void utils.derivativesResearch.listOasVixDatePresets.invalidate() });
+  const apply = (preset: any) => { setRangeAStart(preset.rangeAStart); setRangeAEnd(preset.rangeAEnd); setRangeBStart(preset.rangeBStart); setRangeBEnd(preset.rangeBEnd); };
+  const edit = (preset: any) => { apply(preset); setName(preset.name); setEditingId(preset.id); };
+  const saveCurrent = () => { if (!name.trim()) return; save.mutate({ id: editingId, name, rangeAStart, rangeAEnd, rangeBStart, rangeBEnd }); };
+  return <div className="mt-3 rounded border border-slate-800 bg-slate-950/40 p-3"><p className="text-xs font-medium text-amber-200">OAS / VIX 双区间实际观察比较</p><p className="mt-1 text-[10px] text-slate-500">每个序列按自身实际发布日期筛选；两个序列不作同日配对或因果推断。</p><div className="mt-3 flex flex-wrap gap-2 text-[10px] text-slate-500"><label>区间 A 起<input type="date" value={rangeAStart} onChange={(event) => setRangeAStart(event.target.value)} className="input-terminal ml-1 text-xs" /></label><label>止<input type="date" value={rangeAEnd} onChange={(event) => setRangeAEnd(event.target.value)} className="input-terminal ml-1 text-xs" /></label><label>区间 B 起<input type="date" value={rangeBStart} onChange={(event) => setRangeBStart(event.target.value)} className="input-terminal ml-1 text-xs" /></label><label>止<input type="date" value={rangeBEnd} onChange={(event) => setRangeBEnd(event.target.value)} className="input-terminal ml-1 text-xs" /></label></div>{isAuthenticated ? <div className="mt-3 flex flex-wrap items-end gap-2 border-t border-slate-800 pt-3"><label className="text-[10px] text-slate-500">日期预设名称<input value={name} onChange={(event) => setName(event.target.value)} maxLength={80} className="input-terminal ml-1 text-xs" placeholder="例如：一季度与二季度" /></label><button type="button" onClick={saveCurrent} disabled={!name.trim() || save.isPending} className="rounded border border-amber-700 bg-amber-950/40 px-3 py-2 text-xs text-amber-200 disabled:opacity-50">{editingId ? '保存重命名预设' : '保存日期预设'}</button>{presets.data?.map((preset) => <div key={preset.id} className="flex items-center gap-1 rounded border border-slate-800 px-2 py-1 text-xs"><button type="button" onClick={() => apply(preset)} className="text-slate-200 hover:text-amber-200">{preset.name}</button><button type="button" onClick={() => edit(preset)} className="text-sky-300">编辑</button><button type="button" onClick={() => remove.mutate({ id: preset.id })} className="text-rose-300">删除</button></div>)}</div> : <p className="mt-3 border-t border-slate-800 pt-3 text-xs text-slate-500">登录后可保存、应用、重命名或删除本账户的日期预设。</p>}{compare.isLoading ? <LoadingState text="正在比较 OAS 与 VIX 的实际观察区间…" /> : compare.error || !compare.data ? <p className="mt-3 rounded border border-amber-900 bg-amber-950/20 p-3 text-xs text-amber-200">暂无法读取所选比较区间；终端不以统计替代值补足。</p> : <div className="mt-3 grid gap-2 lg:grid-cols-2">{compare.data.series.map((series: any) => <div key={series.id}><p className="mb-2 text-xs text-slate-300">{series.label} · {series.unit}</p><div className="grid gap-2 sm:grid-cols-2"><RangeSummary label="区间 A" summary={series.rangeA} /><RangeSummary label="区间 B" summary={series.rangeB} /></div></div>)}</div>}</div>;
+}

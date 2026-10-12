@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "client/src/uc/**/*",
+    "client/src/pages/admin/UcheerStudio.tsx",
+    "client/src/pages/admin/uc/**/*",
+    "client/src/pages/admin/AdminDataModules.tsx",
+    "client/src/components/WEIPanel.tsx",
+    "client/src/main.tsx",
+    "shared/ucheerModules.ts",
+    "server/uc/**/*",
+    "server/routers/ucAdmin.ts",
+    "server/routers/ucModules.ts",
+    "server/routers/ucMarket.ts",
+    "server/_core/index.ts",
+    "server/_core/trpc.ts"
+  ],
+  "compilerOptions": {
+    "incremental": false,
+    "noEmit": true
+  }
+}

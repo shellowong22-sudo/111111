@@ -1,0 +1,1 @@
+ALTER TABLE `portfolio_risk_guardrails` ADD `alert_threshold_pct` int DEFAULT 80 NOT NULL;

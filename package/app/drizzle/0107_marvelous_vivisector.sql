@@ -1,0 +1,1 @@
+ALTER TABLE `admin_data_module_content_items` ADD `quality_report` json;

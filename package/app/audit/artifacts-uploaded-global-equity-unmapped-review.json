@@ -1,0 +1,111 @@
+{
+  "mode": "read-only-unmapped-review",
+  "reviews": [
+    {
+      "file_name": "菲律宾股票.xlsx",
+      "sheet_name": "菲律宾股票",
+      "alias_mapping": {
+        "country": "菲律宾",
+        "countryCode": "PH",
+        "exchange": "菲律宾证券交易所",
+        "canonicalSheet": "菲律宾股票_3"
+      },
+      "valid_two_column_row_count": 386,
+      "content_sha256": "7a087f328c157447914eb1543bb8cc198d5030233a2b43b68677227c0d6643c0",
+      "matches_existing_archive_candidate": {
+        "file_name": "菲律宾股票_3.xlsx",
+        "sheet_name": "菲律宾股票_3",
+        "country_code": "PH"
+      },
+      "first_five_rows": [
+        {
+          "sourceRow": 2,
+          "symbol": "AAA.PS",
+          "name": "ASIA AMLGMATED"
+        },
+        {
+          "sourceRow": 3,
+          "symbol": "AB.PS",
+          "name": "ATOK"
+        },
+        {
+          "sourceRow": 4,
+          "symbol": "ABA.PS",
+          "name": "ABACORE CAPITAL"
+        },
+        {
+          "sourceRow": 5,
+          "symbol": "ABG.PS",
+          "name": "ASIABEST GROUP"
+        },
+        {
+          "sourceRow": 6,
+          "symbol": "ABS.PS",
+          "name": "ABS CBN"
+        }
+      ]
+    },
+    {
+      "file_name": "以色列股票_1.xlsx",
+      "sheet_name": "以色列股票_1",
+      "alias_mapping": {
+        "country": "以色列",
+        "countryCode": "IL",
+        "exchange": "特拉维夫证券交易所",
+        "canonicalSheet": "以色列股票"
+      },
+      "valid_two_column_row_count": 527,
+      "content_sha256": "f17a0fd907da98d8593b5056af3540fc85480a199f745f469b21dfdf5ec52519",
+      "matches_existing_archive_candidate": {
+        "file_name": "迪拜金融市场.xlsx",
+        "sheet_name": "以色列股票",
+        "country_code": "IL"
+      },
+      "first_five_rows": [
+        {
+          "sourceRow": 2,
+          "symbol": "ABOU.TA",
+          "name": "ABOU RESIDENC"
+        },
+        {
+          "sourceRow": 3,
+          "symbol": "ABRA.TA",
+          "name": "ABRA"
+        },
+        {
+          "sourceRow": 4,
+          "symbol": "ACCL.TA",
+          "name": "ACCEL"
+        },
+        {
+          "sourceRow": 5,
+          "symbol": "ACKR.TA",
+          "name": "ACKERSTEIN GRP."
+        },
+        {
+          "sourceRow": 6,
+          "symbol": "ACRO.TA",
+          "name": "ACRO KVUT"
+        }
+      ]
+    },
+    {
+      "file_name": "grid_x4ojopb2.xlsx",
+      "sheet_name": "FIW Data",
+      "alias_mapping": null,
+      "valid_two_column_row_count": 0,
+      "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "matches_existing_archive_candidate": null,
+      "first_five_rows": []
+    },
+    {
+      "file_name": "sheet1.xlsx",
+      "sheet_name": "sheet1",
+      "alias_mapping": null,
+      "valid_two_column_row_count": 0,
+      "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "matches_existing_archive_candidate": null,
+      "first_five_rows": []
+    }
+  ]
+}

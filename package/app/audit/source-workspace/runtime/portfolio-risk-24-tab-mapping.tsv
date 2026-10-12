@@ -1,0 +1,25 @@
+tab	独立组件	实际输入	结果交互	明确边界
+SYS	SystemIntegrity	人工核对项	恢复边界确认计数	不替代运行监控
+PRTU	AllocationPlanner	当前与目标权重	偏离条形图与 CSV 导出	不创建订单
+BBU	BenchmarkWaterfall	组合/基准权重	主动权重瀑布	不替代基准授权
+PORT	ConcentrationLens	名称与权重	HHI、Top-N、权重带	不生成风险评级
+PORT IP	OperationalExtension（日内台账）	起止净值、现金流、时点	净变动与输入收益率	不展示实时估值
+PDSP	OperationalExtension（字段预览）	字段开关	列预览表	不保存原页面布局
+PORT TE	PairedReturns	同日组合/基准收益	主动收益离散图	不预测跟踪误差
+PORT VR	QuantileRisk	收益样本、置信度	分位损失、尾部均值、直方图	不伪装实时 VaR
+PORT SA	ShockGrid	金额、每 bp 敏感度	冲击损益网格	不提供交易建议
+PORT HD	HoldingInventory	持仓、数量、价格	市值构成与权重带	不读取账户持仓
+PORT CH	FeatureAggregator	权重与特征列	加权特征与贡献表	不补全缺失字段
+PORT HP	DrawdownTrack	连续净值点	回撤轨迹与最大回撤	不拼接不同组合历史
+PORT PA	OperationalExtension（归因桥接）	期初、贡献、期末	桥接残差	不补造归因
+PORT TS	OperationalExtension（交易试算）	交易金额、市值、成本	换手、成本、现金影响	不创建订单或报价
+PORT OP	OperationalExtension（约束诊断）	目标、上下限、总权重	可行性状态	不产出优化权重
+NL	NewsQueue	用户提供标题、HTTPS 链接、日期	待核验来源队列	不抓取或生成新闻
+EVTS	OperationalExtension（事件日历）	日期、责任人、依赖	倒计时与依赖状态	不作市场预测
+PREP	ReportBoard	事实、图表、审阅确认	报告准备看板	不生成报告结论
+MIFI	ComplianceEvidence	政策、授权、审批状态	证据缺口表	不构成合规意见
+ALRT	OperationalExtension（阈值观察）	指标、阈值、读数	阈值消耗仪表	不发送通知
+DRPT	DecisionMatrix	方案、证据、限制、自评分	方案比较矩阵	不生成决策或排序
+AUDT	SessionAudit	操作摘要与目的	会话时间线	不混同原审计日志
+INTG	OperationalExtension（连接预检）	端点名、HTTPS URL、字段	语法与准备度检查	不发网络请求或伪造连通性
+BOND RISK	BondReadiness + 账户私有档案	快照、情景、限额	输入就绪度及已有风险档案	实际计算仅由已实现档案执行

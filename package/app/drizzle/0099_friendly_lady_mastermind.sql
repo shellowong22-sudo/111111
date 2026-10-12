@@ -1,0 +1,1 @@
+ALTER TABLE `admin_news_ingestion_audit_events` MODIFY COLUMN `action` enum('source_created','source_updated','sync_started','sync_completed','article_queued','draft_generated','draft_failed','approved','published','rejected','exported') NOT NULL;

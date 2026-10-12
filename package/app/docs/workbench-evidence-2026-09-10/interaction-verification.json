@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-09-10T04:41:40.945Z",
+  "workbench": [
+    "WB tabs 时间序列/历史分布/变动热力图/期限曲线/盘口深度 clicked",
+    "filter NOTFOUND produced empty status",
+    "depth showed authorized-source unavailable and did not render FRED as order book"
+  ],
+  "stock": [
+    "RES workspace tabs market matrix/security history/SEC主体/report facts/filings visible",
+    "AAPL SEC search returned Apple Inc.",
+    "XBRL table showed start/end/duration/periodType/accession/filed",
+    "same end-date quarter and nine-month observations retained"
+  ],
+  "build": "pnpm run build exit 0",
+  "checks": [
+    "pnpm run check",
+    "pnpm run check:server",
+    "17 targeted tests passed",
+    "stock 11/11"
+  ],
+  "boundary": [
+    "FRED daily historical, not realtime executable quotes",
+    "Yahoo quote unavailable at verification",
+    "SSE refresh hints invalidate typed queries only; not chart payload/ACK"
+  ]
+}

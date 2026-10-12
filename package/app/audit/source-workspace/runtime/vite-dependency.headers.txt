@@ -1,0 +1,14 @@
+HTTP/1.1 200 OK
+X-Powered-By: Express
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Vary: Origin
+Content-Type: text/javascript
+Cache-Control: max-age=31536000,immutable
+Etag: W/"31a4-SVeeDOCMbHV70yOR/0HLp4eYcw0"
+Date: Wed, 26 Aug 2026 05:40:45 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 12708
+

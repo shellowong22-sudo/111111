@@ -1,0 +1,25 @@
+tab	专属组件	输入结构	结果类型	空状态与边界
+INDEX_HOME	Queue	指数/观察点	优先级队列	空清单；不创建指数数据
+SECF	SectorCoverage	四维勾选	覆盖格	未勾选仅待核对
+HELP_INDX	DefinitionTrace	版本/HTTPS/变更	溯源完整度	不生成授权资料
+WEI	Relative	两个收益	相对差条	不重做全球指数表
+WEIF	FilterTrial	规则/命中/总数	命中率	不筛选真实成分
+WBIX	Duration	久期/金额	四档冲击网格	不替代债券指数数据
+GMM	Macro	驱动/通道/置信度	传导链	不预测市场
+IN	IdentifierAudit	代码/市场/币种	格式状态	不查询主数据
+INP	SnapshotReadiness	字段勾选	字段准备度	不创建快照
+CIX	WeightClosure	成分/权重	闭合/最大单项	不保存指数
+CIXB	BasketDrift	当前/目标权重	漂移条/总漂移	不读取账户篮子
+AGG	Blend	比例/收益	混合收益分解	不发布指数
+FDFD	FactorDisclosure	因子/证据	披露台账	不计算因子暴露
+OTHER_INDEX	TypeRouter	名称/规则/用途	分类草案	不授权或发布
+RRG	RrgTransition	板块/起止象限	迁移路径	不重算 RRG
+WT	WeightMethod	方法/日期/复核人	复核日历条	不改写权重
+CIXN	ArithmeticVerifier	双数/操作	步骤与算术结果	不替代原计算器
+CIXS	SpreadMonitor	双腿/阈值	状态灯	不取报价/不通知
+CIXR	RatioRecord	分子/分母/基准	比率与偏离	不保存原比率
+CIXC	ConversionReview	值/系数/单位	带单位换算	不冒充市场数据
+CIXX	CsvCoverage	CSV 表头/样例	列覆盖统计	不导入序列
+CIXI	SeriesGapScanner	日期序列	连续性缺口	不保存序列
+INDEX_DERIV	Calendar	到期/持有日	剩余天数	不创建订单
+BBG	BbgContract	字段/来源/状态	字段契约	不调用外部接口

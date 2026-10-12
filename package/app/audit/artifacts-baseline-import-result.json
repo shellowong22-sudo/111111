@@ -1,0 +1,60 @@
+{
+  "auditKind": "transactional-non-destructive-baseline-import",
+  "sourcePath": "/home/ubuntu/finance-hub-baseline/source/unpacked/database/finance_hub.sql",
+  "sourceSha256": "829b54ca0a17b667317ece71dac4ad4ddedfe168ce618698af5c9e8ada5093d9",
+  "importedTables": {
+    "market_data": {
+      "tupleCount": 48,
+      "currentColumns": [
+        "id",
+        "symbol",
+        "name",
+        "market",
+        "price",
+        "change_val",
+        "change_pct",
+        "volume",
+        "updated_at"
+      ],
+      "initialRowCount": 0,
+      "insertSha256": "4cc4c8a00d75594cd40268f03479e43cd31a5cdd43986bc4a29fa3b08b62dcff",
+      "finalRowCount": 48
+    },
+    "curves": {
+      "tupleCount": 2,
+      "currentColumns": [
+        "id",
+        "curve_id",
+        "name",
+        "name_en",
+        "country",
+        "currency",
+        "type",
+        "region",
+        "category",
+        "description",
+        "is_active",
+        "created_at",
+        "updated_at"
+      ],
+      "initialRowCount": 0,
+      "insertSha256": "bab082ade30892b5a06d95164850a2ee9ddd2bd4a5b022d65f6707b220ccd3bb",
+      "finalRowCount": 2
+    },
+    "curve_data_points": {
+      "tupleCount": 4276,
+      "currentColumns": [
+        "id",
+        "curve_id",
+        "data_date",
+        "period",
+        "value",
+        "created_at",
+        "updated_at"
+      ],
+      "initialRowCount": 0,
+      "insertSha256": "468f69d81d9074be992ade6e7c8dfca10a8e1c64186d218c59f946de6aed234c",
+      "finalRowCount": 4276
+    }
+  }
+}

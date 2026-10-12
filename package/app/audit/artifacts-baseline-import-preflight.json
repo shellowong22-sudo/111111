@@ -1,0 +1,367 @@
+{
+  "auditKind": "read-only-baseline-import-preflight",
+  "sourcePath": "/home/ubuntu/finance-hub-baseline/source/unpacked/database/finance_hub.sql",
+  "sourceSha256": "829b54ca0a17b667317ece71dac4ad4ddedfe168ce618698af5c9e8ada5093d9",
+  "sourceBytes": 11520236,
+  "tables": {
+    "market_data": {
+      "frozenCreateSha256": "bf3692d74e355c8a65202b983197caff11ce2181822179c70e0c71e5e777848f",
+      "frozenColumns": [
+        "id",
+        "symbol",
+        "name",
+        "market",
+        "price",
+        "change_val",
+        "change_pct",
+        "volume",
+        "updated_at"
+      ],
+      "frozenInsertStatementCount": 1,
+      "frozenInsertTupleCount": 48,
+      "frozenInsertSha256": "4cc4c8a00d75594cd40268f03479e43cd31a5cdd43986bc4a29fa3b08b62dcff",
+      "currentColumns": [
+        {
+          "ordinal_position": 1,
+          "column_name": "id",
+          "column_type": "int",
+          "is_nullable": "NO",
+          "column_key": "PRI",
+          "column_default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "ordinal_position": 2,
+          "column_name": "symbol",
+          "column_type": "varchar(32)",
+          "is_nullable": "NO",
+          "column_key": "UNI",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 3,
+          "column_name": "name",
+          "column_type": "varchar(128)",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 4,
+          "column_name": "market",
+          "column_type": "enum('stock','bond','forex','commodity','index','derivative','option','fund')",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "stock",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 5,
+          "column_name": "price",
+          "column_type": "varchar(32)",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "0",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 6,
+          "column_name": "change_val",
+          "column_type": "varchar(32)",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "0",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 7,
+          "column_name": "change_pct",
+          "column_type": "varchar(32)",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "0",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 8,
+          "column_name": "volume",
+          "column_type": "varchar(32)",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "0",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 9,
+          "column_name": "updated_at",
+          "column_type": "timestamp",
+          "is_nullable": "YES",
+          "column_key": "",
+          "column_default": "CURRENT_TIMESTAMP",
+          "extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+        }
+      ],
+      "currentIndexes": [
+        {
+          "index_name": "PRIMARY",
+          "non_unique": "0",
+          "seq_in_index": 1,
+          "column_name": "id"
+        },
+        {
+          "index_name": "market_data_symbol_unique",
+          "non_unique": "0",
+          "seq_in_index": 1,
+          "column_name": "symbol"
+        }
+      ],
+      "currentRowCount": 0
+    },
+    "curves": {
+      "frozenCreateSha256": "2ecad017dba6427003b825cbd77263e1fcb9a6685cc7d7d95e769afd75311afa",
+      "frozenColumns": [
+        "id",
+        "curve_id",
+        "name",
+        "name_en",
+        "country",
+        "currency",
+        "type",
+        "region",
+        "category",
+        "description",
+        "is_active",
+        "created_at",
+        "updated_at"
+      ],
+      "frozenInsertStatementCount": 1,
+      "frozenInsertTupleCount": 2,
+      "frozenInsertSha256": "bab082ade30892b5a06d95164850a2ee9ddd2bd4a5b022d65f6707b220ccd3bb",
+      "currentColumns": [
+        {
+          "ordinal_position": 1,
+          "column_name": "id",
+          "column_type": "int",
+          "is_nullable": "NO",
+          "column_key": "PRI",
+          "column_default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "ordinal_position": 2,
+          "column_name": "curve_id",
+          "column_type": "varchar(64)",
+          "is_nullable": "NO",
+          "column_key": "UNI",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 3,
+          "column_name": "name",
+          "column_type": "varchar(255)",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 4,
+          "column_name": "name_en",
+          "column_type": "varchar(255)",
+          "is_nullable": "YES",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 5,
+          "column_name": "country",
+          "column_type": "varchar(64)",
+          "is_nullable": "YES",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 6,
+          "column_name": "currency",
+          "column_type": "varchar(16)",
+          "is_nullable": "YES",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 7,
+          "column_name": "type",
+          "column_type": "varchar(64)",
+          "is_nullable": "YES",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 8,
+          "column_name": "region",
+          "column_type": "varchar(64)",
+          "is_nullable": "YES",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 9,
+          "column_name": "category",
+          "column_type": "varchar(64)",
+          "is_nullable": "YES",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 10,
+          "column_name": "description",
+          "column_type": "text",
+          "is_nullable": "YES",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 11,
+          "column_name": "is_active",
+          "column_type": "tinyint(1)",
+          "is_nullable": "YES",
+          "column_key": "",
+          "column_default": "1",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 12,
+          "column_name": "created_at",
+          "column_type": "timestamp",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "CURRENT_TIMESTAMP",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 13,
+          "column_name": "updated_at",
+          "column_type": "timestamp",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "CURRENT_TIMESTAMP",
+          "extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+        }
+      ],
+      "currentIndexes": [
+        {
+          "index_name": "PRIMARY",
+          "non_unique": "0",
+          "seq_in_index": 1,
+          "column_name": "id"
+        },
+        {
+          "index_name": "curves_curve_id_unique",
+          "non_unique": "0",
+          "seq_in_index": 1,
+          "column_name": "curve_id"
+        }
+      ],
+      "currentRowCount": 0
+    },
+    "curve_data_points": {
+      "frozenCreateSha256": "fd4f1a09a06bf63740f4ab449b167a9e826c2ee554ab4660441bbafa974ed408",
+      "frozenColumns": [
+        "id",
+        "curve_id",
+        "data_date",
+        "period",
+        "value",
+        "created_at",
+        "updated_at"
+      ],
+      "frozenInsertStatementCount": 1,
+      "frozenInsertTupleCount": 4276,
+      "frozenInsertSha256": "468f69d81d9074be992ade6e7c8dfca10a8e1c64186d218c59f946de6aed234c",
+      "currentColumns": [
+        {
+          "ordinal_position": 1,
+          "column_name": "id",
+          "column_type": "int",
+          "is_nullable": "NO",
+          "column_key": "PRI",
+          "column_default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "ordinal_position": 2,
+          "column_name": "curve_id",
+          "column_type": "int",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 3,
+          "column_name": "data_date",
+          "column_type": "varchar(16)",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 4,
+          "column_name": "period",
+          "column_type": "varchar(16)",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": null,
+          "extra": ""
+        },
+        {
+          "ordinal_position": 5,
+          "column_name": "value",
+          "column_type": "varchar(32)",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "0",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 6,
+          "column_name": "created_at",
+          "column_type": "timestamp",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "CURRENT_TIMESTAMP",
+          "extra": ""
+        },
+        {
+          "ordinal_position": 7,
+          "column_name": "updated_at",
+          "column_type": "timestamp",
+          "is_nullable": "NO",
+          "column_key": "",
+          "column_default": "CURRENT_TIMESTAMP",
+          "extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+        }
+      ],
+      "currentIndexes": [
+        {
+          "index_name": "PRIMARY",
+          "non_unique": "0",
+          "seq_in_index": 1,
+          "column_name": "id"
+        }
+      ],
+      "currentRowCount": 0
+    }
+  }
+}

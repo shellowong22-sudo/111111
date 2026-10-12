@@ -1,0 +1,1 @@
+ALTER TABLE `checklist_snapshots` ADD `items` json NOT NULL;

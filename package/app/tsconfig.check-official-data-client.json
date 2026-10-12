@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "client/src/components/econ/WorldBankExistingViews.tsx",
+    "client/src/components/econ/WFIIFinancialStressView.tsx",
+    "client/src/components/curves/TreasuryDailyYieldEvidenceDesk.tsx",
+    "client/src/components/curves/TreasuryHistoricalCurveAssetDesk.tsx",
+    "client/src/components/forex/EcbReferenceEvidenceDesk.tsx",
+    "client/src/components/macro/BlsMacroReleaseEvidenceDesk.tsx",
+    "client/src/components/stock/GlobalEquityCoverageDesk.tsx",
+    "client/src/components/sovereign/TreasuryAuctionLedgerDesk.tsx",
+    "client/src/components/market/ImportedMarketSnapshotLedger.tsx",
+    "client/src/lib/trpc.ts",
+    "shared/**/*"
+  ],
+  "exclude": ["node_modules", "build", "dist"],
+  "compilerOptions": {
+    "incremental": false,
+    "noEmit": true
+  }
+}

@@ -1,0 +1,1 @@
+ALTER TABLE `mktbeat_notification_rules` MODIFY COLUMN `digest_mode` enum('after_quiet','daily','weekly','none') NOT NULL DEFAULT 'after_quiet';

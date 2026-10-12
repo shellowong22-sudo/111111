@@ -1,0 +1,3 @@
+# Runtime dependency for server/python/yfinance_adapter.py.
+# yfinance is a community wrapper and is not an official Yahoo product.
+yfinance==1.7.0

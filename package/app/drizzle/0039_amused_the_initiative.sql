@@ -1,0 +1,1 @@
+ALTER TABLE `commodity_watchlists` MODIFY COLUMN `tags` json;

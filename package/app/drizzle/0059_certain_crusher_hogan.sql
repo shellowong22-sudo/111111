@@ -1,0 +1,2 @@
+ALTER TABLE `economic_trend_window_presets` ADD `last_used_at` timestamp;--> statement-breakpoint
+CREATE INDEX `economic_trend_window_preset_user_last_used_idx` ON `economic_trend_window_presets` (`user_id`,`last_used_at`);

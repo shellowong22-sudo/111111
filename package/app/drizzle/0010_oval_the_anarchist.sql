@@ -1,0 +1,1 @@
+ALTER TABLE `checklist_templates` ADD `archive_review_due_at` timestamp;

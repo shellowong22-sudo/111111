@@ -1,0 +1,29 @@
+import { useMemo, useState } from 'react';
+import { Database, Newspaper, RefreshCw, Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { trpc } from '@/lib/trpc';
+
+type ListingKey = string | null;
+
+export default function CompanyNewsDesk() {
+  const [search, setSearch] = useState('');
+  const [selectedKey, setSelectedKey] = useState<ListingKey>(null);
+  const [newsRequested, setNewsRequested] = useState(false);
+  const listInput = useMemo(() => ({ query: search.trim() || undefined, offset: 0, limit: 20 }), [search]);
+  const listingsQuery = trpc.equityListings.list.useQuery(listInput, { refetchOnWindowFocus: false });
+  const listings = listingsQuery.data?.rows ?? [];
+  const selectedListing = listings.find((listing) => `${listing.countryCode}-${listing.symbol}` === selectedKey) ?? null;
+  const newsInput = useMemo(() => ({ countryCode: selectedListing?.countryCode ?? 'ZZ', symbol: selectedListing?.symbol ?? '__NOT_SELECTED__' }), [selectedListing?.countryCode, selectedListing?.symbol]);
+  const newsQuery = trpc.equityListings.news.useQuery(newsInput, { enabled: Boolean(selectedListing) && newsRequested, refetchOnWindowFocus: false });
+
+  return <section className="space-y-3 rounded-lg border border-cyan-900/50 bg-slate-950/40 p-3" data-company-news-desk="true">
+    <div className="flex items-start gap-2"><Newspaper className="h-4 w-4 text-cyan-300" /><div><h2 className="text-sm font-bold text-cyan-200">CN · 公司新闻事实阅读</h2><p className="mt-1 max-w-3xl text-[10px] leading-4 text-slate-400">从证券清单中选择公司，再按关联代码读取公开新闻。仅显示标题、发布者、时间、内容类别和关联代码；没有真实返回时保持空状态。</p></div></div>
+    <div className="relative"><Search className="absolute left-2 top-1/2 h-3 w-3 -translate-y-1/2 text-slate-500" /><Input value={search} onChange={(event) => { setSearch(event.target.value); setSelectedKey(null); setNewsRequested(false); }} placeholder="在证券清单中搜索代码或名称" className="h-8 border-slate-700 bg-slate-900 pl-7 text-xs text-slate-100 placeholder:text-slate-600" /></div>
+    {listingsQuery.isLoading ? <p className="rounded border border-slate-800 p-3 text-center text-xs text-slate-500">正在读取证券清单…</p> : listingsQuery.isError ? <p className="rounded border border-red-900/70 bg-red-950/20 p-3 text-xs text-red-200">证券清单读取失败；不会以固定公司事件或猜测代码替代。</p> : <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-4">{listings.map((listing) => { const key = `${listing.countryCode}-${listing.symbol}`; const selected = key === selectedKey; return <button key={key} type="button" onClick={() => { setSelectedKey(key); setNewsRequested(false); }} className={`rounded border p-2 text-left transition-colors ${selected ? 'border-cyan-500 bg-cyan-950/35' : 'border-slate-800 bg-slate-900/45 hover:border-slate-600'}`}><p className="font-mono text-xs font-bold text-cyan-200">{listing.symbol}</p><p className="mt-1 truncate text-[10px] text-slate-200">{listing.name}</p><p className="mt-1 truncate text-[9px] text-slate-500">{listing.country} · {listing.exchange}</p></button>; })}{listings.length === 0 && <p className="col-span-full rounded border border-dashed border-slate-700 p-3 text-center text-xs text-slate-500">当前条件没有匹配的证券。</p>}</div>}
+    <div className="rounded border border-slate-800 bg-slate-900/35 p-3">{!selectedListing ? <div className="flex items-start gap-2"><Database className="mt-0.5 h-4 w-4 text-slate-500" /><div><p className="text-xs text-slate-300">请选择一只证券</p><p className="mt-1 text-[10px] leading-4 text-slate-500">选择后才可发起该代码的公开新闻查询；没有公司选择或严格关联代码时保持空状态。</p></div></div> : <>
+      <div className="flex flex-wrap items-center justify-between gap-2"><div><p className="font-mono text-xs font-bold text-cyan-200">{selectedListing.symbol} <span className="font-sans font-normal text-slate-300">· {selectedListing.name}</span></p><p className="mt-0.5 text-[9px] text-slate-500">{selectedListing.country} · {selectedListing.exchange}</p></div><button type="button" onClick={() => { setNewsRequested(true); if (newsRequested) void newsQuery.refetch(); }} disabled={newsQuery.isFetching} className="flex h-7 items-center gap-1 rounded border border-cyan-800 bg-cyan-950/30 px-2 text-[10px] text-cyan-100 disabled:opacity-50"><RefreshCw className={`h-3 w-3 ${newsQuery.isFetching ? 'animate-spin' : ''}`} />{newsQuery.isFetching ? '读取中' : newsRequested ? '刷新关联新闻' : '读取关联新闻'}</button></div>
+      {!newsRequested ? <p className="mt-3 text-[10px] text-slate-500">尚未读取新闻。点击后仅保留本次公开返回且关联代码匹配的条目。</p> : newsQuery.isLoading || newsQuery.isFetching ? <p className="mt-3 text-[10px] text-slate-500">正在读取可验证关联新闻…</p> : newsQuery.isError ? <p className="mt-3 text-[10px] text-red-200">公开新闻请求失败；不会生成替代标题或市场反应。</p> : newsQuery.data && !newsQuery.data.available ? <p className="mt-3 text-[10px] text-amber-200">{newsQuery.data.limitation}</p> : <div className="mt-3 divide-y divide-slate-800">{(newsQuery.data?.items ?? []).map((item) => <article key={item.id} className="py-2"><p className="text-xs leading-5 text-slate-100">{item.title}</p><p className="mt-1 text-[10px] text-slate-400">{item.publisher ?? '发布者未提供'} · {item.publishedAt ? new Date(item.publishedAt).toLocaleString('zh-CN', { hour12: false }) : '发布时间未提供'}{item.sourceUrl ? ' · 内容定位已保留于终端记录' : ''}</p><p className="mt-1 text-[9px] text-slate-500">内容类别：{item.itemType ?? '未提供'} · 关联代码：{item.relatedTickers.length ? item.relatedTickers.join('、') : '未提供'}</p><p className="mt-1 rounded bg-cyan-950/30 px-2 py-1 text-[10px] leading-4 text-cyan-100">简明说明：{item.plainLanguage}</p></article>)}{(newsQuery.data?.items ?? []).length === 0 && <p className="py-3 text-center text-[10px] text-slate-500">本次公开检索未返回关联代码匹配的新闻。</p>}</div>}
+      <p className="mt-3 border-t border-slate-800 pt-2 text-[9px] text-slate-500">查询时间：{newsQuery.data?.queriedAt ? new Date(newsQuery.data.queriedAt).toLocaleString('zh-CN', { hour12: false }) : '尚未查询'}。新闻条目可能是市场关联报道，不等同于公司公告或投资研究结论。</p>
+    </>}</div>
+  </section>;
+}

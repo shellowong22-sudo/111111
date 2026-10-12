@@ -1,0 +1,17 @@
+{
+  "name": "Finance-Hub-Strict-Independent-Release",
+  "generatedAt": "2026-09-01T02:30:00+08:00",
+  "appFiles": 2444,
+  "databaseFiles": 1,
+  "databaseBytes": 11563807,
+  "originalUploadFiles": 20,
+  "environmentSecretFiles": 0,
+  "nodeModulesDirectories": 0,
+  "sourcePlatformDependencyMatches": 0,
+  "buildArtifactPlatformDependencyMatches": 0,
+  "wholeAppTreePlatformBrandMatches": 0,
+  "serverTypeCheck": "passed",
+  "adapterTests": "9/9 passed",
+  "productionBuild": "passed",
+  "externalInfrastructureConnected": false
+}

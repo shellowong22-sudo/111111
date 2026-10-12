@@ -1,0 +1,36 @@
+BUILD_EXIT=0
+../dist/public/assets/WATLPanel-CEzJ1s8G.js                         53.72 kB │ gzip:     6.99 kB
+../dist/public/assets/FXTradingPanel-DkBR9oBX.js                    54.11 kB │ gzip:     5.86 kB
+../dist/public/assets/EBNDPanel-DTifEONt.js                         55.25 kB │ gzip:     6.63 kB
+../dist/public/assets/RRGPanel-Bw6roYZB.js                          55.29 kB │ gzip:     7.22 kB
+../dist/public/assets/CorporateBondPanel-ClmTMZsO.js                55.77 kB │ gzip:     5.45 kB
+../dist/public/assets/IMGRPanel-hk27d-8i.js                         56.58 kB │ gzip:     6.31 kB
+../dist/public/assets/HELPINDXPanel-CteVNAaY.js                     56.72 kB │ gzip:     7.16 kB
+../dist/public/assets/trpc-x4w0X800.js                              57.57 kB │ gzip:    15.66 kB
+../dist/public/assets/FxssPanel-DNuVIFLk.js                         58.48 kB │ gzip:     6.46 kB
+../dist/public/assets/BBGIndexPanel-DmP9j_vB.js                     61.18 kB │ gzip:     7.79 kB
+../dist/public/assets/UACKPanel-g-9zeOT2.js                         61.37 kB │ gzip:     7.98 kB
+../dist/public/assets/VCONPanel-C9dq5wLV.js                         63.79 kB │ gzip:     7.46 kB
+../dist/public/assets/IndexDerivativesPanel-CFm00j30.js             69.68 kB │ gzip:     7.39 kB
+../dist/public/assets/IMGRMuniPanel-BbBQLuIt.js                     70.34 kB │ gzip:     8.92 kB
+../dist/public/assets/WorkflowPanel-CUzFRR3X.js                     74.54 kB │ gzip:     8.25 kB
+../dist/public/assets/MuniBondPanel-DmSuUDsV.js                     78.35 kB │ gzip:     9.31 kB
+../dist/public/assets/CDSPanel-6r-7g0c9.js                          85.70 kB │ gzip:     9.22 kB
+../dist/public/assets/TSOXPanel-DYm2BDHm.js                         98.46 kB │ gzip:    10.46 kB
+../dist/public/assets/ui-BY2GbbaZ.js                               181.63 kB │ gzip:    53.33 kB
+../dist/public/assets/charts-B8cwKoQd.js                           457.19 kB │ gzip:   115.83 kB
+../dist/public/assets/react-Dz6oWcsb.js                            502.47 kB │ gzip:   150.34 kB
+../dist/public/assets/pdf-HadwWwYY.js                              577.17 kB │ gzip:   170.53 kB
+../dist/public/assets/plotly-BAOrjQWd.js                         4,809.28 kB │ gzip: 1,462.95 kB
+../dist/public/assets/vendor-CSyULxCC.js                        14,099.36 kB │ gzip: 2,965.52 kB
+../dist/public/assets/index-B4E4fm6-.js                         20,414.17 kB │ gzip: 2,685.96 kB
+
+(!) Some chunks are larger than 10000 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1m 54s
+
+  dist/index.js  8.3mb ⚠️
+
+⚡ Done in 392ms

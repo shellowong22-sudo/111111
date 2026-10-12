@@ -1,0 +1,1192 @@
+{
+  "auditKind": "read-only-database-health",
+  "generatedAt": "2026-09-28T23:44:18.140Z",
+  "database": {
+    "host": "127.0.0.1",
+    "port": "3307",
+    "database": "finance_hub"
+  },
+  "paths": {
+    "appRoot": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\app",
+    "journalPath": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\app\\drizzle\\meta\\_journal.json"
+  },
+  "migrations": {
+    "journalEntryCount": 111,
+    "appliedMigrationCount": 104,
+    "journalFirstTag": "0000_old_mockingbird",
+    "journalLastTag": "0111_market_observation_history",
+    "sqlFileCount": 118,
+    "sqlFilesNotInJournal": [
+      "0000_redundant_proudstar",
+      "0080_align_user_role_security",
+      "0110_complete_spider_platform",
+      "0112_managed_public_dataset_states",
+      "0113_ucheer_ai_memory",
+      "0114_ucheer_ai_evolution",
+      "0115_ucheer_ai_search_snapshots"
+    ],
+    "journalTagsWithoutSqlFile": [],
+    "sqlFilesMatchedToAppliedHashes": [
+      "0000_old_mockingbird",
+      "0001_parched_vampiro",
+      "0002_familiar_titania",
+      "0003_green_deathstrike",
+      "0004_broken_morph",
+      "0005_petite_toad",
+      "0006_handy_toad",
+      "0007_flashy_nemesis",
+      "0008_magical_domino",
+      "0009_unknown_ultimatum",
+      "0010_oval_the_anarchist",
+      "0011_nostalgic_omega_flight",
+      "0012_gorgeous_warbird",
+      "0013_white_donald_blake",
+      "0014_complete_korg",
+      "0015_thin_vance_astro",
+      "0016_overjoyed_madelyne_pryor",
+      "0017_left_king_bedlam",
+      "0018_bumpy_nightshade",
+      "0019_abandoned_bucky",
+      "0020_chubby_turbo",
+      "0021_colossal_doorman",
+      "0022_same_leader",
+      "0023_curly_gorilla_man",
+      "0024_natural_thunderbird",
+      "0025_exotic_logan",
+      "0026_sloppy_quicksilver",
+      "0027_left_robin_chapel",
+      "0028_charming_swarm",
+      "0029_handy_rafael_vega",
+      "0030_bent_zodiak",
+      "0031_fluffy_white_tiger",
+      "0032_dusty_shaman",
+      "0033_many_hex",
+      "0034_romantic_the_professor",
+      "0035_perpetual_wildside",
+      "0036_closed_tomas",
+      "0037_sloppy_sister_grimm",
+      "0038_curly_thundra",
+      "0039_amused_the_initiative",
+      "0040_blue_white_queen",
+      "0041_burly_doctor_octopus",
+      "0042_flimsy_stingray",
+      "0043_cool_wild_child",
+      "0044_cute_ser_duncan",
+      "0045_dapper_lake",
+      "0046_huge_joseph",
+      "0047_panoramic_morbius",
+      "0048_romantic_thaddeus_ross",
+      "0049_adorable_korg",
+      "0050_high_morgan_stark",
+      "0051_third_nick_fury",
+      "0052_sticky_jetstream",
+      "0053_aromatic_khan",
+      "0054_parallel_sprite",
+      "0055_bouncy_miss_america",
+      "0056_neat_steve_rogers",
+      "0057_pale_absorbing_man",
+      "0058_abnormal_saracen",
+      "0059_certain_crusher_hogan",
+      "0060_chief_ben_grimm",
+      "0061_condemned_maelstrom",
+      "0062_absurd_skaar",
+      "0063_blue_tarot",
+      "0064_green_rocket_racer",
+      "0065_friendly_fallen_one",
+      "0066_keen_talos",
+      "0067_tidy_mach_iv",
+      "0068_oval_texas_twister",
+      "0069_first_lifeguard",
+      "0070_lovely_dorian_gray",
+      "0071_mute_doomsday",
+      "0072_dazzling_the_hand",
+      "0073_confused_dracula",
+      "0074_first_rocket_racer",
+      "0075_purple_blink",
+      "0076_rare_chimera",
+      "0077_lame_gabe_jones",
+      "0078_stale_sir_ram",
+      "0079_wide_meteorite",
+      "0081_jittery_warpath",
+      "0081_orange_lyja",
+      "0082_ambitious_bloodscream",
+      "0083_fat_winter_soldier",
+      "0084_brown_black_crow",
+      "0085_big_kid_colt",
+      "0086_bitter_mad_thinker",
+      "0087_lucky_juggernaut",
+      "0088_silly_steel_serpent",
+      "0089_unusual_redwing",
+      "0090_low_rictor",
+      "0091_overconfident_millenium_guard",
+      "0092_gifted_zarek",
+      "0093_fair_toro",
+      "0094_next_karnak",
+      "0095_old_ultimatum",
+      "0096_small_silver_surfer",
+      "0097_sleepy_snowbird",
+      "0098_massive_impossible_man",
+      "0099_friendly_lady_mastermind",
+      "0100_confused_ser_duncan",
+      "0101_ambiguous_abomination",
+      "0102_whole_otto_octavius",
+      "0103_loving_morlun"
+    ],
+    "sqlFilesNotMatchedToAppliedHashes": [
+      "0000_redundant_proudstar",
+      "0080_align_user_role_security",
+      "0104_tiresome_saracen",
+      "0105_solid_maddog",
+      "0106_mighty_post",
+      "0107_marvelous_vivisector",
+      "0108_awesome_medusa",
+      "0109_certain_maginty",
+      "0110_complete_spider_platform",
+      "0111_market_observation_history",
+      "0112_managed_public_dataset_states",
+      "0113_ucheer_ai_memory",
+      "0114_ucheer_ai_evolution",
+      "0115_ucheer_ai_search_snapshots"
+    ],
+    "appliedHashesWithoutCurrentSqlFile": 0,
+    "state": "drift_detected"
+  },
+  "tables": {
+    "baseTableCount": 241,
+    "required": {
+      "users": true,
+      "market_data": true,
+      "admin_news_ingestion_sources": true,
+      "admin_news_ingestion_articles": true,
+      "admin_data_module_profiles": true,
+      "admin_data_module_content_items": true,
+      "admin_data_module_delivery_operations": true,
+      "admin_data_module_delivery_events": true,
+      "admin_data_module_refresh_events": true,
+      "admin_data_module_automation_run_items": true,
+      "admin_data_module_automation_step_events": true,
+      "admin_data_module_execution_locks": true,
+      "admin_data_module_request_cache": true,
+      "admin_data_module_system_settings": true,
+      "admin_data_module_automation_runs": true,
+      "standalone_schedules": true,
+      "spider_raw_data": true,
+      "spider_ai_processed": true,
+      "spider_content_snapshot": true,
+      "finance_world_dataset": true,
+      "spider_push_relation": true
+    },
+    "missingRequired": [],
+    "rowCounts": {
+      "users": 4,
+      "market_data": 124,
+      "admin_news_ingestion_sources": 13,
+      "admin_news_ingestion_articles": 486,
+      "admin_data_module_profiles": 364,
+      "admin_data_module_content_items": 62826,
+      "admin_data_module_delivery_operations": 43241,
+      "admin_data_module_delivery_events": 129589,
+      "admin_data_module_refresh_events": 22641,
+      "admin_data_module_automation_run_items": 129647,
+      "admin_data_module_automation_step_events": 540821,
+      "admin_data_module_execution_locks": 6,
+      "admin_data_module_request_cache": 14,
+      "admin_data_module_system_settings": 5,
+      "admin_data_module_automation_runs": 1174,
+      "standalone_schedules": 11,
+      "spider_raw_data": 6,
+      "spider_ai_processed": 14,
+      "spider_content_snapshot": 63,
+      "finance_world_dataset": 48819,
+      "spider_push_relation": 84
+    }
+  },
+  "uniqueIndexes": {
+    "admin_data_module_automation_run_items": {
+      "adm_mod_run_item_run_module_uq": {
+        "unique": true,
+        "columns": [
+          "run_id",
+          "module_id"
+        ]
+      },
+      "adm_mod_run_item_run_status_idx": {
+        "unique": false,
+        "columns": [
+          "run_id",
+          "status"
+        ]
+      },
+      "adm_mod_run_item_status_idx": {
+        "unique": false,
+        "columns": [
+          "status",
+          "updated_at"
+        ]
+      },
+      "admin_data_module_automation_run_items_idempotency_key_unique": {
+        "unique": true,
+        "columns": [
+          "idempotency_key"
+        ]
+      },
+      "admin_data_module_automation_run_items_item_key_unique": {
+        "unique": true,
+        "columns": [
+          "item_key"
+        ]
+      },
+      "admin_mod_run_item_lease_idx": {
+        "unique": false,
+        "columns": [
+          "lease_expires_at"
+        ]
+      },
+      "admin_mod_run_item_status_priority_idx": {
+        "unique": false,
+        "columns": [
+          "status",
+          "priority",
+          "created_at"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "admin_data_module_automation_runs": {
+      "admin_data_module_automation_runs_run_key_unique": {
+        "unique": true,
+        "columns": [
+          "run_key"
+        ]
+      },
+      "admin_module_run_group_created_idx": {
+        "unique": false,
+        "columns": [
+          "module_group",
+          "created_at"
+        ]
+      },
+      "admin_module_run_module_created_idx": {
+        "unique": false,
+        "columns": [
+          "module_id",
+          "created_at"
+        ]
+      },
+      "admin_module_run_status_created_idx": {
+        "unique": false,
+        "columns": [
+          "status",
+          "created_at"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "admin_data_module_automation_step_events": {
+      "admin_mod_step_item_created_idx": {
+        "unique": false,
+        "columns": [
+          "job_item_id",
+          "created_at"
+        ]
+      },
+      "admin_mod_step_module_created_idx": {
+        "unique": false,
+        "columns": [
+          "module_id",
+          "created_at"
+        ]
+      },
+      "admin_mod_step_run_created_idx": {
+        "unique": false,
+        "columns": [
+          "run_id",
+          "created_at"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "admin_data_module_content_items": {
+      "admin_data_module_content_items_content_key_unique": {
+        "unique": true,
+        "columns": [
+          "content_key"
+        ]
+      },
+      "admin_mod_content_dedupe_uq": {
+        "unique": true,
+        "columns": [
+          "dedupe_scope",
+          "content_hash"
+        ]
+      },
+      "admin_mod_content_module_status_idx": {
+        "unique": false,
+        "columns": [
+          "module_id",
+          "status",
+          "updated_at"
+        ]
+      },
+      "admin_mod_content_run_status_idx": {
+        "unique": false,
+        "columns": [
+          "run_id",
+          "status"
+        ]
+      },
+      "admin_mod_content_version_idx": {
+        "unique": false,
+        "columns": [
+          "delivery_version_id"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "admin_data_module_delivery_events": {
+      "admin_module_delivery_event_module_created_idx": {
+        "unique": false,
+        "columns": [
+          "module_id",
+          "created_at"
+        ]
+      },
+      "admin_module_delivery_event_run_created_idx": {
+        "unique": false,
+        "columns": [
+          "run_id",
+          "created_at"
+        ]
+      },
+      "admin_module_delivery_event_status_created_idx": {
+        "unique": false,
+        "columns": [
+          "status",
+          "created_at"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "admin_data_module_delivery_operations": {
+      "admin_data_module_delivery_operations_idempotency_key_unique": {
+        "unique": true,
+        "columns": [
+          "idempotency_key"
+        ]
+      },
+      "admin_data_module_delivery_operations_operation_key_unique": {
+        "unique": true,
+        "columns": [
+          "operation_key"
+        ]
+      },
+      "admin_mod_delivery_operation_module_status_idx": {
+        "unique": false,
+        "columns": [
+          "module_id",
+          "status",
+          "created_at"
+        ]
+      },
+      "admin_mod_delivery_operation_run_idx": {
+        "unique": false,
+        "columns": [
+          "run_id"
+        ]
+      },
+      "admin_mod_delivery_operation_version_idx": {
+        "unique": false,
+        "columns": [
+          "delivery_version_id"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "admin_data_module_execution_locks": {
+      "admin_mod_execution_lock_expires_idx": {
+        "unique": false,
+        "columns": [
+          "expires_at"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "lock_key"
+        ]
+      }
+    },
+    "admin_data_module_profiles": {
+      "admin_module_profile_group_idx": {
+        "unique": false,
+        "columns": [
+          "module_group",
+          "module_category"
+        ]
+      },
+      "admin_module_profile_owner_idx": {
+        "unique": false,
+        "columns": [
+          "owner_user_id",
+          "updated_at"
+        ]
+      },
+      "admin_module_profile_runtime_idx": {
+        "unique": false,
+        "columns": [
+          "runtime_status",
+          "automation_enabled"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "module_id"
+        ]
+      }
+    },
+    "admin_data_module_refresh_events": {
+      "admin_data_module_refresh_module_created_idx": {
+        "unique": false,
+        "columns": [
+          "module_id",
+          "created_at"
+        ]
+      },
+      "admin_data_module_refresh_status_created_idx": {
+        "unique": false,
+        "columns": [
+          "status",
+          "created_at"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "admin_data_module_request_cache": {
+      "admin_mod_request_cache_expires_idx": {
+        "unique": false,
+        "columns": [
+          "expires_at"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "cache_key"
+        ]
+      }
+    },
+    "admin_data_module_system_settings": {
+      "admin_mod_system_settings_category_updated_idx": {
+        "unique": false,
+        "columns": [
+          "category",
+          "updated_at"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "setting_key"
+        ]
+      }
+    },
+    "admin_news_ingestion_articles": {
+      "admin_news_ingestion_article_catalog_status_idx": {
+        "unique": false,
+        "columns": [
+          "ai_generation_catalog_code",
+          "status"
+        ]
+      },
+      "admin_news_ingestion_article_source_key_uq": {
+        "unique": true,
+        "columns": [
+          "source_id",
+          "source_item_key"
+        ]
+      },
+      "admin_news_ingestion_article_source_published_idx": {
+        "unique": false,
+        "columns": [
+          "source_id",
+          "source_published_at"
+        ]
+      },
+      "admin_news_ingestion_article_status_updated_idx": {
+        "unique": false,
+        "columns": [
+          "status",
+          "updated_at"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "admin_news_ingestion_sources": {
+      "admin_news_ingestion_source_active_idx": {
+        "unique": false,
+        "columns": [
+          "is_active",
+          "updated_at"
+        ]
+      },
+      "admin_news_ingestion_source_feed_uq": {
+        "unique": true,
+        "columns": [
+          "feed_url"
+        ]
+      },
+      "admin_news_ingestion_source_task_idx": {
+        "unique": false,
+        "columns": [
+          "schedule_cron_task_uid"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "finance_tool_union_set": {
+      "finance_tool_category_risk_idx": {
+        "unique": false,
+        "columns": [
+          "tool_top_category",
+          "tool_sub_category",
+          "risk_level"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "tool_uuid": {
+        "unique": true,
+        "columns": [
+          "tool_uuid"
+        ]
+      }
+    },
+    "finance_world_dataset": {
+      "finance_world_asset_idx": {
+        "unique": false,
+        "columns": [
+          "asset_code",
+          "exchange"
+        ]
+      },
+      "finance_world_type_region_idx": {
+        "unique": false,
+        "columns": [
+          "data_top_type",
+          "asset_type",
+          "region"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "uuid": {
+        "unique": true,
+        "columns": [
+          "uuid"
+        ]
+      }
+    },
+    "market_data": {
+      "market_data_symbol_unique": {
+        "unique": true,
+        "columns": [
+          "symbol"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    "spider_ai_processed": {
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "process_uuid": {
+        "unique": true,
+        "columns": [
+          "process_uuid"
+        ]
+      },
+      "spider_ai_raw_status_idx": {
+        "unique": false,
+        "columns": [
+          "raw_uuid",
+          "process_status",
+          "updated_at"
+        ]
+      }
+    },
+    "spider_content_snapshot": {
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "snapshot_uuid": {
+        "unique": true,
+        "columns": [
+          "snapshot_uuid"
+        ]
+      },
+      "spider_snapshot_entity_time_idx": {
+        "unique": false,
+        "columns": [
+          "entity_uuid",
+          "created_at"
+        ]
+      },
+      "spider_snapshot_entity_version_uq": {
+        "unique": true,
+        "columns": [
+          "entity_uuid",
+          "version"
+        ]
+      }
+    },
+    "spider_data_blood": {
+      "data_blood_id": {
+        "unique": true,
+        "columns": [
+          "data_blood_id"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "spider_blood_structured_idx": {
+        "unique": false,
+        "columns": [
+          "structured_data_uuid",
+          "collection_name"
+        ]
+      }
+    },
+    "spider_entity_link": {
+      "link_uuid": {
+        "unique": true,
+        "columns": [
+          "link_uuid"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "spider_entity_source_target_idx": {
+        "unique": false,
+        "columns": [
+          "source_entity_uuid",
+          "target_entity_uuid"
+        ]
+      }
+    },
+    "spider_fail_log": {
+      "fail_uuid": {
+        "unique": true,
+        "columns": [
+          "fail_uuid"
+        ]
+      },
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "spider_fail_stage_status_idx": {
+        "unique": false,
+        "columns": [
+          "stage",
+          "status",
+          "updated_at"
+        ]
+      }
+    },
+    "spider_missing_scan_log": {
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "scan_uuid": {
+        "unique": true,
+        "columns": [
+          "scan_uuid"
+        ]
+      },
+      "spider_missing_type_time_idx": {
+        "unique": false,
+        "columns": [
+          "missing_type",
+          "started_at"
+        ]
+      }
+    },
+    "spider_push_relation": {
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "spider_push_data_time_idx": {
+        "unique": false,
+        "columns": [
+          "data_uuid",
+          "operate_time"
+        ]
+      },
+      "uuid": {
+        "unique": true,
+        "columns": [
+          "uuid"
+        ]
+      }
+    },
+    "spider_raw_data": {
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "raw_uuid": {
+        "unique": true,
+        "columns": [
+          "raw_uuid"
+        ]
+      },
+      "spider_raw_content_hash_uq": {
+        "unique": true,
+        "columns": [
+          "content_hash"
+        ]
+      },
+      "spider_raw_task_time_idx": {
+        "unique": false,
+        "columns": [
+          "task_uuid",
+          "crawl_time"
+        ]
+      }
+    },
+    "spider_seed_pool": {
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "seed_uuid": {
+        "unique": true,
+        "columns": [
+          "seed_uuid"
+        ]
+      },
+      "spider_seed_domain_status_idx": {
+        "unique": false,
+        "columns": [
+          "domain",
+          "health_status",
+          "updated_at"
+        ]
+      }
+    },
+    "spider_task": {
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "spider_task_status_priority_idx": {
+        "unique": false,
+        "columns": [
+          "status",
+          "priority_level",
+          "updated_at"
+        ]
+      },
+      "task_uuid": {
+        "unique": true,
+        "columns": [
+          "task_uuid"
+        ]
+      }
+    },
+    "standalone_schedules": {
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "standalone_schedules_enabled_idx": {
+        "unique": false,
+        "columns": [
+          "is_enabled",
+          "updated_at"
+        ]
+      },
+      "standalone_schedules_name_unique": {
+        "unique": true,
+        "columns": [
+          "name"
+        ]
+      }
+    },
+    "users": {
+      "PRIMARY": {
+        "unique": true,
+        "columns": [
+          "id"
+        ]
+      },
+      "users_openId_unique": {
+        "unique": true,
+        "columns": [
+          "openId"
+        ]
+      }
+    }
+  },
+  "pendingMigrationSchemaReconciliation": {
+    "0104_tiresome_saracen": {
+      "tables": {
+        "admin_data_module_automation_run_items": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        },
+        "admin_data_module_automation_step_events": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        },
+        "admin_data_module_content_items": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        },
+        "admin_data_module_delivery_operations": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        },
+        "admin_data_module_execution_locks": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        },
+        "admin_data_module_request_cache": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        }
+      },
+      "state": "shape_present"
+    },
+    "0105_solid_maddog": {
+      "tables": {
+        "admin_data_module_system_settings": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        }
+      },
+      "state": "shape_present"
+    },
+    "0106_mighty_post": {
+      "tables": {
+        "admin_data_module_profiles": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        }
+      },
+      "state": "shape_present"
+    },
+    "0107_marvelous_vivisector": {
+      "tables": {
+        "admin_data_module_content_items": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        }
+      },
+      "state": "shape_present"
+    },
+    "0108_awesome_medusa": {
+      "tables": {
+        "admin_data_module_automation_runs": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        }
+      },
+      "state": "shape_present"
+    },
+    "0109_certain_maginty": {
+      "tables": {
+        "standalone_schedules": {
+          "exists": true,
+          "missingColumns": [],
+          "missingIndexes": []
+        }
+      },
+      "state": "shape_present"
+    }
+  },
+  "spiderSchemaReconciliation": {
+    "spider_task": {
+      "exists": true,
+      "expectedColumnCount": 22,
+      "actualColumnCount": 22,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "spider_seed_pool": {
+      "exists": true,
+      "expectedColumnCount": 19,
+      "actualColumnCount": 19,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "spider_raw_data": {
+      "exists": true,
+      "expectedColumnCount": 16,
+      "actualColumnCount": 16,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "spider_ai_processed": {
+      "exists": true,
+      "expectedColumnCount": 15,
+      "actualColumnCount": 15,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "finance_world_dataset": {
+      "exists": true,
+      "expectedColumnCount": 33,
+      "actualColumnCount": 33,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "finance_tool_union_set": {
+      "exists": true,
+      "expectedColumnCount": 27,
+      "actualColumnCount": 27,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "spider_push_relation": {
+      "exists": true,
+      "expectedColumnCount": 10,
+      "actualColumnCount": 10,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "spider_missing_scan_log": {
+      "exists": true,
+      "expectedColumnCount": 14,
+      "actualColumnCount": 14,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "spider_fail_log": {
+      "exists": true,
+      "expectedColumnCount": 14,
+      "actualColumnCount": 14,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "spider_entity_link": {
+      "exists": true,
+      "expectedColumnCount": 11,
+      "actualColumnCount": 11,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "spider_data_blood": {
+      "exists": true,
+      "expectedColumnCount": 10,
+      "actualColumnCount": 10,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    },
+    "spider_content_snapshot": {
+      "exists": true,
+      "expectedColumnCount": 11,
+      "actualColumnCount": 11,
+      "missingColumns": [],
+      "missingIndexes": [],
+      "state": "shape_present"
+    }
+  },
+  "duplicateChecks": {
+    "contentItemsByScopeHash": {
+      "groups": [],
+      "excessRows": 0,
+      "status": "clean"
+    },
+    "rawByContentHash": {
+      "groups": [],
+      "excessRows": 0,
+      "status": "clean"
+    },
+    "snapshotsByEntityHash": {
+      "groups": [],
+      "excessRows": 0,
+      "status": "clean"
+    },
+    "articlesBySourceUrl": {
+      "groups": [
+        {
+          "source_url": "https://www.banqueducanada.ca/2026/05/musee-banque-canada-recompense-enseignants-canadiens-approche-novatrice-classe/",
+          "row_count": 2
+        },
+        {
+          "source_url": "https://www.boj.or.jp/intl_finance/meeting/group/gro260901a.htm",
+          "row_count": 2
+        },
+        {
+          "source_url": "https://www.hkex.com.hk/News/News-Release/2026/2609152news?sc_lang=en",
+          "row_count": 2
+        },
+        {
+          "source_url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260921~e754847a7b.en.html",
+          "row_count": 2
+        },
+        {
+          "source_url": "https://www.bankofengland.co.uk/markets/market-notices/2026/september/foreign-currency-reserves-2026-market-notice-21-september-2026",
+          "row_count": 2
+        },
+        {
+          "source_url": "https://www.bankofengland.co.uk/news/2026/september/bank-of-england-announces-new-office-space-in-leeds",
+          "row_count": 2
+        },
+        {
+          "source_url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260922~5f89d300ee.en.html",
+          "row_count": 2
+        }
+      ],
+      "excessRows": 7,
+      "status": "duplicates_detected"
+    },
+    "worldDataBySourceObservation": {
+      "groups": [],
+      "excessRows": 0,
+      "status": "clean"
+    }
+  },
+  "delivery": {
+    "pushStatus": [
+      {
+        "status": "completed",
+        "row_count": 22
+      },
+      {
+        "status": "front_acknowledged",
+        "row_count": 45
+      },
+      {
+        "status": "waiting_front_ack",
+        "row_count": 17
+      }
+    ],
+    "operationStatus": [
+      {
+        "status": "applied",
+        "row_count": 43237
+      },
+      {
+        "status": "failed",
+        "row_count": 4
+      }
+    ]
+  },
+  "interpretation": {
+    "duplicatePolicy": "content_hash and dedupe_scope are audited read-only; no rows are deleted or overwritten by this command.",
+    "frontAckPolicy": "only front_acknowledged is a confirmed rendered receipt; waiting_front_ack and failed remain non-success states.",
+    "migrationPolicy": "migration/table drift is reported for explicit reconciliation; this audit never generates or runs a duplicate CREATE TABLE migration."
+  }
+}

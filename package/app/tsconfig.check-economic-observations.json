@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["client/src/components/FCONPanel.tsx", "client/src/components/CBRTPanel.tsx", "client/src/components/ECSUPanel.tsx", "client/src/components/econ/CBRTTab.tsx", "client/src/components/econ/FOECTab.tsx", "client/src/components/econ/FCONTab.tsx", "client/src/components/econ/ECSUTab.tsx", "client/src/components/econ/EconomicObservationControls.tsx", "shared/economicObservations.ts", "server/economicObservationService.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"],
+  "compilerOptions": { "incremental": false, "noEmit": true }
+}

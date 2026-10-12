@@ -1,0 +1,45 @@
+     51|     expect(wrapper).toContain('data-preserved-portfolio-workspace="tru…
+     52|     expect(wrapper).toContain('data-portfolio-risk-research-layer="tru…
+       |                     ^
+     53|     expect(wrapper.indexOf('data-preserved-portfolio-workspace="true"'…
+     54|     expect(terminal).toContain('<PortfolioRiskPreservedModule moduleId…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/17]⎯
+
+ FAIL  server/pricingRiskOriginalContentFingerprint.test.ts > 定价与风险原工作区字节级保护 > keeps the original PricingRisk page unchanged
+AssertionError: expected '46f4bcfbd103d38fbe82f8452c432427ed796…' to be '9b284b369f9b2776193ab2ee2e4a9d122bc20…' // Object.is equality
+
+Expected: "9b284b369f9b2776193ab2ee2e4a9d122bc20f862256f352680923ddc0074fd0"
+Received: "46f4bcfbd103d38fbe82f8452c432427ed7969b86d74c4d686099517addb64dc"
+
+ ❯ server/pricingRiskOriginalContentFingerprint.test.ts:9:63
+      7|   it('keeps the original PricingRisk page unchanged', () => {
+      8|     const source = readFileSync(resolve(process.cwd(), 'client/src/pag…
+      9|     expect(createHash('sha256').update(source).digest('hex')).toBe('9b…
+       |                                                               ^
+     10|   });
+     11| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/17]⎯
+
+ FAIL  server/stpOriginalContentFingerprint.test.ts > STP 原内容字节级保护 > keeps the original page and all 24 existing STP panels byte-for-byte unchanged
+AssertionError: client/src/components/stp/FstnPanel.tsx: expected '0917455fa6e03bb8e8dfea169876c544e89bb…' to be 'e5fc0a9e3db9b5e0ffe3df3a48576f5e9df47…' // Object.is equality
+
+Expected: "e5fc0a9e3db9b5e0ffe3df3a48576f5e9df475a119a996ef24ce5514f84865b6"
+Received: "0917455fa6e03bb8e8dfea169876c544e89bba37c731396d9371297460a1bcbf"
+
+ ❯ server/stpOriginalContentFingerprint.test.ts:38:32
+     36|     for (const [relative, fingerprint] of Object.entries(expected)) {
+     37|       const actual = createHash('sha256').update(readFileSync(resolve(…
+     38|       expect(actual, relative).toBe(fingerprint);
+       |                                ^
+     39|     }
+     40|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/17]⎯
+
+ Test Files  13 failed | 219 passed (232)
+      Tests  17 failed | 753 passed (770)
+   Start at  21:53:31
+   Duration  40.45s (transform 5.22s, setup 0ms, collect 53.72s, tests 65.71s, environment 9.87s, prepare 15.69s)
+

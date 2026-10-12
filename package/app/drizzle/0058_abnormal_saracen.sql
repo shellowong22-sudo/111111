@@ -1,0 +1,1 @@
+ALTER TABLE `economic_trend_window_presets` ADD `topic` enum('all','japan-cpi-money','uk-pay','uk-labor','uk-activity') DEFAULT 'all' NOT NULL;

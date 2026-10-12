@@ -1,0 +1,2 @@
+ALTER TABLE `admin_news_ingestion_sources` MODIFY COLUMN `max_items_per_run` int NOT NULL DEFAULT 50;--> statement-breakpoint
+ALTER TABLE `admin_news_ingestion_sources` ADD `processing_mode` enum('queued','immediate') DEFAULT 'queued' NOT NULL;

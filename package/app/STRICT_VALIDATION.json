@@ -1,0 +1,22 @@
+{
+  "release": "finance-hub-strict-standalone",
+  "generatedAt": "2026-09-01T02:25:00+08:00",
+  "sourcePlatformDependencyMatches": 0,
+  "buildArtifactPlatformDependencyMatches": 0,
+  "wholeTreePlatformBrandMatches": 0,
+  "serverTypeCheck": "passed",
+  "frozenLockfileInstall": "passed",
+  "adapterTestFilesPassed": 6,
+  "adapterTestsPassed": 9,
+  "productionFrontendBuild": "passed",
+  "productionServerBundle": "passed",
+  "externalInfrastructureConnected": false,
+  "externalInfrastructureBoundary": [
+    "No user-owned MySQL host was provided",
+    "No user-owned Redis host was provided",
+    "No user-owned S3 or MinIO credentials were provided",
+    "No user-owned OIDC provider or production local-admin secret was provided",
+    "No user-owned OpenAI-compatible LLM credential was provided",
+    "No user-owned webhook endpoint was provided"
+  ]
+}

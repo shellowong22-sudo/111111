@@ -1,0 +1,63 @@
+{
+  "auditKind": "read-only-curve-state",
+  "curves": [
+    {
+      "id": 1,
+      "curve_id": "UST_PAR_YIELD_OFFICIAL_HIST_1990_2023",
+      "name": "美国财政部官方历史 PAR 收益率曲线（1990–2023 月末）",
+      "name_en": "U.S. Treasury Official Historical PAR Yield Curve (1990–2023 Month-End)",
+      "type": "Government",
+      "category": "Government",
+      "description": "美国财政部 Daily Treasury Par Yield Curve 归档的每月最后一个实际发布观测；独立于 ZIP 测试性曲线。",
+      "is_active": 1,
+      "point_count": 4257,
+      "first_data_date": "1990-01-31",
+      "last_data_date": "2023-12-29"
+    },
+    {
+      "id": 30001,
+      "curve_id": "ZIP_TEST_CURVE_PRESERVED",
+      "name": "ZIP 内置测试性曲线（未认证）",
+      "name_en": "ZIP Test Curve (Unverified)",
+      "type": "Test",
+      "category": "Test",
+      "description": "为保持 ZIP 内置测试数据的既有 curve_id=1 关联而创建；不是官方历史资产。",
+      "is_active": 1,
+      "point_count": 5,
+      "first_data_date": "2026-06-20",
+      "last_data_date": "2026-06-20"
+    }
+  ],
+  "orphanGroups": [
+    {
+      "curve_id": 2,
+      "point_count": 3,
+      "first_data_date": "2026-06-20",
+      "last_data_date": "2026-06-20"
+    },
+    {
+      "curve_id": 3,
+      "point_count": 4,
+      "first_data_date": "2026-06-20",
+      "last_data_date": "2026-06-20"
+    },
+    {
+      "curve_id": 5,
+      "point_count": 3,
+      "first_data_date": "2026-06-20",
+      "last_data_date": "2026-06-20"
+    },
+    {
+      "curve_id": 7,
+      "point_count": 2,
+      "first_data_date": "2026-06-20",
+      "last_data_date": "2026-06-20"
+    },
+    {
+      "curve_id": 9,
+      "point_count": 2,
+      "first_data_date": "2026-06-20",
+      "last_data_date": "2026-06-20"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+ALTER TABLE `curve_categories` ADD `icon` varchar(64);

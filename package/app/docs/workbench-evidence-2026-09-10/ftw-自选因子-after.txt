@@ -1,0 +1,171 @@
+- region "Notifications alt+T"
+- generic: B
+- heading "Finance Hub Terminal" [level=1]
+- paragraph: Professional Financial Terminal
+- textbox "输入代码或名称搜索行情（如 AAPL、US10Y）— 回车跳转"
+- button "6":
+  - generic: "6"
+- button "切换到日间模式":
+  - generic: NGT
+- button "Show keyboard shortcuts (Ctrl+/)":
+- button:
+- button:
+- generic: U
+- generic: 用户
+- button "市场":
+  - generic: 市场
+- button "主权债"
+- button "信用债"
+- button "抵押债"
+- button "货币市场"
+- button "地方债"
+- button "优先股"
+- button "权益与衍生品":
+  - generic: 权益与衍生品
+- button "股市"
+- button "大宗商品"
+- button "指数"
+- button "外汇"
+- button "衍生品"
+- button "通讯与社区":
+  - generic: 通讯与社区
+- button "新闻与研究":
+  - generic: 新闻与研究
+- button "经济分析":
+  - generic: 经济分析
+- button "专业应用":
+  - generic: 专业应用
+- button "投资组合管理与风险"
+- button "定价与风险分析"
+- button "交易委托管理"
+- button "电子交易界面"
+- button "STP"
+- button "交易账簿管理"
+- button "行业分组分析"
+- button "平台工具":
+  - generic: 平台工具
+- button "个性化工作台":
+  - generic: 个性化工作台
+- button "帮助与关于":
+  - generic: 帮助与关于
+- generic: 市场时段
+- generic: 按交易所与品种分别核验
+- generic: 数据时效见对应来源与观察时间
+- heading "FTW 关注因子" [level=3]
+- button "Maximize":
+- button "Close":
+- region "FTW 研究工作区":
+  - generic: FTW
+  - generic: 关注证券日频观察
+  - generic: 数据研究与分析工具统一入口 · 行情权限以来源状态为准
+  - tablist "FTW 工作区":
+    - tab "数据研究"
+    - tab "分析工具" [selected]
+    - tab "字段与来源说明"
+  - tabpanel "分析工具":
+    - note: 原因子、评分和关注提示不代表预测或交易信号。 未注明真实来源的保留工具结果不得作为实时行情或交易依据。
+    - generic: FTW · 因子证据与授权研究
+    - text: SEC 定期核验 / 用户显式输入
+    - button "关闭FTW工具": ×
+    - tablist "FTW 因子分析能力":
+      - tab "信号核验"
+      - tab "自选因子" [active] [selected]
+      - tab "IC监控"
+      - tab "因子轮动"
+      - tab "收益归因"
+    - tabpanel "自选因子":
+      - textbox "筛选因子定义":
+        - /placeholder: 名称 / 代码 / 来源
+      - generic: 已关注 2 · 当前窗口
+      - table:
+        - rowgroup:
+          - row "关注 因子 唯一定义 真实输入条件":
+            - columnheader "关注"
+            - columnheader "因子"
+            - columnheader "唯一定义"
+            - columnheader "真实输入条件"
+        - rowgroup:
+          - row "取消关注 年度净利率 NPM 年度净利率 同起止日、同申报版本净利润 / 收入 SEC XBRL 已接入":
+            - cell "取消关注 年度净利率":
+              - button "取消关注 年度净利率" [pressed]: ★
+            - cell "NPM 年度净利率":
+              - text: NPM
+              - generic: 年度净利率
+            - cell "同起止日、同申报版本净利润 / 收入"
+            - cell "SEC XBRL 已接入"
+          - row "取消关注 权益资产比 EQ/A 权益资产比 同期末、同申报版本股东权益 / 总资产 SEC XBRL 已接入":
+            - cell "取消关注 权益资产比":
+              - button "取消关注 权益资产比" [pressed]: ★
+            - cell "EQ/A 权益资产比":
+              - text: EQ/A
+              - generic: 权益资产比
+            - cell "同期末、同申报版本股东权益 / 总资产"
+            - cell "SEC XBRL 已接入"
+          - row "关注 账面市值比 B/P 账面市值比 普通股账面权益 / 同时点普通股市值 需要证券级市值与普通股口径授权":
+            - cell "关注 账面市值比":
+              - button "关注 账面市值比": ☆
+            - cell "B/P 账面市值比":
+              - text: B/P
+              - generic: 账面市值比
+            - cell "普通股账面权益 / 同时点普通股市值"
+            - cell "需要证券级市值与普通股口径授权"
+          - row "关注 12−1月价格动量 MOM 12−1月价格动量 跳过最近1个月的历史价格收益 需要完整企业行动调整价格与日历":
+            - cell "关注 12−1月价格动量":
+              - button "关注 12−1月价格动量": ☆
+            - cell "MOM 12−1月价格动量":
+              - text: MOM
+              - generic: 12−1月价格动量
+            - cell "跳过最近1个月的历史价格收益"
+            - cell "需要完整企业行动调整价格与日历"
+          - row "关注 历史低波动 LVOL 历史低波动 明确频率及窗口的历史收益标准差 需要统一频率、完整价格与调整口径":
+            - cell "关注 历史低波动":
+              - button "关注 历史低波动": ☆
+            - cell "LVOL 历史低波动":
+              - text: LVOL
+              - generic: 历史低波动
+            - cell "明确频率及窗口的历史收益标准差"
+            - cell "需要统一频率、完整价格与调整口径"
+          - row "关注 自由现金流收益率 FCFY 自由现金流收益率 经营现金流减资本支出 / 同时点市值 需要现金流、资本支出及市值":
+            - cell "关注 自由现金流收益率":
+              - button "关注 自由现金流收益率": ☆
+            - cell "FCFY 自由现金流收益率":
+              - text: FCFY
+              - generic: 自由现金流收益率
+            - cell "经营现金流减资本支出 / 同时点市值"
+            - cell "需要现金流、资本支出及市值"
+          - row "关注 F-Score FSCR F-Score 九项财务条件逐项核验，不能只以净利润替代 需要九项原始输入与同比可比期间":
+            - cell "关注 F-Score":
+              - button "关注 F-Score": ☆
+            - cell "FSCR F-Score":
+              - text: FSCR
+              - generic: F-Score
+            - cell "九项财务条件逐项核验，不能只以净利润替代"
+            - cell "需要九项原始输入与同比可比期间"
+          - row "关注 综合质量 CQUAL 综合质量 指定样本、字段、标准化与权重后计算 需要横截面样本及明确模型版本":
+            - cell "关注 综合质量":
+              - button "关注 综合质量": ☆
+            - cell "CQUAL 综合质量":
+              - text: CQUAL
+              - generic: 综合质量
+            - cell "指定样本、字段、标准化与权重后计算"
+            - cell "需要横截面样本及明确模型版本"
+          - row "关注 低Beta相对组合 BAB 低Beta相对组合 低/高Beta组合、杠杆与再平衡规则明确 需要授权横截面、收益与组合规则":
+            - cell "关注 低Beta相对组合":
+              - button "关注 低Beta相对组合": ☆
+            - cell "BAB 低Beta相对组合":
+              - text: BAB
+              - generic: 低Beta相对组合
+            - cell "低/高Beta组合、杠杆与再平衡规则明确"
+            - cell "需要授权横截面、收益与组合规则"
+          - row "关注 A股反转 CREV A股反转 指定观察窗口的滞后收益与后续收益检验 需要授权A股调整历史与交易日历":
+            - cell "关注 A股反转":
+              - button "关注 A股反转": ☆
+            - cell "CREV A股反转":
+              - text: CREV
+              - generic: A股反转
+            - cell "指定观察窗口的滞后收益与后续收益检验"
+            - cell "需要授权A股调整历史与交易日历"
+      - paragraph: 目录仅是指标定义与输入条件，不含静态收益率、IC、Sharpe或市场评分；现有自选业务保持可操作。
+- button "自选":
+  - text: 自选
+- generic: "240"

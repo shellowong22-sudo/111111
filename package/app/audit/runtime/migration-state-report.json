@@ -1,0 +1,767 @@
+{
+  "generatedAt": "2026-09-12T06:29:32.590Z",
+  "auditKind": "read-only-drizzle-migration-state",
+  "journalPath": "C:\\Users\\shell\\Documents\\Codex\\2026-09-02\\new-chat\\work\\terminal-recovery\\package\\app\\drizzle\\meta\\_journal.json",
+  "database": {
+    "host": "127.0.0.1",
+    "port": "3307",
+    "database": "finance_hub"
+  },
+  "archiveJournalEntryCount": 110,
+  "archiveJournalFirstTag": "0000_old_mockingbird",
+  "archiveJournalLastTag": "0109_certain_maginty",
+  "appliedMigrationCount": 104,
+  "appliedMigrations": [
+    {
+      "hash": "84702bbe8ef958d438d6c12613dffcd50aa256a43a4dc9c8115ae1ef78a4993c",
+      "created_at": 1783400003284
+    },
+    {
+      "hash": "71e4c8f8ad06ac7079e84ac1c7d5ef62cc45b16f74698f56732f6a1ae5b9ed97",
+      "created_at": 1783400757583
+    },
+    {
+      "hash": "1468965b4db559d4fc3a2db8f816c11cdc8617ea14c00694443ce0c3b9afba59",
+      "created_at": 1786957003647
+    },
+    {
+      "hash": "17f5f790c042295b76162673cb90abf18ee34390ff69c76c5e866e7eaf94fa17",
+      "created_at": 1787006098157
+    },
+    {
+      "hash": "1fbb36073bf4e7c7f06319b2ed43ae58da6dcb7d10e7f8efc3fa59818fd15d6e",
+      "created_at": 1787007294614
+    },
+    {
+      "hash": "7bffabc30844a53709273c9f64ba46c8114c4a978658717bf24807ab43d24767",
+      "created_at": 1787007942602
+    },
+    {
+      "hash": "8cc05f587966fbd1c10256e710869957ae59035428f70f87a6d8c2aae1beb08b",
+      "created_at": 1787011160880
+    },
+    {
+      "hash": "fa6582b1369d274b15a4b13b74a31e6fbcb8fa4b4115f406b9e0d26583ab406e",
+      "created_at": 1787011207427
+    },
+    {
+      "hash": "f85e345c14c02d71730eeae92eb6fda282f8b261427edbcd374faa09f3980cb1",
+      "created_at": 1787013032793
+    },
+    {
+      "hash": "e304d1bf4e588ebf237c438a399f4ceb9f9b8f6b314ecf4a802e481bbf721c0e",
+      "created_at": 1787013973474
+    },
+    {
+      "hash": "e0f8a33633efad80c06690b6c7e9d6f5a028f5bf4078ef4506b46ce16b74cc67",
+      "created_at": 1787015712608
+    },
+    {
+      "hash": "4b313060d1f14c44dbbc5f46d222d1db88e3b905d0047b028ac1879757e3d4b0",
+      "created_at": 1787016605561
+    },
+    {
+      "hash": "f9ebdb8da2235158ba38782291f772c9d4dd88bd4ed591bbdae537329cc31619",
+      "created_at": 1787039096331
+    },
+    {
+      "hash": "c975a17e16ce2f66ef319b78b575bbc261877dd7b5682ff83c7fa533ea7b9b58",
+      "created_at": 1787043323156
+    },
+    {
+      "hash": "e5e6767aa448b3694165cfc72042173208d6710792786432e9efc97972c6f673",
+      "created_at": 1787047914933
+    },
+    {
+      "hash": "4ec273ac1e1e8b712996ca5a202d2099b132ad476165dc94a29283ce90620ff3",
+      "created_at": 1787056817757
+    },
+    {
+      "hash": "1b43ff7268abf3ce1ac780d86ba9c2cad74a62a6bd3b183c6e271626e1f555af",
+      "created_at": 1787100720888
+    },
+    {
+      "hash": "05b3ddfdb4c9391853ebfcf7741bf999c3f7d28f96fcbaa14f21bad67dd32c30",
+      "created_at": 1787101871081
+    },
+    {
+      "hash": "7fe94f872911d46531a837c585268be02da4d745404a4f1894dd0697d4f9df8a",
+      "created_at": 1787110526163
+    },
+    {
+      "hash": "38b6347c6d95fee793fd8c5814e496f8172bca6b056c8e8ed132b384391bfe6b",
+      "created_at": 1787113095368
+    },
+    {
+      "hash": "6636f5a27df48548ab60983995b34493b10c4159921a93ec6a8fcd4212389339",
+      "created_at": 1787116742494
+    },
+    {
+      "hash": "5328c3bd4f1fd60c8ff65a59f951dc9902153e573a8ff98ec6843c38c151197c",
+      "created_at": 1787117301655
+    },
+    {
+      "hash": "adcfb64f29fceb7c152f33cc6606dd7f609520c7952eb2a6e3f59baf25a96a28",
+      "created_at": 1787122853352
+    },
+    {
+      "hash": "b8182bc2cd7838af6d5c96459abb2d656c6a674353e8f7aa409e6fb7c91b5160",
+      "created_at": 1787122998233
+    },
+    {
+      "hash": "306921b136a8d635f1560fc480bf33645fa2b7cc685d9a32d81bd2729e9799bc",
+      "created_at": 1787123943133
+    },
+    {
+      "hash": "f4c2d4030620ab9f35dfd592483739babf9c293773bacd9dc78adbae91379dd9",
+      "created_at": 1787124049905
+    },
+    {
+      "hash": "2ac4b198ccccb4bed4a4feeafe2d67154cf3531402dc1b0ac5d961f01642e03c",
+      "created_at": 1787124726059
+    },
+    {
+      "hash": "151f4989f0382b9f89de8df82a3fa14161cb7fd9edc13090b0ebd86966b4cfaf",
+      "created_at": 1787128446565
+    },
+    {
+      "hash": "2208ee2e96e4b8848f5404a97d1ae84b5c477eb07f9c3d53cc91768b3f2d168d",
+      "created_at": 1787186047656
+    },
+    {
+      "hash": "eedaa11cea0711a9d34110520e79efd69ffd818b04cc4e90a94a8cb18fe82066",
+      "created_at": 1787187527667
+    },
+    {
+      "hash": "7ce1bb3e748dce517f127b952c0526387b7ba3d7128ac1eaa8419c146dd7b513",
+      "created_at": 1787194478311
+    },
+    {
+      "hash": "2fc6a7a6b6ba0790f195cd7ca10be51274eedc82a51b7d9deef254bb669666a1",
+      "created_at": 1787215241540
+    },
+    {
+      "hash": "b35ff3f52c8015ad0b9e4bb4150641958183dc26fb50fc40ceb221f67ddd177a",
+      "created_at": 1787218419172
+    },
+    {
+      "hash": "9c704b0587dc0212b3d12eba8fceb8a91749ee1fac8c8d1469663b0335f3cecc",
+      "created_at": 1787223180819
+    },
+    {
+      "hash": "436b9dac2d8b69cc98c1a63dcb9fea96f4b68d7a0f251bf97138bc5f15f444a9",
+      "created_at": 1787224078295
+    },
+    {
+      "hash": "2393c481f4aaf64d479b24a0152711dd8101a71ea4cca20053e7b75b4de5815b",
+      "created_at": 1787227703783
+    },
+    {
+      "hash": "777bf8b272e0fb5b7cd8390e97446e2dec583d27ef12b511dcd13a2a3f847057",
+      "created_at": 1787277689043
+    },
+    {
+      "hash": "40bc4199733d898048b88a791ea3167cf776d244d5ab59b062b5c9a18a1439fb",
+      "created_at": 1787279631275
+    },
+    {
+      "hash": "084c1b2c8cb31d0cd129e9ee334de781d37b38cb446aac94edb53ea806e92455",
+      "created_at": 1787280525652
+    },
+    {
+      "hash": "bc89d82a82642f46303be4d510857f0e06ef861655860faa055444e05d818c8f",
+      "created_at": 1787280579855
+    },
+    {
+      "hash": "d42abfb1780b2ed99d19d11f9dc6efc78d8f1de23f1fe4a9cd114a803e09c072",
+      "created_at": 1787287856812
+    },
+    {
+      "hash": "5a48b171f070c07957467a4294081a098be2bb3cb3ee5ce0e72f85fe01694b17",
+      "created_at": 1787289238721
+    },
+    {
+      "hash": "b8570e6cab7881a8164eb5d426e061d55da5466282fcf20838dcaf6782275049",
+      "created_at": 1787292615480
+    },
+    {
+      "hash": "3d3e7a69d9c2fee7bc6df15bae6638e046e38ddeeaee09395589d2cd966794da",
+      "created_at": 1787294061744
+    },
+    {
+      "hash": "560cfbca9e9b776855a4eb08205d6a808a890930b82234b179a1caf4c9e1f7a5",
+      "created_at": 1787296739926
+    },
+    {
+      "hash": "576f0d4fb5e6dea534d2012e3eec739f1fc249e541dc8530efd28079eaadaddb",
+      "created_at": 1787299813464
+    },
+    {
+      "hash": "8a1243ae21486a8f3184aaabf18fd4cb8e9cf447e03ab0bffbb6e4990dd59c28",
+      "created_at": 1787359914038
+    },
+    {
+      "hash": "449c54592492d496377fa5581742783a45a0e0b02e9e88fe04d669cd27373561",
+      "created_at": 1787361089641
+    },
+    {
+      "hash": "115a6cd70905160250dbf9faf1cce271bec36b638df7d4e486f6f798fd78d20f",
+      "created_at": 1787361824612
+    },
+    {
+      "hash": "d8df08f5d9a23c8768b26050e8f932e13d939b99b23b6c75d965fab928e2d4f3",
+      "created_at": 1787365003439
+    },
+    {
+      "hash": "2179c842eeccee201e397e48995340b1a1ae9acc745454b9990f9383c9062c66",
+      "created_at": 1787365436359
+    },
+    {
+      "hash": "4d545133ac6a95347a2714fc7f1470d352acb2bcba3f714f20203a73bb3285bb",
+      "created_at": 1787366145734
+    },
+    {
+      "hash": "b4fe7ebac041c47c44ca4ff75de7e91e0b19322ced8f0fd4b45c890c035e7686",
+      "created_at": 1787367441716
+    },
+    {
+      "hash": "5be8d8ccfece4fbc6a2c714f0b761bdc45abd73e6e2cf603ea7593fb3832aacd",
+      "created_at": 1787369331435
+    },
+    {
+      "hash": "ad3044ba8cfadb92a7beb0351fe7f738a52be33efc88db859968bcc23a137c2a",
+      "created_at": 1787370093015
+    },
+    {
+      "hash": "b98d352f1f002f7cd1182fa3bd9a8bfcf9c9da0846941eee8312ad481dd79e4c",
+      "created_at": 1787370697917
+    },
+    {
+      "hash": "e14cb80a404eebd84f0de0f4a2ca495c2a8df0ff37f34cd84088ca4a05ebec75",
+      "created_at": 1787371341289
+    },
+    {
+      "hash": "58b9f598a230b4286db214a634a2399deb6ed885d89adb4d2db9d59c795a1561",
+      "created_at": 1787375136426
+    },
+    {
+      "hash": "53810f7ac4323a8ad006e823e3686577f0510a93289b0002d001662b8f7a64f7",
+      "created_at": 1787375715906
+    },
+    {
+      "hash": "1abb931961c1b4a66a3e4c061ba66067139d5304b60691ea3e670a9cedb94483",
+      "created_at": 1787376179402
+    },
+    {
+      "hash": "26908a9395308415c0e3f28a4eb00eac5c314957cc4f11bf5c0fe05214cb3646",
+      "created_at": 1787378581064
+    },
+    {
+      "hash": "2482577796cb3cbec37ea2c1bb6df40cd6b211360b0198d770453754ed3f0cd2",
+      "created_at": 1787381688448
+    },
+    {
+      "hash": "dbc6f854ed63d0f959032de535729d344ebee3afa2a50d465e20ecfdd7b7c231",
+      "created_at": 1787383934810
+    },
+    {
+      "hash": "f1627f52516ecd6e0fb0dc83c41e2d6dffc159e03e33299eab13fdb17363fbf4",
+      "created_at": 1787385883232
+    },
+    {
+      "hash": "c3dfa3e7f72fa7b4940e49aace94973e6880d02646f009ee31d2b95d4d68d461",
+      "created_at": 1787386824544
+    },
+    {
+      "hash": "67e8dd547d24f57d1ec20f4a40dbef5f31ac25cfe907fefb5d5ef5f83ae1ecaa",
+      "created_at": 1787387434160
+    },
+    {
+      "hash": "d47d1afb1388c9f874a0e2dff6d6e70994b9bc92b370ca3e36186884e4767534",
+      "created_at": 1787402313711
+    },
+    {
+      "hash": "c5a0f14fbc613e71bc6c8c41989d4ab0605a3aae5aec54bcbebafe083ef0c4fd",
+      "created_at": 1787403554322
+    },
+    {
+      "hash": "3798a224e6a02ed5095fb8b46a40d46b8c2189689c9aaa788fdc0a55f881b762",
+      "created_at": 1787403984851
+    },
+    {
+      "hash": "ef8f8444339df783d80e085d73dc990371b168d9e94c7181fd154122e06ae79c",
+      "created_at": 1787404688028
+    },
+    {
+      "hash": "58d1239bd585fc354c2f1ef420d674f89fa7cbea2d08e646d7f699e8cc2b7bb3",
+      "created_at": 1787405806444
+    },
+    {
+      "hash": "4d0f440b686a59d4fa630934ab79904764297febc1c5844c05027d7232bbd595",
+      "created_at": 1787406428594
+    },
+    {
+      "hash": "0ce57e981d35573954009703a5944388d3fedab7261696bbe29a5c8d2044d27e",
+      "created_at": 1787409822741
+    },
+    {
+      "hash": "bfaf54ea550aeb781a06c29feba82b662c941eefe581aacb9d636c3a8b30210c",
+      "created_at": 1787413222152
+    },
+    {
+      "hash": "176c95561b19e6ee575cd5b01afdafe9ab49aeb66deb70f04a7bc68ed2f671d1",
+      "created_at": 1787434833376
+    },
+    {
+      "hash": "f4b4c1d72098503250f7a8d3001cf57e447dca5aa3d28045da4385eec4c5e594",
+      "created_at": 1787436683307
+    },
+    {
+      "hash": "1ca9321bc8ec526800a5b85ca51ef39d7eb31eb182a9a183c54080f447b8d9d1",
+      "created_at": 1787438046497
+    },
+    {
+      "hash": "d6ae65bfbf496adde809a5ab301b5f0cbfc1445cc82dc271601eb80b0adfa234",
+      "created_at": 1787439237678
+    },
+    {
+      "hash": "4b4133d7722e1dc01b2d56e97747a24a594c2a69abf280976999d8911517517e",
+      "created_at": 1787440043978
+    },
+    {
+      "hash": "af08d591e97c8dd7a5cecb8a11efa5d2775031ae38a41526f2433af4291253cb",
+      "created_at": 1787440666161
+    },
+    {
+      "hash": "1ab12f96b8fda83be7b0405325e6045cf08baeb7110e0ae355fdb44e95805e63",
+      "created_at": 1787442196606
+    },
+    {
+      "hash": "fd9502611ac6d1f684c3d891feeb9b133311208558bae792bcc245a8ddddd06c",
+      "created_at": 1787625155740
+    },
+    {
+      "hash": "f92c30120e8414b435b5f3d4ef29c201499e42ca6d35c1ee267fd05d79393ad3",
+      "created_at": 1787625223640
+    },
+    {
+      "hash": "aa2721ab5b81a32446cfdad540fe68c382560644879f0d72fe3d3ed99d866ca6",
+      "created_at": 1787636654061
+    },
+    {
+      "hash": "327cfee8fa502630c15a9ce27da5cd1e9ca5d8c4a1cbd83bcf411e227f70a6a8",
+      "created_at": 1787638493900
+    },
+    {
+      "hash": "076fdeeaf7029e86d4c32aada693c06e6be21472d928b212ecf682cf1d4b1dbd",
+      "created_at": 1787671721591
+    },
+    {
+      "hash": "5b7a4ddfa0426e983678173c4032bdb3b99e2d52e2778a0c7f2a963573f4325e",
+      "created_at": 1787675456832
+    },
+    {
+      "hash": "ad71da207721773e740ae6c1585d0b109929822057e649c6f309b69667831f0f",
+      "created_at": 1787802926961
+    },
+    {
+      "hash": "a1d6892683d3e1073eb22ef40a2fe05995d40aa5d04f502cd9496f5b7c229b6e",
+      "created_at": 1787806407453
+    },
+    {
+      "hash": "85d75a43f4195fc4acfe9e81e7bb3907c2aa97179321261a27644b5faf96e499",
+      "created_at": 1787807231203
+    },
+    {
+      "hash": "c384fa862139eafa031dafbb70029d6720d602546a7587f667fee7bd22b135b0",
+      "created_at": 1787807526750
+    },
+    {
+      "hash": "3f6872d98ce9852c9ccead7f3be4fbc320c0e45268a12993c2f98f4190781ba5",
+      "created_at": 1787809499399
+    },
+    {
+      "hash": "ed13e5d5abe29adebd8e8187474f4afb2defea0a85a81603b6d1f53b169cbb41",
+      "created_at": 1787810758930
+    },
+    {
+      "hash": "fe2f7b1be3705fca1d6006fadf09afbb75395a18f67c5f54e21c9b44d8bb918c",
+      "created_at": 1787814824139
+    },
+    {
+      "hash": "bfd4cec84a32ad01e461e5a48a9cedb9d540f1a02087338fa4488ca8576e4b2b",
+      "created_at": 1787816170519
+    },
+    {
+      "hash": "2df8b2d0bd5ddf58cdbab0afb7a4e6f4431ef6a7570006b771d112c29b08c819",
+      "created_at": 1787830100194
+    },
+    {
+      "hash": "262d7b3b5b42a26be0c79a4d8e8eb397d7244737d54f5c3a3df702904e7d3ed4",
+      "created_at": 1787832681500
+    },
+    {
+      "hash": "2cea0c96d2358ba74c0b71f136c0e6427d1eef8fd3a223c332936c43ba4a9fa6",
+      "created_at": 1787833377728
+    },
+    {
+      "hash": "4bf09bf73ff499a3756ac9551376e6ab6dd4124f74437b1f04e8e99ea2956ab5",
+      "created_at": 1787834249398
+    },
+    {
+      "hash": "b7d10dfa1b21be54313973105ffcf843729cac7334c4d023e530d33030047aee",
+      "created_at": 1787836133669
+    },
+    {
+      "hash": "38ddcee4eee0ee60b9b5618fde2f89b10a1e99d79210087c4e690a09e5a28ee1",
+      "created_at": 1787837527090
+    },
+    {
+      "hash": "3fd0c5b2f3318dc21ed47081f8b430580d00b166b65991276c1dc6f6fbe16053",
+      "created_at": 1787840245398
+    },
+    {
+      "hash": "5ad6fee9a6bef78df33d76fac2585f7260abb6b042faf167a19816458681b029",
+      "created_at": 1787844202375
+    },
+    {
+      "hash": "4be80c0133a6d28c9456fb84b9c9505be3d56dbbb08415c7bf8d1bf0f02967cf",
+      "created_at": 1787845181036
+    }
+  ],
+  "appliedMigrationDateRange": {
+    "first_created_at": 1783400003284,
+    "last_created_at": 1787845181036
+  },
+  "actualBaseTableCount": 233,
+  "actualBaseTables": [
+    "__drizzle_migrations",
+    "admin_ai_generation_catalog_events",
+    "admin_ai_generation_catalog_settings",
+    "admin_ai_generation_tasks",
+    "admin_data_module_automation_run_items",
+    "admin_data_module_automation_runs",
+    "admin_data_module_automation_schedules",
+    "admin_data_module_automation_step_events",
+    "admin_data_module_bindings",
+    "admin_data_module_content_items",
+    "admin_data_module_delivery_events",
+    "admin_data_module_delivery_operations",
+    "admin_data_module_delivery_versions",
+    "admin_data_module_events",
+    "admin_data_module_execution_locks",
+    "admin_data_module_profiles",
+    "admin_data_module_refresh_events",
+    "admin_data_module_request_cache",
+    "admin_data_module_runtime_controls",
+    "admin_data_module_settings",
+    "admin_data_module_system_settings",
+    "admin_market_data_provider_configs",
+    "admin_market_ingestion_events",
+    "admin_market_ingestion_targets",
+    "admin_news_ingestion_articles",
+    "admin_news_ingestion_audit_events",
+    "admin_news_ingestion_sources",
+    "admin_runtime_health_samples",
+    "admin_security_audit_events",
+    "announcement_acceptance_events",
+    "announcements",
+    "bond_portfolio_import_templates",
+    "bond_portfolio_scenario_snapshots",
+    "boom_subscription_preset_audit_events",
+    "boom_subscription_preset_shares",
+    "boom_subscription_presets",
+    "checklist_deadline_notification_events",
+    "checklist_export_records",
+    "checklist_shares",
+    "checklist_snapshots",
+    "checklist_template_audit_events",
+    "checklist_templates",
+    "commodity_watchlist_alert_events",
+    "commodity_watchlist_groups",
+    "commodity_watchlists",
+    "comms_research_reminder_events",
+    "comms_research_reminder_rules",
+    "comms_research_thread_audit_events",
+    "comms_research_thread_members",
+    "comms_research_thread_messages",
+    "comms_research_thread_version_reviews",
+    "comms_research_thread_versions",
+    "comms_research_threads",
+    "credit_evidence_audit_events",
+    "credit_evidence_logs",
+    "credit_evidence_shares",
+    "credit_oas_threshold_notification_events",
+    "credit_oas_threshold_rules",
+    "credit_ratings",
+    "credit_research_package_audit_events",
+    "credit_research_package_shares",
+    "credit_research_package_signatures",
+    "credit_research_package_templates",
+    "credit_research_packages",
+    "credit_shared_workpaper_audit_events",
+    "credit_shared_workpaper_shares",
+    "credit_shared_workpapers",
+    "cross_module_research_path_favorites",
+    "cross_module_research_path_notes",
+    "cross_module_research_path_shares",
+    "crvf_watchlist",
+    "curve_categories",
+    "curve_data_points",
+    "curve_interactions",
+    "curve_regions",
+    "curves",
+    "derivatives_oas_vix_date_presets",
+    "economic_calendar_anomaly_events",
+    "economic_calendar_anomaly_rules",
+    "economic_calendar_region_presets",
+    "economic_trend_window_presets",
+    "electronic_trading_execution_review_audits",
+    "electronic_trading_execution_reviews",
+    "electronic_trading_quality_settings",
+    "electronic_trading_research_batches",
+    "electronic_trading_research_events",
+    "equity_listings",
+    "equity_quote_snapshots",
+    "etf_holdings",
+    "etf_products",
+    "finance_tool_union_set",
+    "finance_world_dataset",
+    "financial_data",
+    "financial_metrics",
+    "financing_calendar_reminder_notification_events",
+    "financing_calendar_reminder_rules",
+    "forex_central_bank_decision_events",
+    "forex_freshness_alert_rules",
+    "forex_same_day_timeline_presets",
+    "fund_data",
+    "fund_distributions",
+    "gc_report_template_audit_events",
+    "gc_report_template_reviews",
+    "gc_report_template_shares",
+    "gc_report_templates",
+    "index_constituent_archive_events",
+    "index_official_weight_import_audit_events",
+    "index_official_weight_import_batches",
+    "index_official_weight_import_rows",
+    "index_research_basket_audit_events",
+    "index_research_basket_shares",
+    "index_research_baskets",
+    "industry_group_private_batches",
+    "industry_group_private_observations",
+    "inventory_seasonality_alert_events",
+    "inventory_seasonality_alert_rules",
+    "legacy_field_access_audit_events",
+    "legacy_field_access_grants",
+    "market_data",
+    "mktbeat_notification_digest_deliveries",
+    "mktbeat_notification_rules",
+    "mktbeat_threshold_notification_events",
+    "mm_research_path_favorites",
+    "mmflow_delivery_package_audit_events",
+    "mmflow_delivery_package_deadline_notifications",
+    "mmflow_delivery_package_reviews",
+    "mmflow_delivery_package_shares",
+    "mmflow_delivery_package_versions",
+    "mmflow_delivery_packages",
+    "model_metrics",
+    "model_predictions",
+    "model_run_history",
+    "money_market_module_usage_events",
+    "money_market_source_availability_snapshots",
+    "mortgage_ledger_notification_events",
+    "mortgage_ledger_saved_views",
+    "mortgage_shared_ledger_audit_events",
+    "mortgage_shared_ledger_shares",
+    "mortgage_shared_ledgers",
+    "mortgage_taxonomy_tag_assignments",
+    "mortgage_taxonomy_tag_shares",
+    "mortgage_taxonomy_tags",
+    "municipal_issuer_evidence_audit_events",
+    "municipal_issuer_evidence_document_tags",
+    "municipal_issuer_evidence_documents",
+    "municipal_issuer_evidence_packages",
+    "municipal_issuer_evidence_reviews",
+    "municipal_issuer_evidence_search_presets",
+    "municipal_issuer_evidence_shares",
+    "municipal_issuer_evidence_versions",
+    "municipal_research_view_presets",
+    "nceo_simulation_audit_events",
+    "nceo_simulation_positions",
+    "news_research_evidence_audit_events",
+    "news_research_evidence_cards",
+    "news_research_evidence_review_submissions",
+    "news_research_evidence_reviews",
+    "news_research_evidence_shares",
+    "news_research_source_freshness_events",
+    "news_research_source_freshness_rules",
+    "notification_preferences",
+    "notifications",
+    "order_management_archive_rules",
+    "order_management_deviation_alert_settings",
+    "order_management_order_review_audits",
+    "order_management_order_reviews",
+    "order_management_research_batch_tags",
+    "order_management_research_batches",
+    "order_management_research_events",
+    "policy_evidence_annotation_mentions",
+    "policy_evidence_annotations",
+    "policy_evidence_audit_events",
+    "policy_evidence_document_shares",
+    "policy_evidence_documents",
+    "policy_evidence_mention_notification_events",
+    "policy_evidence_version_reviews",
+    "portfolio_risk_event_action_audits",
+    "portfolio_risk_event_actions",
+    "portfolio_risk_guardrail_versions",
+    "portfolio_risk_guardrails",
+    "portfolio_risk_oas_view_presets",
+    "portfolio_risk_research_dossiers",
+    "preferred_research_audit_events",
+    "preferred_research_evidence",
+    "preferred_research_packages",
+    "preferred_term_import_batches",
+    "preferred_term_records",
+    "pricing_risk_exports",
+    "rating_agencies",
+    "research_ledger_audit_events",
+    "research_ledger_entries",
+    "source_freshness_digest_deliveries",
+    "source_freshness_notification_events",
+    "source_freshness_notification_rules",
+    "source_freshness_rule_shares",
+    "sovereign_comparison_preset_shares",
+    "sovereign_comparison_presets",
+    "sovereign_daily_fact_snapshots",
+    "spider_ai_processed",
+    "spider_content_snapshot",
+    "spider_data_blood",
+    "spider_entity_link",
+    "spider_fail_log",
+    "spider_missing_scan_log",
+    "spider_push_relation",
+    "spider_raw_data",
+    "spider_seed_pool",
+    "spider_task",
+    "standalone_schedules",
+    "stock_fsrc_watchlists",
+    "stock_nceo_watchlist_collection_layouts",
+    "stock_nceo_watchlist_collections",
+    "stock_nceo_watchlist_items",
+    "stock_nceo_watchlist_layouts",
+    "stock_research_layouts",
+    "stock_research_preferences",
+    "stock_sec_summary_audits",
+    "stp_private_batches",
+    "stp_private_events",
+    "stp_private_instruction_review_audits",
+    "stp_private_instruction_reviews",
+    "stp_private_settings",
+    "terminal_security_events",
+    "terminal_watermark_settings",
+    "trade_book_private_batches",
+    "trade_book_private_cash_flows",
+    "trade_book_private_position_snapshots",
+    "treasury_historical_curve_imports",
+    "user_preferences",
+    "users",
+    "valuation_automation_runs",
+    "valuation_automation_settings",
+    "workbench_panels"
+  ],
+  "users": {
+    "rowCount": 4,
+    "columns": [
+      {
+        "ORDINAL_POSITION": 1,
+        "COLUMN_NAME": "id",
+        "COLUMN_TYPE": "int",
+        "IS_NULLABLE": "NO",
+        "COLUMN_KEY": "PRI",
+        "EXTRA": "auto_increment"
+      },
+      {
+        "ORDINAL_POSITION": 2,
+        "COLUMN_NAME": "openId",
+        "COLUMN_TYPE": "varchar(64)",
+        "IS_NULLABLE": "NO",
+        "COLUMN_KEY": "UNI",
+        "EXTRA": ""
+      },
+      {
+        "ORDINAL_POSITION": 3,
+        "COLUMN_NAME": "name",
+        "COLUMN_TYPE": "text",
+        "IS_NULLABLE": "YES",
+        "COLUMN_KEY": "",
+        "EXTRA": ""
+      },
+      {
+        "ORDINAL_POSITION": 4,
+        "COLUMN_NAME": "email",
+        "COLUMN_TYPE": "varchar(320)",
+        "IS_NULLABLE": "YES",
+        "COLUMN_KEY": "",
+        "EXTRA": ""
+      },
+      {
+        "ORDINAL_POSITION": 5,
+        "COLUMN_NAME": "loginMethod",
+        "COLUMN_TYPE": "varchar(64)",
+        "IS_NULLABLE": "YES",
+        "COLUMN_KEY": "",
+        "EXTRA": ""
+      },
+      {
+        "ORDINAL_POSITION": 6,
+        "COLUMN_NAME": "role",
+        "COLUMN_TYPE": "enum('user','admin','trader','risk_manager')",
+        "IS_NULLABLE": "NO",
+        "COLUMN_KEY": "",
+        "EXTRA": ""
+      },
+      {
+        "ORDINAL_POSITION": 7,
+        "COLUMN_NAME": "createdAt",
+        "COLUMN_TYPE": "timestamp",
+        "IS_NULLABLE": "NO",
+        "COLUMN_KEY": "",
+        "EXTRA": "DEFAULT_GENERATED"
+      },
+      {
+        "ORDINAL_POSITION": 8,
+        "COLUMN_NAME": "updatedAt",
+        "COLUMN_TYPE": "timestamp",
+        "IS_NULLABLE": "NO",
+        "COLUMN_KEY": "",
+        "EXTRA": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+      },
+      {
+        "ORDINAL_POSITION": 9,
+        "COLUMN_NAME": "lastSignedIn",
+        "COLUMN_TYPE": "timestamp",
+        "IS_NULLABLE": "NO",
+        "COLUMN_KEY": "",
+        "EXTRA": "DEFAULT_GENERATED"
+      }
+    ],
+    "indexes": [
+      {
+        "INDEX_NAME": "PRIMARY",
+        "NON_UNIQUE": 0,
+        "SEQ_IN_INDEX": 1,
+        "COLUMN_NAME": "id"
+      },
+      {
+        "INDEX_NAME": "users_openId_unique",
+        "NON_UNIQUE": 0,
+        "SEQ_IN_INDEX": 1,
+        "COLUMN_NAME": "openId"
+      }
+    ],
+    "openIdIntegrity": {
+      "missingOpenIdCount": 0,
+      "duplicateOpenIdExcessCount": 0
+    }
+  }
+}

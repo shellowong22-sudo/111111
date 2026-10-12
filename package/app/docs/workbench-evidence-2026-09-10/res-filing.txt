@@ -1,0 +1,257 @@
+- region "Notifications alt+T"
+- generic: B
+- heading "Finance Hub Terminal" [level=1]
+- paragraph: Professional Financial Terminal
+- textbox "输入代码或名称搜索行情（如 AAPL、US10Y）— 回车跳转"
+- button "5":
+  - generic: "5"
+- button "切换到日间模式":
+  - generic: NGT
+- button "Show keyboard shortcuts (Ctrl+/)":
+- button:
+- button:
+- generic: U
+- generic: 用户
+- button "市场":
+  - generic: 市场
+- button "主权债"
+- button "信用债"
+- button "抵押债"
+- button "货币市场"
+- button "地方债"
+- button "优先股"
+- button "权益与衍生品":
+  - generic: 权益与衍生品
+- button "股市"
+- button "大宗商品"
+- button "指数"
+- button "外汇"
+- button "衍生品"
+- button "通讯与社区":
+  - generic: 通讯与社区
+- button "新闻与研究":
+  - generic: 新闻与研究
+- button "经济分析":
+  - generic: 经济分析
+- button "专业应用":
+  - generic: 专业应用
+- button "投资组合管理与风险"
+- button "定价与风险分析"
+- button "交易委托管理"
+- button "电子交易界面"
+- button "STP"
+- button "交易账簿管理"
+- button "行业分组分析"
+- button "平台工具":
+  - generic: 平台工具
+- button "个性化工作台":
+  - generic: 个性化工作台
+- button "帮助与关于":
+  - generic: 帮助与关于
+- generic: 市场时段
+- generic: 按交易所与品种分别核验
+- generic: 数据时效见对应来源与观察时间
+- heading "RES 研究报告主页" [level=3]
+- button "Maximize":
+- button "Close":
+- region "RES 研究工作区":
+  - generic: RES
+  - generic: 终端内研究路径
+  - generic: 数据研究与分析工具统一入口 · 行情权限以来源状态为准
+  - tablist "RES 工作区":
+    - tab "数据研究" [selected]
+    - tab "分析工具"
+    - tab "字段与来源说明"
+  - tabpanel "数据研究":
+    - region "股票综合研究工作台":
+      - generic: 股票综合研究工作台选行联动图表 · 单一数据工作区
+      - button "保存布局" [disabled]:
+        - text: 保存布局
+      - button "恢复默认":
+        - text: 恢复默认
+      - button "显隐设置 0"
+      - tablist "股票研究工作区":
+        - tab "市场环境矩阵":
+          - text: 市场环境矩阵
+        - tab "证券报价与历史":
+          - text: 证券报价与历史
+        - tab "SEC 主体":
+          - text: SEC 主体
+        - tab "报告期事实":
+          - text: 报告期事实
+        - tab "申报与证据" [selected]:
+          - text: 申报与证据
+      - tabpanel:
+        - textbox "SEC 主体搜索":
+          - /placeholder: 名称、代码或 CIK
+          - text: AAPL
+        - button "AAPLApple Inc."
+        - paragraph: SEC 主体目录用于公开披露核验，不表示证券覆盖或可交易性。
+        - separator "主体与披露分栏调节":
+        - generic: Apple Inc.
+        - combobox "申报表单类型":
+          - option "全部表单"
+          - option "10-Q" [selected]
+          - option "8-K"
+          - option "10-K"
+          - option "424B2"
+        - table:
+          - rowgroup:
+            - row "表单 申报日 主文件 / 编号":
+              - columnheader "表单"
+              - columnheader "申报日"
+              - columnheader "主文件 / 编号"
+          - rowgroup:
+            - row "10-Q 2026-07-31 aapl-20260627.htm 0000320193-26-000020":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2026-07-31"
+              - cell "aapl-20260627.htm 0000320193-26-000020":
+                - button "aapl-20260627.htm 0000320193-26-000020" [active]:
+                  - text: aapl-20260627.htm
+                  - generic: 0000320193-26-000020
+            - row "10-Q 2026-05-01 aapl-20260328.htm 0000320193-26-000013":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2026-05-01"
+              - cell "aapl-20260328.htm 0000320193-26-000013":
+                - button "aapl-20260328.htm 0000320193-26-000013":
+                  - text: aapl-20260328.htm
+                  - generic: 0000320193-26-000013
+            - row "10-Q 2026-01-30 aapl-20251227.htm 0000320193-26-000006":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2026-01-30"
+              - cell "aapl-20251227.htm 0000320193-26-000006":
+                - button "aapl-20251227.htm 0000320193-26-000006":
+                  - text: aapl-20251227.htm
+                  - generic: 0000320193-26-000006
+            - row "10-Q 2025-08-01 aapl-20250628.htm 0000320193-25-000073":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2025-08-01"
+              - cell "aapl-20250628.htm 0000320193-25-000073":
+                - button "aapl-20250628.htm 0000320193-25-000073":
+                  - text: aapl-20250628.htm
+                  - generic: 0000320193-25-000073
+            - row "10-Q 2025-05-02 aapl-20250329.htm 0000320193-25-000057":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2025-05-02"
+              - cell "aapl-20250329.htm 0000320193-25-000057":
+                - button "aapl-20250329.htm 0000320193-25-000057":
+                  - text: aapl-20250329.htm
+                  - generic: 0000320193-25-000057
+            - row "10-Q 2025-01-31 aapl-20241228.htm 0000320193-25-000008":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2025-01-31"
+              - cell "aapl-20241228.htm 0000320193-25-000008":
+                - button "aapl-20241228.htm 0000320193-25-000008":
+                  - text: aapl-20241228.htm
+                  - generic: 0000320193-25-000008
+            - row "10-Q 2024-08-02 aapl-20240629.htm 0000320193-24-000081":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2024-08-02"
+              - cell "aapl-20240629.htm 0000320193-24-000081":
+                - button "aapl-20240629.htm 0000320193-24-000081":
+                  - text: aapl-20240629.htm
+                  - generic: 0000320193-24-000081
+            - row "10-Q 2024-05-03 aapl-20240330.htm 0000320193-24-000069":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2024-05-03"
+              - cell "aapl-20240330.htm 0000320193-24-000069":
+                - button "aapl-20240330.htm 0000320193-24-000069":
+                  - text: aapl-20240330.htm
+                  - generic: 0000320193-24-000069
+            - row "10-Q 2024-02-02 aapl-20231230.htm 0000320193-24-000006":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2024-02-02"
+              - cell "aapl-20231230.htm 0000320193-24-000006":
+                - button "aapl-20231230.htm 0000320193-24-000006":
+                  - text: aapl-20231230.htm
+                  - generic: 0000320193-24-000006
+            - row "10-Q 2023-08-04 aapl-20230701.htm 0000320193-23-000077":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2023-08-04"
+              - cell "aapl-20230701.htm 0000320193-23-000077":
+                - button "aapl-20230701.htm 0000320193-23-000077":
+                  - text: aapl-20230701.htm
+                  - generic: 0000320193-23-000077
+            - row "10-Q 2023-05-05 aapl-20230401.htm 0000320193-23-000064":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2023-05-05"
+              - cell "aapl-20230401.htm 0000320193-23-000064":
+                - button "aapl-20230401.htm 0000320193-23-000064":
+                  - text: aapl-20230401.htm
+                  - generic: 0000320193-23-000064
+            - row "10-Q 2023-02-03 aapl-20221231.htm 0000320193-23-000006":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2023-02-03"
+              - cell "aapl-20221231.htm 0000320193-23-000006":
+                - button "aapl-20221231.htm 0000320193-23-000006":
+                  - text: aapl-20221231.htm
+                  - generic: 0000320193-23-000006
+            - row "10-Q 2022-07-29 aapl-20220625.htm 0000320193-22-000070":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2022-07-29"
+              - cell "aapl-20220625.htm 0000320193-22-000070":
+                - button "aapl-20220625.htm 0000320193-22-000070":
+                  - text: aapl-20220625.htm
+                  - generic: 0000320193-22-000070
+            - row "10-Q 2022-04-29 aapl-20220326.htm 0000320193-22-000059":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2022-04-29"
+              - cell "aapl-20220326.htm 0000320193-22-000059":
+                - button "aapl-20220326.htm 0000320193-22-000059":
+                  - text: aapl-20220326.htm
+                  - generic: 0000320193-22-000059
+            - row "10-Q 2022-01-28 aapl-20211225.htm 0000320193-22-000007":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2022-01-28"
+              - cell "aapl-20211225.htm 0000320193-22-000007":
+                - button "aapl-20211225.htm 0000320193-22-000007":
+                  - text: aapl-20211225.htm
+                  - generic: 0000320193-22-000007
+            - row "10-Q 2021-07-28 aapl-20210626.htm 0000320193-21-000065":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2021-07-28"
+              - cell "aapl-20210626.htm 0000320193-21-000065":
+                - button "aapl-20210626.htm 0000320193-21-000065":
+                  - text: aapl-20210626.htm
+                  - generic: 0000320193-21-000065
+            - row "10-Q 2021-04-29 aapl-20210327.htm 0000320193-21-000056":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2021-04-29"
+              - cell "aapl-20210327.htm 0000320193-21-000056":
+                - button "aapl-20210327.htm 0000320193-21-000056":
+                  - text: aapl-20210327.htm
+                  - generic: 0000320193-21-000056
+            - row "10-Q 2021-01-28 aapl-20201226.htm 0000320193-21-000010":
+              - cell "10-Q":
+                - button "10-Q"
+              - cell "2021-01-28"
+              - cell "aapl-20201226.htm 0000320193-21-000010":
+                - button "aapl-20201226.htm 0000320193-21-000010":
+                  - text: aapl-20201226.htm
+                  - generic: 0000320193-21-000010
+        - paragraph: 点击一份 SEC 申报，联动原文证据与智能摘要。
+        - generic: 仅展示 SEC 实际返回的主体与申报元数据；不把申报目录解释为市场影响、估值、评级或交易结论。
+      - status:
+        - generic: 默认布局
+        - generic: 方向键切页 · Alt+方向键调整顺序 · 拖动分隔线改变宽度
+    - generic "研究流程与关联入口"
+- button "自选":
+  - text: 自选
+- generic: "4.75"

@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "client/src/components/TerminalSecurityOverlay.tsx",
+    "client/src/_core/hooks/useAuth.ts",
+    "client/src/lib/trpc.ts",
+    "shared/**/*"
+  ],
+  "exclude": ["node_modules", "build", "dist"],
+  "compilerOptions": {
+    "incremental": false,
+    "noEmit": true
+  }
+}

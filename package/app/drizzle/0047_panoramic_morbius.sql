@@ -1,0 +1,1 @@
+CREATE INDEX `inventory_seasonality_event_user_product_date_idx` ON `inventory_seasonality_alert_events` (`user_id`,`product_id`,`observation_date`);

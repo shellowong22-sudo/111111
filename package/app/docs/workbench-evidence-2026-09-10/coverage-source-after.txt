@@ -1,0 +1,456 @@
+- region "Notifications alt+T"
+- generic: B
+- heading "Finance Hub Terminal" [level=1]
+- paragraph: Professional Financial Terminal
+- textbox "输入代码或名称搜索行情（如 AAPL、US10Y）— 回车跳转"
+- button "6":
+  - generic: "6"
+- button "切换到日间模式":
+  - generic: NGT
+- button "Show keyboard shortcuts (Ctrl+/)":
+- button:
+- button:
+- generic: U
+- generic: 用户
+- button "市场":
+  - generic: 市场
+- button "主权债"
+- button "信用债"
+- button "抵押债"
+- button "货币市场"
+- button "地方债"
+- button "优先股"
+- button "权益与衍生品":
+  - generic: 权益与衍生品
+- button "股市"
+- button "大宗商品"
+- button "指数"
+- button "外汇"
+- button "衍生品"
+- button "通讯与社区":
+  - generic: 通讯与社区
+- button "新闻与研究":
+  - generic: 新闻与研究
+- button "经济分析":
+  - generic: 经济分析
+- button "专业应用":
+  - generic: 专业应用
+- button "投资组合管理与风险"
+- button "定价与风险分析"
+- button "交易委托管理"
+- button "电子交易界面"
+- button "STP"
+- button "交易账簿管理"
+- button "行业分组分析"
+- button "平台工具":
+  - generic: 平台工具
+- button "个性化工作台":
+  - generic: 个性化工作台
+- button "帮助与关于":
+  - generic: 帮助与关于
+- generic: 市场时段
+- generic: 按交易所与品种分别核验
+- generic: 数据时效见对应来源与观察时间
+- heading "全球证券目录与导入覆盖" [level=3]
+- button "Maximize":
+- button "Close":
+- paragraph: STOCKS · IMPORTED LISTING COVERAGE
+- heading "全球股票覆盖范围工作台" [level=3]
+- status "目录覆盖状态": 48,756 条已导入目录记录
+- generic: 每 60 秒重新查询
+- text: 国家/地区
+- combobox "全球股票国家筛选":
+  - option "全部已导入国家/地区" [selected]
+  - option "AE · 阿拉伯联合酋长国"
+  - option "AT · 奥地利"
+  - option "AU · 澳大利亚"
+  - option "BR · 巴西"
+  - option "CA · 加拿大"
+  - option "CH · 瑞士"
+  - option "CN · 中国"
+  - option "DE · 德国"
+  - option "DK · 丹麦"
+  - option "ES · 西班牙"
+  - option "FI · 芬兰"
+  - option "FR · 法国"
+  - option "GB · 英国"
+  - option "HK · 中国香港"
+  - option "ID · 印度尼西亚"
+  - option "IE · 爱尔兰"
+  - option "IL · 以色列"
+  - option "IN · 印度"
+  - option "IS · 冰岛"
+  - option "IT · 意大利"
+  - option "JP · 日本"
+  - option "KH · 柬埔寨"
+  - option "KR · 韩国"
+  - option "LA · 老挝"
+  - option "MM · 缅甸"
+  - option "MX · 墨西哥"
+  - option "MY · 马来西亚"
+  - option "NL · 荷兰"
+  - option "NO · 挪威"
+  - option "NZ · 新西兰"
+  - option "PH · 菲律宾"
+  - option "PT · 葡萄牙"
+  - option "RU · 俄罗斯"
+  - option "SA · 沙特阿拉伯"
+  - option "SE · 瑞典"
+  - option "SG · 新加坡"
+  - option "TH · 泰国"
+  - option "TW · 中国台湾"
+  - option "US · 美国"
+  - option "VN · 越南"
+- text: 代码或名称
+- textbox "全球股票目录检索":
+  - /placeholder: 例如 AAPL、台积电、Samsung
+  - text: AAPL
+- button "检索目录":
+  - text: 检索目录
+- generic "目录与来源详情分栏":
+  - generic "国家覆盖矩阵 · 全部导入国家，不随目录关键词缩小"
+  - table "全部国家覆盖矩阵":
+    - rowgroup:
+      - row "国家/地区 导入记录 全目录占比 相对覆盖":
+        - columnheader "国家/地区"
+        - columnheader "导入记录"
+        - columnheader "全目录占比"
+        - columnheader "相对覆盖"
+    - rowgroup:
+      - row "AE · 阿拉伯联合酋长国 175 0.36%":
+        - cell "AE · 阿拉伯联合酋长国":
+          - button "AE · 阿拉伯联合酋长国"
+        - cell "175"
+        - cell "0.36%"
+        - cell:
+      - row "AT · 奥地利 81 0.17%":
+        - cell "AT · 奥地利":
+          - button "AT · 奥地利"
+        - cell "81"
+        - cell "0.17%"
+        - cell:
+      - row "AU · 澳大利亚 1,839 3.77%":
+        - cell "AU · 澳大利亚":
+          - button "AU · 澳大利亚"
+        - cell "1,839"
+        - cell "3.77%"
+        - cell:
+      - row "BR · 巴西 476 0.98%":
+        - cell "BR · 巴西":
+          - button "BR · 巴西"
+        - cell "476"
+        - cell "0.98%"
+        - cell:
+      - row "CA · 加拿大 672 1.38%":
+        - cell "CA · 加拿大":
+          - button "CA · 加拿大"
+        - cell "672"
+        - cell "1.38%"
+        - cell:
+      - row "CH · 瑞士 241 0.49%":
+        - cell "CH · 瑞士":
+          - button "CH · 瑞士"
+        - cell "241"
+        - cell "0.49%"
+        - cell:
+      - row "CN · 中国 5,544 11.37%":
+        - cell "CN · 中国":
+          - button "CN · 中国"
+        - cell "5,544"
+        - cell "11.37%"
+        - cell:
+      - row "DE · 德国 865 1.77%":
+        - cell "DE · 德国":
+          - button "DE · 德国"
+        - cell "865"
+        - cell "1.77%"
+        - cell:
+      - row "DK · 丹麦 145 0.30%":
+        - cell "DK · 丹麦":
+          - button "DK · 丹麦"
+        - cell "145"
+        - cell "0.30%"
+        - cell:
+      - row "ES · 西班牙 185 0.38%":
+        - cell "ES · 西班牙":
+          - button "ES · 西班牙"
+        - cell "185"
+        - cell "0.38%"
+        - cell:
+      - row "FI · 芬兰 194 0.40%":
+        - cell "FI · 芬兰":
+          - button "FI · 芬兰"
+        - cell "194"
+        - cell "0.40%"
+        - cell:
+      - row "FR · 法国 715 1.47%":
+        - cell "FR · 法国":
+          - button "FR · 法国"
+        - cell "715"
+        - cell "1.47%"
+        - cell:
+      - row "GB · 英国 1,283 2.63%":
+        - cell "GB · 英国":
+          - button "GB · 英国"
+        - cell "1,283"
+        - cell "2.63%"
+        - cell:
+      - row "HK · 中国香港 2,763 5.67%":
+        - cell "HK · 中国香港":
+          - button "HK · 中国香港"
+        - cell "2,763"
+        - cell "5.67%"
+        - cell:
+      - row "ID · 印度尼西亚 962 1.97%":
+        - cell "ID · 印度尼西亚":
+          - button "ID · 印度尼西亚"
+        - cell "962"
+        - cell "1.97%"
+        - cell:
+      - row "IE · 爱尔兰 23 0.05%":
+        - cell "IE · 爱尔兰":
+          - button "IE · 爱尔兰"
+        - cell "23"
+        - cell "0.05%"
+        - cell:
+      - row "IL · 以色列 527 1.08%":
+        - cell "IL · 以色列":
+          - button "IL · 以色列"
+        - cell "527"
+        - cell "1.08%"
+        - cell:
+      - row "IN · 印度 8,170 16.76%":
+        - cell "IN · 印度":
+          - button "IN · 印度"
+        - cell "8,170"
+        - cell "16.76%"
+        - cell:
+      - row "IS · 冰岛 32 0.07%":
+        - cell "IS · 冰岛":
+          - button "IS · 冰岛"
+        - cell "32"
+        - cell "0.07%"
+        - cell:
+      - row "IT · 意大利 407 0.83%":
+        - cell "IT · 意大利":
+          - button "IT · 意大利"
+        - cell "407"
+        - cell "0.83%"
+        - cell:
+      - row "JP · 日本 3,894 7.99%":
+        - cell "JP · 日本":
+          - button "JP · 日本"
+        - cell "3,894"
+        - cell "7.99%"
+        - cell:
+      - row "KH · 柬埔寨 12 0.02%":
+        - cell "KH · 柬埔寨":
+          - button "KH · 柬埔寨"
+        - cell "12"
+        - cell "0.02%"
+        - cell:
+      - row "KR · 韩国 2,967 6.09%":
+        - cell "KR · 韩国":
+          - button "KR · 韩国"
+        - cell "2,967"
+        - cell "6.09%"
+        - cell:
+      - row "LA · 老挝 12 0.02%":
+        - cell "LA · 老挝":
+          - button "LA · 老挝"
+        - cell "12"
+        - cell "0.02%"
+        - cell:
+      - row "MM · 缅甸 10 0.02%":
+        - cell "MM · 缅甸":
+          - button "MM · 缅甸"
+        - cell "10"
+        - cell "0.02%"
+        - cell:
+      - row "MX · 墨西哥 149 0.31%":
+        - cell "MX · 墨西哥":
+          - button "MX · 墨西哥"
+        - cell "149"
+        - cell "0.31%"
+        - cell:
+      - row "MY · 马来西亚 1,126 2.31%":
+        - cell "MY · 马来西亚":
+          - button "MY · 马来西亚"
+        - cell "1,126"
+        - cell "2.31%"
+        - cell:
+      - row "NL · 荷兰 116 0.24%":
+        - cell "NL · 荷兰":
+          - button "NL · 荷兰"
+        - cell "116"
+        - cell "0.24%"
+        - cell:
+      - row "NO · 挪威 294 0.60%":
+        - cell "NO · 挪威":
+          - button "NO · 挪威"
+        - cell "294"
+        - cell "0.60%"
+        - cell:
+      - row "NZ · 新西兰 113 0.23%":
+        - cell "NZ · 新西兰":
+          - button "NZ · 新西兰"
+        - cell "113"
+        - cell "0.23%"
+        - cell:
+      - row "PH · 菲律宾 386 0.79%":
+        - cell "PH · 菲律宾":
+          - button "PH · 菲律宾"
+        - cell "386"
+        - cell "0.79%"
+        - cell:
+      - row "PT · 葡萄牙 48 0.10%":
+        - cell "PT · 葡萄牙":
+          - button "PT · 葡萄牙"
+        - cell "48"
+        - cell "0.10%"
+        - cell:
+      - row "RU · 俄罗斯 263 0.54%":
+        - cell "RU · 俄罗斯":
+          - button "RU · 俄罗斯"
+        - cell "263"
+        - cell "0.54%"
+        - cell:
+      - row "SA · 沙特阿拉伯 376 0.77%":
+        - cell "SA · 沙特阿拉伯":
+          - button "SA · 沙特阿拉伯"
+        - cell "376"
+        - cell "0.77%"
+        - cell:
+      - row "SE · 瑞典 746 1.53%":
+        - cell "SE · 瑞典":
+          - button "SE · 瑞典"
+        - cell "746"
+        - cell "1.53%"
+        - cell:
+      - row "SG · 新加坡 574 1.18%":
+        - cell "SG · 新加坡":
+          - button "SG · 新加坡"
+        - cell "574"
+        - cell "1.18%"
+        - cell:
+      - row "TH · 泰国 2,215 4.54%":
+        - cell "TH · 泰国":
+          - button "TH · 泰国"
+        - cell "2,215"
+        - cell "4.54%"
+        - cell:
+      - row "TW · 中国台湾 2,373 4.87%":
+        - cell "TW · 中国台湾":
+          - button "TW · 中国台湾"
+        - cell "2,373"
+        - cell "4.87%"
+        - cell:
+      - row "US · 美国 6,257 12.83%":
+        - cell "US · 美国":
+          - button "US · 美国"
+        - cell "6,257"
+        - cell "12.83%"
+        - cell:
+      - row "VN · 越南 1,526 3.13%":
+        - cell "VN · 越南":
+          - button "VN · 越南"
+        - cell "1,526"
+        - cell "3.13%"
+        - cell:
+  - heading "证券目录" [level=4]
+  - generic: 点击或按 Enter 选择记录
+  - table "全球证券目录":
+    - rowgroup:
+      - row "国家 交易所 代码 名称 出处状态":
+        - columnheader "国家"
+        - columnheader "交易所"
+        - columnheader "代码"
+        - columnheader "名称"
+        - columnheader "出处状态"
+    - rowgroup:
+      - row "TH 泰国证券交易所 查看 AAPL01.TH 的导入来源 苹果-DR 已记录":
+        - cell "TH"
+        - cell "泰国证券交易所"
+        - cell "查看 AAPL01.TH 的导入来源":
+          - button "查看 AAPL01.TH 的导入来源": AAPL01.TH
+        - cell "苹果-DR"
+        - cell "已记录"
+      - row "TH 泰国证券交易所 查看 AAPL03.TH 的导入来源 苹果-DR 已记录":
+        - cell "TH"
+        - cell "泰国证券交易所"
+        - cell "查看 AAPL03.TH 的导入来源":
+          - button "查看 AAPL03.TH 的导入来源": AAPL03.TH
+        - cell "苹果-DR"
+        - cell "已记录"
+      - row "TH 泰国证券交易所 查看 AAPL19.TH 的导入来源 苹果-DR 已记录":
+        - cell "TH"
+        - cell "泰国证券交易所"
+        - cell "查看 AAPL19.TH 的导入来源":
+          - button "查看 AAPL19.TH 的导入来源": AAPL19.TH
+        - cell "苹果-DR"
+        - cell "已记录"
+      - row "TH 泰国证券交易所 查看 AAPL80.TH 的导入来源 苹果-DR 已记录":
+        - cell "TH"
+        - cell "泰国证券交易所"
+        - cell "查看 AAPL80.TH 的导入来源":
+          - button "查看 AAPL80.TH 的导入来源": AAPL80.TH
+        - cell "苹果-DR"
+        - cell "已记录"
+      - row "US 美国证券市场 查看 AAPL.O 的导入来源 苹果 已记录" [selected]:
+        - cell "US"
+        - cell "美国证券市场"
+        - cell "查看 AAPL.O 的导入来源":
+          - button "查看 AAPL.O 的导入来源" [active]: AAPL.O
+        - cell "苹果"
+        - cell "已记录"
+  - paragraph: 匹配 5 条 · 当前 1–5
+  - button "上一页" [disabled]
+  - button "下一页" [disabled]
+  - separator "调整目录与详情分栏":
+  - heading "LISTING LINEAGE · 已导入目录溯源" [level=4]
+  - button "关闭详情":
+  - heading "AAPL.O · 苹果" [level=5]
+  - table "选中证券来源字段":
+    - rowgroup:
+      - row "目录身份 US / 美国证券市场 / AAPL.O":
+        - rowheader "目录身份"
+        - cell "US / 美国证券市场 / AAPL.O"
+      - row "国家 / 地区 美国":
+        - rowheader "国家 / 地区"
+        - cell "美国"
+      - row "来源文件 全部美股.xlsx":
+        - rowheader "来源文件"
+        - cell "全部美股.xlsx"
+      - row "来源工作表 全部美股":
+        - rowheader "来源工作表"
+        - cell "全部美股"
+      - row "原始行号 2572":
+        - rowheader "原始行号"
+        - cell "2572"
+      - row "交易所字段质量 原目录已提供":
+        - rowheader "交易所字段质量"
+        - cell "原目录已提供"
+      - row "名称字段质量 原目录已提供":
+        - rowheader "名称字段质量"
+        - cell "原目录已提供"
+  - paragraph:
+    - text: 字段来自当前目录查询，不读取源文件全文。未发起行情、新闻、公司基本面或第三方页面请求。
+  - generic "当前页交易所矩阵 · 不是全市场覆盖"
+  - table "当前页交易所矩阵":
+    - rowgroup:
+      - row "交易所字段 本页记录数":
+        - columnheader "交易所字段"
+        - columnheader "本页记录数"
+    - rowgroup:
+      - row "泰国证券交易所 4":
+        - cell "泰国证券交易所"
+        - cell "4"
+      - row "美国证券市场 1":
+        - cell "美国证券市场"
+        - cell "1"
+- generic: 国家统计读取：2026/9/10 14:20:29
+- generic: 目录读取：2026/9/10 14:20:53
+- paragraph:
+  - text: 覆盖统计仅来自已导入目录，不显示行情、新闻、目标价或第三方页面，不证明上市状态、流动性或交易资格。新工作簿经受审计导入后，目录重新查询可见。
+- button "自选":
+  - text: 自选

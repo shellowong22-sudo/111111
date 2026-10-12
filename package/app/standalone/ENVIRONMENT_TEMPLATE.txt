@@ -1,0 +1,69 @@
+# Finance Hub standalone replacement configuration
+NODE_ENV=production
+STANDALONE_MODE=true
+PORT=3000
+APP_ORIGIN=http://localhost:3000
+
+# Standard MySQL
+DATABASE_URL=mysql://finance_hub:change-me@mysql:3306/finance_hub
+MYSQL_DATABASE=finance_hub
+MYSQL_USER=finance_hub
+MYSQL_PASSWORD=replace-me
+MYSQL_ROOT_PASSWORD=replace-me-root
+
+# Standalone session/auth replacement
+AUTH_MODE=oidc
+OIDC_ISSUER_URL=https://your-oidc.example.com
+OIDC_CLIENT_ID=replace-me
+OIDC_CLIENT_SECRET=replace-me
+LOCAL_ADMIN_OPEN_ID=standalone_admin
+LOCAL_ADMIN_NAME=Standalone Admin
+LOCAL_ADMIN_EMAIL=admin@example.com
+LOCAL_ADMIN_PASSWORD=replace-with-a-long-random-local-admin-password
+JWT_SECRET=replace-with-a-long-random-secret
+
+# Standalone OpenAI-compatible LLM provider
+LLM_BASE_URL=https://api.openai.com/v1
+LLM_API_KEY=replace-me
+LLM_MODEL=gpt-5-mini
+LLM_TIMEOUT_MS=30000
+
+# Optional existing AI panels -> FreeLLMAPI gateway (leave LLM_BASE_URL empty).
+# Run your own gateway separately and configure its unified key there; a ZIP
+# alone does not include provider credentials or real financial observations.
+FREELLMAPI_BASE_URL=
+FREELLMAPI_API_KEY=
+FREELLMAPI_MODEL=auto
+
+# Persistent queue/worker
+REDIS_URL=redis://redis:6379/0
+CRAWLER_WORKER_CONCURRENCY=4
+CRAWLER_POLL_INTERVAL_MS=5000
+SCHEDULER_SECRET=replace-with-a-long-random-scheduler-secret
+STANDALONE_SCHEDULER_USER_ID=1
+SCHEDULER_TIMEOUT_MS=120000
+
+# AWS S3 or MinIO
+S3_ENDPOINT=http://minio:9000
+S3_FORCE_PATH_STYLE=true
+S3_REGION=us-east-1
+S3_BUCKET=finance-hub
+S3_ACCESS_KEY_ID=replace-me
+S3_SECRET_ACCESS_KEY=replace-me
+MINIO_ROOT_USER=replace-me
+MINIO_ROOT_PASSWORD=replace-me
+
+# Optional external notifications
+SMTP_HOST=
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASSWORD=
+WEBHOOK_URL=
+
+# Direct external data providers; configure only providers actually licensed.
+# Map only explicit provider ids used by the application to HTTPS endpoints.
+DATA_API_ENDPOINTS_JSON={"OfficialExample":{"url":"https://api.example.com/v1/items","method":"GET"}}
+DATA_API_API_KEY=
+
+# Optional direct Google Maps browser key
+VITE_GOOGLE_MAPS_API_KEY=

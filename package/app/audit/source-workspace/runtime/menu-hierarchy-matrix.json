@@ -1,0 +1,1919 @@
+{
+  "generatedAt": "2026-08-26T10:44:00.932Z",
+  "summary": {
+    "menuComponents": 26,
+    "menusWithNumberedItems": 10,
+    "numberedItems": 282,
+    "menusWithVisibilitySignals": 0,
+    "menusUsingIndirectHandler": 17,
+    "menusUsingLocationNavigation": 13
+  },
+  "rows": [
+    {
+      "component": "client/src/components/BloombergDataMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录 › Bloomberg Data, Excel & Bloomberg Quant",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/CommoditiesMenu.tsx",
+      "itemCount": 32,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": null,
+          "name": "数据、设定与功能说明"
+        },
+        {
+          "ordinal": 2,
+          "code": "COMM",
+          "name": "商品目录"
+        },
+        {
+          "ordinal": 3,
+          "code": "SECF",
+          "name": "证券查找"
+        },
+        {
+          "ordinal": 4,
+          "code": "FDM",
+          "name": "商品基础知识"
+        },
+        {
+          "ordinal": 5,
+          "code": "MAP",
+          "name": "自设地图"
+        },
+        {
+          "ordinal": 6,
+          "code": "SPOT",
+          "name": "商品现货价格"
+        },
+        {
+          "ordinal": 7,
+          "code": "CTM",
+          "name": "交易所合约"
+        },
+        {
+          "ordinal": 8,
+          "code": null,
+          "name": "商品市场概览"
+        },
+        {
+          "ordinal": 9,
+          "code": "GLCO",
+          "name": "全球商品价格"
+        },
+        {
+          "ordinal": 10,
+          "code": "CPLY",
+          "name": "商品操作簿"
+        },
+        {
+          "ordinal": 11,
+          "code": "COSY",
+          "name": "商品分析"
+        },
+        {
+          "ordinal": 12,
+          "code": null,
+          "name": "商品电子交易"
+        },
+        {
+          "ordinal": 13,
+          "code": null,
+          "name": "商品衍生品"
+        },
+        {
+          "ordinal": 14,
+          "code": null,
+          "name": "新闻与研究报告"
+        },
+        {
+          "ordinal": 15,
+          "code": "TOP CMD",
+          "name": "商品要闻"
+        },
+        {
+          "ordinal": 16,
+          "code": null,
+          "name": "分析 CLA Comdty"
+        },
+        {
+          "ordinal": 17,
+          "code": "DES",
+          "name": "证券简介"
+        },
+        {
+          "ordinal": 18,
+          "code": "GP",
+          "name": "线段图"
+        },
+        {
+          "ordinal": 19,
+          "code": "SEAG",
+          "name": "季节性图"
+        },
+        {
+          "ordinal": 20,
+          "code": "CCRV",
+          "name": "商品曲线"
+        },
+        {
+          "ordinal": 21,
+          "code": "CMRV",
+          "name": "Commodities Relative Price"
+        },
+        {
+          "ordinal": 22,
+          "code": null,
+          "name": "石油"
+        },
+        {
+          "ordinal": 23,
+          "code": null,
+          "name": "天然气"
+        },
+        {
+          "ordinal": 24,
+          "code": null,
+          "name": "电力"
+        },
+        {
+          "ordinal": 25,
+          "code": null,
+          "name": "煤炭"
+        },
+        {
+          "ordinal": 26,
+          "code": null,
+          "name": "可再生能源"
+        },
+        {
+          "ordinal": 27,
+          "code": null,
+          "name": "排放"
+        },
+        {
+          "ordinal": 28,
+          "code": null,
+          "name": "金属"
+        },
+        {
+          "ordinal": 29,
+          "code": null,
+          "name": "农业"
+        },
+        {
+          "ordinal": 30,
+          "code": null,
+          "name": "海运"
+        },
+        {
+          "ordinal": 31,
+          "code": null,
+          "name": "天气"
+        },
+        {
+          "ordinal": 32,
+          "code": null,
+          "name": "商品投资者"
+        }
+      ],
+      "headings": [
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "彭博功能主目录 ›",
+        "商品市场",
+        "{menuItems[0].map(renderMenuItem)}",
+        "{menuItems[1].map(renderMenuItem)}",
+        "分类：石油 | 天然气 | 电力 | 煤炭 | 可再生能源 | 排放 | 金属 | 农业 | 海运 | 天气 | 商品投资者"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/CreditBondMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录",
+        "信用债",
+        "{item.code})",
+        "{item.ticker}",
+        "{item.name}",
+        "{item.code})",
+        "{item.ticker}",
+        "{item.name}",
+        "🤖 Indicates function uses Bloomberg AI technology"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/CurveTreeMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "{node.label}"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": false,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/DerivativesMenu.tsx",
+      "itemCount": 30,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": null,
+          "name": "利率、通胀衍生证券与结构债"
+        },
+        {
+          "ordinal": 2,
+          "code": "SWPM",
+          "name": "掉期管理"
+        },
+        {
+          "ordinal": 3,
+          "code": "WBF",
+          "name": "全球债券期货"
+        },
+        {
+          "ordinal": 4,
+          "code": null,
+          "name": "信用衍生产品"
+        },
+        {
+          "ordinal": 5,
+          "code": "CDSW",
+          "name": "CDS 估值"
+        },
+        {
+          "ordinal": 6,
+          "code": "WCDS",
+          "name": "全球CDS行情显示"
+        },
+        {
+          "ordinal": 7,
+          "code": null,
+          "name": "股票衍生品"
+        },
+        {
+          "ordinal": 8,
+          "code": "OVME",
+          "name": "股票/利率期权定价"
+        },
+        {
+          "ordinal": 9,
+          "code": "MOSO",
+          "name": "交易最活跃期权"
+        },
+        {
+          "ordinal": 10,
+          "code": null,
+          "name": "股指衍生品"
+        },
+        {
+          "ordinal": 11,
+          "code": null,
+          "name": "外汇衍生品"
+        },
+        {
+          "ordinal": 12,
+          "code": "OVML",
+          "name": "外汇/商品期权定价"
+        },
+        {
+          "ordinal": 13,
+          "code": "WVOL",
+          "name": "外汇隐含波动率矩阵"
+        },
+        {
+          "ordinal": 14,
+          "code": null,
+          "name": "文件与资料"
+        },
+        {
+          "ordinal": 15,
+          "code": null,
+          "name": "商品衍生品"
+        },
+        {
+          "ordinal": 16,
+          "code": "OVML",
+          "name": "外汇/商品期权估值"
+        },
+        {
+          "ordinal": 17,
+          "code": "GLCO",
+          "name": "全球商品价格"
+        },
+        {
+          "ordinal": 18,
+          "code": null,
+          "name": "可转换债券"
+        },
+        {
+          "ordinal": 19,
+          "code": "OVCV",
+          "name": "可转换债券估价"
+        },
+        {
+          "ordinal": 20,
+          "code": "DLIB",
+          "name": "衍生品库"
+        },
+        {
+          "ordinal": 21,
+          "code": "VCA",
+          "name": "波动率与相关系数分析"
+        },
+        {
+          "ordinal": 22,
+          "code": null,
+          "name": "定价与风险解决方案"
+        },
+        {
+          "ordinal": 23,
+          "code": "MARS",
+          "name": "多资产风险系统"
+        },
+        {
+          "ordinal": 24,
+          "code": "NI DRV",
+          "name": "新闻：衍生品"
+        },
+        {
+          "ordinal": 25,
+          "code": "NI BMRDRV",
+          "name": "新闻：衍生品研究"
+        },
+        {
+          "ordinal": 26,
+          "code": "DERI",
+          "name": "衍生品功能增强"
+        },
+        {
+          "ordinal": 27,
+          "code": "NI BLPOTC",
+          "name": "最新增强功能"
+        },
+        {
+          "ordinal": 28,
+          "code": "FOM",
+          "name": "期货与期权行情监控 ★AI"
+        },
+        {
+          "ordinal": 29,
+          "code": "WBF-AI",
+          "name": "WBF全球债券期货AI增强 ★"
+        },
+        {
+          "ordinal": 30,
+          "code": "CREDIT-MONITOR",
+          "name": "信用监控综合面板 ★AI"
+        }
+      ],
+      "headings": [
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "彭博功能主目录 ›",
+        "衍生品与结构债券",
+        "{menuItems[0].map(renderMenuItem)}",
+        "{menuItems[1].map(renderMenuItem)}",
+        "衍生品类型 | 利率衍生品 | 信用衍生品 | 股票衍生品 | 商品衍生品 | 外汇衍生品 | 可转换债券 | 定价与风险"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/EconomicsMenu.tsx",
+      "itemCount": 29,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": null,
+          "name": "经济数据"
+        },
+        {
+          "ordinal": 2,
+          "code": "ECST S",
+          "name": "检索经济统计数据"
+        },
+        {
+          "ordinal": 3,
+          "code": "ECST",
+          "name": "世界经济统计数据"
+        },
+        {
+          "ordinal": 4,
+          "code": "ECO",
+          "name": "经济日历"
+        },
+        {
+          "ordinal": 5,
+          "code": "ECTR",
+          "name": "贸易流量"
+        },
+        {
+          "ordinal": 6,
+          "code": "WFII",
+          "name": "外国投资组合投资"
+        },
+        {
+          "ordinal": 7,
+          "code": "ECWB",
+          "name": "经济工作台"
+        },
+        {
+          "ordinal": 8,
+          "code": "RSAN",
+          "name": "俄乌战争"
+        },
+        {
+          "ordinal": 9,
+          "code": "ECOB",
+          "name": "Economic Key Indicators"
+        },
+        {
+          "ordinal": 10,
+          "code": null,
+          "name": "分析与预测"
+        },
+        {
+          "ordinal": 11,
+          "code": "ECFC",
+          "name": "经济预测"
+        },
+        {
+          "ordinal": 12,
+          "code": "SHOK",
+          "name": "BE预测模型"
+        },
+        {
+          "ordinal": 13,
+          "code": "WIRP",
+          "name": "利率概率"
+        },
+        {
+          "ordinal": 14,
+          "code": "FCON",
+          "name": "财务状况"
+        },
+        {
+          "ordinal": 15,
+          "code": "ECSU",
+          "name": "经济意外"
+        },
+        {
+          "ordinal": 16,
+          "code": "TAYL",
+          "name": "泰勒规则模型"
+        },
+        {
+          "ordinal": 17,
+          "code": "ECAN",
+          "name": "世界经济分析工具"
+        },
+        {
+          "ordinal": 18,
+          "code": "MOSP",
+          "name": "Most Active Predict Markets"
+        },
+        {
+          "ordinal": 19,
+          "code": null,
+          "name": "分析 USURTOT Index"
+        },
+        {
+          "ordinal": 20,
+          "code": null,
+          "name": "央行信息"
+        },
+        {
+          "ordinal": 21,
+          "code": "CENB",
+          "name": "央行查找"
+        },
+        {
+          "ordinal": 22,
+          "code": "CBRT",
+          "name": "央行利率分析"
+        },
+        {
+          "ordinal": 23,
+          "code": "FOMC",
+          "name": "美联邦公开市场操作"
+        },
+        {
+          "ordinal": 24,
+          "code": "FOMS",
+          "name": "FOMC 声明"
+        },
+        {
+          "ordinal": 25,
+          "code": "FDSP",
+          "name": "彭博经济联储分析仪"
+        },
+        {
+          "ordinal": 26,
+          "code": "BE",
+          "name": "经济新闻与分析"
+        },
+        {
+          "ordinal": 27,
+          "code": "BECO",
+          "name": "彭博经济"
+        },
+        {
+          "ordinal": 28,
+          "code": "BIE",
+          "name": "Bloomberg Eco Country Primers"
+        },
+        {
+          "ordinal": 29,
+          "code": "PMI",
+          "name": "标普全球PMI"
+        }
+      ],
+      "headings": [
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "彭博功能主目录 ›",
+        "经济数据及分析",
+        "{menuItems[0].map(renderMenuItem)}",
+        "{menuItems[1].map(renderMenuItem)}",
+        "经济数据 | 分析预测 | 央行信息 | 新闻研究 | 资料中心"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/ElectronicTradingMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录 › 电子交易及委托单递送",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/ExportMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "导出"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": false,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/ForexMenu.tsx",
+      "itemCount": 32,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": null,
+          "name": "证券、设定与功能说明"
+        },
+        {
+          "ordinal": 2,
+          "code": "FXIP",
+          "name": "外汇信息门户"
+        },
+        {
+          "ordinal": 3,
+          "code": "FXDS",
+          "name": "外汇数据检索"
+        },
+        {
+          "ordinal": 4,
+          "code": "FXTF",
+          "name": "外汇代码查找"
+        },
+        {
+          "ordinal": 5,
+          "code": null,
+          "name": "价格发现"
+        },
+        {
+          "ordinal": 6,
+          "code": "FXC",
+          "name": "汇率矩阵"
+        },
+        {
+          "ordinal": 7,
+          "code": "WCR",
+          "name": "全球汇率"
+        },
+        {
+          "ordinal": 8,
+          "code": "WVOL",
+          "name": "外汇隐含波动率矩阵"
+        },
+        {
+          "ordinal": 9,
+          "code": "XCCY",
+          "name": "交叉货币基点差"
+        },
+        {
+          "ordinal": 10,
+          "code": "GMM",
+          "name": "全球宏观市场驱动者"
+        },
+        {
+          "ordinal": 11,
+          "code": null,
+          "name": "分析功能与选股提示"
+        },
+        {
+          "ordinal": 12,
+          "code": "FXSW",
+          "name": "外汇策略工作台"
+        },
+        {
+          "ordinal": 13,
+          "code": "XDSH",
+          "name": "外汇控制面板"
+        },
+        {
+          "ordinal": 14,
+          "code": "FXFC",
+          "name": "外汇预测"
+        },
+        {
+          "ordinal": 15,
+          "code": "WCRS",
+          "name": "全球货币排行榜"
+        },
+        {
+          "ordinal": 16,
+          "code": "ECMI",
+          "name": "市场冲击行情显示"
+        },
+        {
+          "ordinal": 17,
+          "code": "MYQ",
+          "name": "My Quotes"
+        },
+        {
+          "ordinal": 18,
+          "code": null,
+          "name": "分析 USD DEPOSIT 1 WK Curncy"
+        },
+        {
+          "ordinal": 19,
+          "code": "ALLQ",
+          "name": "全部报价"
+        },
+        {
+          "ordinal": 20,
+          "code": "FRD",
+          "name": "外汇远期计算器"
+        },
+        {
+          "ordinal": 21,
+          "code": "OVML",
+          "name": "外汇/商品期权定价"
+        },
+        {
+          "ordinal": 22,
+          "code": "BFIX",
+          "name": "彭博外汇定价"
+        },
+        {
+          "ordinal": 23,
+          "code": "FXFA",
+          "name": "外汇利率套利"
+        },
+        {
+          "ordinal": 24,
+          "code": "GP",
+          "name": "线段图"
+        },
+        {
+          "ordinal": 25,
+          "code": "FIRS",
+          "name": "率先报道-外汇"
+        },
+        {
+          "ordinal": 26,
+          "code": "TOP FX",
+          "name": "要闻报道"
+        },
+        {
+          "ordinal": 27,
+          "code": "STNI",
+          "name": "建议新闻传输"
+        },
+        {
+          "ordinal": 28,
+          "code": "RES",
+          "name": "研究报告主页"
+        },
+        {
+          "ordinal": 29,
+          "code": "BICO",
+          "name": "彭博行业研究概况"
+        },
+        {
+          "ordinal": 30,
+          "code": null,
+          "name": "外汇电子交易"
+        },
+        {
+          "ordinal": 31,
+          "code": null,
+          "name": "外汇衍生品"
+        },
+        {
+          "ordinal": 32,
+          "code": "MARS FX",
+          "name": "外汇"
+        }
+      ],
+      "headings": [
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "彭博功能主目录 › 外汇市场",
+        "{menuItems[0].map(renderMenuItem)}",
+        "{menuItems[1].map(renderMenuItem)}"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/IndicesMenu.tsx",
+      "itemCount": 23,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": "SECF",
+          "name": "证券查找"
+        },
+        {
+          "ordinal": 2,
+          "code": "HELP INDX",
+          "name": "指数"
+        },
+        {
+          "ordinal": 3,
+          "code": "WEI",
+          "name": "全球股票指数"
+        },
+        {
+          "ordinal": 4,
+          "code": "WEIF",
+          "name": "全球股指期货"
+        },
+        {
+          "ordinal": 5,
+          "code": "WBIX",
+          "name": "彭博全球债券指数"
+        },
+        {
+          "ordinal": 6,
+          "code": "GMM",
+          "name": "全球宏观市场驱动者"
+        },
+        {
+          "ordinal": 7,
+          "code": null,
+          "name": "彭博指数"
+        },
+        {
+          "ordinal": 8,
+          "code": "IN",
+          "name": "彭博指数浏览器"
+        },
+        {
+          "ordinal": 9,
+          "code": "INP",
+          "name": "指数出版物"
+        },
+        {
+          "ordinal": 10,
+          "code": "CIX",
+          "name": "自设指数库"
+        },
+        {
+          "ordinal": 11,
+          "code": "CIXB",
+          "name": "自设篮子编辑器"
+        },
+        {
+          "ordinal": 12,
+          "code": "AGG",
+          "name": "自设合并"
+        },
+        {
+          "ordinal": 13,
+          "code": null,
+          "name": "分析 FDFD Index"
+        },
+        {
+          "ordinal": 14,
+          "code": null,
+          "name": "其他指数"
+        },
+        {
+          "ordinal": 15,
+          "code": "RRG",
+          "name": "相对旋转图"
+        },
+        {
+          "ordinal": 16,
+          "code": "WT",
+          "name": "WTR行情显示"
+        },
+        {
+          "ordinal": 17,
+          "code": null,
+          "name": "指数衍生品"
+        },
+        {
+          "ordinal": 18,
+          "code": "CIXN",
+          "name": "自设表达式编辑器"
+        },
+        {
+          "ordinal": 19,
+          "code": "CIXS",
+          "name": "自设利差编辑器"
+        },
+        {
+          "ordinal": 20,
+          "code": "CIXR",
+          "name": "自设比率编辑器"
+        },
+        {
+          "ordinal": 21,
+          "code": "CIXC",
+          "name": "自设转换编辑器"
+        },
+        {
+          "ordinal": 22,
+          "code": "CIXX",
+          "name": "本地数据-使用Excel"
+        },
+        {
+          "ordinal": 23,
+          "code": "CIXI",
+          "name": "自设时间序列编辑器"
+        }
+      ],
+      "headings": [
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "彭博功能主目录 ›",
+        "指数",
+        "指数与功能说明",
+        "当前市场/行情",
+        "多重指数分析",
+        "更多自设指数",
+        "创建自设指数 | 彭博指数 | 多重指数分析 | 指数衍生品 | 更多自设指数"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/IndustryGroupMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录 › 彭博行业分组",
+        "AI",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "AI",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "AI",
+        "Indicates function uses Bloomberg AI technology"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": false,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/LocalBondMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录",
+        "地方债",
+        "{item.code})",
+        "{item.ticker}",
+        "{item.name}",
+        "{item.code})",
+        "{item.ticker}",
+        "{item.name}",
+        "🤖 Indicates function uses Bloomberg AI technology"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": false,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/MessagingCommunityMenu.tsx",
+      "itemCount": 29,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": "MSG",
+          "name": "邮件"
+        },
+        {
+          "ordinal": 2,
+          "code": "SPDL",
+          "name": "联系人"
+        },
+        {
+          "ordinal": 3,
+          "code": "MSGS",
+          "name": "邮件：检索"
+        },
+        {
+          "ordinal": 4,
+          "code": "MSG 4",
+          "name": "邮件：已发送"
+        },
+        {
+          "ordinal": 5,
+          "code": "MSG 10",
+          "name": "邮件: 已删除"
+        },
+        {
+          "ordinal": 6,
+          "code": "SMSG",
+          "name": "共享邮件收件箱"
+        },
+        {
+          "ordinal": 7,
+          "code": "MSGN",
+          "name": "灵活屏邮件"
+        },
+        {
+          "ordinal": 8,
+          "code": "MSGE",
+          "name": "邮件：撰写"
+        },
+        {
+          "ordinal": 9,
+          "code": "MSGA",
+          "name": "邮件：撰写"
+        },
+        {
+          "ordinal": 10,
+          "code": "DRAF",
+          "name": "邮件：草稿"
+        },
+        {
+          "ordinal": 11,
+          "code": "MSG 8",
+          "name": "邮件：延迟"
+        },
+        {
+          "ordinal": 12,
+          "code": "IB",
+          "name": "彭博即时短信"
+        },
+        {
+          "ordinal": 13,
+          "code": "IBSR",
+          "name": "IB 聊天检索"
+        },
+        {
+          "ordinal": 14,
+          "code": "IBB",
+          "name": "IB 群发"
+        },
+        {
+          "ordinal": 15,
+          "code": "IBS",
+          "name": "IB证券"
+        },
+        {
+          "ordinal": 16,
+          "code": "IBME",
+          "name": "IB提及"
+        },
+        {
+          "ordinal": 17,
+          "code": null,
+          "name": "彭博邮件保管与监管"
+        },
+        {
+          "ordinal": 18,
+          "code": "FILE",
+          "name": "文件管理器"
+        },
+        {
+          "ordinal": 19,
+          "code": "MGU",
+          "name": "邮件：设定"
+        },
+        {
+          "ordinal": 20,
+          "code": "MRUL",
+          "name": "邮件：规则"
+        },
+        {
+          "ordinal": 21,
+          "code": "SMGM",
+          "name": "共享邮件管理器"
+        },
+        {
+          "ordinal": 22,
+          "code": "SPDI",
+          "name": "导入联系人"
+        },
+        {
+          "ordinal": 23,
+          "code": "VACN",
+          "name": "邮件：外出期间自动回复"
+        },
+        {
+          "ordinal": 24,
+          "code": null,
+          "name": "社区"
+        },
+        {
+          "ordinal": 25,
+          "code": "SHAR",
+          "name": "个人及共享笔记"
+        },
+        {
+          "ordinal": 26,
+          "code": "NOTE",
+          "name": "附注"
+        },
+        {
+          "ordinal": 27,
+          "code": "CMTY",
+          "name": "社区管理员"
+        },
+        {
+          "ordinal": 28,
+          "code": "BIO",
+          "name": "人物简介"
+        },
+        {
+          "ordinal": 29,
+          "code": "PEOP",
+          "name": "人物检索"
+        }
+      ],
+      "headings": [
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "彭博功能主目录 ›",
+        "通讯与社区",
+        "{menuItems[0].map(renderMenuItem)}",
+        "{menuItems[1].map(renderMenuItem)}",
+        "邮件系统 | 彭博即时短信 | 邮件工具 | 社区管理 | 人物检索"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/ModuleNavigation.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "{module.icon}",
+        "{module.label}",
+        "{child.label}",
+        "Market Status",
+        "Open",
+        "Connected"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": false,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/MoneyMarketMenu.tsx",
+      "itemCount": 22,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": "DES",
+          "name": "证券与功能说明"
+        },
+        {
+          "ordinal": 2,
+          "code": "PGM",
+          "name": "货币市场项目列表"
+        },
+        {
+          "ordinal": 3,
+          "code": "MKTBEAT",
+          "name": "当前市场"
+        },
+        {
+          "ordinal": 4,
+          "code": "BTMM",
+          "name": "国债与货币市场"
+        },
+        {
+          "ordinal": 5,
+          "code": "BOOM",
+          "name": "货币市场发售"
+        },
+        {
+          "ordinal": 6,
+          "code": "TCON",
+          "name": "国债控制面板"
+        },
+        {
+          "ordinal": 7,
+          "code": "RV",
+          "name": "相对价值"
+        },
+        {
+          "ordinal": 8,
+          "code": "YCQSIM",
+          "name": "收益曲线量子模拟"
+        },
+        {
+          "ordinal": 9,
+          "code": "GC",
+          "name": "绘制曲线图"
+        },
+        {
+          "ordinal": 10,
+          "code": "CRVF MMKT",
+          "name": "查找曲线-货币市场"
+        },
+        {
+          "ordinal": 11,
+          "code": "CRVF",
+          "name": "查找曲线"
+        },
+        {
+          "ordinal": 12,
+          "code": "FIBC",
+          "name": "债券计算器"
+        },
+        {
+          "ordinal": 13,
+          "code": "CDIE",
+          "name": "预测CDI 对实际DI 期货"
+        },
+        {
+          "ordinal": 14,
+          "code": "EFSF",
+          "name": "分析 EFSF EMTN M-Mkt"
+        },
+        {
+          "ordinal": 15,
+          "code": "MMIDX",
+          "name": "货币市场指数"
+        },
+        {
+          "ordinal": 16,
+          "code": "ETRADE",
+          "name": "定价、写单、电子交易"
+        },
+        {
+          "ordinal": 17,
+          "code": "EDSF",
+          "name": "ED合成FRA"
+        },
+        {
+          "ordinal": 18,
+          "code": "WBF",
+          "name": "全球债券期货"
+        },
+        {
+          "ordinal": 19,
+          "code": "PBOC",
+          "name": "中国人民银行"
+        },
+        {
+          "ordinal": 20,
+          "code": "TWDI",
+          "name": "台北金融业拆款定盘利率"
+        },
+        {
+          "ordinal": 21,
+          "code": "CENB",
+          "name": "央行查找"
+        },
+        {
+          "ordinal": 22,
+          "code": "NEWS",
+          "name": "新闻与研究报告"
+        }
+      ],
+      "headings": [
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "彭博功能主目录 ›",
+        "货币市场",
+        "23) SOURCE",
+        "公开资料时效监控台",
+        "核验公开利率来源、最新观察日与数据可用状态，支持进入货币市场研究面板",
+        "PUBLIC",
+        "24) MMFLOW",
+        "货币市场研究交付",
+        "按当前研究选择组装可追溯的公开来源交付清单，不生成未经核验的研究结论",
+        "DELIVERY",
+        "{menuItems[0].map(renderMenuItem)}",
+        "{menuItems[1].map(renderMenuItem)}",
+        "期货及期权"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/MortgageBondMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录",
+        "抵押债",
+        "{item.code})",
+        "{item.ticker}",
+        "{item.name}",
+        "{item.code})",
+        "{item.ticker}",
+        "{item.name}",
+        "🤖 Indicates function uses Bloomberg AI technology"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/NewsResearchMenu.tsx",
+      "itemCount": 29,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": "TOP",
+          "name": "要闻精选"
+        },
+        {
+          "ordinal": 2,
+          "code": "BTDY",
+          "name": "Bloomberg Today"
+        },
+        {
+          "ordinal": 3,
+          "code": "FRNT",
+          "name": "首页"
+        },
+        {
+          "ordinal": 4,
+          "code": "CN",
+          "name": "公司新闻"
+        },
+        {
+          "ordinal": 5,
+          "code": "READ",
+          "name": "最热门报道"
+        },
+        {
+          "ordinal": 6,
+          "code": "NI",
+          "name": "新闻主题"
+        },
+        {
+          "ordinal": 7,
+          "code": "NH",
+          "name": "滚动新闻"
+        },
+        {
+          "ordinal": 8,
+          "code": "FIRS",
+          "name": "彭博率先报道"
+        },
+        {
+          "ordinal": 9,
+          "code": "BI",
+          "name": "彭博行业研究"
+        },
+        {
+          "ordinal": 10,
+          "code": "BECO",
+          "name": "彭博经济"
+        },
+        {
+          "ordinal": 11,
+          "code": "DAYB",
+          "name": "彭博早间新闻"
+        },
+        {
+          "ordinal": 12,
+          "code": "MAG",
+          "name": "彭博杂志"
+        },
+        {
+          "ordinal": 13,
+          "code": null,
+          "name": "多媒体"
+        },
+        {
+          "ordinal": 14,
+          "code": "MEDI",
+          "name": "彭博媒体"
+        },
+        {
+          "ordinal": 15,
+          "code": null,
+          "name": "第三方优质新闻"
+        },
+        {
+          "ordinal": 16,
+          "code": null,
+          "name": "非英语新闻"
+        },
+        {
+          "ordinal": 17,
+          "code": null,
+          "name": "评论与分析"
+        },
+        {
+          "ordinal": 18,
+          "code": "OPIN",
+          "name": "彭博观点"
+        },
+        {
+          "ordinal": 19,
+          "code": "BNEF",
+          "name": "彭博新能源财经研究报告"
+        },
+        {
+          "ordinal": 20,
+          "code": null,
+          "name": "个性化新闻"
+        },
+        {
+          "ordinal": 21,
+          "code": "MYN",
+          "name": "我的新闻"
+        },
+        {
+          "ordinal": 22,
+          "code": "NLRT",
+          "name": "新闻检索与提醒"
+        },
+        {
+          "ordinal": 23,
+          "code": "NSUB",
+          "name": "新闻订阅"
+        },
+        {
+          "ordinal": 24,
+          "code": "MREP",
+          "name": "Morning Report"
+        },
+        {
+          "ordinal": 25,
+          "code": "NZPD",
+          "name": "新闻设定"
+        },
+        {
+          "ordinal": 26,
+          "code": null,
+          "name": "社交媒体与分析"
+        },
+        {
+          "ordinal": 27,
+          "code": "SOCI",
+          "name": "社交监测"
+        },
+        {
+          "ordinal": 28,
+          "code": "TREN",
+          "name": "新闻趋势"
+        },
+        {
+          "ordinal": 29,
+          "code": null,
+          "name": "文件与资料"
+        }
+      ],
+      "headings": [
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "彭博功能主目录 ›",
+        "新闻与研究报告",
+        "{menuItems[0].map(renderMenuItem)}",
+        "{menuItems[1].map(renderMenuItem)}",
+        "新闻主目录 | 彭博来源 | 多媒体 | 第三方新闻 | 评论分析 | 个性化新闻 | 社交媒体"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/OrderManagementMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录 › 交易委托管理系统",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "资料中心",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "ETF一级市场",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/PortfolioManagementMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录 › 投资组合管理与风险",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "Indicates function uses Bloomberg AI technology",
+        "MenuId: 5432"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": false,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/PreferredStockMenu.tsx",
+      "itemCount": 23,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": "SECF",
+          "name": "智能证券查找器"
+        },
+        {
+          "ordinal": 2,
+          "code": "PSCH",
+          "name": "深度检索与条款解析"
+        },
+        {
+          "ordinal": 3,
+          "code": "WB",
+          "name": "全球债券与宏观联动"
+        },
+        {
+          "ordinal": 4,
+          "code": "WEI",
+          "name": "全球股票与行业轮动"
+        },
+        {
+          "ordinal": 5,
+          "code": "FIT",
+          "name": "智能固定收益交易"
+        },
+        {
+          "ordinal": 6,
+          "code": "QFM",
+          "name": "量化因子模型"
+        },
+        {
+          "ordinal": 7,
+          "code": "EDS",
+          "name": "事件驱动策略引擎"
+        },
+        {
+          "ordinal": 8,
+          "code": "CMA",
+          "name": "跨市场联动与套利"
+        },
+        {
+          "ordinal": 9,
+          "code": "POR",
+          "name": "组合优化与风险预算"
+        },
+        {
+          "ordinal": 10,
+          "code": "AIDE",
+          "name": "AI决策引擎"
+        },
+        {
+          "ordinal": 11,
+          "code": "VIZ",
+          "name": "高级可视化与交互"
+        },
+        {
+          "ordinal": 12,
+          "code": "PORD",
+          "name": "组合优化深度扩展"
+        },
+        {
+          "ordinal": 13,
+          "code": "RPA",
+          "name": "风险归因与绩效分析"
+        },
+        {
+          "ordinal": 14,
+          "code": "AID",
+          "name": "AI投顾深度扩展"
+        },
+        {
+          "ordinal": 15,
+          "code": "DAT",
+          "name": "数据层架构"
+        },
+        {
+          "ordinal": 16,
+          "code": "MDL",
+          "name": "模型层架构"
+        },
+        {
+          "ordinal": 17,
+          "code": "APP",
+          "name": "应用层架构"
+        },
+        {
+          "ordinal": 18,
+          "code": "INF",
+          "name": "基础设施层"
+        },
+        {
+          "ordinal": 19,
+          "code": "PRC",
+          "name": "优先股定价模型"
+        },
+        {
+          "ordinal": 20,
+          "code": "CRD",
+          "name": "优先股信用分析"
+        },
+        {
+          "ordinal": 21,
+          "code": "LIQ",
+          "name": "流动性深度分析"
+        },
+        {
+          "ordinal": 22,
+          "code": "CASE",
+          "name": "实战策略与案例"
+        },
+        {
+          "ordinal": 23,
+          "code": "SOP",
+          "name": "投资操作指南"
+        }
+      ],
+      "headings": [
+        "🏠 彭博功能主目录 ›",
+        "优先股深度分析系统",
+        "23 功能模块",
+        "核心分析 · 量化策略 · 组合优化",
+        "风险归因 · AI投顾 · 技术架构 · 深度模型",
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "{item.desc}",
+        "Indicates function uses Bloomberg AI technology · 所有模块支持实时数据可视化与投资决策辅助"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": false,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/PricingRiskMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录 › 定价与风险分析中心",
+        "23个深度功能模块",
+        "基础设施",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "定价模型",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "风险计量",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "信用与对手方",
+        "{item.number})"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": false,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/STPMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录 › 彭博直通式处理解决方案",
+        "交易记录",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "授权",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "社区",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "高级服务",
+        "{item.number})",
+        "{item.code}"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/SettingsToolsMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录 › 设定与实用工具",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": true
+    },
+    {
+      "component": "client/src/components/SovereignBondMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "{item.name}",
+        "{item.code})",
+        "{item.ticker}",
+        "{item.name}",
+        "{workflow.output}",
+        "当前市场",
+        "建议功能",
+        "WEI",
+        "世界股票指数",
+        "BTMM",
+        "评估全球利率",
+        "MenuId: 5434"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/StockMarketMenu.tsx",
+      "itemCount": 33,
+      "items": [
+        {
+          "ordinal": 1,
+          "code": null,
+          "name": "市场观测"
+        },
+        {
+          "ordinal": 2,
+          "code": "WEI",
+          "name": "全球股票指数"
+        },
+        {
+          "ordinal": 3,
+          "code": "FTW",
+          "name": "关注因子"
+        },
+        {
+          "ordinal": 4,
+          "code": "IMAP",
+          "name": "日内市场图"
+        },
+        {
+          "ordinal": 5,
+          "code": "EVTS",
+          "name": "大事日历"
+        },
+        {
+          "ordinal": 6,
+          "code": "TOP",
+          "name": "要闻精选"
+        },
+        {
+          "ordinal": 7,
+          "code": "TREN",
+          "name": "新闻趋势"
+        },
+        {
+          "ordinal": 8,
+          "code": null,
+          "name": "Top-Down分析"
+        },
+        {
+          "ordinal": 9,
+          "code": "EQS",
+          "name": "股票筛选"
+        },
+        {
+          "ordinal": 10,
+          "code": "EQBT",
+          "name": "股票回溯测试"
+        },
+        {
+          "ordinal": 11,
+          "code": "DS",
+          "name": "文件检索"
+        },
+        {
+          "ordinal": 12,
+          "code": "BI STOX",
+          "name": "彭博行业研究"
+        },
+        {
+          "ordinal": 13,
+          "code": "RES",
+          "name": "研究报告主页"
+        },
+        {
+          "ordinal": 14,
+          "code": "IN",
+          "name": "彭博指数浏览器"
+        },
+        {
+          "ordinal": 15,
+          "code": null,
+          "name": "投资组合管理与风险"
+        },
+        {
+          "ordinal": 16,
+          "code": "TLTS",
+          "name": "风险暴露倾向"
+        },
+        {
+          "ordinal": 17,
+          "code": "PORT",
+          "name": "投资组合与风险分析"
+        },
+        {
+          "ordinal": 18,
+          "code": null,
+          "name": "分析 IBM US Equity"
+        },
+        {
+          "ordinal": 19,
+          "code": null,
+          "name": "股票衍生品"
+        },
+        {
+          "ordinal": 20,
+          "code": "MOSO",
+          "name": "交易最活跃期权"
+        },
+        {
+          "ordinal": 21,
+          "code": null,
+          "name": "基金"
+        },
+        {
+          "ordinal": 22,
+          "code": "ETF",
+          "name": "交易型开放式指数基金"
+        },
+        {
+          "ordinal": 23,
+          "code": "FSRC",
+          "name": "基金筛选"
+        },
+        {
+          "ordinal": 24,
+          "code": "PE",
+          "name": "私募股权概览"
+        },
+        {
+          "ordinal": 25,
+          "code": null,
+          "name": "股票交易"
+        },
+        {
+          "ordinal": 26,
+          "code": "EMSX",
+          "name": "执行管理系统"
+        },
+        {
+          "ordinal": 27,
+          "code": null,
+          "name": "资本市场活动"
+        },
+        {
+          "ordinal": 28,
+          "code": "CACT",
+          "name": "公司大事检索"
+        },
+        {
+          "ordinal": 29,
+          "code": "MA",
+          "name": "兼并与收购"
+        },
+        {
+          "ordinal": 30,
+          "code": "IPO",
+          "name": "股票发行"
+        },
+        {
+          "ordinal": 31,
+          "code": null,
+          "name": "客户管理解决方案"
+        },
+        {
+          "ordinal": 32,
+          "code": null,
+          "name": "因子研究与量化策略"
+        },
+        {
+          "ordinal": 33,
+          "code": "FACTOR LAB",
+          "name": "全球因子研究实验室"
+        }
+      ],
+      "headings": [
+        "{item.num})",
+        "{item.code}",
+        "{item.name}",
+        "彭博功能主目录 ›",
+        "股市",
+        "{menuItems[0].map(renderMenuItem)}",
+        "{menuItems[1].map(renderMenuItem)}"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": true,
+      "usesLocationNavigation": false
+    },
+    {
+      "component": "client/src/components/TradeBookMenu.tsx",
+      "itemCount": 0,
+      "items": [],
+      "headings": [
+        "彭博功能主目录 › 交易账簿管理",
+        "{section.title}",
+        "{item.number})",
+        "{item.code}",
+        "{item.name}"
+      ],
+      "visibilitySignals": [],
+      "usesIndirectMenuHandler": false,
+      "usesLocationNavigation": true
+    }
+  ]
+}

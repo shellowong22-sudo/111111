@@ -1,0 +1,13 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {economicTab} from '../../shared/economicDataScopes';
+import {ECONOMIC_API_CONTRACTS} from '../../shared/economicApiContracts';
+import {WORLD_BANK_CONTRACTS} from '../../shared/worldBankContracts';
+const root='recovery-evidence/api-expansion-20260919';
+const menu=readFileSync('client/src/components/EconomicsMenu.tsx','utf8');
+const entries=[...menu.matchAll(/\{ num: (\d+), code: '([^']*)', name: '([^']*)'/g)].map(m=>({number:Number(m[1]),code:m[2],name:m[3],scope:economicTab(m[1])}));
+if(entries.length!==29)throw new Error('ECONOMIC_MENU_COUNT_CHANGED');
+const upgraded=new Set(['fcon','ecsu','fdsp','cbrt','tayl']);
+const rows=entries.map(e=>({...e,path:`/econ-hub?tab=${e.scope}`,apiContracts:[...ECONOMIC_API_CONTRACTS,...WORLD_BANK_CONTRACTS].filter(c=>c.primaryModuleId===`economic-${e.scope}`).map(c=>c.id),sameScopeEntries:entries.filter(other=>other.number!==e.number&&other.scope===e.scope).map(o=>o.number),status:upgraded.has(e.scope??'')?'部分真实输入已接入；仍有明确未接入的子功能':e.scope==='ectr'?'贸易差额已接入；其他8个子功能待升级':e.scope==='wfii'?'资本流动与FDI排名已接入；其他4个子功能待升级':'原内容保留；未完成数据层验收'}));
+writeFileSync(root+'/economic-29-checklist.json',JSON.stringify({generatedAt:new Date().toISOString(),count:rows.length,uniqueScopes:new Set(rows.map(r=>r.scope)).size,boundary:'菜单逐项登记；同scope表示路由同目标，不能据此声称内容已差异化。状态不代表所有字段验收。',rows},null,2));
+writeFileSync(root+'/official-api-dictionary.json',JSON.stringify([...ECONOMIC_API_CONTRACTS,...WORLD_BANK_CONTRACTS],null,2));
+console.log(JSON.stringify({menuCount:rows.length,uniqueScopes:new Set(rows.map(r=>r.scope)).size,duplicateScopeGroups:[...new Set(rows.filter(r=>r.sameScopeEntries.length).map(r=>r.scope))]}));

@@ -1,0 +1,9 @@
+https://cdn.cboe.com/api/global/delayed_quotes/options/AAPL.json
+https://cdn.cboe.com/api/global/delayed_quotes/quotes/_VIX.json
+https://cdn.cboe.com/api/global/delayed_quotes/options/_SPX.json
+https://data-api.ecb.europa.eu/service/data/FM/D.U2.EUR.4F.KR.DFR.LEV?lastNObservations=1&format=csvdata
+https://www.bing.com/news/search?q=%E8%8B%B9%E6%9E%9C+%E8%82%A1%E7%A5%A8&format=rss&cc=cn
+https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=5d
+https://api.frankfurter.app/latest?from=USD
+https://query1.finance.yahoo.com/v7/finance/options/AAPL
+https://www.boj.or.jp/en/statistics/boj/other/discount/index.htm

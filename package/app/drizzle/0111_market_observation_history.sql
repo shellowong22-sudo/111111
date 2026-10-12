@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `market_data_observation_history` (
+  `id` int AUTO_INCREMENT NOT NULL,
+  `module_id` varchar(96) NOT NULL,
+  `data_contract_id` varchar(128) NOT NULL,
+  `target_id` int,
+  `symbol` varchar(32) NOT NULL,
+  `observation_date` varchar(32) NOT NULL,
+  `observation_at` timestamp NULL,
+  `fetched_at` timestamp NOT NULL,
+  `source` varchar(160) NOT NULL,
+  `source_reference` varchar(1200),
+  `payload` json NOT NULL,
+  `content_hash` varchar(64) NOT NULL,
+  `schema_version` varchar(32) NOT NULL DEFAULT 'market-observation-v1',
+  `is_revision` boolean NOT NULL DEFAULT false,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT `market_data_observation_history_id` PRIMARY KEY(`id`),
+  UNIQUE KEY `market_observation_content_uq` (`module_id`,`data_contract_id`,`symbol`,`observation_date`,`content_hash`),
+  KEY `market_observation_symbol_date_idx` (`symbol`,`observation_date`),
+  KEY `market_observation_contract_idx` (`data_contract_id`,`created_at`)
+);

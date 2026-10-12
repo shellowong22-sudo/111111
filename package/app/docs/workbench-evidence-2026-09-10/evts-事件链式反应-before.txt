@@ -1,0 +1,119 @@
+- region "Notifications alt+T"
+- generic: B
+- heading "Finance Hub Terminal" [level=1]
+- paragraph: Professional Financial Terminal
+- textbox "输入代码或名称搜索行情（如 AAPL、US10Y）— 回车跳转"
+- button "6":
+  - generic: "6"
+- button "切换到日间模式":
+  - generic: NGT
+- button "Show keyboard shortcuts (Ctrl+/)":
+- button:
+- button:
+- generic: U
+- generic: 用户
+- button "市场":
+  - generic: 市场
+- button "主权债"
+- button "信用债"
+- button "抵押债"
+- button "货币市场"
+- button "地方债"
+- button "优先股"
+- button "权益与衍生品":
+  - generic: 权益与衍生品
+- button "股市"
+- button "大宗商品"
+- button "指数"
+- button "外汇"
+- button "衍生品"
+- button "通讯与社区":
+  - generic: 通讯与社区
+- button "新闻与研究":
+  - generic: 新闻与研究
+- button "经济分析":
+  - generic: 经济分析
+- button "专业应用":
+  - generic: 专业应用
+- button "投资组合管理与风险"
+- button "定价与风险分析"
+- button "交易委托管理"
+- button "电子交易界面"
+- button "STP"
+- button "交易账簿管理"
+- button "行业分组分析"
+- button "平台工具":
+  - generic: 平台工具
+- button "个性化工作台":
+  - generic: 个性化工作台
+- button "帮助与关于":
+  - generic: 帮助与关于
+- generic: 市场时段
+- generic: 按交易所与品种分别核验
+- generic: 数据时效见对应来源与观察时间
+- heading "EVTS 大事日历" [level=3]
+- button "Restore":
+- button "Close":
+- region "EVTS 研究工作区":
+  - generic: EVTS
+  - generic: 公开申报日历
+  - generic: 数据研究与分析工具统一入口 · 行情权限以来源状态为准
+  - tablist "EVTS 工作区":
+    - tab "数据研究"
+    - tab "分析工具" [selected]
+    - tab "字段与来源说明"
+  - tabpanel "分析工具":
+    - note: 原事件和影响样式不代表已验证的公司事件或市场冲击。 未注明真实来源的保留工具结果不得作为实时行情或交易依据。
+    - generic: EVTS
+    - generic: 事件驱动交易策略生成器
+    - generic: 5 个即将发生事件
+    - button "✕"
+    - tablist:
+      - tab "事件日历"
+      - tab "预期差量化"
+      - tab "历史相似回测"
+      - tab "事件链式反应" [active] [selected]
+    - tabpanel "事件链式反应":
+      - button "美联储意外降息50bp"
+      - button "中美关税升级至60%"
+      - text: 事件链式反应推演 — 美联储意外降息50bp
+      - generic: 触发事件
+      - generic: 美联储意外降息50bp
+      - generic: 概率
+      - generic: 100%
+      - generic: 1阶影响
+      - generic: 美元指数急跌1.5%
+      - generic: 概率
+      - generic: 88%
+      - generic: 美债收益率下行20bp
+      - generic: 概率
+      - generic: 92%
+      - generic: 黄金上涨2%+
+      - generic: 概率
+      - generic: 85%
+      - generic: 2阶影响
+      - generic: 新兴市场资金回流
+      - generic: 概率
+      - generic: 72%
+      - generic: 房地产板块估值修复
+      - generic: 概率
+      - generic: 78%
+      - generic: 科技成长股重新定价
+      - generic: 概率
+      - generic: 81%
+      - generic: 3阶影响
+      - generic: 大宗商品需求预期上修
+      - generic: 概率
+      - generic: 65%
+      - generic: 银行净息差收窄压力
+      - generic: 概率
+      - generic: 71%
+      - generic: 各阶影响概率分布
+      - generic: 基于事件链推演的交易建议
+      - generic: • 多头：房地产REITs（概率78%，平均涨幅5.2%）、公用事业（概率71%）
+      - generic: • 多头：黄金ETF（概率85%）、新兴市场ETF（概率72%）
+      - generic: • 空头：银行股（净息差收窄，概率71%）
+      - generic: • 对冲：买入美元看跌期权（概率88%，美元指数下行）
+- button "自选":
+  - text: 自选
+- generic: "25"

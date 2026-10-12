@@ -1,0 +1,120 @@
+- region "Notifications alt+T"
+- generic: B
+- heading "Finance Hub Terminal" [level=1]
+- paragraph: Professional Financial Terminal
+- textbox "输入代码或名称搜索行情（如 AAPL、US10Y）— 回车跳转"
+- button "6":
+  - generic: "6"
+- button "切换到日间模式":
+  - generic: NGT
+- button "Show keyboard shortcuts (Ctrl+/)":
+- button:
+- button:
+- generic: U
+- generic: 用户
+- button "市场":
+  - generic: 市场
+- button "主权债"
+- button "信用债"
+- button "抵押债"
+- button "货币市场"
+- button "地方债"
+- button "优先股"
+- button "权益与衍生品":
+  - generic: 权益与衍生品
+- button "股市"
+- button "大宗商品"
+- button "指数"
+- button "外汇"
+- button "衍生品"
+- button "通讯与社区":
+  - generic: 通讯与社区
+- button "新闻与研究":
+  - generic: 新闻与研究
+- button "经济分析":
+  - generic: 经济分析
+- button "专业应用":
+  - generic: 专业应用
+- button "投资组合管理与风险"
+- button "定价与风险分析"
+- button "交易委托管理"
+- button "电子交易界面"
+- button "STP"
+- button "交易账簿管理"
+- button "行业分组分析"
+- button "平台工具":
+  - generic: 平台工具
+- button "个性化工作台":
+  - generic: 个性化工作台
+- button "帮助与关于":
+  - generic: 帮助与关于
+- generic: 市场时段
+- generic: 按交易所与品种分别核验
+- generic: 数据时效见对应来源与观察时间
+- heading "EVTS 大事日历" [level=3]
+- button "Restore":
+- button "Close":
+- region "EVTS 研究工作区":
+  - generic: EVTS
+  - generic: 公开申报日历
+  - generic: 数据研究与分析工具统一入口 · 行情权限以来源状态为准
+  - tablist "EVTS 工作区":
+    - tab "数据研究"
+    - tab "分析工具" [selected]
+    - tab "字段与来源说明"
+  - tabpanel "分析工具":
+    - note: 原事件和影响样式不代表已验证的公司事件或市场冲击。 未注明真实来源的保留工具结果不得作为实时行情或交易依据。
+    - generic: EVTS
+    - generic: 事件驱动交易策略生成器
+    - generic: 5 个即将发生事件
+    - button "✕"
+    - tablist:
+      - tab "事件日历"
+      - tab "预期差量化" [active] [selected]
+      - tab "历史相似回测"
+      - tab "事件链式反应"
+    - tabpanel "预期差量化":
+      - generic: 多维预期差雷达 — 美联储利率决议
+      - generic: 蓝色=市场一致预期 | 橙色=实际信号读数
+      - generic: 期权IV vs 历史波动率背离
+      - generic: IV高于HV → 市场定价高于实际风险，可卖出波动率
+      - generic: 历史事件后各板块涨跌概率分布
+      - generic: 金融
+      - generic: 68%
+      - generic: 32%
+      - generic: +2.8%
+      - text: /
+      - generic: "-2.1%"
+      - generic: 房地产
+      - generic: 75%
+      - generic: 25%
+      - generic: +5.2%
+      - text: /
+      - generic: "-4.8%"
+      - generic: 科技
+      - generic: 62%
+      - generic: 38%
+      - generic: +3.5%
+      - text: /
+      - generic: "-3.2%"
+      - generic: 公用事业
+      - generic: 71%
+      - generic: 29%
+      - generic: +3.8%
+      - text: /
+      - generic: "-3.5%"
+      - generic: 消费
+      - generic: 58%
+      - generic: 42%
+      - generic: +2.1%
+      - text: /
+      - generic: "-1.8%"
+      - generic: 能源
+      - generic: 45%
+      - generic: 55%
+      - generic: +2.5%
+      - text: /
+      - generic: "-2.8%"
+- button "自选":
+  - text: 自选
+- generic: "0"
