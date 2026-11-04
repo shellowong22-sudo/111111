@@ -108,7 +108,7 @@ function cleanItem(i, kind) {
   const n = cStr(i.n, 30).trim(); if (!n) return null;
   const o = { id: SAFE_ID.test(i.id) ? i.id : uid(kind === 'shop' ? 's' : 'p'), n, q: cNum(i.q, 0, 100000, 0), u: cStr(i.u, 10), by: cStr(i.by, 80) };
   if (i.demo) o.demo = true;
-  if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); }
+  if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); if (Array.isArray(i.keys)) o.keys = i.keys.filter(x => typeof x === 'string').slice(0, 60).map(x => x.slice(0, 120)); }
   else o.exp = DATE_RE.test(i.exp) ? i.exp : '';
   return o;
 }
@@ -141,23 +141,25 @@ function stateDocs() {
   S.recipes.forEach(r => o['r-' + r.id] = r);
   S.shop.forEach(i => o['shop-' + i.id] = i);
   S.pantry.forEach(p => o['pantry-' + p.id] = p);
-  for (const [k, v] of Object.entries(prunePlan(S.plan))) { const b = v.b || [], l = v.l || [], d = v.d || []; if (b.length + l.length + d.length) o['plan-' + k] = { b, l, d }; }
+  for (const [k, v] of Object.entries(prunePlan(S.plan))) for (const m of ['b', 'l', 'd']) { const seen = {}; (v[m] || []).forEach((rid, i) => { const n = seen[rid] || 0; seen[rid] = n + 1; o[`pe-${k}-${m}-${rid}-${n}`] = { d: k, m, id: rid, o: i }; }); }
   for (const [m, v] of Object.entries(S.members || {})) o['member-' + memberKey(m)] = { ...v, mid: m };
   for (const [m, items] of Object.entries(S.log || {})) if (items.length) o['log-' + m] = { items };
   return o;
 }
 function stateFromDocs(docs) {
-  const raw = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: {} };
+  const raw = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: {} }; const pe = {};
   for (const [id, v] of Object.entries(docs)) {
     if (!v || typeof v !== 'object') continue;
     if (id === 'meta') { raw.favs = v.favs; raw.settings = v.settings; }
     else if (id.startsWith('r-')) raw.recipes.push(v);
     else if (id.startsWith('shop-')) raw.shop.push(v);
     else if (id.startsWith('pantry-')) raw.pantry.push(v);
+    else if (id.startsWith('pe-')) { if (DATE_RE.test(v.d) && ['b', 'l', 'd'].includes(v.m) && typeof v.id === 'string') (pe[v.d + '|' + v.m] = pe[v.d + '|' + v.m] || []).push(v); }
     else if (id.startsWith('plan-')) raw.plan[id.slice(5)] = v;
     else if (id.startsWith('member-')) raw.members[typeof v.mid === 'string' && v.mid ? v.mid : id.slice(7)] = v;
     else if (id.startsWith('log-')) raw.log[id.slice(4)] = v.items;
   }
+  for (const [key, list] of Object.entries(pe)) { const [d, m] = key.split('|'); const day = raw.plan[d] = raw.plan[d] || { b: [], l: [], d: [] }; day[m] = [...(Array.isArray(day[m]) ? day[m] : []), ...list.sort((a, b) => (a.o || 0) - (b.o || 0) || String(a.id).localeCompare(String(b.id))).map(e => e.id)]; }
   return cleanState(raw);
 }
 const LIM = { n: 0, max: 4, wait: [] };
@@ -207,6 +209,7 @@ const Store = {
     if (this.mode !== 'db') return;
     if (!this.loaded) { RT.pending = true; return; }
     if (this.canWrite === false) { toast('你而家只可以睇：要擁有人俾你編輯權限先改到'); if (Object.keys(this.docs).length) { S = stateFromDocs(this.docs); scheduleRefresh(); } return; }
+    S = cleanState(S);
     const want = stateDocs();
     for (const id in want) { const js = stable(want[id]); if (this.known[id] !== js) { this.known[id] = js; const body = JSON.parse(js); this.q(id, () => this.col().doc(id).set(body)); } }
     for (const id of Object.keys(this.known)) { if (!(id in want)) { delete this.known[id]; this.q(id, () => this.col().doc(id).delete()); } }
@@ -362,7 +365,7 @@ function autoWeek() {
 }
 
 /* ===== 購物清單 ===== */
-function addIngsToShop(r, factor = 1) {
+function addIngsToShop(r, factor = 1, key = '') {
   let n = 0;
   for (const ing of r.ings) {
     const cat = ing.cat || ingInfo(ing.n).cat;
@@ -370,18 +373,19 @@ function addIngsToShop(r, factor = 1) {
     const u = ing.u || ''; let q = ing.q ? Math.round(ing.q * factor * 100) / 100 : 0;
     if (q && /^(隻|個|條|粒|片|塊|棵|盒|罐|樽|包|扎|紮|束|碗|杯)$/.test(u)) q = Math.max(1, Math.ceil(q - 0.05));
     const it = S.shop.find(x => x.n === ing.n && (x.u || '') === u && !x.done);
-    if (it) { it.q = Math.round(((it.q || 0) + q) * 100) / 100; if (!it.from.includes(r.name)) it.from.push(r.name); }
-    else S.shop.push({ id: uid('s'), n: ing.n, q, u, cat: CATS[cat] ? cat : 'other', done: false, from: [r.name], by: RT.me || '', t: Date.now() + n });
+    if (it) { it.q = Math.round(((it.q || 0) + q) * 100) / 100; if (!it.from.includes(r.name)) it.from.push(r.name); if (key) it.keys = [...(it.keys || []), key]; }
+    else S.shop.push({ id: uid('s'), n: ing.n, q, u, cat: CATS[cat] ? cat : 'other', done: false, from: [r.name], by: RT.me || '', t: Date.now() + n, ...(key ? { keys: [key] } : {}) });
     n++;
   }
   return n;
 }
 function addDaysToShop(keys, silent) {
-  const ppl = S.settings.people || 2; let dishes = 0;
-  for (const k of keys) for (const id of dayIds(k)) { const r = getRecipe(id); addIngsToShop(r, ppl / (r.servings || ppl)); dishes++; }
+  const ppl = S.settings.people || 2; let dishes = 0, skipped = 0;
+  const added = new Set(S.shop.flatMap(i => i.keys || []));
+  for (const k of keys) { const seen = {}; for (const id of dayIds(k)) { const n = seen[id] || 0; seen[id] = n + 1; const key = `${k}|${id}|${n}`; if (added.has(key)) { skipped++; continue; } const r = getRecipe(id); addIngsToShop(r, ppl / (r.servings || ppl), key); added.add(key); dishes++; } }
   if (silent) return dishes;
-  if (!dishes) { toast('呢段時間未有餸，去餐單加菜先'); return 0; }
-  save(); toast(`已經將 ${dishes} 個餸嘅材料加入清單`);
+  if (!dishes) { toast(skipped ? `呢 ${skipped} 個餸嘅材料已經喺清單，唔會重複加` : '呢段時間未有餸，去餐單加菜先'); return 0; }
+  save(); toast(`已經將 ${dishes} 個餸嘅材料加入清單${skipped ? `（${skipped} 個加過咗，跳過）` : ''}`);
   return dishes;
 }
 function shopText() {

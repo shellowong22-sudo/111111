@@ -17,8 +17,14 @@ AI 功能（生成食譜、影相認食材、問鑊仔）就要喺 Claude 入面
   iPhone：Safari 撳「分享」→「加入主畫面」
   Android：Chrome 撳右上「⋮」→「加到主畫面」／「安裝應用程式」
 之後就好似一個 App 咁，冇網都開到。
+煮食模式會保持屏幕唔熄；不過手機鎖咗屏或者轉咗 App，計時器可能唔會響。
 
 ※ 直接喺手機開 index.html 檔未必行到，一定要放上網開網址。
+
+另一個方法：GitHub Pages（免費，之後 push 就自動更新）
+  repo 要設為 Public → Settings → Pages → Source 揀「Deploy from a branch」→
+  Branch 揀 main、資料夾揀 /docs → Save。一兩分鐘後就有網址。
+  repo 入面只有 App 程式，冇屋企資料，Public 都唔會洩露清單同餐單。
 
 
 二、全家即時同步（Firebase 免費，大約 10 分鐘，只需一個人做一次）

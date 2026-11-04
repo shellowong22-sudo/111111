@@ -27,11 +27,13 @@ function renderTools() {
         </form>
         <div class="list" id="pList" style="margin-top:12px"></div>
       </div>
+      <button class="card row wrap" style="grid-column:1/-1;text-align:left" data-act="famOpen"><span class="ic" style="width:44px;height:44px;flex:none;border:3px solid var(--ink);border-radius:14px;background:${iconBg('wok')};display:grid;place-items:center">${iconSVG('wok')}</span><div style="flex:1;min-width:160px"><h3>家庭共用、分享碼同備份</h3><div class="small muted">同屋企人同步、WhatsApp 傳清單、下載備份</div></div><span class="btn sm sun">打開</span></button>
       <div class="card" id="tTimer">
         <div class="sec-h"><span class="ic" style="background:${iconBg('egg')}">${iconSVG('egg')}</span><h3>計時器</h3></div>
         <div class="chips" style="margin-top:10px">${PRESETS.map(([l, m]) => `<button class="chip" data-act="stepTimer" data-l="${l}" data-s="${m * 60}">${l} ${m}′</button>`).join('')}</div>
         <form class="row" id="tAdd" style="gap:8px;margin-top:10px"><input class="inp" id="taL" placeholder="計乜？" aria-label="計時名稱"><input class="inp" id="taM" type="number" min="1" max="600" value="5" style="width:74px" aria-label="分鐘"><span class="small">分鐘</span><button class="btn pri sm" type="submit">${li('play')}開始</button></form>
         <div class="list" id="timerList" style="margin-top:10px"></div>
+        <div class="small muted" style="margin-top:8px">手機鎖咗屏或者轉咗去其他 App，計時器可能唔會響，煮緊嘢時開住呢頁就最穩陣。</div>
       </div>
       <div class="card" id="tWheel">
         <div class="sec-h"><span class="ic" style="background:${iconBg('plate')}">${iconSVG('plate')}</span><h3>今日食乜好？</h3></div>
@@ -446,7 +448,7 @@ function fillEditor(bd, r) {
     <button type="submit" class="btn pri block">${li('check')}儲存食譜</button>`;
   $('#edPhoto', bd).addEventListener('change', async e => {
     const file = e.target.files[0]; if (!file) return;
-    try { const b = await resizeImage(file, 640, .72); E.photo = await blobToDataURL(b); const cur = readEditor(bd); cur.photo = E.photo; fillEditor(bd, cur); }
+    try { let url = await blobToDataURL(await resizeImage(file, 640, .72)); if (url.length > 170000) url = await blobToDataURL(await resizeImage(file, 480, .6)); if (url.length > 170000) url = await blobToDataURL(await resizeImage(file, 360, .5)); E.photo = url; const cur = readEditor(bd); cur.photo = E.photo; fillEditor(bd, cur); }
     catch (er) { toast('開唔到呢張相'); }
   });
   f.onsubmit = e => { e.preventDefault(); submitEditor(bd); };
@@ -477,7 +479,10 @@ function submitEditor(bd) {
 }
 
 /* ===== 煮食模式 ===== */
-function openCook(id) { RT.cook = { id, i: 0 }; const ov = document.createElement('div'); ov.className = 'cook'; ov.id = 'cookOv'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '煮食模式'); document.body.appendChild(ov); drawCook(); }
+async function wakeOn() { try { if (navigator.wakeLock) RT.wake = await navigator.wakeLock.request('screen'); } catch (e) { RT.wake = null; } }
+function wakeOff() { try { RT.wake && RT.wake.release(); } catch (e) { } RT.wake = null; }
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && RT.cook) wakeOn(); });
+function openCook(id) { wakeOn(); RT.cook = { id, i: 0 }; const ov = document.createElement('div'); ov.className = 'cook'; ov.id = 'cookOv'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '煮食模式'); document.body.appendChild(ov); drawCook(); }
 function drawCook() {
   const ov = $('#cookOv'); if (!ov) return; const r = getRecipe(RT.cook.id); const i = RT.cook.i, s = r.steps[i], n = r.steps.length;
   ov.innerHTML = `<div class="row"><span style="width:54px;height:54px;flex:none;background:#fff;border-radius:16px;border:3px solid var(--ink)">${iconSVG(r.icon)}</span><div><h3 style="color:#fff">${esc(r.name)}</h3><div class="small">第 ${i + 1} 步，共 ${n} 步</div></div><button class="btn icon" style="margin-left:auto" data-act="cookClose" aria-label="收埋煮食模式">${li('x')}</button></div>
@@ -513,7 +518,7 @@ const ACTS = {
   shopRecipe: el => { const r = getRecipe(el.dataset.id); const n = addIngsToShop(r, RT.detail.serv / (r.servings || 1)); save(); toast(`加咗 ${n} 樣材料入清單`); },
   cook: el => openCook(el.dataset.id),
   cookStep: el => { RT.cook.i = Math.max(0, Math.min(getRecipe(RT.cook.id).steps.length - 1, RT.cook.i + Number(el.dataset.d))); drawCook(); },
-  cookClose: () => { $('#cookOv')?.remove(); RT.cook = null; },
+  cookClose: () => { $('#cookOv')?.remove(); RT.cook = null; wakeOff(); },
   editRecipe: el => { closeSheet(sheetOf(el)); openEditor(el.dataset.id); },
   copyRecipe: el => { const r = getRecipe(el.dataset.id); closeSheet(sheetOf(el)); const c = JSON.parse(JSON.stringify(r)); delete c.id; c.name = (r.name + '（我嘅版本）').slice(0, 30); c.src = 'me'; c.demo = false; openEditor(null, c); },
   delRecipe: el => {
@@ -645,6 +650,7 @@ const ACTS = {
     el.disabled = false; el.innerHTML = li('ai') + 'AI 估營養';
   },
 };
+document.addEventListener('pointerdown', () => ensureAudio(), { once: true, capture: true });
 document.addEventListener('click', e => { const el = e.target.closest('[data-act]'); if (!el || el.disabled) return; const fn = ACTS[el.dataset.act]; if (fn) fn(el, e); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { if ($('#cookOv')) ACTS.cookClose(); else closeSheet(); return; }

@@ -133,7 +133,7 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:30;display:grid;grid-tem
 .spacer{flex:1}
 .field{display:flex;flex-direction:column;gap:4px;min-width:0}
 .field label{font-family:var(--f-display);font-size:13.5px}
-.inp,select.inp,textarea.inp{width:100%;border:3px solid var(--ink);border-radius:14px;background:var(--paper);padding:8px 12px;font-size:15px;min-width:0}
+.inp,select.inp,textarea.inp{width:100%;border:3px solid var(--ink);border-radius:14px;background:var(--paper);padding:8px 12px;font-size:16px;min-width:0} /* 16px：iPhone 撳輸入框唔會自動放大 */
 textarea.inp{resize:vertical;min-height:70px}
 .inp:focus{outline:none;box-shadow:0 0 0 3px var(--sun)}
 .stepper{display:inline-flex;align-items:center;border:3px solid var(--ink);border-radius:99px;background:var(--paper);overflow:hidden}
@@ -852,7 +852,7 @@ function cleanItem(i, kind) {
   const n = cStr(i.n, 30).trim(); if (!n) return null;
   const o = { id: SAFE_ID.test(i.id) ? i.id : uid(kind === 'shop' ? 's' : 'p'), n, q: cNum(i.q, 0, 100000, 0), u: cStr(i.u, 10), by: cStr(i.by, 80) };
   if (i.demo) o.demo = true;
-  if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); }
+  if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); if (Array.isArray(i.keys)) o.keys = i.keys.filter(x => typeof x === 'string').slice(0, 60).map(x => x.slice(0, 120)); }
   else o.exp = DATE_RE.test(i.exp) ? i.exp : '';
   return o;
 }
@@ -885,23 +885,25 @@ function stateDocs() {
   S.recipes.forEach(r => o['r-' + r.id] = r);
   S.shop.forEach(i => o['shop-' + i.id] = i);
   S.pantry.forEach(p => o['pantry-' + p.id] = p);
-  for (const [k, v] of Object.entries(prunePlan(S.plan))) { const b = v.b || [], l = v.l || [], d = v.d || []; if (b.length + l.length + d.length) o['plan-' + k] = { b, l, d }; }
+  for (const [k, v] of Object.entries(prunePlan(S.plan))) for (const m of ['b', 'l', 'd']) { const seen = {}; (v[m] || []).forEach((rid, i) => { const n = seen[rid] || 0; seen[rid] = n + 1; o[`pe-${k}-${m}-${rid}-${n}`] = { d: k, m, id: rid, o: i }; }); }
   for (const [m, v] of Object.entries(S.members || {})) o['member-' + memberKey(m)] = { ...v, mid: m };
   for (const [m, items] of Object.entries(S.log || {})) if (items.length) o['log-' + m] = { items };
   return o;
 }
 function stateFromDocs(docs) {
-  const raw = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: {} };
+  const raw = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: {} }; const pe = {};
   for (const [id, v] of Object.entries(docs)) {
     if (!v || typeof v !== 'object') continue;
     if (id === 'meta') { raw.favs = v.favs; raw.settings = v.settings; }
     else if (id.startsWith('r-')) raw.recipes.push(v);
     else if (id.startsWith('shop-')) raw.shop.push(v);
     else if (id.startsWith('pantry-')) raw.pantry.push(v);
+    else if (id.startsWith('pe-')) { if (DATE_RE.test(v.d) && ['b', 'l', 'd'].includes(v.m) && typeof v.id === 'string') (pe[v.d + '|' + v.m] = pe[v.d + '|' + v.m] || []).push(v); }
     else if (id.startsWith('plan-')) raw.plan[id.slice(5)] = v;
     else if (id.startsWith('member-')) raw.members[typeof v.mid === 'string' && v.mid ? v.mid : id.slice(7)] = v;
     else if (id.startsWith('log-')) raw.log[id.slice(4)] = v.items;
   }
+  for (const [key, list] of Object.entries(pe)) { const [d, m] = key.split('|'); const day = raw.plan[d] = raw.plan[d] || { b: [], l: [], d: [] }; day[m] = [...(Array.isArray(day[m]) ? day[m] : []), ...list.sort((a, b) => (a.o || 0) - (b.o || 0) || String(a.id).localeCompare(String(b.id))).map(e => e.id)]; }
   return cleanState(raw);
 }
 const LIM = { n: 0, max: 4, wait: [] };
@@ -951,6 +953,7 @@ const Store = {
     if (this.mode !== 'db') return;
     if (!this.loaded) { RT.pending = true; return; }
     if (this.canWrite === false) { toast('你而家只可以睇：要擁有人俾你編輯權限先改到'); if (Object.keys(this.docs).length) { S = stateFromDocs(this.docs); scheduleRefresh(); } return; }
+    S = cleanState(S);
     const want = stateDocs();
     for (const id in want) { const js = stable(want[id]); if (this.known[id] !== js) { this.known[id] = js; const body = JSON.parse(js); this.q(id, () => this.col().doc(id).set(body)); } }
     for (const id of Object.keys(this.known)) { if (!(id in want)) { delete this.known[id]; this.q(id, () => this.col().doc(id).delete()); } }
@@ -1106,7 +1109,7 @@ function autoWeek() {
 }
 
 /* ===== 購物清單 ===== */
-function addIngsToShop(r, factor = 1) {
+function addIngsToShop(r, factor = 1, key = '') {
   let n = 0;
   for (const ing of r.ings) {
     const cat = ing.cat || ingInfo(ing.n).cat;
@@ -1114,18 +1117,19 @@ function addIngsToShop(r, factor = 1) {
     const u = ing.u || ''; let q = ing.q ? Math.round(ing.q * factor * 100) / 100 : 0;
     if (q && /^(隻|個|條|粒|片|塊|棵|盒|罐|樽|包|扎|紮|束|碗|杯)$/.test(u)) q = Math.max(1, Math.ceil(q - 0.05));
     const it = S.shop.find(x => x.n === ing.n && (x.u || '') === u && !x.done);
-    if (it) { it.q = Math.round(((it.q || 0) + q) * 100) / 100; if (!it.from.includes(r.name)) it.from.push(r.name); }
-    else S.shop.push({ id: uid('s'), n: ing.n, q, u, cat: CATS[cat] ? cat : 'other', done: false, from: [r.name], by: RT.me || '', t: Date.now() + n });
+    if (it) { it.q = Math.round(((it.q || 0) + q) * 100) / 100; if (!it.from.includes(r.name)) it.from.push(r.name); if (key) it.keys = [...(it.keys || []), key]; }
+    else S.shop.push({ id: uid('s'), n: ing.n, q, u, cat: CATS[cat] ? cat : 'other', done: false, from: [r.name], by: RT.me || '', t: Date.now() + n, ...(key ? { keys: [key] } : {}) });
     n++;
   }
   return n;
 }
 function addDaysToShop(keys, silent) {
-  const ppl = S.settings.people || 2; let dishes = 0;
-  for (const k of keys) for (const id of dayIds(k)) { const r = getRecipe(id); addIngsToShop(r, ppl / (r.servings || ppl)); dishes++; }
+  const ppl = S.settings.people || 2; let dishes = 0, skipped = 0;
+  const added = new Set(S.shop.flatMap(i => i.keys || []));
+  for (const k of keys) { const seen = {}; for (const id of dayIds(k)) { const n = seen[id] || 0; seen[id] = n + 1; const key = `${k}|${id}|${n}`; if (added.has(key)) { skipped++; continue; } const r = getRecipe(id); addIngsToShop(r, ppl / (r.servings || ppl), key); added.add(key); dishes++; } }
   if (silent) return dishes;
-  if (!dishes) { toast('呢段時間未有餸，去餐單加菜先'); return 0; }
-  save(); toast(`已經將 ${dishes} 個餸嘅材料加入清單`);
+  if (!dishes) { toast(skipped ? `呢 ${skipped} 個餸嘅材料已經喺清單，唔會重複加` : '呢段時間未有餸，去餐單加菜先'); return 0; }
+  save(); toast(`已經將 ${dishes} 個餸嘅材料加入清單${skipped ? `（${skipped} 個加過咗，跳過）` : ''}`);
   return dishes;
 }
 function shopText() {
@@ -1594,11 +1598,13 @@ function renderTools() {
         </form>
         <div class="list" id="pList" style="margin-top:12px"></div>
       </div>
+      <button class="card row wrap" style="grid-column:1/-1;text-align:left" data-act="famOpen"><span class="ic" style="width:44px;height:44px;flex:none;border:3px solid var(--ink);border-radius:14px;background:${iconBg('wok')};display:grid;place-items:center">${iconSVG('wok')}</span><div style="flex:1;min-width:160px"><h3>家庭共用、分享碼同備份</h3><div class="small muted">同屋企人同步、WhatsApp 傳清單、下載備份</div></div><span class="btn sm sun">打開</span></button>
       <div class="card" id="tTimer">
         <div class="sec-h"><span class="ic" style="background:${iconBg('egg')}">${iconSVG('egg')}</span><h3>計時器</h3></div>
         <div class="chips" style="margin-top:10px">${PRESETS.map(([l, m]) => `<button class="chip" data-act="stepTimer" data-l="${l}" data-s="${m * 60}">${l} ${m}′</button>`).join('')}</div>
         <form class="row" id="tAdd" style="gap:8px;margin-top:10px"><input class="inp" id="taL" placeholder="計乜？" aria-label="計時名稱"><input class="inp" id="taM" type="number" min="1" max="600" value="5" style="width:74px" aria-label="分鐘"><span class="small">分鐘</span><button class="btn pri sm" type="submit">${li('play')}開始</button></form>
         <div class="list" id="timerList" style="margin-top:10px"></div>
+        <div class="small muted" style="margin-top:8px">手機鎖咗屏或者轉咗去其他 App，計時器可能唔會響，煮緊嘢時開住呢頁就最穩陣。</div>
       </div>
       <div class="card" id="tWheel">
         <div class="sec-h"><span class="ic" style="background:${iconBg('plate')}">${iconSVG('plate')}</span><h3>今日食乜好？</h3></div>
@@ -2013,7 +2019,7 @@ function fillEditor(bd, r) {
     <button type="submit" class="btn pri block">${li('check')}儲存食譜</button>`;
   $('#edPhoto', bd).addEventListener('change', async e => {
     const file = e.target.files[0]; if (!file) return;
-    try { const b = await resizeImage(file, 640, .72); E.photo = await blobToDataURL(b); const cur = readEditor(bd); cur.photo = E.photo; fillEditor(bd, cur); }
+    try { let url = await blobToDataURL(await resizeImage(file, 640, .72)); if (url.length > 170000) url = await blobToDataURL(await resizeImage(file, 480, .6)); if (url.length > 170000) url = await blobToDataURL(await resizeImage(file, 360, .5)); E.photo = url; const cur = readEditor(bd); cur.photo = E.photo; fillEditor(bd, cur); }
     catch (er) { toast('開唔到呢張相'); }
   });
   f.onsubmit = e => { e.preventDefault(); submitEditor(bd); };
@@ -2044,7 +2050,10 @@ function submitEditor(bd) {
 }
 
 /* ===== 煮食模式 ===== */
-function openCook(id) { RT.cook = { id, i: 0 }; const ov = document.createElement('div'); ov.className = 'cook'; ov.id = 'cookOv'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '煮食模式'); document.body.appendChild(ov); drawCook(); }
+async function wakeOn() { try { if (navigator.wakeLock) RT.wake = await navigator.wakeLock.request('screen'); } catch (e) { RT.wake = null; } }
+function wakeOff() { try { RT.wake && RT.wake.release(); } catch (e) { } RT.wake = null; }
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && RT.cook) wakeOn(); });
+function openCook(id) { wakeOn(); RT.cook = { id, i: 0 }; const ov = document.createElement('div'); ov.className = 'cook'; ov.id = 'cookOv'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '煮食模式'); document.body.appendChild(ov); drawCook(); }
 function drawCook() {
   const ov = $('#cookOv'); if (!ov) return; const r = getRecipe(RT.cook.id); const i = RT.cook.i, s = r.steps[i], n = r.steps.length;
   ov.innerHTML = `<div class="row"><span style="width:54px;height:54px;flex:none;background:#fff;border-radius:16px;border:3px solid var(--ink)">${iconSVG(r.icon)}</span><div><h3 style="color:#fff">${esc(r.name)}</h3><div class="small">第 ${i + 1} 步，共 ${n} 步</div></div><button class="btn icon" style="margin-left:auto" data-act="cookClose" aria-label="收埋煮食模式">${li('x')}</button></div>
@@ -2080,7 +2089,7 @@ const ACTS = {
   shopRecipe: el => { const r = getRecipe(el.dataset.id); const n = addIngsToShop(r, RT.detail.serv / (r.servings || 1)); save(); toast(`加咗 ${n} 樣材料入清單`); },
   cook: el => openCook(el.dataset.id),
   cookStep: el => { RT.cook.i = Math.max(0, Math.min(getRecipe(RT.cook.id).steps.length - 1, RT.cook.i + Number(el.dataset.d))); drawCook(); },
-  cookClose: () => { $('#cookOv')?.remove(); RT.cook = null; },
+  cookClose: () => { $('#cookOv')?.remove(); RT.cook = null; wakeOff(); },
   editRecipe: el => { closeSheet(sheetOf(el)); openEditor(el.dataset.id); },
   copyRecipe: el => { const r = getRecipe(el.dataset.id); closeSheet(sheetOf(el)); const c = JSON.parse(JSON.stringify(r)); delete c.id; c.name = (r.name + '（我嘅版本）').slice(0, 30); c.src = 'me'; c.demo = false; openEditor(null, c); },
   delRecipe: el => {
@@ -2212,6 +2221,7 @@ const ACTS = {
     el.disabled = false; el.innerHTML = li('ai') + 'AI 估營養';
   },
 };
+document.addEventListener('pointerdown', () => ensureAudio(), { once: true, capture: true });
 document.addEventListener('click', e => { const el = e.target.closest('[data-act]'); if (!el || el.disabled) return; const fn = ACTS[el.dataset.act]; if (fn) fn(el, e); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { if ($('#cookOv')) ACTS.cookClose(); else closeSheet(); return; }
@@ -2483,6 +2493,12 @@ async function boot() {
   if (window.WZ_STANDALONE && 'serviceWorker' in navigator && location.protocol.startsWith('http')) { try { navigator.serviceWorker.register('sw.js').catch(() => { }); } catch (e) { } }
 }
 window.addEventListener('pagehide', () => Store.flushLocal());
+/* 獨立版：Android 返回鍵先閂面板 */
+if (window.WZ_STANDALONE) {
+  const mo = new MutationObserver(() => { const n = $$('#sheets .backdrop').length + ($('#cookOv') ? 1 : 0); while ((RT.backDepth || 0) < n) { try { history.pushState({ wzPanel: true }, '', location.href); } catch (e) { } RT.backDepth = (RT.backDepth || 0) + 1; } if (n < (RT.backDepth || 0)) { const k = RT.backDepth - n; RT.backDepth = n; RT.backSkip = true; try { history.go(-k); } catch (e) { RT.backSkip = false; } } });
+  mo.observe(document.body, { childList: true, subtree: false }); mo.observe($('#sheets'), { childList: true });
+  window.addEventListener('popstate', () => { if (RT.backSkip) { RT.backSkip = false; return; } if ((RT.backDepth || 0) > 0) { RT.backDepth--; if ($('#cookOv')) ACTS.cookClose(); else { const bd = $$('#sheets .backdrop').pop(); if (bd) { if (bd._onClose) bd._onClose(); bd.remove(); } } } });
+}
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') Store.flushLocal(); });
 window.addEventListener('hashchange', () => { const v = location.hash.slice(1); if (v.startsWith('join=')) { location.reload(); return; } if (v && v !== RT.view) show(v, false); });
 boot();

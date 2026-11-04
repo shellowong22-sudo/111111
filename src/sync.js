@@ -256,6 +256,12 @@ async function boot() {
   if (window.WZ_STANDALONE && 'serviceWorker' in navigator && location.protocol.startsWith('http')) { try { navigator.serviceWorker.register('sw.js').catch(() => { }); } catch (e) { } }
 }
 window.addEventListener('pagehide', () => Store.flushLocal());
+/* 獨立版：Android 返回鍵先閂面板 */
+if (window.WZ_STANDALONE) {
+  const mo = new MutationObserver(() => { const n = $$('#sheets .backdrop').length + ($('#cookOv') ? 1 : 0); while ((RT.backDepth || 0) < n) { try { history.pushState({ wzPanel: true }, '', location.href); } catch (e) { } RT.backDepth = (RT.backDepth || 0) + 1; } if (n < (RT.backDepth || 0)) { const k = RT.backDepth - n; RT.backDepth = n; RT.backSkip = true; try { history.go(-k); } catch (e) { RT.backSkip = false; } } });
+  mo.observe(document.body, { childList: true, subtree: false }); mo.observe($('#sheets'), { childList: true });
+  window.addEventListener('popstate', () => { if (RT.backSkip) { RT.backSkip = false; return; } if ((RT.backDepth || 0) > 0) { RT.backDepth--; if ($('#cookOv')) ACTS.cookClose(); else { const bd = $$('#sheets .backdrop').pop(); if (bd) { if (bd._onClose) bd._onClose(); bd.remove(); } } } });
+}
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') Store.flushLocal(); });
 window.addEventListener('hashchange', () => { const v = location.hash.slice(1); if (v.startsWith('join=')) { location.reload(); return; } if (v && v !== RT.view) show(v, false); });
 boot();
