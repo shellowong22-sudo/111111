@@ -157,7 +157,8 @@ function famHTML() {
     <div class="field" style="margin-top:14px"><label for="fbJoin">或者：屋企人已經設定好？貼上邀請碼／連結（iPhone 主畫面 App 請用呢度）</label><input id="fbJoin" class="inp" placeholder="WZFZ:… 或者 https://…#join=…"></div>
     <button class="btn" style="margin-top:8px" data-act="fbJoinGo">${li('people')}加入家庭</button></div>`;
   const share = `<div class="card" style="box-shadow:none"><div class="sec-h"><span class="ic" style="background:${iconBg('basket')}">${iconSVG('basket')}</span><div><h3>分享碼同備份</h3><div class="small muted">唔使任何帳戶：將清單、餐單、雪櫃同食譜變成一段文字，WhatsApp 傳俾屋企人，佢貼上就會合併</div></div></div>
-    <div class="row wrap" style="margin-top:10px"><button class="btn sm pri" data-act="shareCopy">${li('copy')}複製分享碼</button>${k !== 'claude' ? `<button class="btn sm" data-act="backupDl">${li('copy')}下載完整備份檔</button><label class="btn sm" for="backupFile" style="cursor:pointer">匯入備份檔</label><input id="backupFile" type="file" accept="application/json,.json" class="hide">` : ''}</div>
+    <div class="row wrap" style="margin-top:10px"><button class="btn sm pri" data-act="shareCopy">${li('copy')}複製分享碼</button><button class="btn sm" data-act="backupDl">${li('copy')}下載完整備份檔</button><label class="btn sm" for="backupFile" style="cursor:pointer">匯入備份檔</label><input id="backupFile" type="file" accept="application/json,.json" class="hide"></div>
+    <div class="small muted" style="margin-top:6px">備份檔包括所有食譜同相片，建議每個月下載一次，存喺你部電腦。</div>
     <div class="field" style="margin-top:10px"><label for="shareIn">貼上屋企人傳嚟嘅分享碼</label><textarea id="shareIn" class="inp" rows="3" placeholder="鑊仔食譜分享碼… WZ1Z:…"></textarea></div>
     <button class="btn sun" style="margin-top:8px" data-act="shareMerge">${li('check')}合併入我嘅資料</button></div>`;
   return `<div class="card ${db && Store.live ? 'tint' : ''}" style="box-shadow:none"><div class="row"><span style="width:52px;height:52px;flex:none">${iconSVG('wok')}</span><div><b>${Store.canWrite === false ? '你而家只可以睇' : head[0]}</b><div class="small muted">${head[1]}</div></div></div></div>
@@ -203,7 +204,14 @@ Object.assign(ACTS, {
     try { const inc = await unpackCode(t, 'WZ1'); const n = mergeIn(inc); save(); $('#shareIn', bd).value = ''; toast(n ? `合併咗 ${n} 樣嘢` : '冇新嘢要合併'); }
     catch (e) { toast(e && e.message === 'old' ? '呢部機嘅瀏覽器太舊，解唔到分享碼，請更新系統' : '搵唔到分享碼，請成段貼上'); }
   },
-  backupDl: () => downloadText(`鑊仔食譜備份-${TODAY()}.json`, JSON.stringify({ app: 'wokzai', v: 2, at: new Date().toISOString(), data: { recipes: S.recipes, favs: S.favs, plan: S.plan, shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log } })),
+  backupDl: async () => {
+    const name = `鑊仔食譜備份-${TODAY()}.json`; const text = JSON.stringify({ app: 'wokzai', v: 2, at: new Date().toISOString(), data: { recipes: S.recipes, favs: S.favs, plan: S.plan, shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log } });
+    if (Store.kind !== 'claude') { downloadText(name, text); return; }
+    let dl = null; try { dl = await window.claude.use('downloads'); } catch (e) { }
+    if (!dl) { toast('呢度暫時唔支援下載備份'); return; }
+    try { await dl.save({ filename: name, data: new Blob([text], { type: 'application/json' }) }); toast('備份檔儲存咗'); }
+    catch (e) { if (e && e.code === 'declined') return; toast(e && e.code === 'rate_limited' ? '等一陣再試' : '下載唔到備份檔'); }
+  },
   joinYes: el => { const bd = sheetOf(el); closeSheet(bd); joinWith(RT.joinCode); },
 });
 
@@ -243,7 +251,7 @@ async function boot() {
         RT.readyServer = true;
         if (RT.seed) { const extra = RT.seed.recipes.filter(r => !r.demo && !S.recipes.some(x => x.id === r.id)); RT.seed = null; if (extra.length) { S.recipes.push(...extra); Store.sync(); toast(`將你 ${extra.length} 個食譜加入咗家庭`); } }
       }
-      scheduleRefresh(); resolveNames();
+      scheduleRefresh(RT.snapDirty); resolveNames();
       if (first && RT.view === 'tools') setTimeout(renderTools, 0);
     });
   } else {

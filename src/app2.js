@@ -537,7 +537,7 @@ const ACTS = {
   shopDay: el => addDaysToShop([el.dataset.k]),
   shopWeek: () => addDaysToShop(weekKeys(RT.view === 'plan' ? RT.planDay : TODAY())),
   clearDay: el => undoable('清空咗呢日', () => { delete S.plan[el.dataset.k]; }),
-  shopToggle: el => { const it = S.shop.find(i => i.id === el.dataset.id); if (it) { it.done = !it.done; it.doneBy = it.done ? (RT.me || '') : ''; save(); } },
+  shopToggle: el => { const it = S.shop.find(i => i.id === el.dataset.id); if (it) { it.done = !it.done; it.doneBy = it.done ? (RT.me || '') : ''; if (it.done) it.doneAt = Date.now(); else delete it.doneAt; save(); } },
   shopDel: el => { const it = S.shop.find(i => i.id === el.dataset.id); undoable(`刪咗 ${it ? it.n : '一樣'}`, () => { S.shop = S.shop.filter(i => i.id !== el.dataset.id); }); },
   shopClearDone: () => { const n = S.shop.filter(i => i.done).length; if (!n) { toast('未有剔咗買咗嘅嘢'); return; } undoable(`清走咗 ${n} 樣已買`, () => { S.shop = S.shop.filter(i => !i.done); }); },
   shopClearAll: el => { if (!el.dataset.sure) { el.dataset.sure = '1'; el.textContent = '再撳確認'; return; } undoable('成張清單清走咗', () => { S.shop = []; }); },

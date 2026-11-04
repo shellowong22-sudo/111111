@@ -218,7 +218,12 @@ const ING_RULES = [
   [/粉|糖|酵母|茶葉|紅棗|蜜棗|杞子|乾/, 'basket', 'dry'],
   [/油|鹽|醬|醋|酒|豉|蠔油|胡椒|麻油|蜜糖|生抽|老抽|味精|雞粉|露/, 'sauce', 'sauce'],
 ];
+/* 簡體 → 繁體（食材常用字），等打簡體都配對到 */
+const S2T = (() => { const p = '鸡雞猪豬鱼魚虾蝦葱蔥姜薑萝蘿卜蔔面麵汤湯酱醬盐鹽烧燒饭飯饺餃云雲贝貝鲜鮮焖燜炖燉卤滷冻凍鸭鴨鹅鵝兰蘭蓝藍绿綠红紅黄黃苹蘋柠檸苋莧笋筍银銀带帶鲈鱸鲩鯇鱿魷蚝蠔蚬蜆鲍鮑参參丝絲线線条條块塊颗顆个個只隻两兩浆漿饼餅馒饅头頭卷捲卖賣肠腸腊臘熏燻咸鹹软軟烂爛热熱凉涼锅鍋炉爐滚滾凤鳳鸽鴿鳝鱔鳗鰻鲫鯽鲤鯉鳊鯿罗羅汉漢枣棗莲蓮药藥陈陳麦麥荞蕎叶葉炼煉挞撻节節马馬铃鈴灯燈笼籠车車干乾发發杂雜烩燴腌醃粮糧谷穀饮飲蛎蠣鳕鱈鲑鮭鲭鯖鲷鯛蛏蟶鳅鰍芦蘆荟薈碱鹼淀澱鲞鯗团糰圆圓鲮鯪鲳鯧鳟鱒鲶鯰龙龍须鬚'; const m = {}; for (let i = 0; i < p.length; i += 2) m[p[i]] = p[i + 1]; return m; })();
+const T_CACHE = new Map();
+function toTrad(s) { s = String(s || ''); let v = T_CACHE.get(s); if (v === undefined) { v = ''; for (const c of s) v += S2T[c] || c; if (T_CACHE.size > 5000) T_CACHE.clear(); T_CACHE.set(s, v); } return v; }
 function ingInfo(name) {
+  name = toTrad(name);
   for (const [re, icon, cat] of ING_RULES) if (re.test(name)) return { icon, cat };
   return { icon: 'basket', cat: 'other' };
 }

@@ -68,7 +68,7 @@ function allRecipes() { return [...S.recipes, ...LIB]; }
 function isFav(id) { return S.favs.includes(id); }
 function dayPlan(k) { const p = S.plan[k] || {}; return { b: p.b || [], l: p.l || [], d: p.d || [] }; }
 function dayIds(k) { const p = dayPlan(k); return [...p.b, ...p.l, ...p.d].filter(getRecipe); }
-function nameMatch(a, b) { return a === b || (b.length >= 2 && a.includes(b)) || (a.length >= 2 && b.includes(a)); }
+function nameMatch(a, b) { a = toTrad(a); b = toTrad(b); return a === b || (b.length >= 2 && a.includes(b)) || (a.length >= 2 && b.includes(a)); }
 function inPantry(n) { return S.pantry.some(p => nameMatch(n, p.n)); }
 function mainIngs(r) { return r.ings.filter(i => !['sauce', 'water'].includes(i.cat || ingInfo(i.n).cat)); }
 function ingIcons(r, n = 5) { const out = []; for (const i of r.ings) { const ic = ingInfo(i.n).icon; if (!['water', 'sauce', 'basket'].includes(ic) && !out.includes(ic)) out.push(ic); if (out.length >= n) break; } return out; }
@@ -78,10 +78,16 @@ function srcPill(r) {
   if (r.src === 'me') return '<span class="pill mint">我嘅</span>';
   return '';
 }
-function illHTML(r, cls = '') {
-  return `<div class="ill ${cls}" style="background:${iconBg(r.icon)}">${r.photo ? `<img src="${esc(r.photo)}" alt="${esc(r.name)}">` : iconSVG(r.icon)}<span class="src">${srcPill(r)}</span></div>`;
+const PH = new Map();
+function photoSrc(r) {
+  const p = r.photo; if (!p) return ''; const fp = fpStr(p); const c = PH.get(r.id); if (c && c.fp === fp) return c.url;
+  try { const i = p.indexOf(','); const mime = p.slice(5, p.indexOf(';')); const bin = atob(p.slice(i + 1)); const u8 = new Uint8Array(bin.length); for (let k = 0; k < bin.length; k++) u8[k] = bin.charCodeAt(k); const url = URL.createObjectURL(new Blob([u8], { type: mime })); if (c) URL.revokeObjectURL(c.url); PH.set(r.id, { fp, url }); return url; }
+  catch (e) { return p; }
 }
-function dishIc(r) { return `<span class="ic" style="background:${iconBg(r.icon)}">${r.photo ? `<img src="${esc(r.photo)}" alt="">` : iconSVG(r.icon)}</span>`; }
+function illHTML(r, cls = '') {
+  return `<div class="ill ${cls}" style="background:${iconBg(r.icon)}">${r.photo ? `<img src="${esc(photoSrc(r))}" alt="${esc(r.name)}" loading="lazy" decoding="async">` : iconSVG(r.icon)}<span class="src">${srcPill(r)}</span></div>`;
+}
+function dishIc(r) { return `<span class="ic" style="background:${iconBg(r.icon)}">${r.photo ? `<img src="${esc(photoSrc(r))}" alt="" loading="lazy" decoding="async">` : iconSVG(r.icon)}</span>`; }
 
 /* ===== 資料清洗：分享碼、備份、雲端資料都當係外來資料處理 ===== */
 const SAFE_ID = /^[A-Za-z0-9_-]{1,64}$/;
@@ -100,7 +106,7 @@ function cleanRecipe(r) {
     kcal: Math.round(cNum(r.kcal, 0, 5000, 0)), p: Math.round(cNum(r.p, 0, 500, 0)), c: Math.round(cNum(r.c, 0, 800, 0)), f: Math.round(cNum(r.f, 0, 500, 0)),
     tags: (Array.isArray(r.tags) ? r.tags : []).slice(0, 6).map(t => cStr(t, 10)).filter(Boolean), desc: cStr(r.desc, 200), tips: cStr(r.tips, 300),
     src: r.src === 'ai' ? 'ai' : 'me', created: cNum(r.created, 0, 1e15, 0), by: cStr(r.by, 80), demo: !!r.demo, ings, steps: steps.length ? steps : [{ t: '照自己習慣煮', min: 0 }] };
-  if (typeof r.photo === 'string' && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(r.photo) && r.photo.length < 400000) o.photo = r.photo;
+  const ph = r.photo; if (typeof ph === 'string' && ph.length < 400000 && /^data:image\/(jpeg|png|webp);base64,/.test(ph.slice(0, 40)) && ph.indexOf('"') < 0 && ph.indexOf('<') < 0 && ph.indexOf(' ') < 0 && ph.indexOf(')') < 0) o.photo = ph;
   return o;
 }
 function cleanItem(i, kind) {
@@ -108,7 +114,7 @@ function cleanItem(i, kind) {
   const n = cStr(i.n, 30).trim(); if (!n) return null;
   const o = { id: SAFE_ID.test(i.id) ? i.id : uid(kind === 'shop' ? 's' : 'p'), n, q: cNum(i.q, 0, 100000, 0), u: cStr(i.u, 10), by: cStr(i.by, 80) };
   if (i.demo) o.demo = true;
-  if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); if (Array.isArray(i.keys)) o.keys = i.keys.filter(x => typeof x === 'string').slice(0, 60).map(x => x.slice(0, 120)); }
+  if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); if (o.done) o.doneAt = cNum(i.doneAt, 0, 1e15, 0); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); if (Array.isArray(i.keys)) o.keys = i.keys.filter(x => typeof x === 'string').slice(0, 60).map(x => x.slice(0, 120)); }
   else o.exp = DATE_RE.test(i.exp) ? i.exp : '';
   return o;
 }
@@ -116,10 +122,12 @@ function cleanDay(v) { const o = {}; for (const m of ['b', 'l', 'd']) o[m] = (Ar
 function cleanMember(v) { return v && typeof v === 'object' ? { name: cStr(v.name, 12), icon: ICONS[v.icon] && v.icon !== 'wok' ? v.icon : 'bun', t: cNum(v.t, 0, 1e15, 0) } : null; }
 function cleanLog(a) { return (Array.isArray(a) ? a : []).slice(0, 1000).filter(e => e && DATE_RE.test(e.d) && SAFE_ID.test(e.id)).map(e => ({ d: e.d, id: e.id, by: cStr(e.by, 80) })); }
 function cleanSettings(v) { v = v && typeof v === 'object' ? v : {}; return { ...DEF_SETTINGS, people: Math.round(cNum(v.people, 1, 20, 2)), kcalRef: cNum(v.kcalRef, 500, 5000, 2000), avoid: cStr(v.avoid, 80), note: cStr(v.note, 80), demoCleared: !!v.demoCleared, ...(v.demoPlan && typeof v.demoPlan === 'object' ? { demoPlan: Object.fromEntries(Object.entries(v.demoPlan).filter(([k]) => DATE_RE.test(k)).map(([k, d]) => [k, cleanDay(d)])) } : {}), ...(Array.isArray(v.demoFavs) ? { demoFavs: v.demoFavs.filter(x => typeof x === 'string' && SAFE_ID.test(x)) } : {}) }; }
+const RC = new Map();
+function cleanRecipeMemo(r) { if (!r || typeof r !== 'object') return null; let sig; try { sig = stable(r); } catch (e) { return null; } const c = RC.get(r.id); if (c && c.sig === sig) return c.val; const val = cleanRecipe(r); if (val) RC.set(r.id, { sig, val }); return val; }
 function cleanState(d) {
   d = d && typeof d === 'object' ? d : {};
   const s = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: cleanSettings(d.settings), demo: false };
-  s.recipes = (Array.isArray(d.recipes) ? d.recipes : []).map(cleanRecipe).filter(Boolean).sort((a, b) => (b.created || 0) - (a.created || 0));
+  s.recipes = (Array.isArray(d.recipes) ? d.recipes : []).map(cleanRecipeMemo).filter(Boolean).sort((a, b) => (b.created || 0) - (a.created || 0));
   s.shop = (Array.isArray(d.shop) ? d.shop : []).map(i => cleanItem(i, 'shop')).filter(Boolean).map((i, k) => ({ ...i, t: i.t || k + 1 })).sort((a, b) => a.t - b.t);
   s.pantry = (Array.isArray(d.pantry) ? d.pantry : []).map(i => cleanItem(i, 'pantry')).filter(Boolean);
   s.favs = (Array.isArray(d.favs) ? d.favs : []).filter(x => typeof x === 'string' && SAFE_ID.test(x));
@@ -132,7 +140,8 @@ function cleanState(d) {
 /* ===== 儲存：雲端家庭共用（即時同步）／本機 ===== */
 const FAM = 'family';
 const DEF_SETTINGS = { people: 2, kcalRef: 2000, avoid: '', note: '' };
-function sortKeys(v) { if (Array.isArray(v)) return v.map(sortKeys); if (v && typeof v === 'object') { const o = {}; Object.keys(v).sort().forEach(k => { if (v[k] !== undefined) o[k] = sortKeys(v[k]); }); return o; } return v; }
+function fpStr(v) { if (v.length <= 2000) return v; let h = 0; const st = Math.max(1, Math.floor(v.length / 512)); for (let i = 0; i < v.length; i += st) h = (Math.imul(h, 31) + v.charCodeAt(i)) | 0; return `\u0000${v.length}:${h}:${v.slice(-64)}`; }
+function sortKeys(v) { if (typeof v === 'string') return fpStr(v); if (Array.isArray(v)) return v.map(sortKeys); if (v && typeof v === 'object') { const o = {}; Object.keys(v).sort().forEach(k => { if (v[k] !== undefined) o[k] = sortKeys(v[k]); }); return o; } return v; }
 const stable = v => JSON.stringify(sortKeys(v));
 const clone = v => JSON.parse(JSON.stringify(v));
 function localMid() { try { let m = localStorage.getItem('wokzai-mid'); if (!m) { m = 'd_' + uid(); localStorage.setItem('wokzai-mid', m); } return m; } catch (e) { return 'd_' + uid(); } }
@@ -204,7 +213,8 @@ const Store = {
     const timer = setTimeout(() => { if (!this.live) cb(null, { timeout: true }); }, 10000);
     this.unsub = this.col().onSnapshot(snap => {
       const docs = {}; snap.docs.forEach(d => { if (d.exists) docs[d.id] = d.data(); });
-      this.docs = docs; this.known = {}; for (const k in docs) this.known[k] = stable(docs[k]);
+      const old = this.known; const known = {}; const dirty = new Set(); for (const k in docs) { known[k] = stable(docs[k]); if (old[k] !== known[k]) dirty.add(secOf(k)); } for (const k in old) if (!(k in known)) dirty.add(secOf(k));
+      this.docs = docs; this.known = known; RT.snapDirty = dirty;
       if (!snap.metadata.fromCache) { this.live = true; clearTimeout(timer); }
       this.loaded = true; cb(docs, snap.metadata);
     }, err => { clearTimeout(timer); this.live = false; cb(null, { error: err }); });
@@ -227,7 +237,7 @@ const Store = {
     if (this.canWrite === false) { toast('你而家只可以睇：要擁有人俾你編輯權限先改到'); if (Object.keys(this.docs).length) { S = stateFromDocs(this.docs); scheduleRefresh(); } return; }
     S = cleanState(S);
     const want = stateDocs();
-    for (const id in want) { const js = stable(want[id]); if (this.known[id] !== js) { this.known[id] = js; const body = JSON.parse(js); this.q(id, () => this.col().doc(id).set(body)); } }
+    for (const id in want) { const js = stable(want[id]); if (this.known[id] !== js) { this.known[id] = js; const body = JSON.parse(JSON.stringify(want[id])); this.q(id, () => this.col().doc(id).set(body)); } }
     for (const id of Object.keys(this.known)) { if (!(id in want)) { delete this.known[id]; this.q(id, () => this.col().doc(id).delete()); } }
   },
   saveLocal() {
@@ -257,9 +267,15 @@ function handleSaveErr(e, key = '') {
   setSync('err');
 }
 function normalize(d) { return cleanState(d); }
-function save() { if (S.demo) S.demo = false; Store.sync(); refresh(); }
-let rfH = null;
-function scheduleRefresh() { if (rfH) return; rfH = requestAnimationFrame(() => { rfH = null; refresh(); rerenderDetail(); if (typeof updateFamSheet === 'function') updateFamSheet(); }); }
+function pruneOld() {
+  const now = Date.now(); S.shop = S.shop.filter(i => !(i.done && i.doneAt && now - i.doneAt > 30 * 864e5));
+  const lim = dkey(addDays(new Date(), -730)).slice(0, 7); for (const m in S.log) if (m < lim) delete S.log[m];
+}
+function save() { if (S.demo) S.demo = false; pruneOld(); Store.sync(); refresh(); }
+function secOf(id) { return id === 'meta' ? 'meta' : id.split('-')[0]; }
+const VIEW_DEPS = { recipes: ['r', 'meta'], plan: ['pe', 'plan', 'r', 'meta'], shop: ['shop', 'pantry', 'member', 'r'], stats: ['pe', 'plan', 'r', 'log', 'member', 'meta'], tools: ['pantry', 'r'], ai: [] };
+let rfH = null, rfDirty = null;
+function scheduleRefresh(dirty) { if (dirty) { if (rfDirty !== 'all') { rfDirty = rfDirty || new Set(); dirty.forEach(x => rfDirty.add(x)); } } else rfDirty = 'all'; if (rfH) return; rfH = requestAnimationFrame(() => { rfH = null; const d = rfDirty; rfDirty = null; if (d !== 'all' && !d.size) { setSync(); return; } const deps = VIEW_DEPS[RT.view]; if (d === 'all' || !deps || deps.some(x => d.has(x))) refresh(); else { updateBadges(); setSync(); } rerenderDetail(); if (typeof updateFamSheet === 'function') updateFamSheet(); }); }
 async function maybeMigrate() {
   if (Store.mode !== 'db' || !Store.uid || Store.canWrite === false) return false;
   try {
@@ -305,7 +321,7 @@ async function resolveNames() {
   try { const ps = await Store.user.profiles(need); let ch = false; for (const i of need) { const n = ps[i]?.name || ''; if (n && RT.pnames[i] !== n) { RT.pnames[i] = n; ch = true; } } if (ch) scheduleRefresh(); } catch (e) { }
 }
 function avoidList() { return String(S.settings.avoid || '').split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean); }
-function avoidHit(r) { const av = avoidList(); for (const a of av) if (r.name.includes(a) || r.ings.some(i => i.n.includes(a))) return a; return null; }
+function avoidHit(r) { const av = avoidList(); for (const a of av) { const t = toTrad(a); if (toTrad(r.name).includes(t) || r.ings.some(i => toTrad(i.n).includes(t))) return a; } return null; }
 function familyLine() { const a = avoidList(), n = String(S.settings.note || '').trim(); return [a.length ? `屋企人唔食：${a.join('、')}（一定唔可以用）` : '', n ? `屋企口味：${n}` : ''].filter(Boolean).join('\n'); }
 function logCooked(id) { const m = TODAY().slice(0, 7); S.log = S.log || {}; (S.log[m] = S.log[m] || []).push({ d: TODAY(), id, by: RT.me || '' }); save(); toast(`記低咗！今個月煮咗 ${S.log[m].length} 餐`); }
 
@@ -424,11 +440,11 @@ function toast(msg) {
   const box = $('#toast'); box.appendChild(t); while (box.children.length > 2) box.firstElementChild.remove(); setTimeout(() => t.remove(), 2600);
 }
 function undoable(msg, fn) {
-  const snap = clone({ recipes: S.recipes, favs: S.favs, plan: S.plan, shop: S.shop, pantry: S.pantry, members: S.members, log: S.log, settings: S.settings });
+  const photos = {}; const snap = JSON.stringify({ recipes: S.recipes, favs: S.favs, plan: S.plan, shop: S.shop, pantry: S.pantry, members: S.members, log: S.log, settings: S.settings }, (k, v) => { if (k === 'photo' && typeof v === 'string' && v.length > 2000) { const key = fpStr(v); photos[key] = v; return '\u0001' + key; } return v; });
   fn(); save();
   const box = $('#toast'); const t = document.createElement('div'); t.className = 'toast undo';
   const sp = document.createElement('span'); sp.textContent = msg; const bt = document.createElement('button'); bt.type = 'button'; bt.className = 'btn sm sun'; bt.textContent = '復原';
-  bt.onclick = () => { S = cleanState(snap); save(); t.remove(); rerenderDetail(); toast('復原咗'); };
+  bt.onclick = () => { S = cleanState(JSON.parse(snap, (k, v) => (k === 'photo' && typeof v === 'string' && v[0] === '\u0001') ? photos[v.slice(1)] : v)); save(); t.remove(); rerenderDetail(); toast('復原咗'); };
   t.append(sp, bt); box.appendChild(t); while (box.children.length > 2) box.firstElementChild.remove(); setTimeout(() => t.remove(), 6000);
 }
 function openSheet(title, html, { cls = '' } = {}) {
@@ -569,8 +585,8 @@ function filteredRecipes() {
   else if (f === 'lib') list = [...LIB];
   else list = allRecipes();
   if (RT.recType) list = list.filter(r => r.type === RT.recType);
-  const q = RT.recQ.trim();
-  if (q) list = list.filter(r => r.name.includes(q) || r.ings.some(i => i.n.includes(q)) || (r.tags || []).some(t => t.includes(q)));
+  const q = toTrad(RT.recQ.trim());
+  if (q) list = list.filter(r => toTrad(r.name).includes(q) || r.ings.some(i => toTrad(i.n).includes(q)) || (r.tags || []).some(t => toTrad(t).includes(q)) || toTrad(TYPES[r.type]?.label || '').includes(q));
   const s = RT.recSort;
   if (s === 'fast') list.sort((a, b) => a.time - b.time);
   else if (s === 'kcal') list.sort((a, b) => (a.kcal || 0) - (b.kcal || 0));
@@ -692,7 +708,7 @@ function openPicker(k, meal) {
     <input class="inp" id="pkQ" type="search" placeholder="搜尋食譜…" aria-label="搜尋食譜">
     <div class="list" id="pkList"></div>`);
   bd._pk = { k, meal, added: 0 };
-  const draw = () => { const q = $('#pkQ', bd).value.trim(); const list = allRecipes().filter(r => !q || r.name.includes(q) || r.ings.some(i => i.n.includes(q))).slice(0, 40); $('#pkList', bd).innerHTML = list.map(r => pickRow(r, `${TYPES[r.type]?.label || ''} · ${r.time} 分鐘`)).join(''); };
+  const draw = () => { const q = toTrad($('#pkQ', bd).value.trim()); const list = allRecipes().filter(r => !q || toTrad(r.name).includes(q) || r.ings.some(i => toTrad(i.n).includes(q))).slice(0, 40); $('#pkList', bd).innerHTML = list.map(r => pickRow(r, `${TYPES[r.type]?.label || ''} · ${r.time} 分鐘`)).join(''); };
   $('#pkQ', bd).addEventListener('input', draw); draw();
 }
 function pickRow(r, sub) { return `<div class="dish">${dishIc(r)}<div style="flex:1;min-width:0"><div class="nm">${esc(r.name)}</div><div class="sub">${esc(sub)}</div></div><button class="btn sm sun" data-act="pkAdd" data-id="${esc(r.id)}">${li('plus')}加</button></div>`; }
@@ -819,7 +835,7 @@ function renderStats() {
   const typeItems = TYPE_ORDER.map(t => ({ label: TYPES[t].label, icon: TYPES[t].icon, v: book.filter(r => r.type === t).length })).sort((a, b) => b.v - a.v);
   const weekDishes = per.flat();
   const srcList = weekDishes.length >= 3 ? weekDishes : book;
-  const cnt = {}; srcList.forEach(r => mainIngs(r).filter(i => ingInfo(i.n).icon !== 'basket').forEach(i => { const key = i.n.replace(/^(鮮|滑|乾)/, ''); cnt[key] = (cnt[key] || 0) + 1; }));
+  const cnt = {}; srcList.forEach(r => mainIngs(r).filter(i => ingInfo(i.n).icon !== 'basket').forEach(i => { const key = toTrad(i.n).replace(/^(鮮|滑|乾)/, ''); cnt[key] = (cnt[key] || 0) + 1; }));
   const topIng = Object.entries(cnt).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([n, v]) => ({ label: n, icon: ingInfo(n).icon, v }));
   const bk = [['≤15', 0, 15], ['16–30', 16, 30], ['31–45', 31, 45], ['46–60', 46, 60], ['60+', 61, 9999]];
   const hist = bk.map(([l, a, b]) => book.filter(r => r.time >= a && r.time <= b).length);
