@@ -12,7 +12,7 @@ ACTS.whoPick({dataset:{n:'阿媽', i:'eggtart'}});
 @ PHOTO
 @ await aiPhoto(); if(RT.ai.items.length!==2 || window.__aiImg!==1) throw 'photo items';
 @ const p0=S.pantry.length; ACTS.aiItemsPantry(); if(S.pantry.length!==p0+2) throw 'pantry';
-@ openRecipe('L03'); ACTS.serv({dataset:{d:'1'}}); ACTS.stepDone({dataset:{i:'0'}}); ACTS.shopRecipe({dataset:{id:'L03'}}); ACTS.fav({dataset:{id:'L03'}});
+@ openRecipe('L03'); ACTS.serv($('#sheets [data-act=serv][data-d="1"]')); ACTS.stepDone($('#sheets [data-act=stepDone]')); ACTS.shopRecipe({dataset:{id:'L03'}}); ACTS.fav({dataset:{id:'L03'}});
 @ await ACTS.copyText({dataset:{id:'L03'}}); if($$('#sheets .backdrop').length>1) closeSheet();
 @ await aiPair('L03', $$('#sheets .backdrop').pop()); if(!$('#aiPairOut [data-act=aiGenName]')) throw 'pair';
 @ await aiGenSheet('冬瓜湯'); const b=$$('#sheets .backdrop').pop(); ACTS.aiSave(b.querySelector('[data-act=aiSave]')); closeSheet(); closeSheet();

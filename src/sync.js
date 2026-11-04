@@ -81,6 +81,17 @@ function mergeIn(inc0) {
   S.shop.sort((a, b) => (a.t || 0) - (b.t || 0));
   return n;
 }
+async function shrinkPhoto(url, maxLen = 170000) {
+  for (const [w, q] of [[640, .72], [480, .6], [360, .5]]) {
+    try { const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; }); const s = Math.min(1, w / Math.max(img.width, img.height)); const cv = document.createElement('canvas'); cv.width = Math.round(img.width * s); cv.height = Math.round(img.height * s); cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height); const out = cv.toDataURL('image/jpeg', q); if (out.length <= maxLen) return out; } catch (e) { return null; }
+  }
+  return null;
+}
+async function shrinkBigPhotos() {
+  const big = S.recipes.filter(r => r.photo && r.photo.length > 170000); if (!big.length) return;
+  for (const r of big) { const p = await shrinkPhoto(r.photo); const cur = S.recipes.find(x => x.id === r.id); if (cur) { if (p) cur.photo = p; else delete cur.photo; } }
+  save();
+}
 function sharePayload() {
   const from = dkey(addDays(new Date(), -1)), to = dkey(addDays(new Date(), 14));
   const plan = {}; for (const k in S.plan) if (k >= from && k <= to) plan[k] = S.plan[k];
@@ -171,7 +182,7 @@ async function openFam() {
   const f = $('#backupFile', bd);
   if (f) f.addEventListener('change', async e => {
     const file = e.target.files[0]; if (!file) return;
-    try { const inc = JSON.parse(await file.text()); if (!inc || inc.app !== 'wokzai') throw 0; const n = mergeIn(inc.data || inc); save(); toast(`匯入咗 ${n} 樣嘢`); }
+    try { const inc = JSON.parse(await file.text()); if (!inc || inc.app !== 'wokzai') throw 0; const n = mergeIn(inc.data || inc); save(); toast(`匯入咗 ${n} 樣嘢`); shrinkBigPhotos(); }
     catch (er) { toast('呢個唔係鑊仔食譜嘅備份檔'); }
   });
   if (Store.kind === 'firebase') { bd._invite = await packCode({ c: Store.fam.c, f: Store.fam.f }, 'WZF'); drawQR($('#famQR', bd), inviteLink(bd._invite) || bd._invite); }
@@ -264,6 +275,10 @@ async function boot() {
   initAI();
   if (window.WZ_STANDALONE && 'serviceWorker' in navigator && location.protocol.startsWith('http')) { try { navigator.serviceWorker.register('sw.js').catch(() => { }); } catch (e) { } }
 }
+/* 過咗午夜自動轉去新一日 */
+RT.dayNow = TODAY();
+setInterval(() => { const t = TODAY(); if (t !== RT.dayNow) { const was = RT.dayNow; RT.dayNow = t; if (RT.planDay === was) RT.planDay = t; refresh(); } }, 30000);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && TODAY() !== RT.dayNow) { const was = RT.dayNow; RT.dayNow = TODAY(); if (RT.planDay === was) RT.planDay = RT.dayNow; refresh(); } });
 window.addEventListener('pagehide', () => Store.flushLocal());
 /* 獨立版：Android 返回鍵先閂面板 */
 if (window.WZ_STANDALONE) {

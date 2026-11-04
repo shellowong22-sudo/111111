@@ -263,7 +263,7 @@ function handleSaveErr(e, key = '') {
   else if (c === 'invalid_argument' && key.startsWith('r-')) toast('食譜存唔到：可能相片太大，試下換張細啲嘅');
   else if (c === 'invalid_argument') { Store.canWrite = false; toast(Store.kind === 'firebase' ? '同步服務唔俾寫入：檢查 Firestore 規則有冇貼啱' : '你冇權限改呢個家庭嘅資料（只可以睇）'); if (Object.keys(Store.docs).length) { S = stateFromDocs(Store.docs); scheduleRefresh(); } }
   else if (c === 'revoked') toast('儲存權限已經停咗');
-  else toast('儲存出錯，等陣再試');
+  else { if (!RT.retryT) { RT.retryT = setTimeout(() => { RT.retryT = null; Store.sync(); }, 5000 + Math.random() * 3000); toast('網絡唔穩定，稍後會自動再試'); } }
   setSync('err');
 }
 function normalize(d) { return cleanState(d); }
@@ -439,12 +439,18 @@ function toast(msg) {
   const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
   const box = $('#toast'); box.appendChild(t); while (box.children.length > 2) box.firstElementChild.remove(); setTimeout(() => t.remove(), 2600);
 }
+/* 復原：只還原今次改過嘅部分，屋企人同一時間改嘅嘢唔會被蓋 */
+function docsOf(state) { const keep = S; S = state; try { return stateDocs(); } finally { S = keep; } }
+function cloneDocs(docs) { const photos = {}; const json = JSON.stringify(docs, (k, v) => { if (k === 'photo' && typeof v === 'string' && v.length > 2000) { const key = fpStr(v); photos[key] = v; return '\u0001' + key; } return v; }); return JSON.parse(json, (k, v) => (k === 'photo' && typeof v === 'string' && v[0] === '\u0001') ? photos[v.slice(1)] : v); }
 function undoable(msg, fn) {
-  const photos = {}; const snap = JSON.stringify({ recipes: S.recipes, favs: S.favs, plan: S.plan, shop: S.shop, pantry: S.pantry, members: S.members, log: S.log, settings: S.settings }, (k, v) => { if (k === 'photo' && typeof v === 'string' && v.length > 2000) { const key = fpStr(v); photos[key] = v; return '\u0001' + key; } return v; });
+  const before = cloneDocs(docsOf(S));
   fn(); save();
+  const after = docsOf(S);
+  const changed = [...new Set([...Object.keys(before), ...Object.keys(after)])].filter(id => stable(before[id]) !== stable(after[id]));
+  if (!changed.length) return;
   const box = $('#toast'); const t = document.createElement('div'); t.className = 'toast undo';
   const sp = document.createElement('span'); sp.textContent = msg; const bt = document.createElement('button'); bt.type = 'button'; bt.className = 'btn sm sun'; bt.textContent = '復原';
-  bt.onclick = () => { S = cleanState(JSON.parse(snap, (k, v) => (k === 'photo' && typeof v === 'string' && v[0] === '\u0001') ? photos[v.slice(1)] : v)); save(); t.remove(); rerenderDetail(); toast('復原咗'); };
+  bt.onclick = () => { const cur = cloneDocs(docsOf(S)); for (const id of changed) { if (before[id] !== undefined) cur[id] = before[id]; else delete cur[id]; } S = stateFromDocs(cur); save(); t.remove(); rerenderDetail(); toast('復原咗'); };
   t.append(sp, bt); box.appendChild(t); while (box.children.length > 2) box.firstElementChild.remove(); setTimeout(() => t.remove(), 6000);
 }
 function openSheet(title, html, { cls = '' } = {}) {
@@ -456,7 +462,7 @@ function openSheet(title, html, { cls = '' } = {}) {
   return bd;
 }
 function closeSheet(bd) { bd = bd || $$('#sheets .backdrop').pop(); if (bd) { if (bd._onClose) bd._onClose(); bd.remove(); } }
-function sheetOf(el) { return el.closest('.backdrop'); }
+function sheetOf(el) { return el && el.closest ? el.closest('.backdrop') : null; }
 function stepper(act, val, label) { return `<span class="stepper" role="group" aria-label="${esc(label)}"><button data-act="${act}" data-d="-1" aria-label="減">−</button><span class="num">${val}</span><button data-act="${act}" data-d="1" aria-label="加">＋</button></span>`; }
 function ringSVG(p, label) {
   const r = 34, c = 2 * Math.PI * r, off = c * (1 - p);
@@ -626,24 +632,23 @@ function renderRecList() {
 /* ===== 食譜詳情 ===== */
 function openRecipe(id) {
   const r = getRecipe(id); if (!r) return;
-  RT.detail = { id, serv: S.settings.people || r.servings || 2, done: new Set() };
-  const bd = openSheet(r.name, detailHTML(r));
-  bd.dataset.detail = id;
-  bd._onClose = () => { RT.detail = null; };
+  const D = { id, serv: S.settings.people || r.servings || 2, done: new Set() };
+  const bd = openSheet(r.name, detailHTML(r, D));
+  bd.dataset.detail = id; bd._detail = D;
 }
-function rerenderDetail() {
-  if (!RT.detail) return;
-  const bd = $$('#sheets .backdrop').find(b => b.dataset.detail && b.dataset.detail === RT.detail.id); if (!bd) return;
-  const r = getRecipe(RT.detail.id); if (!r) { closeSheet(bd); return; }
+function rerenderSheet(bd) {
+  const D = bd && bd._detail; if (!D) return;
+  const r = getRecipe(D.id); if (!r) { closeSheet(bd); return; }
   const sh = bd.querySelector('.sheet'); const top = sh.scrollTop;
-  bd.querySelector('.body').innerHTML = detailHTML(r); sh.scrollTop = top;
+  bd.querySelector('.body').innerHTML = detailHTML(r, D); sh.scrollTop = top;
 }
+function rerenderDetail() { $$('#sheets .backdrop').filter(b => b._detail).forEach(rerenderSheet); }
 function nutBars(r) {
   const rows = [['蛋白質', r.p, 'var(--c-pro)', 40], ['碳水', r.c, 'var(--c-carb)', 90], ['脂肪', r.f, 'var(--c-fat)', 40]];
   return rows.map(([l, v, c, max]) => `<div class="nbar"><span>${l}</span><span class="track"><span class="fill" style="display:block;width:${Math.min(100, (v || 0) / max * 100)}%;background:${c}"></span></span><span class="num" style="text-align:right">${v || 0} 克</span></div>`).join('');
 }
-function detailHTML(r) {
-  const D = RT.detail; const factor = D.serv / (r.servings || 1); const mine = S.recipes.includes(r);
+function detailHTML(r, D) {
+  const factor = D.serv / (r.servings || 1); const mine = S.recipes.includes(r);
   const ctx = (() => { const k = TODAY(); const p = dayPlan(k); const m = ['b', 'l', 'd'].find(m => p[m].includes(r.id)); return m ? p[m] : [r.id]; })();
   const pr = pairings(r, ctx, 4);
   return `

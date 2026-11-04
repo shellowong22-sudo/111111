@@ -482,9 +482,9 @@ function submitEditor(bd) {
 async function wakeOn() { try { if (navigator.wakeLock) RT.wake = await navigator.wakeLock.request('screen'); } catch (e) { RT.wake = null; } }
 function wakeOff() { try { RT.wake && RT.wake.release(); } catch (e) { } RT.wake = null; }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && RT.cook) wakeOn(); });
-function openCook(id) { wakeOn(); RT.cook = { id, i: 0 }; const ov = document.createElement('div'); ov.className = 'cook'; ov.id = 'cookOv'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '煮食模式'); document.body.appendChild(ov); drawCook(); }
+function openCook(id) { if (!getRecipe(id)) return; $$('#cookOv').forEach(e => e.remove()); wakeOn(); RT.cook = { id, i: 0 }; const ov = document.createElement('div'); ov.className = 'cook'; ov.id = 'cookOv'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '煮食模式'); document.body.appendChild(ov); drawCook(); }
 function drawCook() {
-  const ov = $('#cookOv'); if (!ov) return; const r = getRecipe(RT.cook.id); const i = RT.cook.i, s = r.steps[i], n = r.steps.length;
+  const ov = $('#cookOv'); if (!ov) return; const r = RT.cook && getRecipe(RT.cook.id); if (!r) { ACTS.cookClose(); return; } const i = RT.cook.i, s = r.steps[i], n = r.steps.length;
   ov.innerHTML = `<div class="row"><span style="width:54px;height:54px;flex:none;background:#fff;border-radius:16px;border:3px solid var(--ink)">${iconSVG(r.icon)}</span><div><h3 style="color:#fff">${esc(r.name)}</h3><div class="small">第 ${i + 1} 步，共 ${n} 步</div></div><button class="btn icon" style="margin-left:auto" data-act="cookClose" aria-label="收埋煮食模式">${li('x')}</button></div>
   <div class="bar" style="margin:14px 0"><i style="width:${(i + 1) / n * 100}%"></i></div>
   <div class="big">${esc(s.t)}</div>
@@ -512,13 +512,13 @@ const ACTS = {
   apDay: el => { sheetOf(el)._ap.k = el.dataset.k; pressOnly(el, '[data-act=apDay]'); },
   apMeal: el => { sheetOf(el)._ap.m = el.dataset.m; pressOnly(el, '[data-act=apMeal]'); },
   apGo: el => { const bd = sheetOf(el); const { k, m } = bd._ap; S.plan[k] = { ...dayPlan(k), [m]: [...dayPlan(k)[m], el.dataset.id] }; save(); closeSheet(bd); toast(`加咗去${k === TODAY() ? '今日' : fmtDay(k)}${MEALS[m]}`); },
-  serv: el => { RT.detail.serv = Math.max(1, Math.min(30, RT.detail.serv + Number(el.dataset.d))); rerenderDetail(); },
-  stepDone: el => { const i = +el.dataset.i; const d = RT.detail.done; d.has(i) ? d.delete(i) : d.add(i); rerenderDetail(); },
+  serv: el => { const bd = sheetOf(el); const D = bd && bd._detail; if (!D) return; D.serv = Math.max(1, Math.min(30, D.serv + Number(el.dataset.d))); rerenderSheet(bd); },
+  stepDone: el => { const bd = sheetOf(el); const D = bd && bd._detail; if (!D) return; const i = +el.dataset.i; D.done.has(i) ? D.done.delete(i) : D.done.add(i); rerenderSheet(bd); },
   stepTimer: el => startTimer(el.dataset.l, +el.dataset.s),
-  shopRecipe: el => { const r = getRecipe(el.dataset.id); const n = addIngsToShop(r, RT.detail.serv / (r.servings || 1)); save(); toast(`加咗 ${n} 樣材料入清單`); },
+  shopRecipe: el => { const r = getRecipe(el.dataset.id); const n = addIngsToShop(r, (sheetOf(el)?._detail?.serv || r.servings || 1) / (r.servings || 1)); save(); toast(`加咗 ${n} 樣材料入清單`); },
   cook: el => openCook(el.dataset.id),
-  cookStep: el => { RT.cook.i = Math.max(0, Math.min(getRecipe(RT.cook.id).steps.length - 1, RT.cook.i + Number(el.dataset.d))); drawCook(); },
-  cookClose: () => { $('#cookOv')?.remove(); RT.cook = null; wakeOff(); },
+  cookStep: el => { if (!RT.cook || !getRecipe(RT.cook.id)) { ACTS.cookClose(); return; } RT.cook.i = Math.max(0, Math.min(getRecipe(RT.cook.id).steps.length - 1, RT.cook.i + Number(el.dataset.d))); drawCook(); },
+  cookClose: () => { $$('#cookOv').forEach(e => e.remove()); RT.cook = null; wakeOff(); },
   editRecipe: el => { closeSheet(sheetOf(el)); openEditor(el.dataset.id); },
   copyRecipe: el => { const r = getRecipe(el.dataset.id); closeSheet(sheetOf(el)); const c = JSON.parse(JSON.stringify(r)); delete c.id; c.name = (r.name + '（我嘅版本）').slice(0, 30); c.src = 'me'; c.demo = false; openEditor(null, c); },
   delRecipe: el => {
@@ -600,7 +600,7 @@ const ACTS = {
     save(); toast(`抄咗 ${n} 日嘅餐單過嚟`);
   },
   copyText: async el => {
-    const r = getRecipe(el.dataset.id); if (!r) return; const t = recipeText(r, RT.detail?.serv || r.servings || 2);
+    const r = getRecipe(el.dataset.id); if (!r) return; const t = recipeText(r, sheetOf(el)?._detail?.serv || r.servings || 2);
     try { await navigator.clipboard.writeText(t); toast('複製咗，可以貼去 WhatsApp'); }
     catch (e) { openSheet('複製食譜', `<textarea class="inp" rows="14" readonly aria-label="食譜文字">${esc(t)}</textarea><div class="small muted">長撳揀晒，再複製</div>`); }
   },
@@ -655,7 +655,7 @@ document.addEventListener('pointerdown', () => ensureAudio(), { once: true, capt
 document.addEventListener('click', e => { const el = e.target.closest('[data-act]'); if (!el || el.disabled) return; const fn = ACTS[el.dataset.act]; if (fn) fn(el, e); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { if ($('#cookOv')) ACTS.cookClose(); else closeSheet(); return; }
-  if ($('#cookOv') && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { RT.cook.i = Math.max(0, Math.min(getRecipe(RT.cook.id).steps.length - 1, RT.cook.i + (e.key === 'ArrowRight' ? 1 : -1))); drawCook(); return; }
+  if ($('#cookOv') && RT.cook && getRecipe(RT.cook.id) && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { RT.cook.i = Math.max(0, Math.min(getRecipe(RT.cook.id).steps.length - 1, RT.cook.i + (e.key === 'ArrowRight' ? 1 : -1))); drawCook(); return; }
   const t = e.target; if ((e.key === 'Enter' || e.key === ' ') && t.matches('[role=button][data-act]')) { e.preventDefault(); t.click(); }
 });
 /* 圖表提示 */
