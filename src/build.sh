@@ -1,5 +1,5 @@
 #!/bin/bash
-# 由 src/ 砌出兩個版本：claude/（Claude 入面用）同 site/（獨立網頁，Netlify 部署）
+# 由 src/ 砌出兩個版本：claude/（Claude 入面用）同 docs/（獨立網頁，GitHub Pages／Netlify 部署）
 set -e
 cd "$(dirname "$0")"
 TMP="$(mktemp --suffix=.js)"
@@ -20,7 +20,7 @@ extra = '''<link rel="manifest" href="manifest.webmanifest">
 '''
 s = s.replace('<title>鑊仔食譜</title>\n', '<title>鑊仔食譜</title>\n' + extra, 1)
 js = open(sys.argv[1], encoding='utf-8').read()
-open('../site/index.html', 'w', encoding='utf-8').write(s + '<script>window.WZ_STANDALONE=true;</script>\n<script>\n' + js + '\n</script>\n</body>\n</html>\n')
+open('../docs/index.html', 'w', encoding='utf-8').write(s + '<script>window.WZ_STANDALONE=true;</script>\n<script>\n' + js + '\n</script>\n</body>\n</html>\n')
 PY
 rm -f "$TMP"
-echo "砌好：claude/wokzai-recipes.html、site/index.html"
+echo "砌好：claude/wokzai-recipes.html、docs/index.html"

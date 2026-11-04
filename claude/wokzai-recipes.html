@@ -15,6 +15,7 @@
   --paper:#ffffff;
   --teal:#15a596;
   --teal-deep:#0b6f66;
+  --teal-fill:#0d7f74; /* 白字用嘅實心藍綠，對比度 ≥4.5 */
   --mint:#bdeee6;
   --sun:#ffd25e;
   --coral:#ff8f7a;
@@ -99,7 +100,7 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:30;display:grid;grid-tem
 .btn{color:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;border:3px solid var(--ink);border-radius:99px;background:var(--paper);padding:8px 16px;font-family:var(--f-display);font-size:15px;box-shadow:0 3px 0 var(--ink);transition:transform .08s,box-shadow .08s;white-space:nowrap;line-height:1.2}
 .btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--ink)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
-.btn.pri{background:var(--teal);color:#fff}
+.btn.pri{background:var(--teal-fill);color:#fff}
 .btn.sun{background:var(--sun)}
 .btn.coral{background:var(--coral)}
 .btn.sm{padding:5px 11px;font-size:13.5px;border-width:2.5px;box-shadow:0 2px 0 var(--ink)}
@@ -110,7 +111,7 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:30;display:grid;grid-tem
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chips.scroll{flex-wrap:nowrap;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
 .chip{border:2.5px solid var(--ink);border-radius:99px;background:var(--paper);padding:5px 12px;font-size:13.5px;font-family:var(--f-display);white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
-.chip[aria-pressed="true"],.chip.on{background:var(--teal);color:#fff}
+.chip[aria-pressed="true"],.chip.on{background:var(--teal-fill);color:#fff}
 .chip svg{width:20px;height:20px}
 .pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:2px 9px;border-radius:99px;border:2px solid var(--ink);background:var(--paper);font-family:var(--f-display);white-space:nowrap}
 .pill.mint{background:var(--mint)} .pill.sun{background:var(--sun)} .pill.coral{background:var(--coral)} .pill.ink{background:var(--ink);color:#fff}
@@ -152,9 +153,9 @@ textarea.inp{resize:vertical;min-height:70px}
 .fav.on{background:var(--coral)}
 
 /* 首頁 */
-.hero{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--teal);color:#fff;position:relative;overflow:hidden}
+.hero{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:#0f8579;color:#fff;position:relative;overflow:hidden}
 .hero h1{font-size:28px;color:#fff}
-.hero p{margin:4px 0 12px;color:#e6fffb}
+.hero p{margin:4px 0 12px;color:#fff}
 .hero .mascot{width:100%;height:100%;animation:bob 3s ease-in-out infinite}
 .hero .deco{position:absolute;width:44px;height:44px;opacity:.95}
 @keyframes bob{50%{transform:translateY(-6px) rotate(-3deg)}}
@@ -192,7 +193,7 @@ textarea.inp{resize:vertical;min-height:70px}
 .li.done{opacity:.55}
 .li.done .nm{text-decoration:line-through}
 .check{width:28px;height:28px;flex:none;border:3px solid var(--ink);border-radius:9px;background:var(--paper);display:grid;place-items:center;padding:0}
-.check[aria-checked="true"]{background:var(--teal)}
+.check[aria-checked="true"]{background:var(--teal-fill)}
 .check[aria-checked="true"]::after{content:"";width:12px;height:7px;border-left:3.5px solid #fff;border-bottom:3.5px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
 .cat-h{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-size:16px;margin-top:6px}
 .cat-h svg{width:34px;height:34px}
@@ -284,7 +285,7 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .icon-pick svg{width:100%;height:100%}
 .erow{display:grid;grid-template-columns:1fr 70px 70px 34px;gap:6px;align-items:center}
 .erow.st{grid-template-columns:1fr 64px 34px}
-.cook{position:fixed;inset:0;z-index:70;background:var(--teal);color:#fff;display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom))}
+.cook{position:fixed;inset:0;z-index:70;background:#0f8579;color:#fff;display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom))}
 .cook .big{font-family:var(--f-display);font-size:clamp(22px,5.5vw,34px);line-height:1.45;flex:1;display:flex;align-items:center;max-width:760px;margin:0 auto}
 .cook .bar{height:12px;border-radius:6px;background:rgba(255,255,255,.3);overflow:hidden;border:2px solid var(--ink)}
 .cook .bar i{display:block;height:100%;background:var(--sun)}
@@ -705,28 +706,29 @@ function demoState() {
       ['豬扒|2|塊', '白飯|2|碗', '番茄|3|個', '洋蔥|0.5|個', '芝士碎|80|克', '茄膏|2|湯匙', '雞蛋|2|隻'],
       ['豬扒拍鬆醃 15 分鐘，煎香切件。|15', '蛋炒飯鋪喺焗盤。|4', '炒番茄洋蔥加茄膏煮成汁，淋喺豬扒同飯面。|6', '鋪芝士，焗爐 220 度焗 10 分鐘。|10'], ''), src: 'ai', demo: true },
   ];
+  const plan = {
+    [today]: { b: ['L17'], l: ['L12'], d: ['L01', 'L09', 'L05'] },
+    [d1]: { b: [], l: [], d: ['L04', 'L13', 'U-demo1'] },
+    [d2]: { b: ['L21'], l: [], d: ['L03', 'L07', 'L08'] },
+  };
   return {
     recipes: mine,
     favs: ['L04', 'L09'],
-    plan: {
-      [today]: { b: ['L17'], l: ['L12'], d: ['L01', 'L09', 'L05'] },
-      [d1]: { b: [], l: [], d: ['L04', 'L13', 'U-demo1'] },
-      [d2]: { b: ['L21'], l: [], d: ['L03', 'L07', 'L08'] },
-    },
+    plan: JSON.parse(JSON.stringify(plan)),
     shop: [],
     pantry: [
-      { id: 'p1', n: '雞蛋', q: 6, u: '隻', exp: exp(12) },
-      { id: 'p2', n: '番茄', q: 2, u: '個', exp: exp(3) },
-      { id: 'p3', n: '菜心', q: 300, u: '克', exp: exp(1) },
-      { id: 'p4', n: '滑豆腐', q: 1, u: '盒', exp: exp(-1) },
-      { id: 'p5', n: '蔥', q: 3, u: '條', exp: exp(5) },
-      { id: 'p6', n: '薑', q: 1, u: '舊', exp: exp(20) },
-      { id: 'p7', n: '白米', q: 2, u: '公斤', exp: exp(120) },
-      { id: 'p8', n: '雞中翼', q: 12, u: '隻', exp: exp(2) },
-      { id: 'p9', n: '蒜頭', q: 1, u: '個', exp: exp(30) },
-      { id: 'p10', n: '生抽', q: 1, u: '樽', exp: exp(200) },
+      { id: 'p1', n: '雞蛋', q: 6, u: '隻', exp: exp(12), demo: true },
+      { id: 'p2', n: '番茄', q: 2, u: '個', exp: exp(3), demo: true },
+      { id: 'p3', n: '菜心', q: 300, u: '克', exp: exp(1), demo: true },
+      { id: 'p4', n: '滑豆腐', q: 1, u: '盒', exp: exp(-1), demo: true },
+      { id: 'p5', n: '蔥', q: 3, u: '條', exp: exp(5), demo: true },
+      { id: 'p6', n: '薑', q: 1, u: '舊', exp: exp(20), demo: true },
+      { id: 'p7', n: '白米', q: 2, u: '公斤', exp: exp(120), demo: true },
+      { id: 'p8', n: '雞中翼', q: 12, u: '隻', exp: exp(2), demo: true },
+      { id: 'p9', n: '蒜頭', q: 1, u: '個', exp: exp(30), demo: true },
+      { id: 'p10', n: '生抽', q: 1, u: '樽', exp: exp(200), demo: true },
     ],
-    settings: { people: 2, kcalRef: 2000, hideHave: false, avoid: '', note: '' },
+    settings: { people: 2, kcalRef: 2000, avoid: '', note: '', demoPlan: plan, demoFavs: ['L04', 'L09'] },
     members: {}, log: {},
     demo: true,
   };
@@ -793,7 +795,7 @@ function li(k, cls = '') { return `<svg class="${cls}" width="18" height="18" vi
 
 /* ===== 狀態 ===== */
 let S = demoState();
-const RT = { me: '', pnames: {}, view: 'home', planDay: TODAY(), recFilter: 'all', recType: '', recQ: '', recSort: 'new', wheelSrc: 'all', statsTable: {}, timers: [], ready: false, pending: false, detail: null };
+const RT = { hideHave: (() => { try { return localStorage.getItem('wokzai-hidehave') === '1'; } catch (e) { return false; } })(), me: '', pnames: {}, view: 'home', planDay: TODAY(), recFilter: 'all', recType: '', recQ: '', recSort: 'new', wheelSrc: 'all', statsTable: {}, timers: [], ready: false, pending: false, detail: null };
 const LS_KEY = 'wokzai-recipes-v1';
 
 function getRecipe(id) { return S.recipes.find(r => r.id === id) || LIB_MAP[id] || null; }
@@ -840,6 +842,7 @@ function cleanItem(i, kind) {
   if (!i || typeof i !== 'object') return null;
   const n = cStr(i.n, 30).trim(); if (!n) return null;
   const o = { id: SAFE_ID.test(i.id) ? i.id : uid(kind === 'shop' ? 's' : 'p'), n, q: cNum(i.q, 0, 100000, 0), u: cStr(i.u, 10), by: cStr(i.by, 80) };
+  if (i.demo) o.demo = true;
   if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); }
   else o.exp = DATE_RE.test(i.exp) ? i.exp : '';
   return o;
@@ -847,7 +850,7 @@ function cleanItem(i, kind) {
 function cleanDay(v) { const o = {}; for (const m of ['b', 'l', 'd']) o[m] = (Array.isArray(v && v[m]) ? v[m] : []).filter(x => typeof x === 'string' && SAFE_ID.test(x)).slice(0, 20); return o; }
 function cleanMember(v) { return v && typeof v === 'object' ? { name: cStr(v.name, 12), icon: ICONS[v.icon] && v.icon !== 'wok' ? v.icon : 'bun', t: cNum(v.t, 0, 1e15, 0) } : null; }
 function cleanLog(a) { return (Array.isArray(a) ? a : []).slice(0, 1000).filter(e => e && DATE_RE.test(e.d) && SAFE_ID.test(e.id)).map(e => ({ d: e.d, id: e.id, by: cStr(e.by, 80) })); }
-function cleanSettings(v) { v = v && typeof v === 'object' ? v : {}; return { ...DEF_SETTINGS, people: Math.round(cNum(v.people, 1, 20, 2)), kcalRef: cNum(v.kcalRef, 500, 5000, 2000), hideHave: !!v.hideHave, avoid: cStr(v.avoid, 80), note: cStr(v.note, 80), demoCleared: !!v.demoCleared }; }
+function cleanSettings(v) { v = v && typeof v === 'object' ? v : {}; return { ...DEF_SETTINGS, people: Math.round(cNum(v.people, 1, 20, 2)), kcalRef: cNum(v.kcalRef, 500, 5000, 2000), avoid: cStr(v.avoid, 80), note: cStr(v.note, 80), demoCleared: !!v.demoCleared, ...(v.demoPlan && typeof v.demoPlan === 'object' ? { demoPlan: Object.fromEntries(Object.entries(v.demoPlan).filter(([k]) => DATE_RE.test(k)).map(([k, d]) => [k, cleanDay(d)])) } : {}), ...(Array.isArray(v.demoFavs) ? { demoFavs: v.demoFavs.filter(x => typeof x === 'string' && SAFE_ID.test(x)) } : {}) }; }
 function cleanState(d) {
   d = d && typeof d === 'object' ? d : {};
   const s = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: cleanSettings(d.settings), demo: false };
@@ -863,7 +866,7 @@ function cleanState(d) {
 
 /* ===== 儲存：雲端家庭共用（即時同步）／本機 ===== */
 const FAM = 'family';
-const DEF_SETTINGS = { people: 2, kcalRef: 2000, hideHave: false, avoid: '', note: '' };
+const DEF_SETTINGS = { people: 2, kcalRef: 2000, avoid: '', note: '' };
 function sortKeys(v) { if (Array.isArray(v)) return v.map(sortKeys); if (v && typeof v === 'object') { const o = {}; Object.keys(v).sort().forEach(k => { if (v[k] !== undefined) o[k] = sortKeys(v[k]); }); return o; } return v; }
 const stable = v => JSON.stringify(sortKeys(v));
 const clone = v => JSON.parse(JSON.stringify(v));
@@ -945,11 +948,14 @@ const Store = {
   },
   saveLocal() {
     if (this.mode !== 'local') return;
-    clearTimeout(this.lt);
-    this.lt = setTimeout(() => {
-      try { localStorage.setItem(LS_KEY, JSON.stringify({ v: 2, init: true, favs: S.favs, plan: prunePlan(S.plan), shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log, recipes: S.recipes })); setSync(); }
-      catch (e) { toast('呢部機儲存空間唔夠，試下刪走啲相片'); }
-    }, 400);
+    clearTimeout(this.lt); this.ltPending = true;
+    this.lt = setTimeout(() => this.flushLocal(), 250);
+  },
+  flushLocal() {
+    if (this.mode !== 'local' || !this.ltPending) return;
+    clearTimeout(this.lt); this.ltPending = false;
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ v: 2, init: true, favs: S.favs, plan: prunePlan(S.plan), shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log, recipes: S.recipes })); setSync(); }
+    catch (e) { toast('呢部機儲存空間唔夠，試下刪走啲相片'); }
   },
 };
 function prunePlan(plan) { const lim = dkey(addDays(new Date(), -60)); const o = {}; for (const k in plan) if (k >= lim) o[k] = plan[k]; return o; }
@@ -1418,7 +1424,7 @@ function renderPlan() {
 /* ===== 購物清單 ===== */
 function renderShop() {
   const total = S.shop.length, done = S.shop.filter(i => i.done).length;
-  const hide = S.settings.hideHave;
+  const hide = RT.hideHave;
   const groups = CAT_ORDER.map(c => {
     let items = S.shop.filter(i => i.cat === c);
     if (hide) items = items.filter(i => !inPantry(i.n));
@@ -2088,7 +2094,7 @@ const ACTS = {
   shopDel: el => { S.shop = S.shop.filter(i => i.id !== el.dataset.id); save(); },
   shopClearDone: () => { const n = S.shop.filter(i => i.done).length; S.shop = S.shop.filter(i => !i.done); save(); toast(`清走咗 ${n} 樣`); },
   shopClearAll: el => { if (!el.dataset.sure) { el.dataset.sure = '1'; el.textContent = '再撳確認'; return; } S.shop = []; save(); },
-  hideHave: () => { S.settings.hideHave = !S.settings.hideHave; save(); },
+  hideHave: () => { RT.hideHave = !RT.hideHave; try { localStorage.setItem('wokzai-hidehave', RT.hideHave ? '1' : '0'); } catch (e) { } renderShop(); },
   shopCopy: async () => {
     const t = shopText();
     try { await navigator.clipboard.writeText(t); toast('複製咗，可以貼去 WhatsApp'); }
@@ -2096,8 +2102,14 @@ const ACTS = {
   },
   statsTbl: el => { const k = el.dataset.k; RT.statsTable[k] = !RT.statsTable[k]; renderStats(); },
   clearDemo: () => {
-    S.recipes = S.recipes.filter(r => !r.demo); S.plan = {}; S.pantry = []; S.shop = []; S.favs = []; S.settings.demoCleared = true;
-    save(); toast('清走咗示範資料，由零開始');
+    const dp = S.settings.demoPlan || {}, df = S.settings.demoFavs || [];
+    const demoIds = S.recipes.filter(r => r.demo).map(r => r.id);
+    S.recipes = S.recipes.filter(r => !r.demo); S.pantry = S.pantry.filter(p => !p.demo); S.shop = S.shop.filter(i => !i.demo);
+    S.favs = S.favs.filter(f => !df.includes(f) && !demoIds.includes(f));
+    for (const [k, d] of Object.entries(dp)) { if (!S.plan[k]) continue; const p = dayPlan(k); for (const m of ['b', 'l', 'd']) for (const id of d[m] || []) { const i = p[m].indexOf(id); if (i >= 0) p[m].splice(i, 1); } S.plan[k] = p; }
+    for (const k in S.plan) for (const m of ['b', 'l', 'd']) if (S.plan[k][m]) S.plan[k][m] = S.plan[k][m].filter(id => !demoIds.includes(id));
+    delete S.settings.demoPlan; delete S.settings.demoFavs; S.settings.demoCleared = true;
+    save(); toast('清走咗示範資料，你自己加嘅嘢保留晒');
   },
   keepDemo: () => { S.settings.demoCleared = true; save(); },
   wheelGo: () => { show('tools'); scrollToEl('#tWheel'); },
@@ -2267,6 +2279,7 @@ async function unpackCode(text, tag) {
   const m = String(text || '').match(new RegExp(`${tag}([ZJ]):([A-Za-z0-9_-]+)`));
   if (!m) throw new Error('nocode');
   let bytes = unb64u(m[2]);
+  if (m[1] === 'Z' && !window.DecompressionStream) throw new Error('old');
   if (m[1] === 'Z') { const st = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw')); bytes = new Uint8Array(await new Response(st).arrayBuffer()); }
   return JSON.parse(new TextDecoder().decode(bytes));
 }
@@ -2298,9 +2311,17 @@ async function shareText() {
   const left = S.shop.filter(i => !i.done);
   return `鑊仔食譜分享碼：喺 App 撳「家庭共用」→「貼上分享碼」就會合併清單、餐單、雪櫃同食譜。\n${left.length ? `（仲有 ${left.length} 樣未買：${left.slice(0, 8).map(i => i.n).join('、')}${left.length > 8 ? '…' : ''}）\n` : ''}${code}`;
 }
-async function copyOrShow(text, title) {
-  try { await navigator.clipboard.writeText(text); toast('複製咗，可以貼去 WhatsApp'); }
-  catch (e) { openSheet(title, `<textarea class="inp" rows="10" readonly aria-label="${esc(title)}">${esc(text)}</textarea><div class="small muted">長撳揀晒，再複製</div>`); }
+async function copyOrShow(textOrPromise, title) {
+  const p = Promise.resolve(textOrPromise);
+  try {
+    if (typeof textOrPromise !== 'string' && window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+      await navigator.clipboard.write([new ClipboardItem({ 'text/plain': p.then(t => new Blob([t], { type: 'text/plain' })) })]);
+    } else { await navigator.clipboard.writeText(await p); }
+    toast('複製咗，可以貼去 WhatsApp');
+  } catch (e) {
+    let text = ''; try { text = await p; } catch (er) { toast('整唔到內容'); return; }
+    openSheet(title, `<textarea class="inp" rows="10" readonly aria-label="${esc(title)}">${esc(text)}</textarea><div class="small muted">長撳揀晒，再複製</div>`);
+  }
 }
 function downloadText(name, text) {
   try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' })); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000); toast('備份檔下載緊'); }
@@ -2376,14 +2397,14 @@ async function joinWith(text) {
   let v; try { v = await unpackCode(String(text).replace(/^.*#join=/, ''), 'WZF'); } catch (e) { toast('邀請碼唔啱，請再複製一次'); return; }
   if (!v || !v.c || !v.c.apiKey || !v.f) { toast('邀請碼唔完整'); return; }
   if (Store.kind === 'claude') { toast('喺 Claude 入面已經有家庭共用，唔使用邀請碼'); return; }
-  if (fbCfgSave({ c: v.c, f: v.f })) { Store.saveLocal(); toast('加入緊家庭…'); setTimeout(() => location.reload(), 600); }
+  if (fbCfgSave({ c: v.c, f: v.f })) { Store.saveLocal(); Store.flushLocal(); toast('加入緊家庭…'); setTimeout(() => location.reload(), 600); }
 }
 Object.assign(ACTS, {
   fbCopyRules: () => copyOrShow(FB_RULES, 'Firestore 規則'),
   fbCreate: el => {
     const bd = sheetOf(el); const c = parseFbConfig($('#fbCfg', bd).value);
     if (!c) { toast('搵唔到 apiKey 同 projectId，請成段 firebaseConfig 貼上'); return; }
-    if (fbCfgSave({ c, f: randCode(22) })) { Store.saveLocal(); toast('建立緊家庭，你嘅資料會一齊搬上去…'); setTimeout(() => location.reload(), 800); }
+    if (fbCfgSave({ c, f: randCode(22) })) { Store.saveLocal(); Store.flushLocal(); toast('建立緊家庭，你嘅資料會一齊搬上去…'); setTimeout(() => location.reload(), 800); }
   },
   fbJoinGo: el => { const v = $('#fbJoin', sheetOf(el)).value.trim(); if (!v) { toast('貼上邀請碼先'); return; } joinWith(v); },
   fbCopyLink: el => { const bd = sheetOf(el); const l = inviteLink(bd._invite); if (!l) { toast('要放上網先有連結，可以用邀請碼'); return; } copyOrShow(`加入我哋屋企嘅鑊仔食譜：\n${l}`, '邀請連結'); },
@@ -2393,11 +2414,11 @@ Object.assign(ACTS, {
     try { localStorage.setItem(LS_KEY, JSON.stringify({ v: 2, init: true, favs: S.favs, plan: prunePlan(S.plan), shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log, recipes: S.recipes })); localStorage.removeItem(FB_KEY); } catch (e) { }
     toast('離開咗家庭，資料留咗一份喺呢部機'); setTimeout(() => location.reload(), 700);
   },
-  shareCopy: async () => { try { copyOrShow(await shareText(), '分享碼'); } catch (e) { toast('整唔到分享碼'); } },
+  shareCopy: () => copyOrShow(shareText(), '分享碼'),
   shareMerge: async el => {
     const bd = sheetOf(el); const t = $('#shareIn', bd).value;
     try { const inc = await unpackCode(t, 'WZ1'); const n = mergeIn(inc); save(); $('#shareIn', bd).value = ''; toast(n ? `合併咗 ${n} 樣嘢` : '冇新嘢要合併'); }
-    catch (e) { toast('搵唔到分享碼，請成段貼上'); }
+    catch (e) { toast(e && e.message === 'old' ? '呢部機嘅瀏覽器太舊，解唔到分享碼，請更新系統' : '搵唔到分享碼，請成段貼上'); }
   },
   backupDl: () => downloadText(`鑊仔食譜備份-${TODAY()}.json`, JSON.stringify({ app: 'wokzai', v: 2, at: new Date().toISOString(), data: { recipes: S.recipes, favs: S.favs, plan: S.plan, shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log } })),
   joinYes: el => { const bd = sheetOf(el); closeSheet(bd); joinWith(RT.joinCode); },
@@ -2410,7 +2431,7 @@ async function boot() {
   $('header.top').insertBefore(chip, $('#sync'));
   let h = location.hash.slice(1);
   if (h.startsWith('join=')) { RT.joinCode = decodeURIComponent(h.slice(5)); h = 'home'; try { history.replaceState(null, '', location.pathname + location.search + '#home'); } catch (e) { } }
-  if (S.demo) addDaysToShop([TODAY()], true);
+  if (S.demo) { addDaysToShop([TODAY()], true); S.shop.forEach(i => { i.demo = true; }); }
   restoreTimers();
   show(VIEWS.some(x => x[0] === h) ? h : 'home', false);
   setSync();
@@ -2452,6 +2473,8 @@ async function boot() {
   initAI();
   if (window.WZ_STANDALONE && 'serviceWorker' in navigator && location.protocol.startsWith('http')) { try { navigator.serviceWorker.register('sw.js').catch(() => { }); } catch (e) { } }
 }
+window.addEventListener('pagehide', () => Store.flushLocal());
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') Store.flushLocal(); });
 window.addEventListener('hashchange', () => { const v = location.hash.slice(1); if (v.startsWith('join=')) { location.reload(); return; } if (v && v !== RT.view) show(v, false); });
 boot();
 </script>

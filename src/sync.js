@@ -61,6 +61,7 @@ async function unpackCode(text, tag) {
   const m = String(text || '').match(new RegExp(`${tag}([ZJ]):([A-Za-z0-9_-]+)`));
   if (!m) throw new Error('nocode');
   let bytes = unb64u(m[2]);
+  if (m[1] === 'Z' && !window.DecompressionStream) throw new Error('old');
   if (m[1] === 'Z') { const st = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw')); bytes = new Uint8Array(await new Response(st).arrayBuffer()); }
   return JSON.parse(new TextDecoder().decode(bytes));
 }
@@ -92,9 +93,17 @@ async function shareText() {
   const left = S.shop.filter(i => !i.done);
   return `鑊仔食譜分享碼：喺 App 撳「家庭共用」→「貼上分享碼」就會合併清單、餐單、雪櫃同食譜。\n${left.length ? `（仲有 ${left.length} 樣未買：${left.slice(0, 8).map(i => i.n).join('、')}${left.length > 8 ? '…' : ''}）\n` : ''}${code}`;
 }
-async function copyOrShow(text, title) {
-  try { await navigator.clipboard.writeText(text); toast('複製咗，可以貼去 WhatsApp'); }
-  catch (e) { openSheet(title, `<textarea class="inp" rows="10" readonly aria-label="${esc(title)}">${esc(text)}</textarea><div class="small muted">長撳揀晒，再複製</div>`); }
+async function copyOrShow(textOrPromise, title) {
+  const p = Promise.resolve(textOrPromise);
+  try {
+    if (typeof textOrPromise !== 'string' && window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+      await navigator.clipboard.write([new ClipboardItem({ 'text/plain': p.then(t => new Blob([t], { type: 'text/plain' })) })]);
+    } else { await navigator.clipboard.writeText(await p); }
+    toast('複製咗，可以貼去 WhatsApp');
+  } catch (e) {
+    let text = ''; try { text = await p; } catch (er) { toast('整唔到內容'); return; }
+    openSheet(title, `<textarea class="inp" rows="10" readonly aria-label="${esc(title)}">${esc(text)}</textarea><div class="small muted">長撳揀晒，再複製</div>`);
+  }
 }
 function downloadText(name, text) {
   try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' })); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000); toast('備份檔下載緊'); }
@@ -170,14 +179,14 @@ async function joinWith(text) {
   let v; try { v = await unpackCode(String(text).replace(/^.*#join=/, ''), 'WZF'); } catch (e) { toast('邀請碼唔啱，請再複製一次'); return; }
   if (!v || !v.c || !v.c.apiKey || !v.f) { toast('邀請碼唔完整'); return; }
   if (Store.kind === 'claude') { toast('喺 Claude 入面已經有家庭共用，唔使用邀請碼'); return; }
-  if (fbCfgSave({ c: v.c, f: v.f })) { Store.saveLocal(); toast('加入緊家庭…'); setTimeout(() => location.reload(), 600); }
+  if (fbCfgSave({ c: v.c, f: v.f })) { Store.saveLocal(); Store.flushLocal(); toast('加入緊家庭…'); setTimeout(() => location.reload(), 600); }
 }
 Object.assign(ACTS, {
   fbCopyRules: () => copyOrShow(FB_RULES, 'Firestore 規則'),
   fbCreate: el => {
     const bd = sheetOf(el); const c = parseFbConfig($('#fbCfg', bd).value);
     if (!c) { toast('搵唔到 apiKey 同 projectId，請成段 firebaseConfig 貼上'); return; }
-    if (fbCfgSave({ c, f: randCode(22) })) { Store.saveLocal(); toast('建立緊家庭，你嘅資料會一齊搬上去…'); setTimeout(() => location.reload(), 800); }
+    if (fbCfgSave({ c, f: randCode(22) })) { Store.saveLocal(); Store.flushLocal(); toast('建立緊家庭，你嘅資料會一齊搬上去…'); setTimeout(() => location.reload(), 800); }
   },
   fbJoinGo: el => { const v = $('#fbJoin', sheetOf(el)).value.trim(); if (!v) { toast('貼上邀請碼先'); return; } joinWith(v); },
   fbCopyLink: el => { const bd = sheetOf(el); const l = inviteLink(bd._invite); if (!l) { toast('要放上網先有連結，可以用邀請碼'); return; } copyOrShow(`加入我哋屋企嘅鑊仔食譜：\n${l}`, '邀請連結'); },
@@ -187,11 +196,11 @@ Object.assign(ACTS, {
     try { localStorage.setItem(LS_KEY, JSON.stringify({ v: 2, init: true, favs: S.favs, plan: prunePlan(S.plan), shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log, recipes: S.recipes })); localStorage.removeItem(FB_KEY); } catch (e) { }
     toast('離開咗家庭，資料留咗一份喺呢部機'); setTimeout(() => location.reload(), 700);
   },
-  shareCopy: async () => { try { copyOrShow(await shareText(), '分享碼'); } catch (e) { toast('整唔到分享碼'); } },
+  shareCopy: () => copyOrShow(shareText(), '分享碼'),
   shareMerge: async el => {
     const bd = sheetOf(el); const t = $('#shareIn', bd).value;
     try { const inc = await unpackCode(t, 'WZ1'); const n = mergeIn(inc); save(); $('#shareIn', bd).value = ''; toast(n ? `合併咗 ${n} 樣嘢` : '冇新嘢要合併'); }
-    catch (e) { toast('搵唔到分享碼，請成段貼上'); }
+    catch (e) { toast(e && e.message === 'old' ? '呢部機嘅瀏覽器太舊，解唔到分享碼，請更新系統' : '搵唔到分享碼，請成段貼上'); }
   },
   backupDl: () => downloadText(`鑊仔食譜備份-${TODAY()}.json`, JSON.stringify({ app: 'wokzai', v: 2, at: new Date().toISOString(), data: { recipes: S.recipes, favs: S.favs, plan: S.plan, shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log } })),
   joinYes: el => { const bd = sheetOf(el); closeSheet(bd); joinWith(RT.joinCode); },
@@ -204,7 +213,7 @@ async function boot() {
   $('header.top').insertBefore(chip, $('#sync'));
   let h = location.hash.slice(1);
   if (h.startsWith('join=')) { RT.joinCode = decodeURIComponent(h.slice(5)); h = 'home'; try { history.replaceState(null, '', location.pathname + location.search + '#home'); } catch (e) { } }
-  if (S.demo) addDaysToShop([TODAY()], true);
+  if (S.demo) { addDaysToShop([TODAY()], true); S.shop.forEach(i => { i.demo = true; }); }
   restoreTimers();
   show(VIEWS.some(x => x[0] === h) ? h : 'home', false);
   setSync();
@@ -246,5 +255,7 @@ async function boot() {
   initAI();
   if (window.WZ_STANDALONE && 'serviceWorker' in navigator && location.protocol.startsWith('http')) { try { navigator.serviceWorker.register('sw.js').catch(() => { }); } catch (e) { } }
 }
+window.addEventListener('pagehide', () => Store.flushLocal());
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') Store.flushLocal(); });
 window.addEventListener('hashchange', () => { const v = location.hash.slice(1); if (v.startsWith('join=')) { location.reload(); return; } if (v && v !== RT.view) show(v, false); });
 boot();

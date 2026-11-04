@@ -1,6 +1,6 @@
 # Netlify：連接呢個 repo 之後，每次 push 都會自動更新網站
 [build]
-  publish = "site"
+  publish = "docs"
 
 [[headers]]
   for = "/sw.js"

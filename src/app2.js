@@ -536,7 +536,7 @@ const ACTS = {
   shopDel: el => { S.shop = S.shop.filter(i => i.id !== el.dataset.id); save(); },
   shopClearDone: () => { const n = S.shop.filter(i => i.done).length; S.shop = S.shop.filter(i => !i.done); save(); toast(`清走咗 ${n} 樣`); },
   shopClearAll: el => { if (!el.dataset.sure) { el.dataset.sure = '1'; el.textContent = '再撳確認'; return; } S.shop = []; save(); },
-  hideHave: () => { S.settings.hideHave = !S.settings.hideHave; save(); },
+  hideHave: () => { RT.hideHave = !RT.hideHave; try { localStorage.setItem('wokzai-hidehave', RT.hideHave ? '1' : '0'); } catch (e) { } renderShop(); },
   shopCopy: async () => {
     const t = shopText();
     try { await navigator.clipboard.writeText(t); toast('複製咗，可以貼去 WhatsApp'); }
@@ -544,8 +544,14 @@ const ACTS = {
   },
   statsTbl: el => { const k = el.dataset.k; RT.statsTable[k] = !RT.statsTable[k]; renderStats(); },
   clearDemo: () => {
-    S.recipes = S.recipes.filter(r => !r.demo); S.plan = {}; S.pantry = []; S.shop = []; S.favs = []; S.settings.demoCleared = true;
-    save(); toast('清走咗示範資料，由零開始');
+    const dp = S.settings.demoPlan || {}, df = S.settings.demoFavs || [];
+    const demoIds = S.recipes.filter(r => r.demo).map(r => r.id);
+    S.recipes = S.recipes.filter(r => !r.demo); S.pantry = S.pantry.filter(p => !p.demo); S.shop = S.shop.filter(i => !i.demo);
+    S.favs = S.favs.filter(f => !df.includes(f) && !demoIds.includes(f));
+    for (const [k, d] of Object.entries(dp)) { if (!S.plan[k]) continue; const p = dayPlan(k); for (const m of ['b', 'l', 'd']) for (const id of d[m] || []) { const i = p[m].indexOf(id); if (i >= 0) p[m].splice(i, 1); } S.plan[k] = p; }
+    for (const k in S.plan) for (const m of ['b', 'l', 'd']) if (S.plan[k][m]) S.plan[k][m] = S.plan[k][m].filter(id => !demoIds.includes(id));
+    delete S.settings.demoPlan; delete S.settings.demoFavs; S.settings.demoCleared = true;
+    save(); toast('清走咗示範資料，你自己加嘅嘢保留晒');
   },
   keepDemo: () => { S.settings.demoCleared = true; save(); },
   wheelGo: () => { show('tools'); scrollToEl('#tWheel'); },

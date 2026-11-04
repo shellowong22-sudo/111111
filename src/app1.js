@@ -60,7 +60,7 @@ function li(k, cls = '') { return `<svg class="${cls}" width="18" height="18" vi
 
 /* ===== 狀態 ===== */
 let S = demoState();
-const RT = { me: '', pnames: {}, view: 'home', planDay: TODAY(), recFilter: 'all', recType: '', recQ: '', recSort: 'new', wheelSrc: 'all', statsTable: {}, timers: [], ready: false, pending: false, detail: null };
+const RT = { hideHave: (() => { try { return localStorage.getItem('wokzai-hidehave') === '1'; } catch (e) { return false; } })(), me: '', pnames: {}, view: 'home', planDay: TODAY(), recFilter: 'all', recType: '', recQ: '', recSort: 'new', wheelSrc: 'all', statsTable: {}, timers: [], ready: false, pending: false, detail: null };
 const LS_KEY = 'wokzai-recipes-v1';
 
 function getRecipe(id) { return S.recipes.find(r => r.id === id) || LIB_MAP[id] || null; }
@@ -107,6 +107,7 @@ function cleanItem(i, kind) {
   if (!i || typeof i !== 'object') return null;
   const n = cStr(i.n, 30).trim(); if (!n) return null;
   const o = { id: SAFE_ID.test(i.id) ? i.id : uid(kind === 'shop' ? 's' : 'p'), n, q: cNum(i.q, 0, 100000, 0), u: cStr(i.u, 10), by: cStr(i.by, 80) };
+  if (i.demo) o.demo = true;
   if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); }
   else o.exp = DATE_RE.test(i.exp) ? i.exp : '';
   return o;
@@ -114,7 +115,7 @@ function cleanItem(i, kind) {
 function cleanDay(v) { const o = {}; for (const m of ['b', 'l', 'd']) o[m] = (Array.isArray(v && v[m]) ? v[m] : []).filter(x => typeof x === 'string' && SAFE_ID.test(x)).slice(0, 20); return o; }
 function cleanMember(v) { return v && typeof v === 'object' ? { name: cStr(v.name, 12), icon: ICONS[v.icon] && v.icon !== 'wok' ? v.icon : 'bun', t: cNum(v.t, 0, 1e15, 0) } : null; }
 function cleanLog(a) { return (Array.isArray(a) ? a : []).slice(0, 1000).filter(e => e && DATE_RE.test(e.d) && SAFE_ID.test(e.id)).map(e => ({ d: e.d, id: e.id, by: cStr(e.by, 80) })); }
-function cleanSettings(v) { v = v && typeof v === 'object' ? v : {}; return { ...DEF_SETTINGS, people: Math.round(cNum(v.people, 1, 20, 2)), kcalRef: cNum(v.kcalRef, 500, 5000, 2000), hideHave: !!v.hideHave, avoid: cStr(v.avoid, 80), note: cStr(v.note, 80), demoCleared: !!v.demoCleared }; }
+function cleanSettings(v) { v = v && typeof v === 'object' ? v : {}; return { ...DEF_SETTINGS, people: Math.round(cNum(v.people, 1, 20, 2)), kcalRef: cNum(v.kcalRef, 500, 5000, 2000), avoid: cStr(v.avoid, 80), note: cStr(v.note, 80), demoCleared: !!v.demoCleared, ...(v.demoPlan && typeof v.demoPlan === 'object' ? { demoPlan: Object.fromEntries(Object.entries(v.demoPlan).filter(([k]) => DATE_RE.test(k)).map(([k, d]) => [k, cleanDay(d)])) } : {}), ...(Array.isArray(v.demoFavs) ? { demoFavs: v.demoFavs.filter(x => typeof x === 'string' && SAFE_ID.test(x)) } : {}) }; }
 function cleanState(d) {
   d = d && typeof d === 'object' ? d : {};
   const s = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: cleanSettings(d.settings), demo: false };
@@ -130,7 +131,7 @@ function cleanState(d) {
 
 /* ===== 儲存：雲端家庭共用（即時同步）／本機 ===== */
 const FAM = 'family';
-const DEF_SETTINGS = { people: 2, kcalRef: 2000, hideHave: false, avoid: '', note: '' };
+const DEF_SETTINGS = { people: 2, kcalRef: 2000, avoid: '', note: '' };
 function sortKeys(v) { if (Array.isArray(v)) return v.map(sortKeys); if (v && typeof v === 'object') { const o = {}; Object.keys(v).sort().forEach(k => { if (v[k] !== undefined) o[k] = sortKeys(v[k]); }); return o; } return v; }
 const stable = v => JSON.stringify(sortKeys(v));
 const clone = v => JSON.parse(JSON.stringify(v));
@@ -212,11 +213,14 @@ const Store = {
   },
   saveLocal() {
     if (this.mode !== 'local') return;
-    clearTimeout(this.lt);
-    this.lt = setTimeout(() => {
-      try { localStorage.setItem(LS_KEY, JSON.stringify({ v: 2, init: true, favs: S.favs, plan: prunePlan(S.plan), shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log, recipes: S.recipes })); setSync(); }
-      catch (e) { toast('呢部機儲存空間唔夠，試下刪走啲相片'); }
-    }, 400);
+    clearTimeout(this.lt); this.ltPending = true;
+    this.lt = setTimeout(() => this.flushLocal(), 250);
+  },
+  flushLocal() {
+    if (this.mode !== 'local' || !this.ltPending) return;
+    clearTimeout(this.lt); this.ltPending = false;
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ v: 2, init: true, favs: S.favs, plan: prunePlan(S.plan), shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log, recipes: S.recipes })); setSync(); }
+    catch (e) { toast('呢部機儲存空間唔夠，試下刪走啲相片'); }
   },
 };
 function prunePlan(plan) { const lim = dkey(addDays(new Date(), -60)); const o = {}; for (const k in plan) if (k >= lim) o[k] = plan[k]; return o; }
@@ -685,7 +689,7 @@ function renderPlan() {
 /* ===== 購物清單 ===== */
 function renderShop() {
   const total = S.shop.length, done = S.shop.filter(i => i.done).length;
-  const hide = S.settings.hideHave;
+  const hide = RT.hideHave;
   const groups = CAT_ORDER.map(c => {
     let items = S.shop.filter(i => i.cat === c);
     if (hide) items = items.filter(i => !inPantry(i.n));

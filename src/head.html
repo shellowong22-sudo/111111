@@ -15,6 +15,7 @@
   --paper:#ffffff;
   --teal:#15a596;
   --teal-deep:#0b6f66;
+  --teal-fill:#0d7f74; /* 白字用嘅實心藍綠，對比度 ≥4.5 */
   --mint:#bdeee6;
   --sun:#ffd25e;
   --coral:#ff8f7a;
@@ -99,7 +100,7 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:30;display:grid;grid-tem
 .btn{color:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;border:3px solid var(--ink);border-radius:99px;background:var(--paper);padding:8px 16px;font-family:var(--f-display);font-size:15px;box-shadow:0 3px 0 var(--ink);transition:transform .08s,box-shadow .08s;white-space:nowrap;line-height:1.2}
 .btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--ink)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
-.btn.pri{background:var(--teal);color:#fff}
+.btn.pri{background:var(--teal-fill);color:#fff}
 .btn.sun{background:var(--sun)}
 .btn.coral{background:var(--coral)}
 .btn.sm{padding:5px 11px;font-size:13.5px;border-width:2.5px;box-shadow:0 2px 0 var(--ink)}
@@ -110,7 +111,7 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:30;display:grid;grid-tem
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chips.scroll{flex-wrap:nowrap;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
 .chip{border:2.5px solid var(--ink);border-radius:99px;background:var(--paper);padding:5px 12px;font-size:13.5px;font-family:var(--f-display);white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
-.chip[aria-pressed="true"],.chip.on{background:var(--teal);color:#fff}
+.chip[aria-pressed="true"],.chip.on{background:var(--teal-fill);color:#fff}
 .chip svg{width:20px;height:20px}
 .pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:2px 9px;border-radius:99px;border:2px solid var(--ink);background:var(--paper);font-family:var(--f-display);white-space:nowrap}
 .pill.mint{background:var(--mint)} .pill.sun{background:var(--sun)} .pill.coral{background:var(--coral)} .pill.ink{background:var(--ink);color:#fff}
@@ -152,9 +153,9 @@ textarea.inp{resize:vertical;min-height:70px}
 .fav.on{background:var(--coral)}
 
 /* 首頁 */
-.hero{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--teal);color:#fff;position:relative;overflow:hidden}
+.hero{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:#0f8579;color:#fff;position:relative;overflow:hidden}
 .hero h1{font-size:28px;color:#fff}
-.hero p{margin:4px 0 12px;color:#e6fffb}
+.hero p{margin:4px 0 12px;color:#fff}
 .hero .mascot{width:100%;height:100%;animation:bob 3s ease-in-out infinite}
 .hero .deco{position:absolute;width:44px;height:44px;opacity:.95}
 @keyframes bob{50%{transform:translateY(-6px) rotate(-3deg)}}
@@ -192,7 +193,7 @@ textarea.inp{resize:vertical;min-height:70px}
 .li.done{opacity:.55}
 .li.done .nm{text-decoration:line-through}
 .check{width:28px;height:28px;flex:none;border:3px solid var(--ink);border-radius:9px;background:var(--paper);display:grid;place-items:center;padding:0}
-.check[aria-checked="true"]{background:var(--teal)}
+.check[aria-checked="true"]{background:var(--teal-fill)}
 .check[aria-checked="true"]::after{content:"";width:12px;height:7px;border-left:3.5px solid #fff;border-bottom:3.5px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
 .cat-h{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-size:16px;margin-top:6px}
 .cat-h svg{width:34px;height:34px}
@@ -284,7 +285,7 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .icon-pick svg{width:100%;height:100%}
 .erow{display:grid;grid-template-columns:1fr 70px 70px 34px;gap:6px;align-items:center}
 .erow.st{grid-template-columns:1fr 64px 34px}
-.cook{position:fixed;inset:0;z-index:70;background:var(--teal);color:#fff;display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom))}
+.cook{position:fixed;inset:0;z-index:70;background:#0f8579;color:#fff;display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom))}
 .cook .big{font-family:var(--f-display);font-size:clamp(22px,5.5vw,34px);line-height:1.45;flex:1;display:flex;align-items:center;max-width:760px;margin:0 auto}
 .cook .bar{height:12px;border-radius:6px;background:rgba(255,255,255,.3);overflow:hidden;border:2px solid var(--ink)}
 .cook .bar i{display:block;height:100%;background:var(--sun)}
