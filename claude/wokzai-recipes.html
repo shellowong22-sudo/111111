@@ -246,7 +246,7 @@ textarea.inp{resize:vertical;min-height:70px}
 .days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
 .day{display:flex;flex-direction:column;align-items:center;gap:2px;border:2.5px solid var(--ink);border-radius:14px;background:var(--paper);padding:6px 2px;font-family:var(--f-display);font-size:12.5px}
 .day .d{font-family:var(--f-num);font-size:18px;font-weight:700;line-height:1}
-.day .dots{display:flex;gap:2px;height:7px}
+.day .dots{display:flex;gap:2px;height:7px;margin-top:4px}
 .day .dots i{width:7px;height:7px;border-radius:50%;background:var(--teal)}
 .day.on{background:var(--sun);box-shadow:0 3px 0 var(--ink)}
 .day.today .d{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:3px}
@@ -296,6 +296,10 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .mwrap{width:120px;height:110px;position:relative}
 .deco svg{width:100%;height:100%}
 @media (max-width:420px){.hero h1{font-size:23px}.mwrap{width:86px;height:80px}.hero .mascot{width:86px;height:80px}.hero{padding:14px}}
+body.no-ai .needs-ai{display:none!important}
+.only-no-ai{display:none!important}
+body.no-ai .only-no-ai{display:inline-flex!important}
+body.no-ai .qbtn.only-no-ai{display:flex!important}
 #famQR svg{width:100%;height:auto;display:block}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -812,6 +816,51 @@ function illHTML(r, cls = '') {
 }
 function dishIc(r) { return `<span class="ic" style="background:${iconBg(r.icon)}">${r.photo ? `<img src="${esc(r.photo)}" alt="">` : iconSVG(r.icon)}</span>`; }
 
+/* ===== 資料清洗：分享碼、備份、雲端資料都當係外來資料處理 ===== */
+const SAFE_ID = /^[A-Za-z0-9_-]{1,64}$/;
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+function cStr(v, n) { return typeof v === 'string' ? v.slice(0, n) : (v == null ? '' : String(v).slice(0, n)); }
+function cNum(v, a, b, d) { v = Number(v); return isFinite(v) ? Math.max(a, Math.min(b, v)) : d; }
+function memberKey(mid) { if (SAFE_ID.test(mid)) return mid; let h = 2166136261; for (const ch of String(mid)) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return 'h' + (h >>> 0).toString(36); }
+function cleanRecipe(r) {
+  if (!r || typeof r !== 'object' || !SAFE_ID.test(r.id)) return null;
+  const name = cStr(r.name, 40).trim(); if (!name) return null;
+  const ings = (Array.isArray(r.ings) ? r.ings : []).slice(0, 40).map(i => { const n = cStr(i && i.n, 30).trim(); const c = i && i.cat; return { n, q: cNum(i && i.q, 0, 100000, 0), u: cStr(i && i.u, 10), cat: (CATS[c] || c === 'water') ? c : ingInfo(n).cat }; }).filter(i => i.n);
+  if (!ings.length) return null;
+  const steps = (Array.isArray(r.steps) ? r.steps : []).slice(0, 30).map(s => typeof s === 'string' ? { t: s.slice(0, 400), min: 0 } : { t: cStr(s && s.t, 400), min: cNum(s && s.min, 0, 1440, 0) }).filter(s => s.t);
+  const o = { id: r.id, name, icon: ICONS[r.icon] && r.icon !== 'wok' ? r.icon : 'plate', type: TYPES[r.type] ? r.type : 'veg', cuisine: CUISINES.includes(r.cuisine) ? r.cuisine : '家常',
+    time: Math.round(cNum(r.time, 1, 1440, 20)), level: Math.round(cNum(r.level, 1, 3, 1)), servings: Math.round(cNum(r.servings, 1, 100, 2)),
+    kcal: Math.round(cNum(r.kcal, 0, 5000, 0)), p: Math.round(cNum(r.p, 0, 500, 0)), c: Math.round(cNum(r.c, 0, 800, 0)), f: Math.round(cNum(r.f, 0, 500, 0)),
+    tags: (Array.isArray(r.tags) ? r.tags : []).slice(0, 6).map(t => cStr(t, 10)).filter(Boolean), desc: cStr(r.desc, 200), tips: cStr(r.tips, 300),
+    src: r.src === 'ai' ? 'ai' : 'me', created: cNum(r.created, 0, 1e15, 0), by: cStr(r.by, 80), demo: !!r.demo, ings, steps: steps.length ? steps : [{ t: '照自己習慣煮', min: 0 }] };
+  if (typeof r.photo === 'string' && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(r.photo) && r.photo.length < 400000) o.photo = r.photo;
+  return o;
+}
+function cleanItem(i, kind) {
+  if (!i || typeof i !== 'object') return null;
+  const n = cStr(i.n, 30).trim(); if (!n) return null;
+  const o = { id: SAFE_ID.test(i.id) ? i.id : uid(kind === 'shop' ? 's' : 'p'), n, q: cNum(i.q, 0, 100000, 0), u: cStr(i.u, 10), by: cStr(i.by, 80) };
+  if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); }
+  else o.exp = DATE_RE.test(i.exp) ? i.exp : '';
+  return o;
+}
+function cleanDay(v) { const o = {}; for (const m of ['b', 'l', 'd']) o[m] = (Array.isArray(v && v[m]) ? v[m] : []).filter(x => typeof x === 'string' && SAFE_ID.test(x)).slice(0, 20); return o; }
+function cleanMember(v) { return v && typeof v === 'object' ? { name: cStr(v.name, 12), icon: ICONS[v.icon] && v.icon !== 'wok' ? v.icon : 'bun', t: cNum(v.t, 0, 1e15, 0) } : null; }
+function cleanLog(a) { return (Array.isArray(a) ? a : []).slice(0, 1000).filter(e => e && DATE_RE.test(e.d) && SAFE_ID.test(e.id)).map(e => ({ d: e.d, id: e.id, by: cStr(e.by, 80) })); }
+function cleanSettings(v) { v = v && typeof v === 'object' ? v : {}; return { ...DEF_SETTINGS, people: Math.round(cNum(v.people, 1, 20, 2)), kcalRef: cNum(v.kcalRef, 500, 5000, 2000), hideHave: !!v.hideHave, avoid: cStr(v.avoid, 80), note: cStr(v.note, 80), demoCleared: !!v.demoCleared }; }
+function cleanState(d) {
+  d = d && typeof d === 'object' ? d : {};
+  const s = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: cleanSettings(d.settings), demo: false };
+  s.recipes = (Array.isArray(d.recipes) ? d.recipes : []).map(cleanRecipe).filter(Boolean).sort((a, b) => (b.created || 0) - (a.created || 0));
+  s.shop = (Array.isArray(d.shop) ? d.shop : []).map(i => cleanItem(i, 'shop')).filter(Boolean).map((i, k) => ({ ...i, t: i.t || k + 1 })).sort((a, b) => a.t - b.t);
+  s.pantry = (Array.isArray(d.pantry) ? d.pantry : []).map(i => cleanItem(i, 'pantry')).filter(Boolean);
+  s.favs = (Array.isArray(d.favs) ? d.favs : []).filter(x => typeof x === 'string' && SAFE_ID.test(x));
+  for (const [k, v] of Object.entries(d.plan && typeof d.plan === 'object' ? d.plan : {})) if (DATE_RE.test(k)) s.plan[k] = cleanDay(v);
+  for (const [k, v] of Object.entries(d.members && typeof d.members === 'object' ? d.members : {})) { const m = cleanMember(v); if (m) s.members[k] = m; }
+  for (const [k, v] of Object.entries(d.log && typeof d.log === 'object' ? d.log : {})) if (/^\d{4}-\d{2}$/.test(k)) s.log[k] = cleanLog(v);
+  return s;
+}
+
 /* ===== 儲存：雲端家庭共用（即時同步）／本機 ===== */
 const FAM = 'family';
 const DEF_SETTINGS = { people: 2, kcalRef: 2000, hideHave: false, avoid: '', note: '' };
@@ -825,25 +874,23 @@ function stateDocs() {
   S.shop.forEach(i => o['shop-' + i.id] = i);
   S.pantry.forEach(p => o['pantry-' + p.id] = p);
   for (const [k, v] of Object.entries(prunePlan(S.plan))) { const b = v.b || [], l = v.l || [], d = v.d || []; if (b.length + l.length + d.length) o['plan-' + k] = { b, l, d }; }
-  for (const [m, v] of Object.entries(S.members || {})) o['member-' + m] = v;
+  for (const [m, v] of Object.entries(S.members || {})) o['member-' + memberKey(m)] = { ...v, mid: m };
   for (const [m, items] of Object.entries(S.log || {})) if (items.length) o['log-' + m] = { items };
   return o;
 }
 function stateFromDocs(docs) {
-  const s = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: { ...DEF_SETTINGS }, demo: false };
-  for (const [id, v0] of Object.entries(docs)) {
-    const v = clone(v0);
-    if (id === 'meta') { s.favs = v.favs || []; s.settings = { ...DEF_SETTINGS, ...(v.settings || {}) }; }
-    else if (id.startsWith('r-')) { if (v && v.id && v.name) s.recipes.push(v); }
-    else if (id.startsWith('shop-')) s.shop.push(v);
-    else if (id.startsWith('pantry-')) s.pantry.push(v);
-    else if (id.startsWith('plan-')) s.plan[id.slice(5)] = v;
-    else if (id.startsWith('member-')) s.members[id.slice(7)] = v;
-    else if (id.startsWith('log-')) s.log[id.slice(4)] = v.items || [];
+  const raw = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: {} };
+  for (const [id, v] of Object.entries(docs)) {
+    if (!v || typeof v !== 'object') continue;
+    if (id === 'meta') { raw.favs = v.favs; raw.settings = v.settings; }
+    else if (id.startsWith('r-')) raw.recipes.push(v);
+    else if (id.startsWith('shop-')) raw.shop.push(v);
+    else if (id.startsWith('pantry-')) raw.pantry.push(v);
+    else if (id.startsWith('plan-')) raw.plan[id.slice(5)] = v;
+    else if (id.startsWith('member-')) raw.members[typeof v.mid === 'string' && v.mid ? v.mid : id.slice(7)] = v;
+    else if (id.startsWith('log-')) raw.log[id.slice(4)] = v.items;
   }
-  s.recipes.sort((a, b) => (b.created || 0) - (a.created || 0));
-  s.shop.sort((a, b) => (a.t || 0) - (b.t || 0));
-  return s;
+  return cleanState(raw);
 }
 const LIM = { n: 0, max: 4, wait: [] };
 function limited(fn) { return new Promise((res, rej) => { const run = () => { LIM.n++; Promise.resolve().then(fn).then(res, rej).finally(() => { LIM.n--; const w = LIM.wait.shift(); if (w) w(); }); }; if (LIM.n < LIM.max) run(); else LIM.wait.push(run); }); }
@@ -915,13 +962,7 @@ function handleSaveErr(e, key = '') {
   else toast('儲存出錯，等陣再試');
   setSync('err');
 }
-function normalize(d) {
-  const s = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, ...d, settings: { ...DEF_SETTINGS, ...(d.settings || {}) }, demo: false };
-  s.recipes = (s.recipes || []).filter(r => r && r.id && r.name).sort((a, b) => (b.created || 0) - (a.created || 0));
-  s.shop = (s.shop || []).map((i, k) => ({ ...i, t: i.t || k + 1 }));
-  ['v', 'init', 'updated'].forEach(k => delete s[k]);
-  return s;
-}
+function normalize(d) { return cleanState(d); }
 function save() { if (S.demo) S.demo = false; Store.sync(); refresh(); }
 let rfH = null;
 function scheduleRefresh() { if (rfH) return; rfH = requestAnimationFrame(() => { rfH = null; refresh(); rerenderDetail(); if (typeof updateFamSheet === 'function') updateFamSheet(); }); }
@@ -1055,7 +1096,8 @@ function addIngsToShop(r, factor = 1) {
   for (const ing of r.ings) {
     const cat = ing.cat || ingInfo(ing.n).cat;
     if (cat === 'water') continue;
-    const u = ing.u || ''; const q = ing.q ? Math.round(ing.q * factor * 100) / 100 : 0;
+    const u = ing.u || ''; let q = ing.q ? Math.round(ing.q * factor * 100) / 100 : 0;
+    if (q && /^(隻|個|條|粒|片|塊|棵|盒|罐|樽|包|扎|紮|束|碗|杯)$/.test(u)) q = Math.max(1, Math.ceil(q - 0.05));
     const it = S.shop.find(x => x.n === ing.n && (x.u || '') === u && !x.done);
     if (it) { it.q = Math.round(((it.q || 0) + q) * 100) / 100; if (!it.from.includes(r.name)) it.from.push(r.name); }
     else S.shop.push({ id: uid('s'), n: ing.n, q, u, cat: CATS[cat] ? cat : 'other', done: false, from: [r.name], by: RT.me || '', t: Date.now() + n });
@@ -1185,7 +1227,7 @@ function renderHome() {
     <div style="position:relative;z-index:1">
       <h1>${greet()}<br>今日想煮乜？</h1>
       <p>${fmtDay(k)}・今日餐單有 <b class="num">${ids.length}</b> 個餸，${ppl} 個人食</p>
-      <div class="row wrap"><button class="btn sun" data-act="go" data-v="ai">${li('ai')}叫 AI 諗食譜</button><button class="btn" data-act="wheelGo">${li('shuffle')}今日食乜好</button></div>
+      <div class="row wrap"><button class="btn sun needs-ai" data-act="go" data-v="ai">${li('ai')}叫 AI 諗食譜</button><button class="btn sun only-no-ai" data-act="newRecipe">${li('plus')}記低新食譜</button><button class="btn" data-act="wheelGo">${li('shuffle')}今日食乜好</button></div>
     </div>
     <div class="mwrap">${iconSVG('wok', 'mascot')}</div>
     <span class="deco" style="right:6px;top:4px;transform:rotate(14deg)">${iconSVG('tomato')}</span>
@@ -1208,7 +1250,7 @@ function renderHome() {
   </div>
   <div class="quick">
     <button class="qbtn" data-act="newRecipe">${iconSVG('plate')}記低食譜</button>
-    <button class="qbtn" data-act="photoGo">${iconSVG('basket')}影相認食材</button>
+    <button class="qbtn needs-ai" data-act="photoGo">${iconSVG('basket')}影相認食材</button><button class="qbtn only-no-ai" data-act="pantryGo">${iconSVG('milk')}雪櫃管理</button>
     <button class="qbtn" data-act="timerGo">${iconSVG('egg')}計時器</button>
     <button class="qbtn" data-act="go" data-v="shop">${iconSVG('carrot')}買餸清單</button>
   </div>`;
@@ -1238,7 +1280,7 @@ function renderRecipes() {
     el.dataset.built = '1';
     el.innerHTML = `
     <div class="sec-h"><span class="ic" style="background:${iconBg('plate')}">${iconSVG('plate')}</span><div><h2>食譜簿</h2><div class="small muted" id="recCount"></div></div>
-      <div class="act"><button class="btn sm sun" data-act="newRecipe">${li('plus')}新增食譜</button><button class="btn sm pri" data-act="go" data-v="ai">${li('ai')}AI 生成</button></div></div>
+      <div class="act"><button class="btn sm sun" data-act="newRecipe">${li('plus')}新增食譜</button><button class="btn sm pri needs-ai" data-act="go" data-v="ai">${li('ai')}AI 生成</button></div></div>
     <div class="row"><div class="field" style="flex:1"><label for="recQ" class="hide">搜尋</label><input id="recQ" class="inp" type="search" placeholder="搜尋菜名、材料或者標籤，例如：雞蛋"></div>
       <select id="recSort" class="inp" style="width:auto" aria-label="排序"><option value="new">最新</option><option value="fast">最快煮好</option><option value="kcal">熱量低先</option><option value="name">名稱</option></select></div>
     <div class="chips" id="recFilters"></div>
@@ -1271,7 +1313,8 @@ function openRecipe(id) {
   bd._onClose = () => { RT.detail = null; };
 }
 function rerenderDetail() {
-  const bd = $$('#sheets .backdrop').find(b => b.dataset.detail === RT.detail?.id); if (!bd) return;
+  if (!RT.detail) return;
+  const bd = $$('#sheets .backdrop').find(b => b.dataset.detail && b.dataset.detail === RT.detail.id); if (!bd) return;
   const r = getRecipe(RT.detail.id); if (!r) { closeSheet(bd); return; }
   const sh = bd.querySelector('.sheet'); const top = sh.scrollTop;
   bd.querySelector('.body').innerHTML = detailHTML(r); sh.scrollTop = top;
@@ -1315,7 +1358,7 @@ function detailHTML(r) {
   <div class="card tint">
     <div class="sec-h"><span class="ic" style="background:#fff">${iconSVG('soup')}</span><div><h3>搭配菜推薦</h3><div class="small muted">一湯兩餸，有菜有肉</div></div></div>
     <div class="list" style="margin-top:10px">${pr.map(x => `<div class="dish">${dishIc(x.r)}<button class="plain" data-act="openSwap" data-id="${esc(x.r.id)}"><div class="nm">${esc(x.r.name)}</div><div class="sub">${x.why.map(esc).join('・') || TYPES[x.r.type]?.label}</div></button><button class="btn sm sun" data-act="addPlan" data-id="${esc(x.r.id)}">${li('plus')}加菜</button></div>`).join('')}</div>
-    <button class="btn sm pri" style="margin-top:10px" data-act="aiPair" data-id="${esc(r.id)}">${li('ai')}問 AI 點配</button>
+    <button class="btn sm pri needs-ai" style="margin-top:10px" data-act="aiPair" data-id="${esc(r.id)}">${li('ai')}問 AI 點配</button>
     <div id="aiPairOut" style="margin-top:8px"></div>
   </div>
   ${mine ? `<button class="btn coral" data-act="delRecipe" data-id="${esc(r.id)}">${li('trash')}刪除呢個食譜</button>` : ''}`;
@@ -1736,7 +1779,7 @@ async function initAI() {
   if (cl && cl.use) { try { AI.s = await cl.use('sample'); } catch (e) { AI.s = null; } }
   AI.checked = true; updateAIAvail();
 }
-function updateAIAvail() { const off = $('#aiOff'); if (off) off.classList.toggle('hide', !AI.checked || !!AI.s); const fn = $('#aiFamNote'); if (fn) fn.textContent = familyLine() ? '會跟埋屋企口味：' + familyLine().replace(/\n/g, '；') : ''; }
+function updateAIAvail() { document.body.classList.toggle('no-ai', AI.checked && !AI.s); const off = $('#aiOff'); if (off) off.classList.toggle('hide', !AI.checked || !!AI.s); const fn = $('#aiFamNote'); if (fn) fn.textContent = familyLine() ? '會跟埋屋企口味：' + familyLine().replace(/\n/g, '；') : ''; }
 function needAI() { if (AI.s) return true; toast(AI.checked ? 'AI 要喺 Claude 入面打開呢個 App 先用到' : 'AI 準備緊，等一陣再試'); return false; }
 function looseJSON(t) {
   t = String(t || '').replace(/```json|```/g, '');
@@ -1934,7 +1977,7 @@ function fillEditor(bd, r) {
   const E = bd._E; const f = $('#edForm', bd);
   const opt = (arr, v) => arr.map(([k, l]) => `<option value="${esc(k)}" ${String(k) === String(v) ? 'selected' : ''}>${esc(l)}</option>`).join('');
   f.innerHTML = `
-    <div class="field"><label for="edName">菜名</label><div class="row"><input id="edName" class="inp" required maxlength="30" value="${esc(r.name)}" placeholder="例如：豉汁蒸排骨"><button type="button" class="btn sm pri" data-act="edAIfill">${li('ai')}AI 補完</button></div><span class="small muted">打咗菜名，可以叫 AI 幫你填晒材料同步驟</span></div>
+    <div class="field"><label for="edName">菜名</label><div class="row"><input id="edName" class="inp" required maxlength="30" value="${esc(r.name)}" placeholder="例如：豉汁蒸排骨"><button type="button" class="btn sm pri needs-ai" data-act="edAIfill">${li('ai')}AI 補完</button></div><span class="small muted needs-ai">打咗菜名，可以叫 AI 幫你填晒材料同步驟</span></div>
     <div class="field"><label>插圖</label><div class="icon-pick">${ICON_KEYS.map(k => `<button type="button" data-act="edIcon" data-k="${k}" style="background:${iconBg(k)}" aria-pressed="${k === E.icon}" aria-label="${ICONS[k].label}" title="${ICONS[k].label}">${iconSVG(k)}</button>`).join('')}</div></div>
     <div class="field"><label>相片（可以唔加）</label><div class="row wrap"><label class="btn sm" for="edPhoto" style="cursor:pointer">${li('cam')}揀相</label><input id="edPhoto" type="file" accept="image/*" class="hide"><span id="edPhotoPrev" class="row">${E.photo ? `<img src="${esc(E.photo)}" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:12px;border:2.5px solid var(--ink)"><button type="button" class="btn sm" data-act="edPhotoDel">移走相片</button>` : ''}</span></div></div>
     <div class="grid g2">
@@ -1951,7 +1994,7 @@ function fillEditor(bd, r) {
     <div class="field"><label for="edTips">小貼士</label><textarea id="edTips" class="inp" maxlength="200">${esc(r.tips || '')}</textarea></div>
     <div class="field"><label>營養（每份，可以留空）</label><div class="grid" style="grid-template-columns:repeat(4,minmax(0,1fr));gap:6px">
       ${[['edK', '大卡', r.kcal], ['edP', '蛋白質克', r.p], ['edC', '碳水克', r.c], ['edF', '脂肪克', r.f]].map(([i, l, v]) => `<div class="field"><label for="${i}" class="small">${l}</label><input id="${i}" class="inp" type="number" min="0" value="${esc(v ?? '')}"></div>`).join('')}</div>
-      <button type="button" class="btn sm pri" data-act="edAINut" style="align-self:flex-start">${li('ai')}AI 估營養</button></div>
+      <button type="button" class="btn sm pri needs-ai" data-act="edAINut" style="align-self:flex-start">${li('ai')}AI 估營養</button></div>
     <button type="submit" class="btn pri block">${li('check')}儲存食譜</button>`;
   $('#edPhoto', bd).addEventListener('change', async e => {
     const file = e.target.files[0]; if (!file) return;
@@ -2060,6 +2103,7 @@ const ACTS = {
   wheelGo: () => { show('tools'); scrollToEl('#tWheel'); },
   timerGo: () => { show('tools'); scrollToEl('#tTimer'); },
   photoGo: () => { show('ai'); scrollToEl('#aiPhotoCard'); },
+  pantryGo: () => { show('tools'); scrollToEl('#tPantry'); },
   wSrc: el => { RT.wheelSrc = el.dataset.k; RT.wheelSeed = String(Math.random()); buildWheel(); $('#wheelRes').innerHTML = ''; },
   spin: () => spin(),
   wAdd: el => { const k = TODAY(); S.plan[k] = { ...dayPlan(k), d: [...dayPlan(k).d, el.dataset.id] }; save(); toast('加咗入今晚晚餐'); },
@@ -2229,10 +2273,10 @@ async function unpackCode(text, tag) {
 function inviteLink(code) { const base = location.protocol.startsWith('http') ? location.origin + location.pathname : ''; return base ? `${base}#join=${code}` : ''; }
 
 /* 合併（分享碼／備份） */
-function mergeIn(inc) {
-  let n = 0; const byId = a => new Map((a || []).map(x => [x.id, x]));
+function mergeIn(inc0) {
+  const inc = cleanState(inc0); let n = 0; const byId = a => new Map((a || []).map(x => [x.id, x]));
   const rm = byId(S.recipes); (inc.recipes || []).forEach(r => { if (r && r.id && r.name && Array.isArray(r.ings) && !rm.has(r.id)) { S.recipes.push(r); n++; } });
-  const sm = byId(S.shop); (inc.shop || []).forEach(i => { if (!i || !i.id || !i.n) return; const c = sm.get(i.id); if (!c) { S.shop.push({ ...i, t: i.t || Date.now() }); n++; } else if (i.done && !c.done) { c.done = true; c.doneBy = i.doneBy || ''; n++; } });
+  const sm = byId(S.shop); (inc.shop || []).forEach(i => { const c = sm.get(i.id); if (!c) { S.shop.push({ ...i, t: i.t || Date.now() }); n++; } else if (i.done && !c.done) { c.done = true; c.doneBy = i.doneBy || ''; n++; } });
   const pm = byId(S.pantry); (inc.pantry || []).forEach(p => { if (p && p.id && p.n && !pm.has(p.id)) { S.pantry.push(p); n++; } });
   for (const [k, v] of Object.entries(inc.plan || {})) { if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) continue; const c = dayPlan(k); let ch = false; for (const m of ['b', 'l', 'd']) (v[m] || []).forEach(id => { if (getRecipe(id) && !c[m].includes(id)) { c[m].push(id); n++; ch = true; } }); if (ch) S.plan[k] = c; }
   (inc.favs || []).forEach(f => { if (getRecipe(f) && !S.favs.includes(f)) S.favs.push(f); });
@@ -2291,6 +2335,7 @@ function famHTML() {
     <div class="small muted" style="margin-top:8px">可以編輯嘅人先可以剔清單、加菜；只可以睇嘅人淨係睇到。有連結嘅人都可能睇到呢度嘅資料，請只分享俾屋企人。</div>
     <div class="small" style="margin-top:8px"><b>唔用 Claude 嘅屋企人：</b>用獨立版（網頁檔案包），配 Firebase 免費同步，或者用下面嘅分享碼。</div></div>`;
   const inviteFb = `<div class="card sun" style="box-shadow:none"><h3>邀請屋企人</h3><div class="small muted">屋企人用手機掃 QR code，或者撳 WhatsApp 收到嘅連結，就會加入同一個家庭。邀請碼好似鎖匙咁，只俾屋企人。</div>
+    <div class="small" style="margin-top:6px"><b>iPhone 注意：</b>加咗去主畫面嘅 App 同 Safari 嘅資料係分開嘅。請先「加入主畫面」，再喺主畫面個 App 入面貼邀請碼加入。</div>
     <div id="famQR" class="hide" style="width:200px;max-width:70%;margin:10px auto;background:#fff;border:3px solid var(--ink);border-radius:14px;padding:6px"></div>
     <div class="row wrap" style="margin-top:8px"><button class="btn sm pri" data-act="fbCopyLink">${li('copy')}複製邀請連結</button><button class="btn sm" data-act="fbCopyCode">${li('copy')}複製邀請碼</button></div>
     <button class="btn sm coral" style="margin-top:12px" data-act="fbLeave">離開家庭（之後只用呢部機）</button></div>`;
@@ -2305,7 +2350,7 @@ function famHTML() {
     <div class="field" style="margin-top:10px"><label>Firestore 規則</label><textarea class="inp" rows="7" readonly id="fbRules" aria-label="Firestore 規則" style="font-family:ui-monospace,monospace;font-size:12px">${esc(FB_RULES)}</textarea><button class="btn sm" data-act="fbCopyRules" style="align-self:flex-start">${li('copy')}複製規則</button></div>
     <div class="field" style="margin-top:10px"><label for="fbCfg">貼上 firebaseConfig</label><textarea id="fbCfg" class="inp" rows="5" placeholder="const firebaseConfig = { apiKey: &quot;…&quot;, projectId: &quot;…&quot;, … };" style="font-family:ui-monospace,monospace;font-size:12px"></textarea></div>
     <button class="btn pri" style="margin-top:8px" data-act="fbCreate">${li('check')}建立家庭</button>
-    <div class="field" style="margin-top:14px"><label for="fbJoin">或者：屋企人已經設定好？貼上邀請碼／連結</label><input id="fbJoin" class="inp" placeholder="WZFZ:… 或者 https://…#join=…"></div>
+    <div class="field" style="margin-top:14px"><label for="fbJoin">或者：屋企人已經設定好？貼上邀請碼／連結（iPhone 主畫面 App 請用呢度）</label><input id="fbJoin" class="inp" placeholder="WZFZ:… 或者 https://…#join=…"></div>
     <button class="btn" style="margin-top:8px" data-act="fbJoinGo">${li('people')}加入家庭</button></div>`;
   const share = `<div class="card" style="box-shadow:none"><div class="sec-h"><span class="ic" style="background:${iconBg('basket')}">${iconSVG('basket')}</span><div><h3>分享碼同備份</h3><div class="small muted">唔使任何帳戶：將清單、餐單、雪櫃同食譜變成一段文字，WhatsApp 傳俾屋企人，佢貼上就會合併</div></div></div>
     <div class="row wrap" style="margin-top:10px"><button class="btn sm pri" data-act="shareCopy">${li('copy')}複製分享碼</button>${k !== 'claude' ? `<button class="btn sm" data-act="backupDl">${li('copy')}下載完整備份檔</button><label class="btn sm" for="backupFile" style="cursor:pointer">匯入備份檔</label><input id="backupFile" type="file" accept="application/json,.json" class="hide">` : ''}</div>
@@ -2375,6 +2420,7 @@ async function boot() {
   if (Store.mode === 'db') {
     Store.subscribe((docs, meta) => {
       if (docs === null) {
+        if (Store.kind === 'firebase' && meta && meta.timeout && RT.ready && !Store.live) toast('仲未連到 Firebase：如果一直咁，檢查網絡、firebaseConfig 同規則');
         if (!RT.ready) { RT.ready = true; refresh(); toast(meta && meta.error ? (Store.kind === 'firebase' ? '連唔到家庭資料：檢查 Firestore 規則同設定' : '連唔到家庭資料，等陣再試') : '網絡有啲慢，家庭資料載入緊'); }
         setSync(); return;
       }

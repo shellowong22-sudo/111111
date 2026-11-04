@@ -227,7 +227,7 @@ async function initAI() {
   if (cl && cl.use) { try { AI.s = await cl.use('sample'); } catch (e) { AI.s = null; } }
   AI.checked = true; updateAIAvail();
 }
-function updateAIAvail() { const off = $('#aiOff'); if (off) off.classList.toggle('hide', !AI.checked || !!AI.s); const fn = $('#aiFamNote'); if (fn) fn.textContent = familyLine() ? '會跟埋屋企口味：' + familyLine().replace(/\n/g, '；') : ''; }
+function updateAIAvail() { document.body.classList.toggle('no-ai', AI.checked && !AI.s); const off = $('#aiOff'); if (off) off.classList.toggle('hide', !AI.checked || !!AI.s); const fn = $('#aiFamNote'); if (fn) fn.textContent = familyLine() ? '會跟埋屋企口味：' + familyLine().replace(/\n/g, '；') : ''; }
 function needAI() { if (AI.s) return true; toast(AI.checked ? 'AI 要喺 Claude 入面打開呢個 App 先用到' : 'AI 準備緊，等一陣再試'); return false; }
 function looseJSON(t) {
   t = String(t || '').replace(/```json|```/g, '');
@@ -425,7 +425,7 @@ function fillEditor(bd, r) {
   const E = bd._E; const f = $('#edForm', bd);
   const opt = (arr, v) => arr.map(([k, l]) => `<option value="${esc(k)}" ${String(k) === String(v) ? 'selected' : ''}>${esc(l)}</option>`).join('');
   f.innerHTML = `
-    <div class="field"><label for="edName">菜名</label><div class="row"><input id="edName" class="inp" required maxlength="30" value="${esc(r.name)}" placeholder="例如：豉汁蒸排骨"><button type="button" class="btn sm pri" data-act="edAIfill">${li('ai')}AI 補完</button></div><span class="small muted">打咗菜名，可以叫 AI 幫你填晒材料同步驟</span></div>
+    <div class="field"><label for="edName">菜名</label><div class="row"><input id="edName" class="inp" required maxlength="30" value="${esc(r.name)}" placeholder="例如：豉汁蒸排骨"><button type="button" class="btn sm pri needs-ai" data-act="edAIfill">${li('ai')}AI 補完</button></div><span class="small muted needs-ai">打咗菜名，可以叫 AI 幫你填晒材料同步驟</span></div>
     <div class="field"><label>插圖</label><div class="icon-pick">${ICON_KEYS.map(k => `<button type="button" data-act="edIcon" data-k="${k}" style="background:${iconBg(k)}" aria-pressed="${k === E.icon}" aria-label="${ICONS[k].label}" title="${ICONS[k].label}">${iconSVG(k)}</button>`).join('')}</div></div>
     <div class="field"><label>相片（可以唔加）</label><div class="row wrap"><label class="btn sm" for="edPhoto" style="cursor:pointer">${li('cam')}揀相</label><input id="edPhoto" type="file" accept="image/*" class="hide"><span id="edPhotoPrev" class="row">${E.photo ? `<img src="${esc(E.photo)}" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:12px;border:2.5px solid var(--ink)"><button type="button" class="btn sm" data-act="edPhotoDel">移走相片</button>` : ''}</span></div></div>
     <div class="grid g2">
@@ -442,7 +442,7 @@ function fillEditor(bd, r) {
     <div class="field"><label for="edTips">小貼士</label><textarea id="edTips" class="inp" maxlength="200">${esc(r.tips || '')}</textarea></div>
     <div class="field"><label>營養（每份，可以留空）</label><div class="grid" style="grid-template-columns:repeat(4,minmax(0,1fr));gap:6px">
       ${[['edK', '大卡', r.kcal], ['edP', '蛋白質克', r.p], ['edC', '碳水克', r.c], ['edF', '脂肪克', r.f]].map(([i, l, v]) => `<div class="field"><label for="${i}" class="small">${l}</label><input id="${i}" class="inp" type="number" min="0" value="${esc(v ?? '')}"></div>`).join('')}</div>
-      <button type="button" class="btn sm pri" data-act="edAINut" style="align-self:flex-start">${li('ai')}AI 估營養</button></div>
+      <button type="button" class="btn sm pri needs-ai" data-act="edAINut" style="align-self:flex-start">${li('ai')}AI 估營養</button></div>
     <button type="submit" class="btn pri block">${li('check')}儲存食譜</button>`;
   $('#edPhoto', bd).addEventListener('change', async e => {
     const file = e.target.files[0]; if (!file) return;
@@ -551,6 +551,7 @@ const ACTS = {
   wheelGo: () => { show('tools'); scrollToEl('#tWheel'); },
   timerGo: () => { show('tools'); scrollToEl('#tTimer'); },
   photoGo: () => { show('ai'); scrollToEl('#aiPhotoCard'); },
+  pantryGo: () => { show('tools'); scrollToEl('#tPantry'); },
   wSrc: el => { RT.wheelSrc = el.dataset.k; RT.wheelSeed = String(Math.random()); buildWheel(); $('#wheelRes').innerHTML = ''; },
   spin: () => spin(),
   wAdd: el => { const k = TODAY(); S.plan[k] = { ...dayPlan(k), d: [...dayPlan(k).d, el.dataset.id] }; save(); toast('加咗入今晚晚餐'); },

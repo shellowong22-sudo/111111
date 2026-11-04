@@ -83,6 +83,51 @@ function illHTML(r, cls = '') {
 }
 function dishIc(r) { return `<span class="ic" style="background:${iconBg(r.icon)}">${r.photo ? `<img src="${esc(r.photo)}" alt="">` : iconSVG(r.icon)}</span>`; }
 
+/* ===== 資料清洗：分享碼、備份、雲端資料都當係外來資料處理 ===== */
+const SAFE_ID = /^[A-Za-z0-9_-]{1,64}$/;
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+function cStr(v, n) { return typeof v === 'string' ? v.slice(0, n) : (v == null ? '' : String(v).slice(0, n)); }
+function cNum(v, a, b, d) { v = Number(v); return isFinite(v) ? Math.max(a, Math.min(b, v)) : d; }
+function memberKey(mid) { if (SAFE_ID.test(mid)) return mid; let h = 2166136261; for (const ch of String(mid)) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return 'h' + (h >>> 0).toString(36); }
+function cleanRecipe(r) {
+  if (!r || typeof r !== 'object' || !SAFE_ID.test(r.id)) return null;
+  const name = cStr(r.name, 40).trim(); if (!name) return null;
+  const ings = (Array.isArray(r.ings) ? r.ings : []).slice(0, 40).map(i => { const n = cStr(i && i.n, 30).trim(); const c = i && i.cat; return { n, q: cNum(i && i.q, 0, 100000, 0), u: cStr(i && i.u, 10), cat: (CATS[c] || c === 'water') ? c : ingInfo(n).cat }; }).filter(i => i.n);
+  if (!ings.length) return null;
+  const steps = (Array.isArray(r.steps) ? r.steps : []).slice(0, 30).map(s => typeof s === 'string' ? { t: s.slice(0, 400), min: 0 } : { t: cStr(s && s.t, 400), min: cNum(s && s.min, 0, 1440, 0) }).filter(s => s.t);
+  const o = { id: r.id, name, icon: ICONS[r.icon] && r.icon !== 'wok' ? r.icon : 'plate', type: TYPES[r.type] ? r.type : 'veg', cuisine: CUISINES.includes(r.cuisine) ? r.cuisine : '家常',
+    time: Math.round(cNum(r.time, 1, 1440, 20)), level: Math.round(cNum(r.level, 1, 3, 1)), servings: Math.round(cNum(r.servings, 1, 100, 2)),
+    kcal: Math.round(cNum(r.kcal, 0, 5000, 0)), p: Math.round(cNum(r.p, 0, 500, 0)), c: Math.round(cNum(r.c, 0, 800, 0)), f: Math.round(cNum(r.f, 0, 500, 0)),
+    tags: (Array.isArray(r.tags) ? r.tags : []).slice(0, 6).map(t => cStr(t, 10)).filter(Boolean), desc: cStr(r.desc, 200), tips: cStr(r.tips, 300),
+    src: r.src === 'ai' ? 'ai' : 'me', created: cNum(r.created, 0, 1e15, 0), by: cStr(r.by, 80), demo: !!r.demo, ings, steps: steps.length ? steps : [{ t: '照自己習慣煮', min: 0 }] };
+  if (typeof r.photo === 'string' && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(r.photo) && r.photo.length < 400000) o.photo = r.photo;
+  return o;
+}
+function cleanItem(i, kind) {
+  if (!i || typeof i !== 'object') return null;
+  const n = cStr(i.n, 30).trim(); if (!n) return null;
+  const o = { id: SAFE_ID.test(i.id) ? i.id : uid(kind === 'shop' ? 's' : 'p'), n, q: cNum(i.q, 0, 100000, 0), u: cStr(i.u, 10), by: cStr(i.by, 80) };
+  if (kind === 'shop') { o.cat = CATS[i.cat] ? i.cat : (CATS[ingInfo(n).cat] ? ingInfo(n).cat : 'other'); o.done = !!i.done; o.doneBy = cStr(i.doneBy, 80); o.from = (Array.isArray(i.from) ? i.from : []).slice(0, 10).map(x => cStr(x, 40)).filter(Boolean); o.t = cNum(i.t, 0, 1e15, 0); }
+  else o.exp = DATE_RE.test(i.exp) ? i.exp : '';
+  return o;
+}
+function cleanDay(v) { const o = {}; for (const m of ['b', 'l', 'd']) o[m] = (Array.isArray(v && v[m]) ? v[m] : []).filter(x => typeof x === 'string' && SAFE_ID.test(x)).slice(0, 20); return o; }
+function cleanMember(v) { return v && typeof v === 'object' ? { name: cStr(v.name, 12), icon: ICONS[v.icon] && v.icon !== 'wok' ? v.icon : 'bun', t: cNum(v.t, 0, 1e15, 0) } : null; }
+function cleanLog(a) { return (Array.isArray(a) ? a : []).slice(0, 1000).filter(e => e && DATE_RE.test(e.d) && SAFE_ID.test(e.id)).map(e => ({ d: e.d, id: e.id, by: cStr(e.by, 80) })); }
+function cleanSettings(v) { v = v && typeof v === 'object' ? v : {}; return { ...DEF_SETTINGS, people: Math.round(cNum(v.people, 1, 20, 2)), kcalRef: cNum(v.kcalRef, 500, 5000, 2000), hideHave: !!v.hideHave, avoid: cStr(v.avoid, 80), note: cStr(v.note, 80), demoCleared: !!v.demoCleared }; }
+function cleanState(d) {
+  d = d && typeof d === 'object' ? d : {};
+  const s = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: cleanSettings(d.settings), demo: false };
+  s.recipes = (Array.isArray(d.recipes) ? d.recipes : []).map(cleanRecipe).filter(Boolean).sort((a, b) => (b.created || 0) - (a.created || 0));
+  s.shop = (Array.isArray(d.shop) ? d.shop : []).map(i => cleanItem(i, 'shop')).filter(Boolean).map((i, k) => ({ ...i, t: i.t || k + 1 })).sort((a, b) => a.t - b.t);
+  s.pantry = (Array.isArray(d.pantry) ? d.pantry : []).map(i => cleanItem(i, 'pantry')).filter(Boolean);
+  s.favs = (Array.isArray(d.favs) ? d.favs : []).filter(x => typeof x === 'string' && SAFE_ID.test(x));
+  for (const [k, v] of Object.entries(d.plan && typeof d.plan === 'object' ? d.plan : {})) if (DATE_RE.test(k)) s.plan[k] = cleanDay(v);
+  for (const [k, v] of Object.entries(d.members && typeof d.members === 'object' ? d.members : {})) { const m = cleanMember(v); if (m) s.members[k] = m; }
+  for (const [k, v] of Object.entries(d.log && typeof d.log === 'object' ? d.log : {})) if (/^\d{4}-\d{2}$/.test(k)) s.log[k] = cleanLog(v);
+  return s;
+}
+
 /* ===== 儲存：雲端家庭共用（即時同步）／本機 ===== */
 const FAM = 'family';
 const DEF_SETTINGS = { people: 2, kcalRef: 2000, hideHave: false, avoid: '', note: '' };
@@ -96,25 +141,23 @@ function stateDocs() {
   S.shop.forEach(i => o['shop-' + i.id] = i);
   S.pantry.forEach(p => o['pantry-' + p.id] = p);
   for (const [k, v] of Object.entries(prunePlan(S.plan))) { const b = v.b || [], l = v.l || [], d = v.d || []; if (b.length + l.length + d.length) o['plan-' + k] = { b, l, d }; }
-  for (const [m, v] of Object.entries(S.members || {})) o['member-' + m] = v;
+  for (const [m, v] of Object.entries(S.members || {})) o['member-' + memberKey(m)] = { ...v, mid: m };
   for (const [m, items] of Object.entries(S.log || {})) if (items.length) o['log-' + m] = { items };
   return o;
 }
 function stateFromDocs(docs) {
-  const s = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: { ...DEF_SETTINGS }, demo: false };
-  for (const [id, v0] of Object.entries(docs)) {
-    const v = clone(v0);
-    if (id === 'meta') { s.favs = v.favs || []; s.settings = { ...DEF_SETTINGS, ...(v.settings || {}) }; }
-    else if (id.startsWith('r-')) { if (v && v.id && v.name) s.recipes.push(v); }
-    else if (id.startsWith('shop-')) s.shop.push(v);
-    else if (id.startsWith('pantry-')) s.pantry.push(v);
-    else if (id.startsWith('plan-')) s.plan[id.slice(5)] = v;
-    else if (id.startsWith('member-')) s.members[id.slice(7)] = v;
-    else if (id.startsWith('log-')) s.log[id.slice(4)] = v.items || [];
+  const raw = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, settings: {} };
+  for (const [id, v] of Object.entries(docs)) {
+    if (!v || typeof v !== 'object') continue;
+    if (id === 'meta') { raw.favs = v.favs; raw.settings = v.settings; }
+    else if (id.startsWith('r-')) raw.recipes.push(v);
+    else if (id.startsWith('shop-')) raw.shop.push(v);
+    else if (id.startsWith('pantry-')) raw.pantry.push(v);
+    else if (id.startsWith('plan-')) raw.plan[id.slice(5)] = v;
+    else if (id.startsWith('member-')) raw.members[typeof v.mid === 'string' && v.mid ? v.mid : id.slice(7)] = v;
+    else if (id.startsWith('log-')) raw.log[id.slice(4)] = v.items;
   }
-  s.recipes.sort((a, b) => (b.created || 0) - (a.created || 0));
-  s.shop.sort((a, b) => (a.t || 0) - (b.t || 0));
-  return s;
+  return cleanState(raw);
 }
 const LIM = { n: 0, max: 4, wait: [] };
 function limited(fn) { return new Promise((res, rej) => { const run = () => { LIM.n++; Promise.resolve().then(fn).then(res, rej).finally(() => { LIM.n--; const w = LIM.wait.shift(); if (w) w(); }); }; if (LIM.n < LIM.max) run(); else LIM.wait.push(run); }); }
@@ -186,13 +229,7 @@ function handleSaveErr(e, key = '') {
   else toast('儲存出錯，等陣再試');
   setSync('err');
 }
-function normalize(d) {
-  const s = { recipes: [], favs: [], plan: {}, shop: [], pantry: [], members: {}, log: {}, ...d, settings: { ...DEF_SETTINGS, ...(d.settings || {}) }, demo: false };
-  s.recipes = (s.recipes || []).filter(r => r && r.id && r.name).sort((a, b) => (b.created || 0) - (a.created || 0));
-  s.shop = (s.shop || []).map((i, k) => ({ ...i, t: i.t || k + 1 }));
-  ['v', 'init', 'updated'].forEach(k => delete s[k]);
-  return s;
-}
+function normalize(d) { return cleanState(d); }
 function save() { if (S.demo) S.demo = false; Store.sync(); refresh(); }
 let rfH = null;
 function scheduleRefresh() { if (rfH) return; rfH = requestAnimationFrame(() => { rfH = null; refresh(); rerenderDetail(); if (typeof updateFamSheet === 'function') updateFamSheet(); }); }
@@ -326,7 +363,8 @@ function addIngsToShop(r, factor = 1) {
   for (const ing of r.ings) {
     const cat = ing.cat || ingInfo(ing.n).cat;
     if (cat === 'water') continue;
-    const u = ing.u || ''; const q = ing.q ? Math.round(ing.q * factor * 100) / 100 : 0;
+    const u = ing.u || ''; let q = ing.q ? Math.round(ing.q * factor * 100) / 100 : 0;
+    if (q && /^(隻|個|條|粒|片|塊|棵|盒|罐|樽|包|扎|紮|束|碗|杯)$/.test(u)) q = Math.max(1, Math.ceil(q - 0.05));
     const it = S.shop.find(x => x.n === ing.n && (x.u || '') === u && !x.done);
     if (it) { it.q = Math.round(((it.q || 0) + q) * 100) / 100; if (!it.from.includes(r.name)) it.from.push(r.name); }
     else S.shop.push({ id: uid('s'), n: ing.n, q, u, cat: CATS[cat] ? cat : 'other', done: false, from: [r.name], by: RT.me || '', t: Date.now() + n });
@@ -456,7 +494,7 @@ function renderHome() {
     <div style="position:relative;z-index:1">
       <h1>${greet()}<br>今日想煮乜？</h1>
       <p>${fmtDay(k)}・今日餐單有 <b class="num">${ids.length}</b> 個餸，${ppl} 個人食</p>
-      <div class="row wrap"><button class="btn sun" data-act="go" data-v="ai">${li('ai')}叫 AI 諗食譜</button><button class="btn" data-act="wheelGo">${li('shuffle')}今日食乜好</button></div>
+      <div class="row wrap"><button class="btn sun needs-ai" data-act="go" data-v="ai">${li('ai')}叫 AI 諗食譜</button><button class="btn sun only-no-ai" data-act="newRecipe">${li('plus')}記低新食譜</button><button class="btn" data-act="wheelGo">${li('shuffle')}今日食乜好</button></div>
     </div>
     <div class="mwrap">${iconSVG('wok', 'mascot')}</div>
     <span class="deco" style="right:6px;top:4px;transform:rotate(14deg)">${iconSVG('tomato')}</span>
@@ -479,7 +517,7 @@ function renderHome() {
   </div>
   <div class="quick">
     <button class="qbtn" data-act="newRecipe">${iconSVG('plate')}記低食譜</button>
-    <button class="qbtn" data-act="photoGo">${iconSVG('basket')}影相認食材</button>
+    <button class="qbtn needs-ai" data-act="photoGo">${iconSVG('basket')}影相認食材</button><button class="qbtn only-no-ai" data-act="pantryGo">${iconSVG('milk')}雪櫃管理</button>
     <button class="qbtn" data-act="timerGo">${iconSVG('egg')}計時器</button>
     <button class="qbtn" data-act="go" data-v="shop">${iconSVG('carrot')}買餸清單</button>
   </div>`;
@@ -509,7 +547,7 @@ function renderRecipes() {
     el.dataset.built = '1';
     el.innerHTML = `
     <div class="sec-h"><span class="ic" style="background:${iconBg('plate')}">${iconSVG('plate')}</span><div><h2>食譜簿</h2><div class="small muted" id="recCount"></div></div>
-      <div class="act"><button class="btn sm sun" data-act="newRecipe">${li('plus')}新增食譜</button><button class="btn sm pri" data-act="go" data-v="ai">${li('ai')}AI 生成</button></div></div>
+      <div class="act"><button class="btn sm sun" data-act="newRecipe">${li('plus')}新增食譜</button><button class="btn sm pri needs-ai" data-act="go" data-v="ai">${li('ai')}AI 生成</button></div></div>
     <div class="row"><div class="field" style="flex:1"><label for="recQ" class="hide">搜尋</label><input id="recQ" class="inp" type="search" placeholder="搜尋菜名、材料或者標籤，例如：雞蛋"></div>
       <select id="recSort" class="inp" style="width:auto" aria-label="排序"><option value="new">最新</option><option value="fast">最快煮好</option><option value="kcal">熱量低先</option><option value="name">名稱</option></select></div>
     <div class="chips" id="recFilters"></div>
@@ -542,7 +580,8 @@ function openRecipe(id) {
   bd._onClose = () => { RT.detail = null; };
 }
 function rerenderDetail() {
-  const bd = $$('#sheets .backdrop').find(b => b.dataset.detail === RT.detail?.id); if (!bd) return;
+  if (!RT.detail) return;
+  const bd = $$('#sheets .backdrop').find(b => b.dataset.detail && b.dataset.detail === RT.detail.id); if (!bd) return;
   const r = getRecipe(RT.detail.id); if (!r) { closeSheet(bd); return; }
   const sh = bd.querySelector('.sheet'); const top = sh.scrollTop;
   bd.querySelector('.body').innerHTML = detailHTML(r); sh.scrollTop = top;
@@ -586,7 +625,7 @@ function detailHTML(r) {
   <div class="card tint">
     <div class="sec-h"><span class="ic" style="background:#fff">${iconSVG('soup')}</span><div><h3>搭配菜推薦</h3><div class="small muted">一湯兩餸，有菜有肉</div></div></div>
     <div class="list" style="margin-top:10px">${pr.map(x => `<div class="dish">${dishIc(x.r)}<button class="plain" data-act="openSwap" data-id="${esc(x.r.id)}"><div class="nm">${esc(x.r.name)}</div><div class="sub">${x.why.map(esc).join('・') || TYPES[x.r.type]?.label}</div></button><button class="btn sm sun" data-act="addPlan" data-id="${esc(x.r.id)}">${li('plus')}加菜</button></div>`).join('')}</div>
-    <button class="btn sm pri" style="margin-top:10px" data-act="aiPair" data-id="${esc(r.id)}">${li('ai')}問 AI 點配</button>
+    <button class="btn sm pri needs-ai" style="margin-top:10px" data-act="aiPair" data-id="${esc(r.id)}">${li('ai')}問 AI 點配</button>
     <div id="aiPairOut" style="margin-top:8px"></div>
   </div>
   ${mine ? `<button class="btn coral" data-act="delRecipe" data-id="${esc(r.id)}">${li('trash')}刪除呢個食譜</button>` : ''}`;

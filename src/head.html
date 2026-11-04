@@ -246,7 +246,7 @@ textarea.inp{resize:vertical;min-height:70px}
 .days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
 .day{display:flex;flex-direction:column;align-items:center;gap:2px;border:2.5px solid var(--ink);border-radius:14px;background:var(--paper);padding:6px 2px;font-family:var(--f-display);font-size:12.5px}
 .day .d{font-family:var(--f-num);font-size:18px;font-weight:700;line-height:1}
-.day .dots{display:flex;gap:2px;height:7px}
+.day .dots{display:flex;gap:2px;height:7px;margin-top:4px}
 .day .dots i{width:7px;height:7px;border-radius:50%;background:var(--teal)}
 .day.on{background:var(--sun);box-shadow:0 3px 0 var(--ink)}
 .day.today .d{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:3px}
@@ -296,6 +296,10 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .mwrap{width:120px;height:110px;position:relative}
 .deco svg{width:100%;height:100%}
 @media (max-width:420px){.hero h1{font-size:23px}.mwrap{width:86px;height:80px}.hero .mascot{width:86px;height:80px}.hero{padding:14px}}
+body.no-ai .needs-ai{display:none!important}
+.only-no-ai{display:none!important}
+body.no-ai .only-no-ai{display:inline-flex!important}
+body.no-ai .qbtn.only-no-ai{display:flex!important}
 #famQR svg{width:100%;height:auto;display:block}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>

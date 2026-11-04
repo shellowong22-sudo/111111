@@ -67,10 +67,10 @@ async function unpackCode(text, tag) {
 function inviteLink(code) { const base = location.protocol.startsWith('http') ? location.origin + location.pathname : ''; return base ? `${base}#join=${code}` : ''; }
 
 /* 合併（分享碼／備份） */
-function mergeIn(inc) {
-  let n = 0; const byId = a => new Map((a || []).map(x => [x.id, x]));
+function mergeIn(inc0) {
+  const inc = cleanState(inc0); let n = 0; const byId = a => new Map((a || []).map(x => [x.id, x]));
   const rm = byId(S.recipes); (inc.recipes || []).forEach(r => { if (r && r.id && r.name && Array.isArray(r.ings) && !rm.has(r.id)) { S.recipes.push(r); n++; } });
-  const sm = byId(S.shop); (inc.shop || []).forEach(i => { if (!i || !i.id || !i.n) return; const c = sm.get(i.id); if (!c) { S.shop.push({ ...i, t: i.t || Date.now() }); n++; } else if (i.done && !c.done) { c.done = true; c.doneBy = i.doneBy || ''; n++; } });
+  const sm = byId(S.shop); (inc.shop || []).forEach(i => { const c = sm.get(i.id); if (!c) { S.shop.push({ ...i, t: i.t || Date.now() }); n++; } else if (i.done && !c.done) { c.done = true; c.doneBy = i.doneBy || ''; n++; } });
   const pm = byId(S.pantry); (inc.pantry || []).forEach(p => { if (p && p.id && p.n && !pm.has(p.id)) { S.pantry.push(p); n++; } });
   for (const [k, v] of Object.entries(inc.plan || {})) { if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) continue; const c = dayPlan(k); let ch = false; for (const m of ['b', 'l', 'd']) (v[m] || []).forEach(id => { if (getRecipe(id) && !c[m].includes(id)) { c[m].push(id); n++; ch = true; } }); if (ch) S.plan[k] = c; }
   (inc.favs || []).forEach(f => { if (getRecipe(f) && !S.favs.includes(f)) S.favs.push(f); });
@@ -129,6 +129,7 @@ function famHTML() {
     <div class="small muted" style="margin-top:8px">可以編輯嘅人先可以剔清單、加菜；只可以睇嘅人淨係睇到。有連結嘅人都可能睇到呢度嘅資料，請只分享俾屋企人。</div>
     <div class="small" style="margin-top:8px"><b>唔用 Claude 嘅屋企人：</b>用獨立版（網頁檔案包），配 Firebase 免費同步，或者用下面嘅分享碼。</div></div>`;
   const inviteFb = `<div class="card sun" style="box-shadow:none"><h3>邀請屋企人</h3><div class="small muted">屋企人用手機掃 QR code，或者撳 WhatsApp 收到嘅連結，就會加入同一個家庭。邀請碼好似鎖匙咁，只俾屋企人。</div>
+    <div class="small" style="margin-top:6px"><b>iPhone 注意：</b>加咗去主畫面嘅 App 同 Safari 嘅資料係分開嘅。請先「加入主畫面」，再喺主畫面個 App 入面貼邀請碼加入。</div>
     <div id="famQR" class="hide" style="width:200px;max-width:70%;margin:10px auto;background:#fff;border:3px solid var(--ink);border-radius:14px;padding:6px"></div>
     <div class="row wrap" style="margin-top:8px"><button class="btn sm pri" data-act="fbCopyLink">${li('copy')}複製邀請連結</button><button class="btn sm" data-act="fbCopyCode">${li('copy')}複製邀請碼</button></div>
     <button class="btn sm coral" style="margin-top:12px" data-act="fbLeave">離開家庭（之後只用呢部機）</button></div>`;
@@ -143,7 +144,7 @@ function famHTML() {
     <div class="field" style="margin-top:10px"><label>Firestore 規則</label><textarea class="inp" rows="7" readonly id="fbRules" aria-label="Firestore 規則" style="font-family:ui-monospace,monospace;font-size:12px">${esc(FB_RULES)}</textarea><button class="btn sm" data-act="fbCopyRules" style="align-self:flex-start">${li('copy')}複製規則</button></div>
     <div class="field" style="margin-top:10px"><label for="fbCfg">貼上 firebaseConfig</label><textarea id="fbCfg" class="inp" rows="5" placeholder="const firebaseConfig = { apiKey: &quot;…&quot;, projectId: &quot;…&quot;, … };" style="font-family:ui-monospace,monospace;font-size:12px"></textarea></div>
     <button class="btn pri" style="margin-top:8px" data-act="fbCreate">${li('check')}建立家庭</button>
-    <div class="field" style="margin-top:14px"><label for="fbJoin">或者：屋企人已經設定好？貼上邀請碼／連結</label><input id="fbJoin" class="inp" placeholder="WZFZ:… 或者 https://…#join=…"></div>
+    <div class="field" style="margin-top:14px"><label for="fbJoin">或者：屋企人已經設定好？貼上邀請碼／連結（iPhone 主畫面 App 請用呢度）</label><input id="fbJoin" class="inp" placeholder="WZFZ:… 或者 https://…#join=…"></div>
     <button class="btn" style="margin-top:8px" data-act="fbJoinGo">${li('people')}加入家庭</button></div>`;
   const share = `<div class="card" style="box-shadow:none"><div class="sec-h"><span class="ic" style="background:${iconBg('basket')}">${iconSVG('basket')}</span><div><h3>分享碼同備份</h3><div class="small muted">唔使任何帳戶：將清單、餐單、雪櫃同食譜變成一段文字，WhatsApp 傳俾屋企人，佢貼上就會合併</div></div></div>
     <div class="row wrap" style="margin-top:10px"><button class="btn sm pri" data-act="shareCopy">${li('copy')}複製分享碼</button>${k !== 'claude' ? `<button class="btn sm" data-act="backupDl">${li('copy')}下載完整備份檔</button><label class="btn sm" for="backupFile" style="cursor:pointer">匯入備份檔</label><input id="backupFile" type="file" accept="application/json,.json" class="hide">` : ''}</div>
@@ -213,6 +214,7 @@ async function boot() {
   if (Store.mode === 'db') {
     Store.subscribe((docs, meta) => {
       if (docs === null) {
+        if (Store.kind === 'firebase' && meta && meta.timeout && RT.ready && !Store.live) toast('仲未連到 Firebase：如果一直咁，檢查網絡、firebaseConfig 同規則');
         if (!RT.ready) { RT.ready = true; refresh(); toast(meta && meta.error ? (Store.kind === 'firebase' ? '連唔到家庭資料：檢查 Firestore 規則同設定' : '連唔到家庭資料，等陣再試') : '網絡有啲慢，家庭資料載入緊'); }
         setSync(); return;
       }
