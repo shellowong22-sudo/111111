@@ -1,0 +1,13 @@
+# Netlify：連接呢個 repo 之後，每次 push 都會自動更新網站
+[build]
+  publish = "site"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
