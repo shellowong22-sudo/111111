@@ -162,6 +162,15 @@ function stateFromDocs(docs) {
   for (const [key, list] of Object.entries(pe)) { const [d, m] = key.split('|'); const day = raw.plan[d] = raw.plan[d] || { b: [], l: [], d: [] }; day[m] = [...(Array.isArray(day[m]) ? day[m] : []), ...list.sort((a, b) => (a.o || 0) - (b.o || 0) || String(a.id).localeCompare(String(b.id))).map(e => e.id)]; }
   return cleanState(raw);
 }
+const IDB = {
+  db: null,
+  open() { if (this.db) return this.db; this.db = new Promise((res, rej) => { if (!window.indexedDB) { rej(new Error('noidb')); return; } const r = indexedDB.open('wokzai', 1); r.onupgradeneeded = () => r.result.createObjectStore('kv'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); r.onblocked = () => rej(new Error('blocked')); }); this.db.catch(() => { this.db = null; }); return this.db; },
+  async get(k) { const db = await this.open(); return new Promise((res, rej) => { const q = db.transaction('kv', 'readonly').objectStore('kv').get(k); q.onsuccess = () => res(q.result); q.onerror = () => rej(q.error); }); },
+  async set(k, v) { const db = await this.open(); return new Promise((res, rej) => { const tx = db.transaction('kv', 'readwrite'); tx.objectStore('kv').put(v, k); tx.oncomplete = () => res(); tx.onerror = () => rej(tx.error); tx.onabort = () => rej(tx.error); }); },
+};
+function localBody() { return { v: 3, init: true, at: Date.now(), favs: S.favs, plan: prunePlan(S.plan), shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log, recipes: S.recipes }; }
+let LOCAL_BC = null; try { LOCAL_BC = new BroadcastChannel('wokzai-local'); } catch (e) { }
+if (LOCAL_BC) LOCAL_BC.onmessage = async ev => { if (Store.mode !== 'local' || Store.ltPending || ev.data === RT.lastLocalAt) return; const d = await Store.loadLocal(); if (d) { S = normalize(d); scheduleRefresh(); } };
 const LIM = { n: 0, max: 4, wait: [] };
 function limited(fn) { return new Promise((res, rej) => { const run = () => { LIM.n++; Promise.resolve().then(fn).then(res, rej).finally(() => { LIM.n--; const w = LIM.wait.shift(); if (w) w(); }); }; if (LIM.n < LIM.max) run(); else LIM.wait.push(run); }); }
 const Store = {
@@ -200,7 +209,14 @@ const Store = {
       this.loaded = true; cb(docs, snap.metadata);
     }, err => { clearTimeout(timer); this.live = false; cb(null, { error: err }); });
   },
-  async loadLocal() { try { const s = localStorage.getItem(LS_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } },
+  async loadLocal() {
+    let a = null, b = null;
+    try { const t = localStorage.getItem(LS_KEY); a = t ? JSON.parse(t) : null; } catch (e) { }
+    try { const t = await IDB.get(LS_KEY); b = t ? JSON.parse(t) : null; } catch (e) { }
+    if (!a || !b) return b || a;
+    if ((a.at || 0) > (b.at || 0)) { const ph = Object.fromEntries((b.recipes || []).filter(r => r.photo).map(r => [r.id, r.photo])); a.recipes = (a.recipes || []).map(r => ph[r.id] && !r.photo ? { ...r, photo: ph[r.id] } : r); return a; }
+    return b;
+  },
   q(key, fn) {
     if (this.kind === 'firebase') { Promise.resolve().then(fn).then(() => setSync()).catch(e => { delete this.known[key]; handleSaveErr(e, key); }); return; }
     const prev = this.chain[key] || Promise.resolve(); const next = prev.then(() => limited(fn)).then(() => setSync()).catch(e => { delete this.known[key]; handleSaveErr(e, key); }); this.chain[key] = next; return next; },
@@ -222,9 +238,13 @@ const Store = {
   flushLocal() {
     if (this.mode !== 'local' || !this.ltPending) return;
     clearTimeout(this.lt); this.ltPending = false;
-    try { localStorage.setItem(LS_KEY, JSON.stringify({ v: 2, init: true, favs: S.favs, plan: prunePlan(S.plan), shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log, recipes: S.recipes })); setSync(); }
-    catch (e) { toast('呢部機儲存空間唔夠，試下刪走啲相片'); }
+    const body = localBody(); const at = body.at;
+    IDB.set(LS_KEY, JSON.stringify(body)).then(() => { this.idbOk = true; try { LOCAL_BC && LOCAL_BC.postMessage(at); } catch (e) { } }).catch(() => { this.idbOk = false; });
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ ...body, recipes: body.recipes.map(r => { if (!r.photo) return r; const c = { ...r }; delete c.photo; return c; }) })); }
+    catch (e) { if (this.idbOk === false) toast('呢部機儲存空間唔夠，請刪走啲相片或者用「下載完整備份檔」'); }
+    RT.lastLocalAt = at; setSync();
   },
+
 };
 function prunePlan(plan) { const lim = dkey(addDays(new Date(), -60)); const o = {}; for (const k in plan) if (k >= lim) o[k] = plan[k]; return o; }
 function handleSaveErr(e, key = '') {
@@ -403,6 +423,14 @@ function toast(msg) {
   const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
   const box = $('#toast'); box.appendChild(t); while (box.children.length > 2) box.firstElementChild.remove(); setTimeout(() => t.remove(), 2600);
 }
+function undoable(msg, fn) {
+  const snap = clone({ recipes: S.recipes, favs: S.favs, plan: S.plan, shop: S.shop, pantry: S.pantry, members: S.members, log: S.log, settings: S.settings });
+  fn(); save();
+  const box = $('#toast'); const t = document.createElement('div'); t.className = 'toast undo';
+  const sp = document.createElement('span'); sp.textContent = msg; const bt = document.createElement('button'); bt.type = 'button'; bt.className = 'btn sm sun'; bt.textContent = '復原';
+  bt.onclick = () => { S = cleanState(snap); save(); t.remove(); rerenderDetail(); toast('復原咗'); };
+  t.append(sp, bt); box.appendChild(t); while (box.children.length > 2) box.firstElementChild.remove(); setTimeout(() => t.remove(), 6000);
+}
 function openSheet(title, html, { cls = '' } = {}) {
   const bd = document.createElement('div'); bd.className = 'backdrop';
   bd.innerHTML = `<div class="sheet ${cls}" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="sheet-h"><h3>${esc(title)}</h3><button class="btn icon sm" data-act="closeSheet" aria-label="閂">${li('x')}</button></div><div class="body">${html}</div></div>`;
@@ -483,7 +511,7 @@ const WHO = ['阿爸', '阿媽', '爺爺', '嫲嫲', '公公', '婆婆', '哥哥
 const WHO_ICONS = ['bun', 'eggtart', 'tea', 'dumpling', 'pineapplebun', 'egg', 'tomato', 'corn', 'broccoli', 'shrimp'];
 function famStrip() {
   if (!RT.ready) return '';
-  if (Store.mode !== 'db') return RT.syncHint === false ? '' : `<button class="card row wrap" style="text-align:left;padding:10px 14px" data-act="famOpen"><span style="width:44px;height:44px;flex:none">${iconSVG('wok')}</span><div style="flex:1;min-width:150px"><b style="font-family:var(--f-display)">想同屋企人同步？</b><div class="small muted">用免費 Firebase 即時同步，或者用分享碼經 WhatsApp 傳</div></div><span class="btn sm sun">${li('people')}設定</span></button>`;
+  if (Store.mode !== 'db') return RT.syncHint === false ? '' : `<button class="card row wrap" style="text-align:left;padding:10px 14px" data-act="famOpen"><span style="width:44px;height:44px;flex:none">${iconSVG('wok')}</span><div style="flex:1;min-width:150px"><b style="font-family:var(--f-display)">想同屋企人同步？</b><div class="small muted">用免費 Firebase 即時同步，或者用分享碼經 WhatsApp／微信傳</div></div><span class="btn sm sun">${li('people')}設定</span></button>`;
   if (Store.canWrite === false) return `<div class="card sun row wrap"><span style="width:44px;height:44px;flex:none">${iconSVG('wok')}</span><div style="flex:1;min-width:180px"><h4>你而家只可以睇</h4><div class="small muted">叫擁有人分享俾你時揀可以編輯，你就可以一齊剔清單、加菜。</div></div><button class="btn sm" data-act="famOpen">點樣設定</button></div>`;
   const ids = familyIds(); const me = (S.members || {})[RT.me];
   if (!me && !RT.whoLater) return `<div class="card tint"><div class="sec-h"><span class="ic" style="background:#fff">${iconSVG('bun')}</span><div><h3>你係屋企邊位？</h3><div class="small muted">揀咗之後，屋企人會見到邊個加咗、買咗乜</div></div></div>
@@ -506,7 +534,7 @@ function renderHome() {
     </div>
     <div class="mwrap">${iconSVG('wok', 'mascot')}</div>
     <span class="deco" style="right:6px;top:4px;transform:rotate(14deg)">${iconSVG('tomato')}</span>
-    <span class="deco" style="right:122px;bottom:-6px;transform:rotate(-12deg)">${iconSVG('egg')}</span>
+    <span class="deco deco-egg" style="right:122px;bottom:-6px;transform:rotate(-12deg)">${iconSVG('egg')}</span>
   </div>
   ${famStrip()}
   ${showDemoBanner() ? `<div class="card sun row wrap"><span style="width:44px;height:44px;flex:none">${iconSVG('basket')}</span><div style="flex:1;min-width:180px"><h4>而家見到嘅係示範資料</h4><div class="small muted">${S.demo ? '食譜、餐單、雪櫃都係例子，你一改就會開始儲存。' : '示範食譜、餐單同雪櫃例子仲喺度，唔要就清走佢。'}</div></div><button class="btn sm coral" data-act="clearDemo">清走示範資料</button><button class="btn sm" data-act="keepDemo">保留住先</button></div>` : ''}

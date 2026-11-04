@@ -504,7 +504,7 @@ const ACTS = {
   openSwap: el => { closeSheet(sheetOf(el)); openRecipe(el.dataset.id); },
   closeSheet: el => closeSheet(sheetOf(el)),
   fav: el => { const id = el.dataset.id; const on = !isFav(id); S.favs = on ? [...S.favs, id] : S.favs.filter(x => x !== id); save(); toast(on ? '收藏咗' : '取消咗收藏'); rerenderDetail(); },
-  planRm: el => { const { k, m, i } = el.dataset; const p = dayPlan(k); p[m] = p[m].filter((_, j) => j !== +i); S.plan[k] = p; save(); },
+  planRm: el => { const { k, m, i } = el.dataset; const r = getRecipe(dayPlan(k)[m][+i]); undoable(`移走咗 ${r ? r.name : '一個餸'}`, () => { const p = dayPlan(k); p[m] = p[m].filter((_, j) => j !== +i); S.plan[k] = p; }); },
   picker: el => openPicker(el.dataset.k, el.dataset.m),
   pkAdd: el => { const bd = sheetOf(el); const { k, meal } = bd._pk; S.plan[k] = { ...dayPlan(k), [meal]: [...dayPlan(k)[meal], el.dataset.id] }; save(); el.innerHTML = li('check') + '加咗'; el.disabled = true; toast('加咗：' + getRecipe(el.dataset.id).name); },
   autoPair: el => autoPair(el.dataset.k, el.dataset.m),
@@ -523,10 +523,10 @@ const ACTS = {
   copyRecipe: el => { const r = getRecipe(el.dataset.id); closeSheet(sheetOf(el)); const c = JSON.parse(JSON.stringify(r)); delete c.id; c.name = (r.name + '（我嘅版本）').slice(0, 30); c.src = 'me'; c.demo = false; openEditor(null, c); },
   delRecipe: el => {
     if (!el.dataset.sure) { el.dataset.sure = '1'; el.innerHTML = li('trash') + '再撳一次確認刪除'; return; }
-    const id = el.dataset.id; S.recipes = S.recipes.filter(r => r.id !== id); S.favs = S.favs.filter(x => x !== id);
-    for (const k in S.plan) { const p = S.plan[k]; for (const m of ['b', 'l', 'd']) if (p[m]) p[m] = p[m].filter(x => x !== id); }
-    closeSheet(sheetOf(el)); save({ del: id }); toast('刪咗');
+    const id = el.dataset.id; const r = getRecipe(id); closeSheet(sheetOf(el));
+    undoable(`刪咗「${r ? r.name : '食譜'}」`, () => { S.recipes = S.recipes.filter(x => x.id !== id); S.favs = S.favs.filter(x => x !== id); for (const k in S.plan) { const p = S.plan[k]; for (const m of ['b', 'l', 'd']) if (p[m]) p[m] = p[m].filter(x => x !== id); } });
   },
+
   newRecipe: () => openEditor(),
   recFilter: el => { RT.recFilter = el.dataset.f; renderRecList(); },
   recType: el => { RT.recType = el.dataset.t; renderRecList(); },
@@ -536,11 +536,11 @@ const ACTS = {
   people: el => { S.settings.people = Math.max(1, Math.min(20, (S.settings.people || 2) + Number(el.dataset.d))); save(); },
   shopDay: el => addDaysToShop([el.dataset.k]),
   shopWeek: () => addDaysToShop(weekKeys(RT.view === 'plan' ? RT.planDay : TODAY())),
-  clearDay: el => { delete S.plan[el.dataset.k]; save(); toast('清空咗呢日'); },
+  clearDay: el => undoable('清空咗呢日', () => { delete S.plan[el.dataset.k]; }),
   shopToggle: el => { const it = S.shop.find(i => i.id === el.dataset.id); if (it) { it.done = !it.done; it.doneBy = it.done ? (RT.me || '') : ''; save(); } },
-  shopDel: el => { S.shop = S.shop.filter(i => i.id !== el.dataset.id); save(); },
-  shopClearDone: () => { const n = S.shop.filter(i => i.done).length; S.shop = S.shop.filter(i => !i.done); save(); toast(`清走咗 ${n} 樣`); },
-  shopClearAll: el => { if (!el.dataset.sure) { el.dataset.sure = '1'; el.textContent = '再撳確認'; return; } S.shop = []; save(); },
+  shopDel: el => { const it = S.shop.find(i => i.id === el.dataset.id); undoable(`刪咗 ${it ? it.n : '一樣'}`, () => { S.shop = S.shop.filter(i => i.id !== el.dataset.id); }); },
+  shopClearDone: () => { const n = S.shop.filter(i => i.done).length; if (!n) { toast('未有剔咗買咗嘅嘢'); return; } undoable(`清走咗 ${n} 樣已買`, () => { S.shop = S.shop.filter(i => !i.done); }); },
+  shopClearAll: el => { if (!el.dataset.sure) { el.dataset.sure = '1'; el.textContent = '再撳確認'; return; } undoable('成張清單清走咗', () => { S.shop = []; }); },
   hideHave: () => { RT.hideHave = !RT.hideHave; try { localStorage.setItem('wokzai-hidehave', RT.hideHave ? '1' : '0'); } catch (e) { } renderShop(); },
   shopCopy: async () => {
     const t = shopText();
@@ -548,7 +548,7 @@ const ACTS = {
     catch (e) { openSheet('複製清單', `<textarea class="inp" rows="12" readonly aria-label="清單文字">${esc(t)}</textarea><div class="small muted">長撳揀晒，再複製</div>`); }
   },
   statsTbl: el => { const k = el.dataset.k; RT.statsTable[k] = !RT.statsTable[k]; renderStats(); },
-  clearDemo: () => {
+  clearDemo: () => undoable('清走咗示範資料，你自己加嘅嘢保留晒', () => {
     const dp = S.settings.demoPlan || {}, df = S.settings.demoFavs || [];
     const demoIds = S.recipes.filter(r => r.demo).map(r => r.id);
     S.recipes = S.recipes.filter(r => !r.demo); S.pantry = S.pantry.filter(p => !p.demo); S.shop = S.shop.filter(i => !i.demo);
@@ -556,8 +556,7 @@ const ACTS = {
     for (const [k, d] of Object.entries(dp)) { if (!S.plan[k]) continue; const p = dayPlan(k); for (const m of ['b', 'l', 'd']) for (const id of d[m] || []) { const i = p[m].indexOf(id); if (i >= 0) p[m].splice(i, 1); } S.plan[k] = p; }
     for (const k in S.plan) for (const m of ['b', 'l', 'd']) if (S.plan[k][m]) S.plan[k][m] = S.plan[k][m].filter(id => !demoIds.includes(id));
     delete S.settings.demoPlan; delete S.settings.demoFavs; S.settings.demoCleared = true;
-    save(); toast('清走咗示範資料，你自己加嘅嘢保留晒');
-  },
+  }),
   keepDemo: () => { S.settings.demoCleared = true; save(); },
   wheelGo: () => { show('tools'); scrollToEl('#tWheel'); },
   timerGo: () => { show('tools'); scrollToEl('#tTimer'); },
@@ -569,7 +568,7 @@ const ACTS = {
   tToggle: el => { const t = RT.timers.find(x => x.id === el.dataset.id); if (!t) return; if (t.running) { t.running = false; } else if (t.left > 0) { t.end = Date.now() + t.left * 1000; t.running = true; t.fired = false; ensureAudio(); tick(); } renderTimers(); },
   tPlus: el => { const t = RT.timers.find(x => x.id === el.dataset.id); if (!t) return; t.left += 60; t.total = Math.max(t.total, t.left); t.fired = false; if (t.running) t.end += 60000; else { t.end = Date.now() + t.left * 1000; t.running = true; ensureAudio(); tick(); } renderTimers(); },
   tDel: el => { RT.timers = RT.timers.filter(x => x.id !== el.dataset.id); renderTimers(); updateTimerChip(); },
-  pDel: el => { const p = S.pantry.find(x => x.id === el.dataset.id); S.pantry = S.pantry.filter(x => x.id !== el.dataset.id); save(); if (p) toast(`用咗 ${p.n}`); },
+  pDel: el => { const p = S.pantry.find(x => x.id === el.dataset.id); undoable(`用咗 ${p ? p.n : '一樣'}`, () => { S.pantry = S.pantry.filter(x => x.id !== el.dataset.id); }); },
   pRec: () => { show('home'); },
   pAI: () => { show('ai'); const names = [...S.pantry].sort((a, b) => (a.exp || '9') < (b.exp || '9') ? -1 : 1).map(p => p.n).slice(0, 10).join('、'); $('#aiIngs').value = names; scrollToEl('#aiGenCard'); },
   scale: el => { RT.scale.n = Math.max(1, Math.min(30, RT.scale.n + Number(el.dataset.d))); renderScaler(); },
@@ -585,12 +584,14 @@ const ACTS = {
   autoWeek: () => autoWeek(),
   cookedLog: el => { logCooked(el.dataset.id); rerenderDetail(); openUsed(el.dataset.id); },
   cookDone: () => { const id = RT.cook?.id; ACTS.cookClose(); if (id) { logCooked(id); rerenderDetail(); openUsed(id); } },
-  usedGo: el => { const bd = sheetOf(el); const ids = $$('[data-act=usedItem][aria-checked=true]', bd).map(b => b.dataset.id); S.pantry = S.pantry.filter(p => !ids.includes(p.id)); closeSheet(bd); if (ids.length) { save(); toast(`由雪櫃剔走咗 ${ids.length} 樣`); } },
+  usedGo: el => { const bd = sheetOf(el); const ids = $$('[data-act=usedItem][aria-checked=true]', bd).map(b => b.dataset.id); closeSheet(bd); if (ids.length) undoable(`由雪櫃剔走咗 ${ids.length} 樣`, () => { S.pantry = S.pantry.filter(p => !ids.includes(p.id)); }); },
   usedItem: el => el.setAttribute('aria-checked', el.getAttribute('aria-checked') !== 'true'),
   shopToPantry: () => {
     const done = S.shop.filter(i => i.done); if (!done.length) { toast('未有剔咗買咗嘅嘢'); return; }
-    done.forEach(i => { if (ingInfo(i.n).cat === 'sauce' && inPantry(i.n)) return; S.pantry.push({ id: uid('p'), n: i.n, q: i.q, u: i.u, exp: dkey(addDays(new Date(), EXP_DAYS[i.cat] || 7)), by: RT.me || '' }); });
-    S.shop = S.shop.filter(i => !i.done); save(); toast(`${done.length} 樣放咗入雪櫃，記得睇吓到期日`);
+    undoable(`${done.length} 樣放咗入雪櫃，記得睇吓到期日`, () => {
+      done.forEach(i => { if (ingInfo(i.n).cat === 'sauce' && inPantry(i.n)) return; S.pantry.push({ id: uid('p'), n: i.n, q: i.q, u: i.u, exp: dkey(addDays(new Date(), EXP_DAYS[i.cat] || 7)), by: RT.me || '' }); });
+      S.shop = S.shop.filter(i => !i.done);
+    });
   },
   copyWeek: () => {
     const wk = weekKeys(RT.planDay); let n = 0;

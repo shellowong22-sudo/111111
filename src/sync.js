@@ -19,7 +19,7 @@ async function loadFirebase() {
   const bases = [`https://www.gstatic.com/firebasejs/${FB_VER}/`, `https://cdn.jsdelivr.net/npm/firebase@${FB_VER}/`];
   let last;
   for (const b of bases) {
-    try { if (!(window.firebase && window.firebase.initializeApp)) await loadScript(b + 'firebase-app-compat.js'); await loadScript(b + 'firebase-firestore-compat.js'); if (window.firebase && window.firebase.firestore) return; }
+    try { if (!(window.firebase && window.firebase.initializeApp)) await loadScript(b + 'firebase-app-compat.js', 9000); await loadScript(b + 'firebase-firestore-compat.js', 9000); if (window.firebase && window.firebase.firestore) return; }
     catch (e) { last = e; }
   }
   throw last || new Error('firebase');
@@ -91,7 +91,7 @@ function sharePayload() {
 async function shareText() {
   const code = await packCode(sharePayload(), 'WZ1');
   const left = S.shop.filter(i => !i.done);
-  return `鑊仔食譜分享碼：喺 App 撳「家庭共用」→「貼上分享碼」就會合併清單、餐單、雪櫃同食譜。\n${left.length ? `（仲有 ${left.length} 樣未買：${left.slice(0, 8).map(i => i.n).join('、')}${left.length > 8 ? '…' : ''}）\n` : ''}${code}`;
+  return `鑊仔食譜分享碼：喺 App 撳「家庭共用」→「貼上分享碼」就會合併清單、餐單、雪櫃同食譜（WhatsApp、微信都傳得）。\n${left.length ? `（仲有 ${left.length} 樣未買：${left.slice(0, 8).map(i => i.n).join('、')}${left.length > 8 ? '…' : ''}）\n` : ''}${code}`;
 }
 async function copyOrShow(textOrPromise, title) {
   const p = Promise.resolve(textOrPromise);
@@ -143,6 +143,7 @@ function famHTML() {
     <div class="row wrap" style="margin-top:8px"><button class="btn sm pri" data-act="fbCopyLink">${li('copy')}複製邀請連結</button><button class="btn sm" data-act="fbCopyCode">${li('copy')}複製邀請碼</button></div>
     <button class="btn sm coral" style="margin-top:12px" data-act="fbLeave">離開家庭（之後只用呢部機）</button></div>`;
   const setupFb = `<div class="card sun" style="box-shadow:none"><div class="sec-h"><span class="ic" style="background:#fff">${iconSVG('soup')}</span><div><h3>唔使 Claude 嘅即時同步（Firebase 免費）</h3><div class="small muted">一個人設定一次（大約 10 分鐘），其他屋企人掃 QR code 就加入</div></div></div>
+    <div class="small" style="margin-top:8px"><b>喺內地：</b>Firebase 係 Google 服務，內地網絡通常連唔到。屋企人喺內地嘅話，請用下面嘅「分享碼」，微信都傳得。</div>
     ${!location.protocol.startsWith('http') ? `<div class="small" style="margin-top:8px;background:#ffe3dc;border-radius:10px;padding:6px 10px">要先將呢個 App 放上網（例如 Netlify），開網址嘅版本先做到同步。</div>` : ''}
     <ol style="margin:10px 0 0;padding-left:20px;line-height:1.75">
       <li>用 Google 帳戶開 <b>console.firebase.google.com</b>，撳「建立專案／Create a project」，改個名，Analytics 可以唔開。</li>
@@ -193,8 +194,8 @@ Object.assign(ACTS, {
   fbCopyCode: el => copyOrShow(sheetOf(el)._invite || '', '邀請碼'),
   fbLeave: el => {
     if (!el.dataset.sure) { el.dataset.sure = '1'; el.textContent = '再撳一次確認離開'; return; }
-    try { localStorage.setItem(LS_KEY, JSON.stringify({ v: 2, init: true, favs: S.favs, plan: prunePlan(S.plan), shop: S.shop, pantry: S.pantry, settings: S.settings, members: S.members, log: S.log, recipes: S.recipes })); localStorage.removeItem(FB_KEY); } catch (e) { }
-    toast('離開咗家庭，資料留咗一份喺呢部機'); setTimeout(() => location.reload(), 700);
+    const body = localBody();
+    IDB.set(LS_KEY, JSON.stringify(body)).catch(() => { }).finally(() => { try { localStorage.setItem(LS_KEY, JSON.stringify({ ...body, recipes: body.recipes.map(r => { const c = { ...r }; delete c.photo; return c; }) })); } catch (e) { } try { localStorage.removeItem(FB_KEY); } catch (e) { } toast('離開咗家庭，資料留咗一份喺呢部機'); setTimeout(() => location.reload(), 700); });
   },
   shareCopy: () => copyOrShow(shareText(), '分享碼'),
   shareMerge: async el => {
@@ -218,7 +219,7 @@ async function boot() {
   show(VIEWS.some(x => x[0] === h) ? h : 'home', false);
   setSync();
   await Store.init();
-  if (RT.fbErr) toast('連唔到 Firebase，暫時用呢部機嘅資料');
+  if (RT.fbErr) toast('連唔到 Firebase（網絡可能封鎖 Google），今次嘅改動只會存喺呢部機，可以用分享碼傳俾屋企人');
   if (Store.kind === 'firebase') { const data = await Store.loadLocal(); if (data && (data.init || (data.recipes && data.recipes.length))) S = normalize(data); RT.seed = S.demo ? null : clone(S); }
   if (Store.mode === 'db') {
     Store.subscribe((docs, meta) => {
