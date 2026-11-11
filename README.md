@@ -1,5 +1,7 @@
 # 鑊仔食譜
 
+**網址：https://shellowong22-sudo.github.io/wokzai-app/**（iPhone 用 Safari 開 →「分享」→「加入主畫面」）
+
 卡通藍綠色家庭食譜 App（廣東話介面）：記食譜、購物清單、餐單加菜同搭配、推薦、圖表、廚房工具、全家同步。
 
 ## 檔案
